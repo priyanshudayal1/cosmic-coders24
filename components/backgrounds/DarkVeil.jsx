@@ -97,6 +97,18 @@ export default function DarkVeil({
     const parent = canvas.parentElement;
     if (!parent) return;
 
+    // Pre-check WebGL availability before OGL tries (and logs errors internally)
+    const testCanvas = document.createElement("canvas");
+    const testGl =
+      testCanvas.getContext("webgl2") ||
+      testCanvas.getContext("webgl") ||
+      testCanvas.getContext("experimental-webgl");
+    if (!testGl) {
+      console.warn("WebGL is not supported on this device/browser");
+      setError(true);
+      return;
+    }
+
     let renderer, frame;
 
     try {
@@ -179,7 +191,7 @@ export default function DarkVeil({
   // Render fallback if WebGL fails
   if (error) {
     return (
-      <div className="w-full h-full block bg-gradient-to-br from-purple-900/20 to-blue-900/20" />
+      <div className="w-full h-full block bg-gradient-to-br from-purple-900/30 to-purple-600/20" />
     );
   }
 

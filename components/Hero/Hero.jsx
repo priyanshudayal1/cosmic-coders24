@@ -13,19 +13,22 @@ const Hero = () => {
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
           <DarkVeil
-            hueShift={0}
-            noiseIntensity={0}
+            hueShift={260}
+            noiseIntensity={0.02}
             scanlineIntensity={0}
             speed={0.5}
             scanlineFrequency={0}
-            warpAmount={0}
+            warpAmount={0.1}
           />
         </div>
       </div>
 
       {/* Spotlights/Beams */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-700/30 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-indigo-600/25 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+
+      {/* Additional Purple Accent */}
+      <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-[40%] h-[40%] bg-violet-600/20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto space-y-8">
         {/* Headline */}
@@ -75,10 +78,10 @@ const Hero = () => {
       </div>
 
       {/* Glowing Orb/Planet */}
-      <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-linear-to-t from-[#5227FF] via-[#7c3aed] to-transparent opacity-20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-gradient-to-t from-indigo-700 via-purple-600 to-transparent opacity-30 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Bottom Gradient Fade for seamless transition */}
-      <div className="absolute bottom-0 left-0 w-full h-48 bg-linear-to-t from-[#030014] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#030014] to-transparent pointer-events-none" />
     </div>
   );
 };
