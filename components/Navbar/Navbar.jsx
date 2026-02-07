@@ -19,8 +19,7 @@ const Navbar = () => {
                 <Link
                     href="/"
                     className="text-white font-bold text-xl tracking-wide flex items-center gap-2"
-                >
-                    <span className="text-2xl">❄️</span> Cosmic Coders
+                >Cosmic Coders
                 </Link>
 
                 {/* Desktop Menu */}
