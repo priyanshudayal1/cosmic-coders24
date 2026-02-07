@@ -1,57 +1,36 @@
 import PageHeader from "@/components/shared/PageHeader";
 import SpotlightCard from "@/components/SpotlightCard";
-import {
-  TrendingUp,
-  Users,
-  Target,
-  DollarSign,
-  Award,
-  BarChart3,
-} from "lucide-react";
+import LeadForm from "@/components/Form/LeadForm";
+import GlassButton from "@/components/ui/GlassButton";
+import { Users, TrendingUp, Instagram } from "lucide-react";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 export default function SocialMediaMarketingResults() {
-  const results = [
+  const caseStudies = [
     {
-      client: "Fashion E-Commerce",
-      icon: <TrendingUp className="w-8 h-8 text-purple-500" />,
-      metric: "+425%",
-      description: "Increase in Instagram engagement rate",
-      timeframe: "6 months",
+      category: "SOCIAL GROWTH",
+      title: "+15,000 Followers",
+      description:
+        "Achieved in just 4 months through viral content strategies.",
+      Icon: Instagram,
+      gradient: "from-pink-500/20 to-purple-500/20",
+      spotlight: "rgba(236, 72, 153, 0.2)",
     },
     {
-      client: "Local Restaurant Chain",
-      icon: <Users className="w-8 h-8 text-purple-500" />,
-      metric: "150K+",
-      description: "New followers across all platforms",
-      timeframe: "12 months",
+      category: "BRAND AWARENESS",
+      title: "2.5M Reach",
+      description: "Explosive visibility across platforms in 90 days.",
+      Icon: Users,
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      spotlight: "rgba(59, 130, 246, 0.2)",
     },
     {
-      client: "Tech Startup",
-      icon: <Target className="w-8 h-8 text-purple-500" />,
-      metric: "8.2x",
-      description: "Return on ad spend (ROAS)",
-      timeframe: "3 months",
-    },
-    {
-      client: "Fitness Brand",
-      icon: <DollarSign className="w-8 h-8 text-purple-500" />,
-      metric: "$250K+",
-      description: "Revenue generated from social campaigns",
-      timeframe: "9 months",
-    },
-    {
-      client: "Beauty Products",
-      icon: <Award className="w-8 h-8 text-purple-500" />,
-      metric: "12M+",
-      description: "Impressions on viral TikTok campaign",
-      timeframe: "2 months",
-    },
-    {
-      client: "B2B SaaS Company",
-      icon: <BarChart3 className="w-8 h-8 text-purple-500" />,
-      metric: "500+",
-      description: "Qualified leads from LinkedIn",
-      timeframe: "6 months",
+      category: "ENGAGEMENT",
+      title: "+20% Engagement",
+      description: "Consistent community interaction increase in 60 days.",
+      Icon: TrendingUp,
+      gradient: "from-green-500/20 to-emerald-500/20",
+      spotlight: "rgba(16, 185, 129, 0.2)",
     },
   ];
 
@@ -59,53 +38,69 @@ export default function SocialMediaMarketingResults() {
     <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
       <main className="flex-grow">
         <PageHeader
-          title="Social Media Marketing Results"
-          description="Real numbers, real impact. See how our social media strategies have transformed brands and delivered measurable ROI for our clients."
+          eyebrow="Social Media Marketing Results"
+          title="Proven Social Media Growth for Our Clients"
+          description="From followers to engagement to conversions, see the real results we've delivered."
         />
 
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
-            {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="text-center">
-                <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-                  50+
-                </div>
-                <div className="text-gray-400">Successful Campaigns</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-                  2M+
-                </div>
-                <div className="text-gray-400">Followers Gained</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-                  15.8%
-                </div>
-                <div className="text-gray-400">Avg. Engagement Rate</div>
-              </div>
-            </div>
-
-            {/* Case Studies */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {results.map((result, index) => (
-                <SpotlightCard key={index} className="h-full">
-                  <div className="mb-6">{result.icon}</div>
-                  <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-400 mb-3">
-                    {result.metric}
-                  </div>
-                  <p className="text-lg mb-2">{result.description}</p>
-                  <div className="text-sm text-gray-500 mb-4">
-                    in {result.timeframe}
-                  </div>
-                  <div className="pt-4 border-t border-white/10">
-                    <div className="text-sm text-purple-400 font-semibold">
-                      {result.client}
+            {/* Case Studies Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+              {caseStudies.map((study, index) => (
+                <SpotlightCard
+                  key={index}
+                  className="p-0 h-full flex flex-col group bg-white/5 border-white/10"
+                  spotlightColor={study.spotlight}
+                >
+                  <div
+                    className={`h-48 w-full bg-linear-to-br ${study.gradient} relative overflow-hidden`}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
+                      <study.Icon className="w-16 h-16" />
                     </div>
+                    <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                  </div>
+
+                  <div className="p-8 flex flex-col grow">
+                    <span className="text-xs font-medium text-purple-400 uppercase tracking-wider mb-2">
+                      {study.category}
+                    </span>
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                      {study.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">
+                      {study.description}
+                    </p>
+                    <GlassButton
+                      href="#"
+                      className="w-full text-center text-sm"
+                    >
+                      View Case Study
+                    </GlassButton>
                   </div>
                 </SpotlightCard>
               ))}
+            </div>
+
+            {/* Footer Section with LeadForm */}
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <p className="text-xl md:text-2xl font-medium text-gray-300 italic leading-relaxed">
+                  "CosmicCoder24 grew our Instagram page from 3K to 20K in just
+                  6 months — highly recommend!"
+                </p>
+              </div>
+
+              <Eyebrow text="Start Your Growth Journey" />
+
+              <div className="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden mt-15">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <h2 className="text-2xl font-bold mb-8 text-center relative z-10">
+                  Contact Us
+                </h2>
+                <LeadForm />
+              </div>
             </div>
           </div>
         </section>

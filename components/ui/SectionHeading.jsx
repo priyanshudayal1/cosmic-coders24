@@ -8,7 +8,7 @@ const SectionHeading = ({ title, subtitle, eyebrow }) => {
   return (
     <div className="flex flex-col items-center text-center mb-16 relative z-10">
       {/* Eyebrow with decorative lines and stars */}
-      <Eyebrow text={eyebrow} />
+      {eyebrow && <Eyebrow text={eyebrow} />}
 
       {/* Main Title */}
       {title && (
