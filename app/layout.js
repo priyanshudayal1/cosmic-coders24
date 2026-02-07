@@ -16,6 +16,8 @@ export const metadata = {
   description: "Cosmic Coders 24",
 };
 
+import Footer from "@/components/Footer/Footer";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -23,6 +25,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -5,6 +5,12 @@ import Services from "@/components/Services/Services";
 import Portfolio from "@/components/Portfolio/Portfolio";
 import Results from "@/components/Results/Results";
 import SpotlightCard from "@/components/SpotlightCard";
+import AboutTeaser from "@/components/About/AboutTeaser";
+import Testimonials from "@/components/features/Testimonials";
+import SectionHeading from "@/components/ui/SectionHeading";
+import BlogSection from "@/components/Blog/BlogSection";
+import CareersSection from "@/components/Careers/CareersSection";
+import ContactSection from "@/components/Contact/ContactSection";
 
 export default function Home() {
   return (
@@ -14,15 +20,18 @@ export default function Home() {
       <Services />
       <Portfolio />
       <Results />
-      <main className="flex flex-col gap-8 items-center sm:items-start pt-20 px-8 pb-20 sm:p-20 text-center sm:text-left">
-        {/* Placeholder content to enable scrolling and test sticky navbar */}
-        <SpotlightCard
-          className="w-full max-w-md mx-auto min-h-[200px] flex items-center justify-center p-8 text-center bg-white/5 border-white/10"
-          spotlightColor="rgba(0, 229, 255, 0.2)"
-        >
-          <p className="text-gray-300">Spotlight Card Demo in Main section</p>
-        </SpotlightCard>
-      </main>
+      <AboutTeaser />
+      <div className="flex flex-col items-center">
+        <SectionHeading
+          eyebrow="Testimonials"
+          title="Client Stories"
+          subtitle="Hear from those who have experienced our services."
+        />
+        <Testimonials />
+      </div>
+      <BlogSection />
+      <CareersSection />
+      <ContactSection />
     </div>
   );
 }
