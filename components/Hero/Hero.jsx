@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DarkVeil from "../backgrounds/DarkVeil";
-import GlassBtn from "../ui/GlassButton";
+import GlassButton from "../ui/GlassButton";
 
 const Hero = () => {
   return (
@@ -59,18 +59,18 @@ const Hero = () => {
           transition={{ duration: 0.7, delay: 0.8 }}
           className="flex flex-col sm:flex-row items-center gap-4 mt-8"
         >
-          <GlassBtn
+          <GlassButton
             href="/services"
-            className="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20"
+            className="px-8 py-3.5 bg-white/10 hover:bg-white/20"
           >
             Explore Services
-          </GlassBtn>
-          <GlassBtn
+          </GlassButton>
+          <GlassButton
             href="/about-contact"
-            className="px-8 py-3.5 rounded-xl bg-transparent hover:bg-white/5"
+            className="px-8 py-3.5 bg-transparent hover:bg-white/5"
           >
             Contact Us
-          </GlassBtn>
+          </GlassButton>
         </motion.div>
       </div>
 

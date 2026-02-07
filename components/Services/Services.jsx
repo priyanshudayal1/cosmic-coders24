@@ -12,7 +12,8 @@ import {
     Package,
     ArrowRight
 } from "lucide-react";
-import Card from "../ui/Card";
+import { motion } from "framer-motion";
+import SpotlightCard from "../SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 
 const servicesData = [
@@ -77,30 +78,39 @@ const Services = () => {
                     {servicesData.map((service, index) => {
                         const Icon = service.icon;
                         return (
-                            <Card key={index} index={index} className="h-full"> 
-                                <div className="flex flex-col h-full">
-                                    {/* Icon */}
-                                    <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
-                                        <Icon size={32} strokeWidth={1.5} />
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="h-full"
+                            >
+                                <SpotlightCard className="h-full bg-white/5 border-white/10 group hover:bg-white/10 transition-colors duration-300">
+                                    <div className="flex flex-col h-full">
+                                        {/* Icon */}
+                                        <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+                                            <Icon size={32} strokeWidth={1.5} />
+                                        </div>
+
+                                        {/* Title */}
+                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">
+                                            {service.title}
+                                        </h3>
+
+                                        {/* Description */}
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow group-hover:text-gray-300 transition-colors duration-300">
+                                            {service.description}
+                                        </p>
+
+                                        {/* Learn More / Action (Visual only for now) */}
+                                        <div className="flex items-center text-sm font-medium text-purple-400 group-hover:text-white transition-colors duration-300 mt-auto">
+                                            <span>Learn more</span>
+                                            <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                                        </div>
                                     </div>
-
-                                    {/* Title */}
-                                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">
-                                        {service.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow group-hover:text-gray-300 transition-colors duration-300">
-                                        {service.description}
-                                    </p>
-
-                                    {/* Learn More / Action (Visual only for now) */}
-                                    <div className="flex items-center text-sm font-medium text-purple-400 group-hover:text-white transition-colors duration-300 mt-auto">
-                                        <span>Learn more</span>
-                                        <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-                                    </div>
-                                </div>
-                            </Card>
+                                </SpotlightCard>
+                            </motion.div>
                         );
                     })}
                 </div>

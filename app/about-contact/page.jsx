@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar/Navbar"; // Assuming Navbar is here
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Testimonials from "@/components/features/Testimonials";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export default function AboutContact() {
   const [formState, setFormState] = useState({
@@ -83,6 +84,8 @@ export default function AboutContact() {
           <Testimonials />
         </motion.section>
 
+        {/* --- Portfolio Section --- */}
+
         {/* --- Contact Contact Section --- */}
         <motion.section
           className="w-full max-w-5xl"
@@ -99,7 +102,10 @@ export default function AboutContact() {
           />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Contact Info */}
-            <div className="space-y-8 p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl h-full">
+            <SpotlightCard
+              className="space-y-8 p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl h-full"
+              spotlightColor="rgba(168, 85, 247, 0.2)"
+            >
               <div>
                 <p className="text-lg font-semibold text-white mb-2">
                   Get in Touch
@@ -134,10 +140,13 @@ export default function AboutContact() {
               <div className="w-full h-48 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center text-gray-500 text-sm">
                 [Map Visualization Placeholder]
               </div>
-            </div>
+            </SpotlightCard>
 
             {/* Contact Form */}
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl relative overflow-hidden">
+            <SpotlightCard
+              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl relative overflow-hidden"
+              spotlightColor="rgba(168, 85, 247, 0.2)"
+            >
               {/* Form Glow Effect */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 blur-[80px] rounded-full pointer-events-none" />
 
@@ -216,7 +225,7 @@ export default function AboutContact() {
                   <Send className="w-4 h-4" />
                 </Button>
               </form>
-            </div>
+            </SpotlightCard>
           </div>
         </motion.section>
       </main>
