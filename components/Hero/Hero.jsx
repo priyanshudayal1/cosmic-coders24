@@ -4,19 +4,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Aurora from "../backgrounds/Aurora";
+import DarkVeil from "../backgrounds/DarkVeil";
 
 const Hero = () => {
     return (
         <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#030014] text-white pt-20">
-            {/* Aurora Background */}
+            {/* DarkVeil Background */}
             <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
-                <Aurora
-                    colorStops={["#000000", "#1a0b2e", "#4300bf"]}
-                    blend={0.5}
-                    amplitude={1.2}
-                    speed={0.3}
-                />
+                <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                    <DarkVeil
+                        hueShift={0}
+                        noiseIntensity={0}
+                        scanlineIntensity={0}
+                        speed={0.5}
+                        scanlineFrequency={0}
+                        warpAmount={0}
+                    />
+                </div>
             </div>
 
             {/* Spotlights/Beams */}
@@ -25,18 +29,6 @@ const Hero = () => {
 
 
             <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto space-y-8">
-                {/* Badge */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default"
-                >
-                    <span className="font-medium text-gray-400 text-xs uppercase tracking-wider bg-white/10 px-2 py-0.5 rounded">V3.0 Update</span>
-                    <span>Smarter Interviews</span>
-                    <ArrowRight size={14} className="text-gray-400 group-hover:translate-x-0.5 transition-transform" />
-                </motion.div>
-
                 {/* Headline */}
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
@@ -44,8 +36,8 @@ const Hero = () => {
                     transition={{ duration: 0.7, delay: 0.4 }}
                     className="text-6xl md:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
                 >
-                    Supercharge your <br />
-                    research with AI
+                    We Build Digital Experiences<br />
+                    That Glow in the Dark
                 </motion.h1>
 
                 {/* Subtext */}
@@ -55,7 +47,7 @@ const Hero = () => {
                     transition={{ duration: 0.7, delay: 0.6 }}
                     className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
                 >
-                    Generate insights with depth and scale using AI-interviewers
+                    Websites, branding, SEO, and performance-driven marketing—crafted to help modern businesses establish credibility, attract attention, and convert consistently.
                 </motion.p>
 
                 {/* CTAs */}
@@ -66,16 +58,16 @@ const Hero = () => {
                     className="flex flex-col sm:flex-row items-center gap-4 mt-8"
                 >
                     <Link
-                        href="/try-free"
+                        href="/services"
                         className="px-8 py-3.5 bg-white/10 text-white rounded-xl font-medium border border-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-md"
                     >
-                        Try For Free
+                        Explore Services
                     </Link>
                     <Link
-                        href="/schedule-demo"
+                        href="/about-contact"
                         className="px-8 py-3.5 bg-transparent text-white border border-white/10 rounded-xl font-medium hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
                     >
-                        Schedule A Demo
+                        Contact Us
                     </Link>
                 </motion.div>
             </div>
