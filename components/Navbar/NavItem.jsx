@@ -63,11 +63,19 @@ const NavItem = ({ title, href, dropdownItems, mobile }) => {
 
     return (
         <div
-            className="relative group h-full flex items-center"
+            className="relative group h-full flex items-center px-4 py-2 rounded-xl border border-transparent hover:bg-white/5 hover:border-white/10 transition-all duration-300"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="flex items-center gap-1 cursor-pointer text-white/80 hover:text-white transition-colors py-2">
+            {/* Hover Glow Effect */}
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            {/* Invisible Bridge for Dropdown */}
+            {dropdownItems && isOpen && (
+                <div className="absolute top-full left-0 w-full h-8 bg-transparent z-40" />
+            )}
+
+            <div className="relative z-10 flex items-center gap-1 cursor-pointer text-white/80 group-hover:text-white transition-colors">
                 {href ? (
                     <Link href={href}>{title}</Link>
                 ) : (

@@ -24,7 +24,7 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-2">
                     <NavItem
                         title="Services"
                         dropdownItems={[
