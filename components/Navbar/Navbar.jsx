@@ -13,7 +13,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-full border border-white/10 bg-black/30 backdrop-blur-md shadow-lg">
+        <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg">
             <div className="px-6 py-3 flex justify-between items-center">
                 {/* Logo */}
                 <Link
@@ -28,32 +28,31 @@ const Navbar = () => {
                     <NavItem
                         title="Services"
                         dropdownItems={[
-                            { label: "Web Development", href: "/services/web-development" },
-                            { label: "App Development", href: "/services/app-development" },
-                            { label: "UI/UX Design", href: "/services/ui-ux-design" },
-                            { label: "SEO Optimization", href: "/services/seo" },
-                            { label: "Content Writing", href: "/services/content-writing" },
-                            { label: "Digital Marketing", href: "/services/digital-marketing" },
-                            { label: "Cloud Solutions", href: "/services/cloud-solutions" },
-                            { label: "Consulting", href: "/services/consulting" },
+                            { label: "Website Development", href: "/services/website-development" },
+                            { label: "Software Development", href: "/services/software-development" },
+                            { label: "Social Media Marketing", href: "/services/social-media-marketing" },
+                            { label: "SEO", href: "/services/seo" },
+                            { label: "Branding & Logo Design", href: "/services/branding-logo-design" },
+                            { label: "Graphics & Packaging Design", href: "/services/graphics-packaging-design" },
+                            { label: "Video Editing", href: "/services/video-editing" },
                         ]}
                     />
                     <NavItem
                         title="Portfolio"
                         dropdownItems={[
-                            { label: "E-commerce", href: "/portfolio/ecommerce" },
-                            { label: "Healthcare", href: "/portfolio/healthcare" },
-                            { label: "Education", href: "/portfolio/education" },
-                            { label: "Finance", href: "/portfolio/finance" },
-                            { label: "Real Estate", href: "/portfolio/real-estate" },
-                            { label: "Entertainment", href: "/portfolio/entertainment" },
+                            { label: "Website Development", href: "/portfolio/website-development" },
+                            { label: "Software Development", href: "/portfolio/software-development" },
+                            { label: "Social Media Marketing", href: "/portfolio/social-media-marketing" },
+                            { label: "Graphics Designing", href: "/portfolio/graphics-designing" },
+                            { label: "Video Editing", href: "/portfolio/video-editing" },
+                            { label: "Branding & Logo Design", href: "/portfolio/branding-logo-design" },
                         ]}
                     />
                     <NavItem
                         title="Results"
                         dropdownItems={[
-                            { label: "Case Studies", href: "/results/case-studies" },
-                            { label: "Testimonials", href: "/results/testimonials" },
+                            { label: "Social Media Marketing", href: "/results/social-media-marketing" },
+                            { label: "SEO Results", href: "/results/seo" },
                         ]}
                     />
                     <NavItem title="Blog" href="/blog" />
@@ -64,8 +63,8 @@ const Navbar = () => {
                 {/* CTA Button */}
                 <div className="hidden md:block">
                     <Link
-                        href="/get-started"
-                        className="bg-white/10 hover:bg-white/20 text-white border border-white/10 px-6 py-2 rounded-full transition-all duration-300 font-medium backdrop-blur-sm"
+                        href="/about-contact"
+                        className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-6 py-2 rounded-full transition-all duration-300 font-medium backdrop-blur-sm"
                     >
                         Get Started
                     </Link>
@@ -89,34 +88,33 @@ const Navbar = () => {
                         title="Services"
                         mobile
                         dropdownItems={[
-                            { label: "Web Development", href: "/services/web-development" },
-                            { label: "App Development", href: "/services/app-development" },
-                            { label: "UI/UX Design", href: "/services/ui-ux-design" },
-                            { label: "SEO Optimization", href: "/services/seo" },
-                            { label: "Content Writing", href: "/services/content-writing" },
-                            { label: "Digital Marketing", href: "/services/digital-marketing" },
-                            { label: "Cloud Solutions", href: "/services/cloud-solutions" },
-                            { label: "Consulting", href: "/services/consulting" },
+                            { label: "Website Development", href: "/services/website-development" },
+                            { label: "Software Development", href: "/services/software-development" },
+                            { label: "Social Media Marketing", href: "/services/social-media-marketing" },
+                            { label: "SEO", href: "/services/seo" },
+                            { label: "Branding & Logo Design", href: "/services/branding-logo-design" },
+                            { label: "Graphics & Packaging Design", href: "/services/graphics-packaging-design" },
+                            { label: "Video Editing", href: "/services/video-editing" },
                         ]}
                     />
                     <NavItem
                         title="Portfolio"
                         mobile
                         dropdownItems={[
-                            { label: "E-commerce", href: "/portfolio/ecommerce" },
-                            { label: "Healthcare", href: "/portfolio/healthcare" },
-                            { label: "Education", href: "/portfolio/education" },
-                            { label: "Finance", href: "/portfolio/finance" },
-                            { label: "Real Estate", href: "/portfolio/real-estate" },
-                            { label: "Entertainment", href: "/portfolio/entertainment" },
+                            { label: "Website Development", href: "/portfolio/website-development" },
+                            { label: "Software Development", href: "/portfolio/software-development" },
+                            { label: "Social Media Marketing", href: "/portfolio/social-media-marketing" },
+                            { label: "Graphics Designing", href: "/portfolio/graphics-designing" },
+                            { label: "Video Editing", href: "/portfolio/video-editing" },
+                            { label: "Branding & Logo Design", href: "/portfolio/branding-logo-design" },
                         ]}
                     />
                     <NavItem
                         title="Results"
                         mobile
                         dropdownItems={[
-                            { label: "Case Studies", href: "/results/case-studies" },
-                            { label: "Testimonials", href: "/results/testimonials" },
+                            { label: "Social Media Marketing", href: "/results/social-media-marketing" },
+                            { label: "SEO Results", href: "/results/seo" },
                         ]}
                     />
                     <NavItem title="Blog" href="/blog" mobile />
@@ -124,7 +122,7 @@ const Navbar = () => {
                     <NavItem title="About & Contact" href="/about-contact" mobile />
                     <div className="pt-2">
                         <Link
-                            href="/get-started"
+                            href="/about-contact"
                             className="block w-full text-center bg-white/10 hover:bg-white/20 text-white border border-white/10 px-6 py-3 rounded-xl transition-all duration-300 font-medium"
                             onClick={() => setIsOpen(false)}
                         >
@@ -138,3 +136,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

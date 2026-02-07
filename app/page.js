@@ -1,28 +1,15 @@
 import Image from "next/image";
 import Navbar from "@/components/Navbar/Navbar";
+import Hero from "@/components/Hero/Hero";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-slate-950 text-white relative">
+    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
       <Navbar />
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start pt-24 text-center sm:text-left">
-        <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-          Cosmic Coders
-        </h1>
-        <p className="text-xl text-gray-400 max-w-2xl">
-          Building the future of digital experiences with cutting-edge technology and design.
-        </p>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row mt-8">
-          <button className="px-8 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition-colors">
-            Start Building
-          </button>
-          <button className="px-8 py-3 bg-white/10 text-white border border-white/10 rounded-full font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
-            Learn More
-          </button>
-        </div>
-
+      <Hero />
+      <main className="flex flex-col gap-8 items-center sm:items-start pt-20 px-8 pb-20 sm:p-20 text-center sm:text-left">
         {/* Placeholder content to enable scrolling and test sticky navbar */}
+
         <div className="mt-20 space-y-20 w-full max-w-4xl text-left">
           {[1, 2, 3].map((i) => (
             <section key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
