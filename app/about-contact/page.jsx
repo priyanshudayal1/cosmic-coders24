@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send, User, MessageSquare } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar"; // Assuming Navbar is here
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
+import Testimonials from "@/components/features/Testimonials";
 
 export default function AboutContact() {
   const [formState, setFormState] = useState({
@@ -80,24 +80,7 @@ export default function AboutContact() {
             subtitle="Real feedback from teams we have helped grow, launch, and scale."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item, index) => (
-              <Card key={index} index={index}>
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="w-20 h-20 rounded-full bg-linear-to-tr from-purple-400 to-blue-500 p-0.5">
-                    <div className="w-full h-full rounded-full bg-[#0a0a0a] flex items-center justify-center overflow-hidden">
-                      <User className="text-white/50 w-10 h-10" />
-                    </div>
-                  </div>
-                  <p className="text-gray-300 italic">
-                    &quot;The team transformed our online presence and delivered
-                    outstanding results. Highly recommended!&quot;
-                  </p>
-                  <h4 className="font-semibold text-purple-300">Client Name</h4>
-                </div>
-              </Card>
-            ))}
-          </div>
+          <Testimonials />
         </motion.section>
 
         {/* --- Contact Contact Section --- */}
