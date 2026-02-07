@@ -2,83 +2,85 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import DarkVeil from "../backgrounds/DarkVeil";
+import GlassBtn from "../ui/GlassButton";
 
 const Hero = () => {
-    return (
-        <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#030014] text-white pt-20">
-            {/* DarkVeil Background */}
-            <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
-                <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-                    <DarkVeil
-                        hueShift={0}
-                        noiseIntensity={0}
-                        scanlineIntensity={0}
-                        speed={0.5}
-                        scanlineFrequency={0}
-                        warpAmount={0}
-                    />
-                </div>
-            </div>
-
-            {/* Spotlights/Beams */}
-            <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-            <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-
-
-            <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto space-y-8">
-                {/* Headline */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.4 }}
-                    className="text-6xl md:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
-                >
-                    We Build Digital Experiences<br />
-                    That Glow in the Dark
-                </motion.h1>
-
-                {/* Subtext */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.6 }}
-                    className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
-                >
-                    Websites, branding, SEO, and performance-driven marketing—crafted to help modern businesses establish credibility, attract attention, and convert consistently.
-                </motion.p>
-
-                {/* CTAs */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.8 }}
-                    className="flex flex-col sm:flex-row items-center gap-4 mt-8"
-                >
-                    <Link
-                        href="/services"
-                        className="px-8 py-3.5 bg-white/10 text-white rounded-xl font-medium border border-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-md"
-                    >
-                        Explore Services
-                    </Link>
-                    <Link
-                        href="/about-contact"
-                        className="px-8 py-3.5 bg-transparent text-white border border-white/10 rounded-xl font-medium hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
-                    >
-                        Contact Us
-                    </Link>
-                </motion.div>
-            </div>
-
-            {/* Glowing Orb/Planet */}
-            <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-gradient-to-t from-[#5227FF] via-[#7c3aed] to-transparent opacity-20 blur-[100px] rounded-full pointer-events-none" />
-
-            {/* Bottom Gradient Fade for seamless transition */}
-            <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#030014] to-transparent pointer-events-none" />
+  return (
+    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#030014] text-white pt-20">
+      {/* DarkVeil Background */}
+      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
+        <div style={{ width: "100%", height: "100%", position: "relative" }}>
+          <DarkVeil
+            hueShift={0}
+            noiseIntensity={0}
+            scanlineIntensity={0}
+            speed={0.5}
+            scanlineFrequency={0}
+            warpAmount={0}
+          />
         </div>
-    );
+      </div>
+
+      {/* Spotlights/Beams */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto space-y-8">
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="text-6xl md:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
+        >
+          We Build Digital Experiences
+          <br />
+          That Glow in the Dark
+        </motion.h1>
+
+        {/* Subtext */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
+        >
+          Websites, branding, SEO, and performance-driven marketing—crafted to
+          help modern businesses establish credibility, attract attention, and
+          convert consistently.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.8 }}
+          className="flex flex-col sm:flex-row items-center gap-4 mt-8"
+        >
+          <GlassBtn
+            href="/services"
+            className="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20"
+          >
+            Explore Services
+          </GlassBtn>
+          <GlassBtn
+            href="/about-contact"
+            className="px-8 py-3.5 rounded-xl bg-transparent hover:bg-white/5"
+          >
+            Contact Us
+          </GlassBtn>
+        </motion.div>
+      </div>
+
+      {/* Glowing Orb/Planet */}
+      <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-linear-to-t from-[#5227FF] via-[#7c3aed] to-transparent opacity-20 blur-[100px] rounded-full pointer-events-none" />
+
+      {/* Bottom Gradient Fade for seamless transition */}
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-linear-to-t from-[#030014] to-transparent pointer-events-none" />
+    </div>
+  );
 };
 
 export default Hero;
