@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Navbar from "@/components/Navbar/Navbar";
 import Hero from "@/components/Hero/Hero";
 import Services from "@/components/Services/Services";
 import Portfolio from "@/components/Portfolio/Portfolio";
@@ -15,7 +14,6 @@ import ContactSection from "@/components/Contact/ContactSection";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
-      <Navbar />
       <Hero />
       <Services />
       <Portfolio />

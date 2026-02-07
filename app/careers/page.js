@@ -1,5 +1,4 @@
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
+
 import PageHeader from "@/components/shared/PageHeader";
 import SpotlightCard from "@/components/SpotlightCard";
 import { MapPin, Clock, Briefcase, ArrowRight } from "lucide-react";
@@ -59,8 +58,6 @@ export default function Careers() {
 
     return (
         <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
-            <Navbar />
-
             <main className="flex-grow">
                 <PageHeader
                     title="Join Our Team"
@@ -166,7 +163,4 @@ export default function Careers() {
                 </section>
             </main>
 
-            <Footer />
-        </div>
-    );
 }

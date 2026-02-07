@@ -78,10 +78,10 @@ const Hero = () => {
       </div>
 
       {/* Glowing Orb/Planet */}
-      <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-gradient-to-t from-indigo-700 via-purple-600 to-transparent opacity-30 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-linear-to-t from-indigo-700 via-purple-600 to-transparent opacity-30 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Bottom Gradient Fade for seamless transition */}
-      <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#030014] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-linear-to-t from-[#030014] to-transparent pointer-events-none" />
     </div>
   );
 };

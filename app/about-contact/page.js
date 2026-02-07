@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send, User, MessageSquare } from "lucide-react";
-import Navbar from "@/components/Navbar/Navbar"; // Assuming Navbar is here
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Testimonials from "@/components/features/Testimonials";
@@ -40,8 +39,6 @@ export default function AboutContact() {
 
   return (
     <div className="relative w-full min-h-screen bg-[#030014] text-white overflow-hidden font-sans">
-      <Navbar />
-
       {/* Background Effects */}
       <div className="fixed inset-0 z-0 bg-[#030014] pointer-events-none" />
 
