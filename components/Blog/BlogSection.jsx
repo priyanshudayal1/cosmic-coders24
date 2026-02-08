@@ -36,7 +36,7 @@ const blogPosts = [
         author: "David Chen",
         category: "Design",
         slug: "designing-for-accessibility",
-        image: "https://images.unsplash.com/photo-1586717791821-3f44a5638d0f?q=80&w=1887&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop"
     }
 ];
 

@@ -1,20 +1,41 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import NavItem from "./NavItem";
 import GlassButton from "../ui/GlassButton";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isBlogPost = pathname?.startsWith("/blog/") && pathname !== "/blog";
+
+  useEffect(() => {
+    if (!isBlogPost) {
+      setScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isBlogPost]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg">
+    <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 ${
+      scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+    }`}>
       <div className="px-6 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link
