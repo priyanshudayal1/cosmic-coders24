@@ -5,20 +5,24 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DarkVeil from "../backgrounds/DarkVeil";
 import GlassButton from "../ui/GlassButton";
+import FloatingLines from "../backgrounds/FloatingLines";
 
 const Hero = () => {
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#030014] text-white pt-20">
-      {/* DarkVeil Background */}
+      {/* FloatingLines Background */}
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
-        <div style={{ width: "100%", height: "100%", position: "relative" }}>
-          <DarkVeil
-            hueShift={260}
-            noiseIntensity={0.02}
-            scanlineIntensity={0}
-            speed={0.5}
-            scanlineFrequency={0}
-            warpAmount={0.1}
+        <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+          <FloatingLines
+            enabledWaves={["top", "middle", "bottom"]}
+            // Array - specify line count per wave; Number - same count for all waves
+            lineCount={5}
+            // Array - specify line distance per wave; Number - same distance for all waves
+            lineDistance={5}
+            bendRadius={5}
+            bendStrength={-0.5}
+            interactive={true}
+            parallax={true}
           />
         </div>
       </div>

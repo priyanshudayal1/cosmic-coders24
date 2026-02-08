@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useRef, useEffect, useState } from "react";
@@ -191,7 +192,7 @@ export default function DarkVeil({
   // Render fallback if WebGL fails
   if (error) {
     return (
-      <div className="w-full h-full block bg-gradient-to-br from-purple-900/30 to-purple-600/20" />
+      <div className="w-full h-full block bg-linear-to-br from-purple-900/30 to-purple-600/20" />
     );
   }
 
