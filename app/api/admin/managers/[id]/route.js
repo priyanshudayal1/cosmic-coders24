@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 export async function DELETE(req, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const cookieStore = await cookies();
     const token = cookieStore.get("admin_token")?.value;
 
@@ -28,7 +28,7 @@ export async function DELETE(req, { params }) {
 // Optional: UPDATE for resetting password if needed
 export async function PUT(req, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { password, email } = await req.json();
     const cookieStore = await cookies();
     const token = cookieStore.get("admin_token")?.value;

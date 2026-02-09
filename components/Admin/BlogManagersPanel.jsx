@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Eye, EyeOff } from "lucide-react";
+import { Plus, Trash2, Key } from "lucide-react";
 import AdminModal from "@/components/ui/AdminModal";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
@@ -10,13 +10,13 @@ const BlogManagersPanel = () => {
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
-  const [showPasswords, setShowPasswords] = useState({});
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [modal, setModal] = useState({
     isOpen: false,
     type: "confirm",
     title: "",
     message: "",
+    inputPlaceholder: "",
     onConfirm: () => {},
   });
 
@@ -105,7 +105,19 @@ const BlogManagersPanel = () => {
             // 2. If verified, delete
             await deleteManager(id);
           } else {
-            alert("Incorrect Admin Password");
+            // Show error modal instead of alert
+            setModal((prev) => ({ ...prev, isOpen: false }));
+            setTimeout(() => {
+              setModal({
+                isOpen: true,
+                type: "danger",
+                title: "Verification Failed",
+                message: "Incorrect Admin Password",
+                confirmText: "Close",
+                onConfirm: () =>
+                  setModal((prev) => ({ ...prev, isOpen: false })),
+              });
+            }, 100);
           }
         } catch (error) {
           console.error("Failed", error);
@@ -114,36 +126,100 @@ const BlogManagersPanel = () => {
     });
   };
 
-  const togglePasswordVisibility = (id) => {
-    if (!showPasswords[id]) {
+  const updateManagerPassword = async (id, newPassword) => {
+    try {
+      const res = await fetch(`/api/admin/managers/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: newPassword }),
+      });
+      if (res.ok) {
+        setModal({
+          isOpen: true,
+          type: "confirm", // Use confirm type for info/success message
+          title: "Success",
+          message: "Password updated successfully",
+          confirmText: "Close",
+          onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+        });
+      } else {
+        setModal({
+          isOpen: true,
+          type: "danger",
+          title: "Error",
+          message: "Failed to update password",
+          confirmText: "Close",
+          onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+        });
+      }
+    } catch (e) {
+      console.error(e);
       setModal({
         isOpen: true,
-        type: "input",
-        title: "View Password",
-        message: "Enter your admin password to reveal this information.",
-        confirmText: "Verify",
-        onConfirm: async (adminPassword) => {
-          try {
-            const res = await fetch("/api/admin/verify", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ password: adminPassword }),
-            });
-
-            if (res.ok) {
-              setShowPasswords((prev) => ({ ...prev, [id]: true }));
-              setModal({ ...modal, isOpen: false });
-            } else {
-              alert("Incorrect Password");
-            }
-          } catch (error) {
-            console.error("Error", error);
-          }
-        },
+        type: "danger",
+        title: "Error",
+        message: "Error updating password",
+        confirmText: "Close",
+        onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
       });
-    } else {
-      setShowPasswords((prev) => ({ ...prev, [id]: false }));
     }
+  };
+
+  const handleUpdatePassword = (id) => {
+    setModal({
+      isOpen: true,
+      type: "input",
+      title: "Verify Admin Access",
+      message:
+        "Enter your admin password to authorize updating this manager's password.",
+      confirmText: "Verify",
+      inputPlaceholder: "Enter Admin Password",
+      onConfirm: async (adminPassword) => {
+        try {
+          const res = await fetch("/api/admin/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password: adminPassword }),
+          });
+
+          if (res.ok) {
+            setModal((prev) => ({ ...prev, isOpen: false }));
+            // Wait for modal to close then open new one
+            setTimeout(() => {
+              setModal({
+                isOpen: true,
+                type: "input",
+                title: "Update Manager Password",
+                message: "Enter the new password for this manager.",
+                confirmText: "Update Password",
+                inputPlaceholder: "Enter New Password",
+                onConfirm: (newPassword) => {
+                  if (newPassword) {
+                    updateManagerPassword(id, newPassword);
+                  }
+                },
+              });
+            }, 100);
+          } else {
+            // Show error modal instead of alert
+            setModal((prev) => ({ ...prev, isOpen: false }));
+            setTimeout(() => {
+              setModal({
+                isOpen: true,
+                type: "danger",
+                title: "Verification Failed",
+                message: "Incorrect Admin Password",
+                confirmText: "Close",
+                onConfirm: () =>
+                  setModal((prev) => ({ ...prev, isOpen: false })),
+              });
+            }, 100);
+          }
+        } catch (error) {
+          console.error("Error", error);
+        }
+      },
+    });
   };
 
   return (
@@ -156,6 +232,7 @@ const BlogManagersPanel = () => {
         type={modal.type}
         onConfirm={modal.onConfirm}
         confirmText={modal.confirmText}
+        inputPlaceholder={modal.inputPlaceholder}
       />
 
       <div className="flex justify-between items-center">
@@ -272,19 +349,13 @@ const BlogManagersPanel = () => {
                   </td>
                   <td className="p-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-zinc-500 font-mono">
-                        {showPasswords[manager.id] ? "[Hashed]" : "••••••••"}
-                      </span>
+                      <span className="text-zinc-500 font-mono">••••••••</span>
                       <button
-                        onClick={() => togglePasswordVisibility(manager.id)}
+                        onClick={() => handleUpdatePassword(manager.id)}
                         className="p-1 hover:bg-zinc-800 rounded transition-colors text-zinc-400 hover:text-white"
-                        title="Toggle visibility"
+                        title="Update Password"
                       >
-                        {showPasswords[manager.id] ? (
-                          <EyeOff className="w-4 h-4" />
-                        ) : (
-                          <Eye className="w-4 h-4" />
-                        )}
+                        <Key className="w-4 h-4" />
                       </button>
                     </div>
                   </td>

@@ -13,6 +13,7 @@ const AdminModal = ({
   onConfirm,
   confirmText = "Confirm",
   isLoading = false,
+  inputPlaceholder = "Enter Admin Password",
 }) => {
   const [inputVal, setInputVal] = useState("");
 
@@ -52,7 +53,7 @@ const AdminModal = ({
             <input
               type="password"
               className="w-full bg-black/50 border border-zinc-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 transition-colors"
-              placeholder="Enter Admin Password"
+              placeholder={inputPlaceholder}
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               autoFocus

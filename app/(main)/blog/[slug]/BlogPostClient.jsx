@@ -9,7 +9,7 @@ export default function BlogPostClient({ post }) {
   return (
     <div className="flex flex-col min-h-screen bg-[#030014] text-white">
       <article className="flex-grow">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -46,7 +46,9 @@ export default function BlogPostClient({ post }) {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              {post.title}
+            </h1>
 
             <div className="flex items-center gap-6 text-gray-400 mb-12 pb-6 border-b border-white/10">
               <div className="flex items-center gap-2">
@@ -64,7 +66,7 @@ export default function BlogPostClient({ post }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="prose prose-invert prose-lg max-w-none mb-20 prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-em:text-zinc-300 prose-code:text-purple-400 prose-code:bg-zinc-900 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:text-zinc-400 prose-blockquote:italic prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300 hover:prose-a:underline prose-li:text-zinc-300 prose-ul:text-zinc-300 prose-ol:text-zinc-300 prose-hr:border-zinc-700 prose-img:rounded-lg prose-img:shadow-lg"
+            className="rich-content max-w-none mb-20 text-zinc-300"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

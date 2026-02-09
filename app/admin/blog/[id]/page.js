@@ -8,12 +8,21 @@ import Image from "next/image";
 import { Calendar, User } from "lucide-react";
 import { formatDate } from "@/utils/dateUtils";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import AdminModal from "@/components/ui/AdminModal";
 
 export default function EditBlogPage({ params }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [blogId, setBlogId] = useState(null);
+  const [modal, setModal] = useState({
+    isOpen: false,
+    type: "confirm",
+    title: "",
+    message: "",
+    onConfirm: () => {},
+    confirmText: "Close",
+  });
 
   const [formData, setFormData] = useState({
     title: "",
@@ -114,7 +123,14 @@ export default function EditBlogPage({ params }) {
         router.push("/admin");
       } else {
         const err = await res.json();
-        alert(err.error || "Failed to update");
+        setModal({
+          isOpen: true,
+          type: "danger",
+          title: "Update Failed",
+          message: err.error || "Failed to update",
+          confirmText: "Close",
+          onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+        });
       }
     } catch (error) {
       console.error("Update error", error);
@@ -132,6 +148,16 @@ export default function EditBlogPage({ params }) {
 
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden">
+      <AdminModal
+        isOpen={modal.isOpen}
+        onClose={() => setModal({ ...modal, isOpen: false })}
+        title={modal.title}
+        message={modal.message}
+        type={modal.type}
+        onConfirm={modal.onConfirm}
+        confirmText={modal.confirmText}
+      />
+
       <div className="border-b border-zinc-800 p-4 shrink-0">
         <div className="max-w-450 mx-auto flex items-center justify-between">
           <button
@@ -201,7 +227,7 @@ export default function EditBlogPage({ params }) {
               </div>
 
               <div
-                className="prose prose-invert max-w-none text-zinc-300 prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-em:text-zinc-300 prose-code:text-purple-400 prose-code:bg-zinc-900 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:text-zinc-400 prose-blockquote:italic prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300 hover:prose-a:underline prose-li:text-zinc-300 prose-ul:text-zinc-300 prose-ol:text-zinc-300 prose-hr:border-zinc-700 prose-img:rounded-lg prose-img:shadow-lg"
+                className="rich-content max-w-none text-zinc-300"
                 dangerouslySetInnerHTML={{ __html: formData.content }}
               />
             </div>

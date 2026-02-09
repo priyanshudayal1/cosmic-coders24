@@ -1,6 +1,7 @@
 "use client";
 
 import { useEditor, EditorContent } from "@tiptap/react";
+import { Extension } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
@@ -9,9 +10,84 @@ import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import { Color } from "@tiptap/extension-color";
 import { TextStyle } from "@tiptap/extension-text-style";
-import { Bold, Italic, Underline as UnderlineIcon, Strikethrough, Code, List, ListOrdered, Heading1, Heading2, Heading3, Quote, Undo, Redo, Link2, ImageIcon, AlignLeft, AlignCenter, AlignRight, AlignJustify, Highlighter, Minus } from "lucide-react";
+import {
+  Bold,
+  Italic,
+  Underline as UnderlineIcon,
+  Strikethrough,
+  Code,
+  List,
+  ListOrdered,
+  Heading1,
+  Heading2,
+  Heading3,
+  Quote,
+  Undo,
+  Redo,
+  Link2,
+  ImageIcon,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  Highlighter,
+  Minus,
+  Plus,
+  Minus as MinusIcon,
+} from "lucide-react";
+
+const FontSize = Extension.create({
+  name: "fontSize",
+  addOptions() {
+    return {
+      types: ["textStyle"],
+    };
+  },
+  addGlobalAttributes() {
+    return [
+      {
+        types: this.options.types,
+        attributes: {
+          fontSize: {
+            default: null,
+            parseHTML: (element) => element.style.fontSize || null,
+            renderHTML: (attributes) => {
+              if (!attributes.fontSize) {
+                return {};
+              }
+
+              return {
+                style: `font-size: ${attributes.fontSize}`,
+              };
+            },
+          },
+        },
+      },
+    ];
+  },
+  addCommands() {
+    return {
+      setFontSize:
+        (fontSize) =>
+        ({ chain }) =>
+          chain().setMark("textStyle", { fontSize }).run(),
+      unsetFontSize:
+        () =>
+        ({ chain }) =>
+          chain()
+            .setMark("textStyle", { fontSize: null })
+            .removeEmptyTextStyle()
+            .run(),
+    };
+  },
+});
 
 const RichTextEditor = ({ content, onChange }) => {
+  const MIN_FONT_SIZE = 12;
+  const MAX_FONT_SIZE = 32;
+  const FONT_STEP = 2;
+  const DEFAULT_FONT_SIZE = 16;
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -19,6 +95,7 @@ const RichTextEditor = ({ content, onChange }) => {
           levels: [1, 2, 3],
         },
       }),
+      FontSize,
       Image,
       Link.configure({ openOnClick: false }),
       Underline,
@@ -34,12 +111,24 @@ const RichTextEditor = ({ content, onChange }) => {
     },
     editorProps: {
       attributes: {
-        class: "prose prose-invert max-w-none focus:outline-none min-h-[400px] px-4 py-3 prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-em:text-zinc-300 prose-code:text-purple-400 prose-code:bg-zinc-900 prose-pre:bg-zinc-900 prose-blockquote:border-purple-500 prose-blockquote:text-zinc-400 prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300 prose-li:text-zinc-300 prose-ul:text-zinc-300 prose-ol:text-zinc-300 prose-hr:border-zinc-700",
+        class: "rich-content focus:outline-none min-h-[400px] px-4 py-3",
       },
     },
   });
 
   if (!editor) return null;
+
+  const getCurrentFontSize = () => {
+    const fontSize = editor.getAttributes("textStyle").fontSize;
+    if (!fontSize) return DEFAULT_FONT_SIZE;
+    const parsed = parseInt(fontSize, 10);
+    return Number.isNaN(parsed) ? DEFAULT_FONT_SIZE : parsed;
+  };
+
+  const applyFontSize = (nextSize) => {
+    const clamped = Math.min(MAX_FONT_SIZE, Math.max(MIN_FONT_SIZE, nextSize));
+    editor.chain().focus().setFontSize(`${clamped}px`).run();
+  };
 
   return (
     <div className="bg-zinc-950 border border-zinc-800 rounded-lg overflow-hidden">
@@ -80,30 +169,53 @@ const RichTextEditor = ({ content, onChange }) => {
         >
           <Highlighter className="w-4 h-4" />
         </button>
-        
+
         <div className="w-px h-6 bg-zinc-800 mx-1" />
-        
+
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          onClick={() => applyFontSize(getCurrentFontSize() - FONT_STEP)}
+          className="p-2 rounded hover:bg-zinc-800 transition-colors text-zinc-400"
+          title="Decrease font size"
+        >
+          <MinusIcon className="w-4 h-4" />
+        </button>
+        <button
+          onClick={() => applyFontSize(getCurrentFontSize() + FONT_STEP)}
+          className="p-2 rounded hover:bg-zinc-800 transition-colors text-zinc-400"
+          title="Increase font size"
+        >
+          <Plus className="w-4 h-4" />
+        </button>
+
+        <div className="w-px h-6 bg-zinc-800 mx-1" />
+
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 1 }).run()
+          }
           className={`p-2 rounded hover:bg-zinc-800 transition-colors ${editor.isActive("heading", { level: 1 }) ? "bg-zinc-800 text-white" : "text-zinc-400"}`}
         >
           <Heading1 className="w-4 h-4" />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 2 }).run()
+          }
           className={`p-2 rounded hover:bg-zinc-800 transition-colors ${editor.isActive("heading", { level: 2 }) ? "bg-zinc-800 text-white" : "text-zinc-400"}`}
         >
           <Heading2 className="w-4 h-4" />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
           className={`p-2 rounded hover:bg-zinc-800 transition-colors ${editor.isActive("heading", { level: 3 }) ? "bg-zinc-800 text-white" : "text-zinc-400"}`}
         >
           <Heading3 className="w-4 h-4" />
         </button>
-        
+
         <div className="w-px h-6 bg-zinc-800 mx-1" />
-        
+
         <button
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
           className={`p-2 rounded hover:bg-zinc-800 transition-colors ${editor.isActive({ textAlign: "left" }) ? "bg-zinc-800 text-white" : "text-zinc-400"}`}
@@ -128,9 +240,9 @@ const RichTextEditor = ({ content, onChange }) => {
         >
           <AlignJustify className="w-4 h-4" />
         </button>
-        
+
         <div className="w-px h-6 bg-zinc-800 mx-1" />
-        
+
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={`p-2 rounded hover:bg-zinc-800 transition-colors ${editor.isActive("bulletList") ? "bg-zinc-800 text-white" : "text-zinc-400"}`}
@@ -155,9 +267,9 @@ const RichTextEditor = ({ content, onChange }) => {
         >
           <Minus className="w-4 h-4" />
         </button>
-        
+
         <div className="w-px h-6 bg-zinc-800 mx-1" />
-        
+
         <button
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().undo()}
@@ -173,7 +285,7 @@ const RichTextEditor = ({ content, onChange }) => {
           <Redo className="w-4 h-4" />
         </button>
       </div>
-      <EditorContent editor={editor} className="text-white" />
+      <EditorContent editor={editor} className="text-zinc-300" />
     </div>
   );
 };
