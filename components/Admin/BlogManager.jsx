@@ -4,15 +4,20 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Edit, Trash2, Save, Image as ImageIcon } from "lucide-react";
 import AdminModal from "@/components/ui/AdminModal";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const BlogManager = ({ user }) => {
   const router = useRouter();
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [creating, setCreating] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     content: "",
     excerpt: "",
+    author: "",
+    category: "",
     image: null,
   });
 
@@ -27,6 +32,7 @@ const BlogManager = ({ user }) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
+        setLoading(true);
         // If user is a manager, only fetch their blogs
         const query = user?.type === "blog-manager" ? "?my=true" : "";
         const res = await fetch(`/api/blogs${query}`);
@@ -36,6 +42,8 @@ const BlogManager = ({ user }) => {
         }
       } catch (error) {
         console.error("Failed to fetch blogs", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchBlogs();
@@ -43,10 +51,13 @@ const BlogManager = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCreating(true);
     const data = new FormData();
     data.append("title", formData.title);
     data.append("content", formData.content);
     data.append("excerpt", formData.excerpt);
+    data.append("author", formData.author || user?.email || "Admin");
+    data.append("category", formData.category);
     if (formData.image) {
       data.append("image", formData.image);
     }
@@ -64,6 +75,8 @@ const BlogManager = ({ user }) => {
       }
     } catch (error) {
       console.error("Failed to create blog", error);
+    } finally {
+      setCreating(false);
     }
   };
 
@@ -133,6 +146,37 @@ const BlogManager = ({ user }) => {
               />
             </div>
 
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm text-zinc-400 mb-2 block">
+                  Author
+                </label>
+                <input
+                  type="text"
+                  value={formData.author}
+                  onChange={(e) =>
+                    setFormData({ ...formData, author: e.target.value })
+                  }
+                  placeholder={user?.email || "Admin"}
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
+                />
+              </div>
+              <div>
+                <label className="text-sm text-zinc-400 mb-2 block">
+                  Category
+                </label>
+                <input
+                  type="text"
+                  value={formData.category}
+                  onChange={(e) =>
+                    setFormData({ ...formData, category: e.target.value })
+                  }
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
+                  required
+                />
+              </div>
+            </div>
+
             <div>
               <label className="text-sm text-zinc-400 mb-2 block">
                 Cover Image
@@ -194,10 +238,20 @@ const BlogManager = ({ user }) => {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors"
+                disabled={creating}
+                className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Save className="w-4 h-4" />
-                <span>Publish</span>
+                {creating ? (
+                  <>
+                    <LoadingSpinner size="sm" />
+                    <span>Publishing...</span>
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4" />
+                    <span>Publish</span>
+                  </>
+                )}
               </button>
               <button
                 type="button"
@@ -212,53 +266,63 @@ const BlogManager = ({ user }) => {
       )}
 
       <div className="grid gap-6">
-        {blogs.map((blog) => {
-          const canEdit =
-            user?.type === "admin" ||
-            String(blog.authorId) === String(user?.id);
-          return (
-            <div
-              key={blog.id}
-              className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 hover:border-zinc-700 transition-colors"
-            >
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {blog.title}
-                  </h3>
-                  <p className="text-zinc-400 text-sm mb-2">{blog.excerpt}</p>
-                  <div className="flex gap-4 text-sm text-zinc-500">
-                    <span>
-                      By {blog.authorEmail || blog.author || "Unknown"}
-                    </span>
-                    <span>•</span>
-                    <span>
-                      {new Date(
-                        blog.createdAt || blog.date,
-                      ).toLocaleDateString()}
-                    </span>
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <LoadingSpinner size="lg" text="Loading blogs..." />
+          </div>
+        ) : blogs.length === 0 ? (
+          <div className="text-center py-20 text-zinc-400">
+            <p>No blogs found. Create your first blog post!</p>
+          </div>
+        ) : (
+          blogs.map((blog) => {
+            const canEdit =
+              user?.type === "admin" ||
+              String(blog.authorId) === String(user?.id);
+            return (
+              <div
+                key={blog.id}
+                className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 hover:border-zinc-700 transition-colors"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      {blog.title}
+                    </h3>
+                    <p className="text-zinc-400 text-sm mb-2">{blog.excerpt}</p>
+                    <div className="flex gap-4 text-sm text-zinc-500">
+                      <span>By {blog.author || blog.authorEmail || "Unknown"}</span>
+                      <span>•</span>
+                      <span>{blog.category || "Uncategorized"}</span>
+                      <span>•</span>
+                      <span>
+                        {new Date(
+                          blog.createdAt || blog.date,
+                        ).toLocaleDateString()}
+                      </span>
+                    </div>
                   </div>
+                  {canEdit && (
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => router.push(`/admin/blog/${blog.id}`)}
+                        className="p-2 hover:bg-zinc-800 rounded-lg transition-colors"
+                      >
+                        <Edit className="w-4 h-4 text-zinc-400" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(blog.id)}
+                        className="p-2 hover:bg-red-950 rounded-lg transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4 text-red-400" />
+                      </button>
+                    </div>
+                  )}
                 </div>
-                {canEdit && (
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => router.push(`/admin/blog/${blog.id}`)}
-                      className="p-2 hover:bg-zinc-800 rounded-lg transition-colors"
-                    >
-                      <Edit className="w-4 h-4 text-zinc-400" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(blog.id)}
-                      className="p-2 hover:bg-red-950 rounded-lg transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4 text-red-400" />
-                    </button>
-                  </div>
-                )}
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

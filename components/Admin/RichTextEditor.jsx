@@ -14,12 +14,16 @@ import { Bold, Italic, Underline as UnderlineIcon, Strikethrough, Code, List, Li
 const RichTextEditor = ({ content, onChange }) => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
       Image,
       Link.configure({ openOnClick: false }),
       Underline,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Highlight,
+      Highlight.configure({ multicolor: true }),
       TextStyle,
       Color,
     ],
@@ -30,7 +34,7 @@ const RichTextEditor = ({ content, onChange }) => {
     },
     editorProps: {
       attributes: {
-        class: "prose prose-invert max-w-none focus:outline-none min-h-[400px] px-4 py-3",
+        class: "prose prose-invert max-w-none focus:outline-none min-h-[400px] px-4 py-3 prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-em:text-zinc-300 prose-code:text-purple-400 prose-code:bg-zinc-900 prose-pre:bg-zinc-900 prose-blockquote:border-purple-500 prose-blockquote:text-zinc-400 prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300 prose-li:text-zinc-300 prose-ul:text-zinc-300 prose-ol:text-zinc-300 prose-hr:border-zinc-700",
       },
     },
   });

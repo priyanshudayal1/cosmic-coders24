@@ -6,10 +6,13 @@ import { ArrowLeft, Save, Upload } from "lucide-react";
 import RichTextEditor from "@/components/Admin/RichTextEditor";
 import Image from "next/image";
 import { Calendar, User } from "lucide-react";
+import { formatDate } from "@/utils/dateUtils";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default function EditBlogPage({ params }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [blogId, setBlogId] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -84,10 +87,13 @@ export default function EditBlogPage({ params }) {
   const handleSave = async () => {
     if (!blogId) return;
 
+    setSaving(true);
     const data = new FormData();
     data.append("title", formData.title);
     data.append("content", formData.content);
     data.append("excerpt", formData.excerpt);
+    data.append("author", formData.author);
+    data.append("category", formData.category);
 
     // Only append image if it's a File object (new upload)
     // If it's a string, it means we kept the old URL, backend handles it if we don't send "image"
@@ -112,16 +118,22 @@ export default function EditBlogPage({ params }) {
       }
     } catch (error) {
       console.error("Update error", error);
+    } finally {
+      setSaving(false);
     }
   };
 
   if (loading)
-    return <div className="h-screen bg-black text-white p-8">Loading...</div>;
+    return (
+      <div className="h-screen bg-black text-white p-8 flex items-center justify-center">
+        <LoadingSpinner size="xl" text="Loading blog..." />
+      </div>
+    );
 
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden">
       <div className="border-b border-zinc-800 p-4 shrink-0">
-        <div className="max-w-[1800px] mx-auto flex items-center justify-between">
+        <div className="max-w-450 mx-auto flex items-center justify-between">
           <button
             onClick={() => router.push("/admin")}
             className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
@@ -131,26 +143,37 @@ export default function EditBlogPage({ params }) {
           </button>
           <button
             onClick={handleSave}
-            className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors"
+            disabled={saving}
+            className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Save className="w-4 h-4" />
-            <span>Save Changes</span>
+            {saving ? (
+              <>
+                <LoadingSpinner size="sm" />
+                <span>Saving...</span>
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                <span>Save Changes</span>
+              </>
+            )}
           </button>
         </div>
       </div>
 
       <div className="flex-1 min-h-0">
-        <div className="grid grid-cols-2 gap-0 h-full max-w-[1800px] mx-auto">
+        <div className="grid grid-cols-2 gap-0 h-full max-w-450 mx-auto">
           {/* Preview - Left Side */}
           <div className="h-full overflow-y-auto bg-[#030014] border-r border-zinc-800">
-            <div className="relative w-full h-[300px]">
+            <div className="relative w-full h-75">
               <Image
                 src={formData.imagePreview}
                 alt={formData.title}
                 fill
+                sizes="50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-[#030014]/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#030014] via-[#030014]/50 to-transparent" />
             </div>
 
             <div className="max-w-3xl mx-auto px-6 -mt-24 relative z-10 pb-20">
@@ -172,13 +195,13 @@ export default function EditBlogPage({ params }) {
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-purple-400" />
                   <span className="text-sm">
-                    {new Date(formData.createdAt).toLocaleDateString()}
+                    {formatDate(formData.createdAt)}
                   </span>
                 </div>
               </div>
 
               <div
-                className="prose prose-invert max-w-none prose-p:text-zinc-300 prose-headings:text-white prose-strong:text-white"
+                className="prose prose-invert max-w-none text-zinc-300 prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-em:text-zinc-300 prose-code:text-purple-400 prose-code:bg-zinc-900 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:text-zinc-400 prose-blockquote:italic prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300 hover:prose-a:underline prose-li:text-zinc-300 prose-ul:text-zinc-300 prose-ol:text-zinc-300 prose-hr:border-zinc-700 prose-img:rounded-lg prose-img:shadow-lg"
                 dangerouslySetInnerHTML={{ __html: formData.content }}
               />
             </div>
@@ -209,8 +232,10 @@ export default function EditBlogPage({ params }) {
                   <input
                     type="text"
                     value={formData.author}
-                    readOnly
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-zinc-500 cursor-not-allowed focus:outline-none"
+                    onChange={(e) =>
+                      setFormData({ ...formData, author: e.target.value })
+                    }
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
                   />
                 </div>
                 <div>

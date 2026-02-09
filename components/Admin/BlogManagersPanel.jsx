@@ -3,9 +3,12 @@
 import { useState, useEffect } from "react";
 import { Plus, Trash2, Eye, EyeOff } from "lucide-react";
 import AdminModal from "@/components/ui/AdminModal";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const BlogManagersPanel = () => {
   const [managers, setManagers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [creating, setCreating] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [showPasswords, setShowPasswords] = useState({});
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -32,6 +35,7 @@ const BlogManagersPanel = () => {
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const res = await fetch("/api/admin/managers");
         if (res.ok) {
           const data = await res.json();
@@ -39,12 +43,15 @@ const BlogManagersPanel = () => {
         }
       } catch (error) {
         console.error("Failed to fetch managers", error);
+      } finally {
+        setLoading(false);
       }
     })();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCreating(true);
     try {
       const res = await fetch("/api/admin/managers", {
         method: "POST",
@@ -59,6 +66,8 @@ const BlogManagersPanel = () => {
       }
     } catch (error) {
       console.error("Failed to create manager", error);
+    } finally {
+      setCreating(false);
     }
   };
 
@@ -200,10 +209,20 @@ const BlogManagersPanel = () => {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors"
+                disabled={creating}
+                className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Plus className="w-4 h-4" />
-                <span>Create Account</span>
+                {creating ? (
+                  <>
+                    <LoadingSpinner size="sm" />
+                    <span>Creating...</span>
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-4 h-4" />
+                    <span>Create Account</span>
+                  </>
+                )}
               </button>
               <button
                 type="button"
@@ -228,7 +247,15 @@ const BlogManagersPanel = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-800">
-            {managers.length === 0 ? (
+            {loading ? (
+              <tr>
+                <td colSpan={4} className="p-6">
+                  <div className="flex justify-center">
+                    <LoadingSpinner size="md" text="Loading managers..." />
+                  </div>
+                </td>
+              </tr>
+            ) : managers.length === 0 ? (
               <tr>
                 <td colSpan={4} className="p-6 text-center text-zinc-500">
                   No managers found.

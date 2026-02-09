@@ -31,13 +31,13 @@ export async function GET(req) {
     const blogsRef = adminDb.collection("blogs");
     let query = blogsRef.orderBy("createdAt", "desc");
 
-    // If user is a manager, maybe we want to filter?
-    // Usually fetching all is fine, but we restrict EDITING.
-    // Let's just fetch all for now so they see everything, but can only edit theirs.
-    // Or if the request has a query param ?my=true
-
     const { searchParams } = new URL(req.url);
+    const limit = parseInt(searchParams.get("limit"));
     const my = searchParams.get("my");
+
+    if (limit) {
+      query = query.limit(limit);
+    }
 
     if (my === "true" && user) {
       query = query.where("authorId", "==", user.id);
@@ -87,6 +87,8 @@ export async function POST(req) {
     const title = formData.get("title");
     const content = formData.get("content");
     const excerpt = formData.get("excerpt");
+    const author = formData.get("author");
+    const category = formData.get("category");
     const imageFile = formData.get("image");
 
     if (!title || !content) {
@@ -111,6 +113,8 @@ export async function POST(req) {
       title,
       content,
       excerpt,
+      author: author || user.email || "Admin",
+      category: category || "Technology",
       image: imageUrl,
       authorId: user.id || "admin",
       authorEmail: user.email || "admin",

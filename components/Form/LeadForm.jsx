@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 const LeadForm = () => {
   const [formState, setFormState] = useState({
@@ -11,6 +12,7 @@ const LeadForm = () => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormState({
@@ -21,9 +23,11 @@ const LeadForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitting(true);
     // Simulate submission
     setTimeout(() => {
       setSubmitted(true);
+      setSubmitting(false);
       setFormState({ name: "", email: "", message: "" });
       setTimeout(() => setSubmitted(false), 3000);
     }, 1000);
@@ -92,11 +96,17 @@ const LeadForm = () => {
       <div className="flex justify-center mt-4">
         <Button
           type="submit"
+          disabled={submitting}
           variant="glass"
           size="lg"
-          className="w-full md:w-auto min-w-50 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+          className="w-full md:w-auto min-w-50 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {submitted ? (
+          {submitting ? (
+            <>
+              <LoadingSpinner size="sm" />
+              <span className="ml-2">Sending...</span>
+            </>
+          ) : submitted ? (
             <>
               <CheckCircle className="w-4 h-4" />
               <span>Message Sent!</span>

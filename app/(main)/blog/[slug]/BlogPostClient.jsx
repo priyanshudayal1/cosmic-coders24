@@ -19,6 +19,7 @@ export default function BlogPostClient({ post }) {
             src={post.image}
             alt={post.title}
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
@@ -63,7 +64,7 @@ export default function BlogPostClient({ post }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="prose prose-invert prose-lg max-w-none mb-20"
+            className="prose prose-invert prose-lg max-w-none mb-20 prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-em:text-zinc-300 prose-code:text-purple-400 prose-code:bg-zinc-900 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:text-zinc-400 prose-blockquote:italic prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300 hover:prose-a:underline prose-li:text-zinc-300 prose-ul:text-zinc-300 prose-ol:text-zinc-300 prose-hr:border-zinc-700 prose-img:rounded-lg prose-img:shadow-lg"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

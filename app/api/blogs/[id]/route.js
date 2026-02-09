@@ -67,6 +67,8 @@ export async function PUT(req, { params }) {
     const title = formData.get("title");
     const content = formData.get("content");
     const excerpt = formData.get("excerpt");
+    const author = formData.get("author");
+    const category = formData.get("category");
     const imageFile = formData.get("image");
 
     const updateData = {
@@ -76,6 +78,8 @@ export async function PUT(req, { params }) {
     if (title) updateData.title = title;
     if (content) updateData.content = content;
     if (excerpt) updateData.excerpt = excerpt;
+    if (author) updateData.author = author;
+    if (category) updateData.category = category;
 
     if (imageFile && typeof imageFile !== "string") {
       // Convert file to base64 or buffer

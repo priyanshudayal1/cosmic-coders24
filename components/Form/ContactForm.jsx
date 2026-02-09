@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import GlassButton from "../ui/GlassButton";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 const ContactForm = ({ serviceName = "Website Development" }) => {
   const [formState, setFormState] = useState({
@@ -14,6 +15,7 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormState({
@@ -24,8 +26,10 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitting(true);
     setTimeout(() => {
       setSubmitted(true);
+      setSubmitting(false);
       setFormState((prev) => ({
         ...prev,
         name: "",
@@ -162,10 +166,16 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
       <div className="flex justify-center mt-4">
         <GlassButton
           type="submit"
+          disabled={submitting}
           size="lg"
-          className="w-full md:w-auto min-w-50 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] flex items-center justify-center"
+          className="w-full md:w-auto min-w-50 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {submitted ? (
+          {submitting ? (
+            <>
+              <LoadingSpinner size="sm" />
+              <span className="ml-2">Sending...</span>
+            </>
+          ) : submitted ? (
             <>
               <CheckCircle className="w-4 h-4 ml-2 inline-block" />
               <span className="ml-2">Message Sent!</span>
