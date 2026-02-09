@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import SpotlightCard from "../SpotlightCard";
 import Button from "./Button";
 
@@ -10,6 +11,8 @@ const CTACard = ({
   buttonText = "Contact Us",
   buttonHref = "/about-contact",
 }) => {
+  const router = useRouter();
+
   return (
     <div className="max-w-4xl mx-auto">
       <SpotlightCard
@@ -28,6 +31,7 @@ const CTACard = ({
               variant="glass"
               size="lg"
               className="hover:bg-purple-600/30 hover:border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+              onClick={() => router.push(buttonHref)}
             >
               <span>{buttonText}</span>
               <ArrowRight className="w-4 h-4" />
