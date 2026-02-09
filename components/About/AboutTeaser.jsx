@@ -10,8 +10,8 @@ const AboutTeaser = () => {
     return (
         <section className="w-full py-20 relative overflow-hidden" id="about-teaser">
             {/* Background Elements */}
-            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none transform -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 left-0 w-125 h-125 bg-purple-900/10 rounded-full blur-[120px] pointer-events-none transform -translate-y-1/2" />
+            <div className="absolute bottom-0 right-0 w-75 h-75 bg-blue-900/10 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-4 md:px-8 text-center relative z-10">
                 <SectionHeading

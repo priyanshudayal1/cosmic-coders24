@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Card from "@/components/ui/Card";
 import { Mail, Phone, Building2, MessageSquare } from "lucide-react";
 
 const FormSubmissions = () => {
@@ -64,7 +63,7 @@ const FormSubmissions = () => {
             </div>
 
             <div className="flex gap-2 text-zinc-300 bg-zinc-950 p-4 rounded-lg border border-zinc-800">
-              <MessageSquare className="w-4 h-4 text-zinc-500 mt-1 flex-shrink-0" />
+              <MessageSquare className="w-4 h-4 text-zinc-500 mt-1 shrink-0" />
               <p className="text-sm">{submission.message}</p>
             </div>
           </div>
