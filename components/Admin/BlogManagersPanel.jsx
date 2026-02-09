@@ -72,28 +72,31 @@ const BlogManagersPanel = () => {
   };
 
   const deleteManager = async (id) => {
+    setModal((prev) => ({ ...prev, isLoading: true }));
     try {
       const res = await fetch(`/api/admin/managers/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
-        setManagers(managers.filter((m) => m.id !== id));
+        await fetchManagers();
       }
-      setModal({ ...modal, isOpen: false });
     } catch (e) {
       console.error(e);
+    } finally {
+      setModal({ isOpen: false, isLoading: false });
     }
   };
 
   const handleDelete = (id) => {
     setModal({
       isOpen: true,
-      type: "input", // Require admin password to delete
+      type: "input",
       title: "Confirm Deletion",
       message: "Enter your admin password to confirm deleting this manager.",
       confirmText: "Verify & Delete",
+      isLoading: false,
       onConfirm: async (adminPassword) => {
-        // 1. Verify Request
+        setModal((prev) => ({ ...prev, isLoading: true }));
         try {
           const res = await fetch("/api/admin/verify", {
             method: "POST",
@@ -102,11 +105,9 @@ const BlogManagersPanel = () => {
           });
 
           if (res.ok) {
-            // 2. If verified, delete
             await deleteManager(id);
           } else {
-            // Show error modal instead of alert
-            setModal((prev) => ({ ...prev, isOpen: false }));
+            setModal({ isOpen: false, isLoading: false });
             setTimeout(() => {
               setModal({
                 isOpen: true,
@@ -114,19 +115,22 @@ const BlogManagersPanel = () => {
                 title: "Verification Failed",
                 message: "Incorrect Admin Password",
                 confirmText: "Close",
+                isLoading: false,
                 onConfirm: () =>
-                  setModal((prev) => ({ ...prev, isOpen: false })),
+                  setModal({ isOpen: false, isLoading: false }),
               });
             }, 100);
           }
         } catch (error) {
           console.error("Failed", error);
+          setModal({ isOpen: false, isLoading: false });
         }
       },
     });
   };
 
   const updateManagerPassword = async (id, newPassword) => {
+    setModal((prev) => ({ ...prev, isLoading: true }));
     try {
       const res = await fetch(`/api/admin/managers/${id}`, {
         method: "PUT",
@@ -134,13 +138,15 @@ const BlogManagersPanel = () => {
         body: JSON.stringify({ password: newPassword }),
       });
       if (res.ok) {
+        await fetchManagers();
         setModal({
           isOpen: true,
-          type: "confirm", // Use confirm type for info/success message
+          type: "confirm",
           title: "Success",
           message: "Password updated successfully",
           confirmText: "Close",
-          onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+          isLoading: false,
+          onConfirm: () => setModal({ isOpen: false, isLoading: false }),
         });
       } else {
         setModal({
@@ -149,7 +155,8 @@ const BlogManagersPanel = () => {
           title: "Error",
           message: "Failed to update password",
           confirmText: "Close",
-          onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+          isLoading: false,
+          onConfirm: () => setModal({ isOpen: false, isLoading: false }),
         });
       }
     } catch (e) {
@@ -160,7 +167,8 @@ const BlogManagersPanel = () => {
         title: "Error",
         message: "Error updating password",
         confirmText: "Close",
-        onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+        isLoading: false,
+        onConfirm: () => setModal({ isOpen: false, isLoading: false }),
       });
     }
   };
@@ -174,7 +182,9 @@ const BlogManagersPanel = () => {
         "Enter your admin password to authorize updating this manager's password.",
       confirmText: "Verify",
       inputPlaceholder: "Enter Admin Password",
+      isLoading: false,
       onConfirm: async (adminPassword) => {
+        setModal((prev) => ({ ...prev, isLoading: true }));
         try {
           const res = await fetch("/api/admin/verify", {
             method: "POST",
@@ -183,8 +193,7 @@ const BlogManagersPanel = () => {
           });
 
           if (res.ok) {
-            setModal((prev) => ({ ...prev, isOpen: false }));
-            // Wait for modal to close then open new one
+            setModal({ isOpen: false, isLoading: false });
             setTimeout(() => {
               setModal({
                 isOpen: true,
@@ -193,6 +202,7 @@ const BlogManagersPanel = () => {
                 message: "Enter the new password for this manager.",
                 confirmText: "Update Password",
                 inputPlaceholder: "Enter New Password",
+                isLoading: false,
                 onConfirm: (newPassword) => {
                   if (newPassword) {
                     updateManagerPassword(id, newPassword);
@@ -201,8 +211,7 @@ const BlogManagersPanel = () => {
               });
             }, 100);
           } else {
-            // Show error modal instead of alert
-            setModal((prev) => ({ ...prev, isOpen: false }));
+            setModal({ isOpen: false, isLoading: false });
             setTimeout(() => {
               setModal({
                 isOpen: true,
@@ -210,13 +219,15 @@ const BlogManagersPanel = () => {
                 title: "Verification Failed",
                 message: "Incorrect Admin Password",
                 confirmText: "Close",
+                isLoading: false,
                 onConfirm: () =>
-                  setModal((prev) => ({ ...prev, isOpen: false })),
+                  setModal({ isOpen: false, isLoading: false }),
               });
             }, 100);
           }
         } catch (error) {
           console.error("Error", error);
+          setModal({ isOpen: false, isLoading: false });
         }
       },
     });
@@ -226,13 +237,14 @@ const BlogManagersPanel = () => {
     <div className="space-y-6">
       <AdminModal
         isOpen={modal.isOpen}
-        onClose={() => setModal({ ...modal, isOpen: false })}
+        onClose={() => setModal({ isOpen: false, isLoading: false })}
         title={modal.title}
         message={modal.message}
         type={modal.type}
         onConfirm={modal.onConfirm}
         confirmText={modal.confirmText}
         inputPlaceholder={modal.inputPlaceholder}
+        isLoading={modal.isLoading}
       />
 
       <div className="flex justify-between items-center">

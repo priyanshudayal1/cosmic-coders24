@@ -5,6 +5,7 @@ import AdminSidebar from "@/components/Admin/AdminSidebar";
 import FormSubmissions from "@/components/Admin/FormSubmissions";
 import BlogManager from "@/components/Admin/BlogManager";
 import BlogManagersPanel from "@/components/Admin/BlogManagersPanel";
+import ResumeSubmissions from "@/components/Admin/ResumeSubmissions";
 import { useRouter } from "next/navigation";
 
 export default function AdminPanel() {
@@ -59,6 +60,9 @@ export default function AdminPanel() {
           {activeTab === "blogs" && <BlogManager user={user} />}
           {activeTab === "managers" && user.type === "admin" && (
             <BlogManagersPanel />
+          )}
+          {activeTab === "resumes" && user.type === "admin" && (
+            <ResumeSubmissions />
           )}
         </main>
       </div>

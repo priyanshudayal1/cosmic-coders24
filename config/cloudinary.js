@@ -45,4 +45,22 @@ export const deleteImage = async (imageUrl) => {
   }
 };
 
+/**
+ * Uploads a PDF/file to Cloudinary and returns the secure URL.
+ * @param {Buffer} buffer - The file buffer to upload.
+ * @param {string} folder - The folder in Cloudinary to upload to.
+ * @returns {Promise<string>} - The secure URL of the uploaded file.
+ */
+export const uploadPDF = async (buffer, folder = "resumes") => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload_stream(
+      { resource_type: "raw", folder },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result.secure_url);
+      }
+    ).end(buffer);
+  });
+};
+
 export default cloudinary;

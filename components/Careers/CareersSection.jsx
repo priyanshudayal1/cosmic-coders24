@@ -10,22 +10,47 @@ import SpotlightCard from "../SpotlightCard";
 const CareersSection = () => {
     const [file, setFile] = useState(null);
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [uploadingFile, setUploadingFile] = useState(false);
+    const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "" });
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
+            setUploadingFile(true);
+            setTimeout(() => {
+                setFile(e.target.files[0]);
+                setUploadingFile(false);
+            }, 500);
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate submission
-        setTimeout(() => {
-            setSubmitted(true);
-            setFile(null);
-            // Reset after a few seconds
-            setTimeout(() => setSubmitted(false), 3000);
-        }, 1000);
+        setLoading(true);
+        
+        const data = new FormData();
+        data.append("firstName", formData.firstName);
+        data.append("lastName", formData.lastName);
+        data.append("email", formData.email);
+        data.append("resume", file);
+
+        try {
+            const res = await fetch("/api/careers/apply", {
+                method: "POST",
+                body: data,
+            });
+
+            if (res.ok) {
+                setSubmitted(true);
+                setFile(null);
+                setFormData({ firstName: "", lastName: "", email: "" });
+                setTimeout(() => setSubmitted(false), 3000);
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -104,6 +129,8 @@ const CareersSection = () => {
                                         <input
                                             type="text"
                                             placeholder="John"
+                                            value={formData.firstName}
+                                            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                                             className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-purple-500/50 transition-colors"
                                             required
                                         />
@@ -113,6 +140,8 @@ const CareersSection = () => {
                                         <input
                                             type="text"
                                             placeholder="Doe"
+                                            value={formData.lastName}
+                                            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                                             className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-purple-500/50 transition-colors"
                                             required
                                         />
@@ -124,6 +153,8 @@ const CareersSection = () => {
                                     <input
                                         type="email"
                                         placeholder="john@example.com"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-purple-500/50 transition-colors"
                                         required
                                     />
@@ -143,7 +174,12 @@ const CareersSection = () => {
                                             htmlFor="resume-upload"
                                             className="flex items-center justify-center gap-2 w-full border border-dashed border-white/20 bg-black/20 hover:bg-white/5 hover:border-purple-500/50 rounded-xl p-8 cursor-pointer transition-all duration-300 group"
                                         >
-                                            {file ? (
+                                            {uploadingFile ? (
+                                                <div className="flex flex-col items-center gap-2 text-purple-400">
+                                                    <div className="w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                                                    <span className="text-sm font-medium">Loading file...</span>
+                                                </div>
+                                            ) : file ? (
                                                 <div className="flex items-center gap-2 text-purple-400">
                                                     <CheckCircle className="w-5 h-5" />
                                                     <span className="font-medium truncate max-w-[200px]">{file.name}</span>
@@ -163,13 +199,16 @@ const CareersSection = () => {
                                     type="submit"
                                     variant="glass"
                                     size="lg"
-                                    className="w-full mt-4 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+                                    disabled={loading || !file}
+                                    className="w-full mt-4 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {submitted ? (
                                         <>
                                             <CheckCircle className="w-4 h-4" />
                                             <span>Application Sent!</span>
                                         </>
+                                    ) : loading ? (
+                                        <span>Submitting...</span>
                                     ) : (
                                         <>
                                             <span>Submit Application</span>
@@ -177,6 +216,17 @@ const CareersSection = () => {
                                         </>
                                     )}
                                 </Button>
+
+                                {submitted && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/30 rounded-xl"
+                                    >
+                                        <CheckCircle className="w-5 h-5 text-green-400" />
+                                        <p className="text-green-400 text-sm font-medium">Resume uploaded successfully! We'll be in touch soon.</p>
+                                    </motion.div>
+                                )}
                             </form>
                         </SpotlightCard>
                     </motion.div>

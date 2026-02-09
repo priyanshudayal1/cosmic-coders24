@@ -1,6 +1,6 @@
 "use client";
 
-import { FileText, BookOpen, Users, LogOut } from "lucide-react";
+import { FileText, BookOpen, Users, LogOut, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
@@ -21,6 +21,7 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
       roles: ["admin", "blog-manager"],
     },
     { id: "managers", label: "Blog Managers", icon: Users, roles: ["admin"] },
+    { id: "resumes", label: "Career Applications", icon: Briefcase, roles: ["admin"] },
   ];
 
   const handleLogout = async () => {
@@ -45,7 +46,9 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
     <aside className="fixed left-0 top-0 h-screen w-64 bg-zinc-950 border-r border-zinc-800 p-6 flex flex-col">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-white">Admin Panel</h1>
-        <p className="text-sm text-zinc-500 mt-1">Cosmic Coders 24</p>
+        <p className="text-sm text-zinc-500 mt-1">
+          {userRole === "admin" ? "Admin" : "Blog Manager"}
+        </p>
       </div>
 
       <nav className="space-y-2 flex-1">

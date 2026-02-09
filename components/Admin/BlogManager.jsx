@@ -26,6 +26,7 @@ const BlogManager = ({ user }) => {
     type: "confirm",
     title: "",
     message: "",
+    isLoading: false,
     onConfirm: () => {},
   });
 
@@ -88,15 +89,18 @@ const BlogManager = ({ user }) => {
       message:
         "Are you sure you want to delete this blog post? This action cannot be undone.",
       confirmText: "Delete",
+      isLoading: false,
       onConfirm: async () => {
+        setModal((prev) => ({ ...prev, isLoading: true }));
         try {
           const res = await fetch(`/api/blogs/${id}`, { method: "DELETE" });
           if (res.ok) {
             setBlogs(blogs.filter((blog) => blog.id !== id));
           }
-          setModal({ ...modal, isOpen: false });
         } catch (error) {
           console.error("Failed to delete", error);
+        } finally {
+          setModal({ isOpen: false, isLoading: false });
         }
       },
     });
@@ -112,6 +116,7 @@ const BlogManager = ({ user }) => {
         type={modal.type}
         onConfirm={modal.onConfirm}
         confirmText={modal.confirmText}
+        isLoading={modal.isLoading}
       />
       <div className="flex justify-between items-center">
         <div>
