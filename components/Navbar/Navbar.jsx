@@ -33,9 +33,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 ${
-      scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-    }`}>
+    <nav
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 ${
+        scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+      }`}
+    >
       <div className="px-6 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link
@@ -68,8 +70,12 @@ const Navbar = () => {
                 href: "/services/branding-logo-design",
               },
               {
-                label: "Graphics & Packaging Design",
-                href: "/services/graphics-packaging-design",
+                label: "Graphics Design",
+                href: "/services/graphics-design",
+              },
+              {
+                label: "Packaging Design",
+                href: "/services/packaging-design",
               },
               { label: "Video Editing", href: "/services/video-editing" },
             ]}
@@ -156,8 +162,12 @@ const Navbar = () => {
                 href: "/services/branding-logo-design",
               },
               {
-                label: "Graphics & Packaging Design",
-                href: "/services/graphics-packaging-design",
+                label: "Graphics Design",
+                href: "/services/graphics-design",
+              },
+              {
+                label: "Packaging Design",
+                href: "/services/packaging-design",
               },
               { label: "Video Editing", href: "/services/video-editing" },
             ]}

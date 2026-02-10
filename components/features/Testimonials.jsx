@@ -61,73 +61,35 @@ export default function Testimonials() {
     setActiveIndex(index);
   };
 
-  // Improved calculation to determine position
   const getCardStyle = (index) => {
     const total = testimonials.length;
-    // Calculate distance accounting for wrap-around
     let diff = (index - activeIndex + total) % total;
     if (diff > total / 2) diff -= total;
 
-    // We only want to show: -1 (prev), 0 (active), 1 (next)
-    // plus items animating in/out
-
-    // Determine the visual position index
-    // 0 is center, -1 is left, 1 is right
-    // Others are hidden or far off
-
-    const isActive = diff === 0;
-    const isPrev = diff === -1;
-    const isNext = diff === 1;
-
-    // For smooth sliding, we need to map all items to a position
-    // Center: 0
-    // Left: -100%
-    // Right: 100%
-    // Far Left: -200%
-    // Far Right: 200%
-
-    // Scale and opacity
-    // Active: scale 1, opacity 1
-    // Neighbors: scale 0.9, opacity 0.4
-    // Far: scale 0.8, opacity 0
-
-    // Z-index
-    // Active: 10
-    // Neighbors: 5
-    // Far: 0
-
-    let x = "0%";
+    // Tighter spacing so more cards are visible with blur
+    const offsetPercent = 80;
+    let x = `calc(-50% + ${diff * offsetPercent}%)`;
     let scale = 1;
     let opacity = 1;
     let zIndex = 10;
     let blur = "0px";
 
     if (diff === 0) {
-      x = "-50%";
       scale = 1;
       opacity = 1;
       zIndex = 10;
       blur = "0px";
-    } else if (diff === -1) {
-      x = "calc(-50% - 105%)"; // Slight gap
-      scale = 0.9;
-      opacity = 0.4;
+    } else if (Math.abs(diff) === 1) {
+      scale = 0.92;
+      opacity = 0.5;
       zIndex = 5;
-      blur = "2px";
-    } else if (diff === 1) {
-      x = "calc(-50% + 105%)";
-      scale = 0.9;
-      opacity = 0.4;
-      zIndex = 5;
-      blur = "2px";
-    } else if (diff < -1) {
-      x = "calc(-50% - 210%)";
-      scale = 0.8;
-      opacity = 0;
-      zIndex = 0;
-      blur = "10px";
-    } else if (diff > 1) {
-      x = "calc(-50% + 210%)";
+      blur = "1.5px";
+    } else if (Math.abs(diff) === 2) {
+      scale = 0.85;
+      opacity = 0.25;
+      zIndex = 2;
+      blur = "4px";
+    } else {
       scale = 0.8;
       opacity = 0;
       zIndex = 0;
@@ -140,13 +102,10 @@ export default function Testimonials() {
   return (
     <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative">
       {/* Carousel Container */}
-      <div className="relative w-full max-w-7xl h-96 flex items-center justify-center">
+      <div className="relative w-full max-w-7xl h-80 md:h-[22rem] flex items-center justify-center">
         <AnimatePresence initial={false} mode="popLayout">
           {testimonials.map((item, index) => {
             const style = getCardStyle(index);
-            // Optimization: Only render if within range -2 to 2 to minimize DOM depth, 
-            // but for wrapping to work smoothly we generally keep them all or handle wrapping logic.
-            // With 5 items, rendering all is fine.
 
             return (
               <motion.div
@@ -161,21 +120,26 @@ export default function Testimonials() {
                 }}
                 transition={{
                   duration: 0.5,
-                  ease: [0.32, 0.72, 0, 1], // Custom bezier for smooth "straight" slide
+                  ease: [0.32, 0.72, 0, 1],
                 }}
                 className={cn(
-                  "absolute top-1/2 left-1/2 w-[85%] md:w-[600px] lg:w-[700px] p-8 md:p-10 rounded-3xl border flex flex-col justify-between h-80 md:h-96 transition-colors duration-500",
+                  "absolute top-1/2 left-1/2 w-[75%] sm:w-[380px] md:w-[420px] lg:w-[440px]",
+                  "p-6 md:p-7 rounded-2xl border",
+                  "flex flex-col justify-between h-64 md:h-72",
+                  "backdrop-blur-xl transition-colors duration-500",
                   style.diff === 0
-                    ? "bg-[#0f0e13] border-purple-500/50 shadow-[0_0_60px_rgba(168,85,247,0.2)]"
-                    : "bg-[#0f0e13]/80 border-white/5",
+                    ? "bg-white/[0.06] border-white/20 shadow-[0_8px_32px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
+                    : "bg-white/[0.03] border-white/[0.06]",
                 )}
                 style={{
                   y: "-50%",
+                  WebkitBackdropFilter: "blur(24px)",
+                  backdropFilter: "blur(24px)",
                 }}
               >
-                {/* Content */}
-                <div className="flex items-center gap-5 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-linear-to-tr from-purple-400 to-blue-500 p-[2px] shrink-0">
+                {/* Top: Avatar + Name */}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-400 to-blue-500 p-[2px] shrink-0">
                     <div className="w-full h-full rounded-full bg-[#0f0e13] overflow-hidden relative">
                       {item.image ? (
                         <Image
@@ -184,40 +148,47 @@ export default function Testimonials() {
                           fill
                           className="object-cover"
                         />
+                      ) : item.id === 2 ? (
+                        <Image
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop"
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
                       ) : (
-                        item.id === 2 ? (
-                          <Image
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop"
-                            alt={item.name}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-[#1a1a1a] flex items-center justify-center">
-                            <User className="w-7 h-7 text-white/50" />
-                          </div>
-                        )
+                        <div className="w-full h-full bg-white/[0.04] flex items-center justify-center">
+                          <User className="w-6 h-6 text-white/40" />
+                        </div>
                       )}
                     </div>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-white font-bold text-xl truncate">
+                    <h3 className="text-white font-semibold text-base truncate">
                       {item.name}
                     </h3>
-                    <p className="text-sm text-gray-400 truncate font-medium">
+                    <p className="text-xs text-gray-400/80 truncate font-medium">
                       {item.role}
                     </p>
                   </div>
                 </div>
 
+                {/* Quote */}
                 <div className="relative flex-1 flex flex-col justify-center">
-                  <Quote className="absolute -top-6 -left-2 text-purple-500/20 w-12 h-12 transform scale-x-[-1]" />
-                  <p className={cn(
-                    "text-lg md:text-xl leading-relaxed relative z-10 transition-colors duration-300",
-                    style.diff === 0 ? "text-gray-200" : "text-gray-500"
-                  )}>
+                  <Quote className="absolute -top-4 -left-1 text-purple-500/15 w-10 h-10 transform scale-x-[-1]" />
+                  <p
+                    className={cn(
+                      "text-sm md:text-[15px] leading-relaxed relative z-10 transition-colors duration-300 line-clamp-5",
+                      style.diff === 0 ? "text-gray-300" : "text-gray-500",
+                    )}
+                  >
                     {item.text}
                   </p>
+                </div>
+
+                {/* Decorative glass dots */}
+                <div className="absolute top-6 right-6 flex flex-col gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 </div>
               </motion.div>
             );
@@ -229,13 +200,13 @@ export default function Testimonials() {
       <div className="flex items-center gap-8 mt-8 z-30">
         <button
           onClick={prev}
-          className="p-4 rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10 hover:border-purple-500/50 transition-all active:scale-95 group"
+          className="p-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-white/10 hover:border-purple-500/50 transition-all active:scale-95 group"
           aria-label="Previous testimonial"
         >
           <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
         </button>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2.5">
           {testimonials.map((_, idx) => (
             <button
               key={idx}
@@ -243,7 +214,7 @@ export default function Testimonials() {
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
                 idx === activeIndex
-                  ? "w-8 bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                  ? "w-7 bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
                   : "w-1.5 bg-gray-700 hover:bg-gray-500",
               )}
               aria-label={`Go to slide ${idx + 1}`}
@@ -253,7 +224,7 @@ export default function Testimonials() {
 
         <button
           onClick={next}
-          className="p-4 rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10 hover:border-purple-500/50 transition-all active:scale-95 group"
+          className="p-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-white/10 hover:border-purple-500/50 transition-all active:scale-95 group"
           aria-label="Next testimonial"
         >
           <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
