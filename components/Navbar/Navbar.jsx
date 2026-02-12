@@ -96,14 +96,6 @@ const Navbar = () => {
                 href: "/portfolio/website-development",
               },
               {
-                label: "Software Development",
-                href: "/portfolio/software-development",
-              },
-              {
-                label: "Social Media Marketing",
-                href: "/portfolio/social-media-marketing",
-              },
-              {
                 label: "Graphics Designing",
                 href: "/portfolio/graphics-designing",
               },
@@ -189,14 +181,6 @@ const Navbar = () => {
               {
                 label: "Website Development",
                 href: "/portfolio/website-development",
-              },
-              {
-                label: "Software Development",
-                href: "/portfolio/software-development",
-              },
-              {
-                label: "Social Media Marketing",
-                href: "/portfolio/social-media-marketing",
               },
               {
                 label: "Graphics Designing",
