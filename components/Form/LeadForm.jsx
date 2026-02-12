@@ -21,16 +21,32 @@ const LeadForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
+
+    try {
+      const response = await fetch("/api/queries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit query");
+      }
+
       setSubmitted(true);
-      setSubmitting(false);
       setFormState({ name: "", email: "", message: "" });
       setTimeout(() => setSubmitted(false), 3000);
-    }, 1000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to submit your message. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

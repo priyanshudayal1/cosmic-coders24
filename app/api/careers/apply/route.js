@@ -8,10 +8,14 @@ export async function POST(req) {
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
     const email = formData.get("email");
+    const role = formData.get("role");
     const resume = formData.get("resume");
 
     if (!firstName || !lastName || !email || !resume) {
-      return NextResponse.json({ error: "All fields required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "All fields required" },
+        { status: 400 },
+      );
     }
 
     const bytes = await resume.arrayBuffer();
@@ -23,23 +27,35 @@ export async function POST(req) {
       firstName,
       lastName,
       email,
+      role: role || "Not specified",
       resumeUrl,
       fileName: resume.name,
       submittedAt: new Date().toISOString(),
     };
 
-    const docRef = await adminDb.collection("career-applications").add(submission);
+    const docRef = await adminDb
+      .collection("career-applications")
+      .add(submission);
 
-    return NextResponse.json({ id: docRef.id, message: "Application submitted successfully" });
+    return NextResponse.json({
+      id: docRef.id,
+      message: "Application submitted successfully",
+    });
   } catch (error) {
     console.error("Resume upload error:", error);
-    return NextResponse.json({ error: "Failed to submit application" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to submit application" },
+      { status: 500 },
+    );
   }
 }
 
 export async function GET(req) {
   try {
-    const snapshot = await adminDb.collection("career-applications").orderBy("submittedAt", "desc").get();
+    const snapshot = await adminDb
+      .collection("career-applications")
+      .orderBy("submittedAt", "desc")
+      .get();
     const applications = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -47,6 +63,9 @@ export async function GET(req) {
     return NextResponse.json(applications);
   } catch (error) {
     console.error("Error fetching applications:", error);
-    return NextResponse.json({ error: "Failed to fetch applications" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch applications" },
+      { status: 500 },
+    );
   }
 }

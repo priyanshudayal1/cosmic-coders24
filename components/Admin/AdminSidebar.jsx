@@ -9,6 +9,7 @@ import {
   Briefcase,
   Menu,
   X,
+  MessageSquare,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,12 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
       id: "forms",
       label: "Form Submissions",
       icon: FileText,
+      roles: ["admin"],
+    },
+    {
+      id: "queries",
+      label: "Queries",
+      icon: MessageSquare,
       roles: ["admin"],
     },
     {

@@ -124,17 +124,24 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
                     {showRoleDropdown && (
                         <div className="flex flex-col gap-2">
                             <label className="text-sm font-medium text-gray-400 ml-1">Role Applying For</label>
-                            <select
-                                value={formData.role}
-                                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                                className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 transition-colors"
-                                required
-                            >
-                                <option value="" className="bg-black">Select a role</option>
-                                {roles.map((role, index) => (
-                                    <option key={index} value={role} className="bg-black">{role}</option>
-                                ))}
-                            </select>
+                            <div className="relative">
+                                <select
+                                    value={formData.role}
+                                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                                    className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white focus:outline-none focus:border-purple-500/50 transition-colors w-full appearance-none cursor-pointer"
+                                    required
+                                >
+                                    <option value="" className="bg-black">Select a role</option>
+                                    {roles.map((role, index) => (
+                                        <option key={index} value={role} className="bg-black">{role}</option>
+                                    ))}
+                                </select>
+                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     )}
 

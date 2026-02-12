@@ -2,11 +2,20 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, User, MessageSquare } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  User,
+  MessageSquare,
+  CheckCircle,
+} from "lucide-react";
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Testimonials from "@/components/features/Testimonials";
 import SpotlightCard from "@/components/SpotlightCard";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default function AboutContact() {
   const [formState, setFormState] = useState({
@@ -14,6 +23,8 @@ export default function AboutContact() {
     email: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormState({
@@ -22,10 +33,32 @@ export default function AboutContact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formState);
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/api/queries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit query");
+      }
+
+      setSubmitted(true);
+      setFormState({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to submit your message. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const fadeIn = {
@@ -80,8 +113,6 @@ export default function AboutContact() {
 
           <Testimonials />
         </motion.section>
-
-
 
         {/* --- Contact Contact Section --- */}
         <motion.section
@@ -215,11 +246,26 @@ export default function AboutContact() {
                   type="submit"
                   variant="glass"
                   size="lg"
+                  disabled={submitting}
                   suppressHydrationWarning
-                  className="w-full rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+                  className="w-full rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
-                  <Send className="w-4 h-4" />
+                  {submitting ? (
+                    <>
+                      <LoadingSpinner size="sm" />
+                      <span className="ml-2">Sending...</span>
+                    </>
+                  ) : submitted ? (
+                    <>
+                      <CheckCircle className="w-4 h-4" />
+                      <span className="ml-1">Message Sent!</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </Button>
               </form>
             </SpotlightCard>
