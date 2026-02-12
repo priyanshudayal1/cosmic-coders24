@@ -148,13 +148,6 @@ export default function Testimonials() {
                           fill
                           className="object-cover"
                         />
-                      ) : item.id === 2 ? (
-                        <Image
-                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop"
-                          alt={item.name}
-                          fill
-                          className="object-cover"
-                        />
                       ) : (
                         <div className="w-full h-full bg-white/[0.04] flex items-center justify-center">
                           <User className="w-6 h-6 text-white/40" />
@@ -174,7 +167,8 @@ export default function Testimonials() {
 
                 {/* Quote */}
                 <div className="relative flex-1 flex flex-col justify-center">
-                  <Quote className="absolute -top-4 -left-1 text-purple-500/15 w-10 h-10 transform scale-x-[-1]" />
+                  <Quote className="absolute -top-1 -left-1 text-purple-500/15 w-7 h-7 transform scale-x-[-1]" />
+                  <Quote className="absolute -bottom-1 right-0 text-purple-500/15 w-7 h-7 rotate-180" />
                   <p
                     className={cn(
                       "text-sm md:text-[15px] leading-relaxed relative z-10 transition-colors duration-300 line-clamp-5",
