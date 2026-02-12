@@ -17,7 +17,7 @@ const SectionHeading = ({ title, subtitle, eyebrow }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-lg"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-lg"
         >
           {title}
         </motion.h2>
@@ -30,7 +30,7 @@ const SectionHeading = ({ title, subtitle, eyebrow }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-gray-400 max-w-2xl text-xl leading-relaxed mix-blend-plus-lighter"
+          className="text-gray-400 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed mix-blend-plus-lighter"
         >
           {subtitle}
         </motion.p>

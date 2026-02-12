@@ -45,7 +45,7 @@ const ServicePageLayout = ({ title, description, features, children }) => {
 
         {/* CTA Section */}
         <section className="py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto bg-linear-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-12 relative overflow-hidden">
+          <div className="max-w-4xl mx-auto bg-linear-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full bg-purple-500/5 blur-3xl pointer-events-none" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6 relative z-10">
               Ready to Elevate Your Business?

@@ -1,11 +1,21 @@
 "use client";
 
-import { FileText, BookOpen, Users, LogOut, Briefcase } from "lucide-react";
+import { useState } from "react";
+import {
+  FileText,
+  BookOpen,
+  Users,
+  LogOut,
+  Briefcase,
+  Menu,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
   const router = useRouter();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
     {
@@ -31,24 +41,23 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
 
   const handleLogout = async () => {
     try {
-      // Call logout endpoint to clear httpOnly cookie
       await fetch("/api/admin/logout", { method: "POST" });
-
-      // Clear localStorage
       localStorage.removeItem("adminUser");
-
-      // Redirect to login
       router.push("/admin/auth");
     } catch (e) {
       console.error("Logout error:", e);
-      // Still clear localStorage and redirect even if API fails
       localStorage.removeItem("adminUser");
       router.push("/admin/auth");
     }
   };
 
-  return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-zinc-900 border-r border-zinc-700 p-6 flex flex-col">
+  const handleTabClick = (id) => {
+    setActiveTab(id);
+    setMobileOpen(false);
+  };
+
+  const sidebarContent = (
+    <>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-white">Admin Panel</h1>
         <p className="text-sm text-zinc-500 mt-1">
@@ -64,7 +73,7 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id)}
+                onClick={() => handleTabClick(item.id)}
                 className={cn(
                   "w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200",
                   activeTab === item.id
@@ -88,7 +97,43 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
           <span className="font-medium">Logout</span>
         </button>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile toggle button */}
+      <button
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="md:hidden fixed top-4 left-4 z-60 p-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white"
+        aria-label="Toggle sidebar"
+      >
+        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Mobile sidebar */}
+      <aside
+        className={cn(
+          "fixed left-0 top-0 h-screen w-64 bg-zinc-900 border-r border-zinc-700 p-6 flex flex-col z-50 transition-transform duration-300 md:hidden",
+          mobileOpen ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
+        {sidebarContent}
+      </aside>
+
+      {/* Desktop sidebar */}
+      <aside className="fixed left-0 top-0 h-screen w-64 bg-zinc-900 border-r border-zinc-700 p-6 flex-col hidden md:flex z-50">
+        {sidebarContent}
+      </aside>
+    </>
   );
 };
 

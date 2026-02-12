@@ -139,15 +139,43 @@
 }
 
 .rich-content h1 {
-  font-size: 2.25rem;
+  font-size: 1.5rem;
 }
 
 .rich-content h2 {
-  font-size: 1.875rem;
+  font-size: 1.25rem;
 }
 
 .rich-content h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 640px) {
+  .rich-content h1 {
+    font-size: 1.875rem;
+  }
+
+  .rich-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .rich-content h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .rich-content h1 {
+    font-size: 2.25rem;
+  }
+
+  .rich-content h2 {
+    font-size: 1.875rem;
+  }
+
+  .rich-content h3 {
+    font-size: 1.5rem;
+  }
 }
 
 .rich-content p {

@@ -250,7 +250,7 @@ export default function SoftwareDevelopment() {
                     <div className="absolute bottom-0 w-full bg-white/10 rounded-t-lg h-[60%] group-hover:h-[80%] transition-all duration-500 ease-out delay-300"></div>
                   </div>
                 </div>
-                <div className="mt-6 flex justify-between px-4 md:px-12 text-xs font-medium text-purple-200/70 font-mono tracking-wider">
+                <div className="mt-6 flex justify-between px-4 md:px-12 text-[10px] sm:text-xs font-medium text-purple-200/70 font-mono tracking-wider">
                   <span>EFFICIENCY</span>
                   <span>SPEED</span>
                   <span>ACCURACY</span>

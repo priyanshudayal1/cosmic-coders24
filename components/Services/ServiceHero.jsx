@@ -18,7 +18,7 @@ const ServiceHero = ({
       <div className="absolute bottom-[-10%] left-1/2 transform -translate-x-1/2 w-[60vw] h-[60vw] bg-linear-to-t from-indigo-500/10 via-purple-500/10 to-transparent blur-[80px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto text-center relative z-10">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight">
           {title}{" "}
           {highlightedText && (
             <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-indigo-400">

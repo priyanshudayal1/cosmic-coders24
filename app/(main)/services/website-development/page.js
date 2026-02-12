@@ -287,7 +287,7 @@ export default function WebsiteDevelopment() {
               subtitle="We don't just write code; we engineer digital experiences that push boundaries."
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Feature 1 */}
               <Card className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group/card">
                 <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover/card:text-white group-hover/card:bg-purple-600/20 transition-colors duration-300 w-fit">

@@ -16,14 +16,14 @@ const CTACard = ({
   return (
     <div className="max-w-4xl mx-auto">
       <SpotlightCard
-        className="text-center bg-linear-to-br from-purple-900/40 via-neutral-900 to-neutral-900 border-purple-500/20 p-12 md:p-16"
+        className="text-center bg-linear-to-br from-purple-900/40 via-neutral-900 to-neutral-900 border-purple-500/20 p-8 sm:p-12 md:p-16"
         spotlightColor="rgba(168, 85, 247, 0.3)"
       >
         <div className="relative">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-linear-to-r from-white to-purple-200 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 bg-linear-to-r from-white to-purple-200 bg-clip-text text-transparent">
             {title}
           </h2>
-          <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
             {description}
           </p>
           <div className="flex justify-center">

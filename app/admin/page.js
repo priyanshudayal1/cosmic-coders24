@@ -53,7 +53,7 @@ export default function AdminPanel() {
           setActiveTab={setActiveTab}
           userRole={user.type}
         />
-        <main className="flex-1 p-8 ml-64 min-h-screen">
+        <main className="flex-1 p-4 sm:p-6 md:p-8 ml-0 md:ml-64 min-h-screen">
           {activeTab === "forms" && user.type === "admin" && (
             <FormSubmissions />
           )}

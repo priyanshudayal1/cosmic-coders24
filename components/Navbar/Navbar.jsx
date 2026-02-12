@@ -28,8 +28,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isBlogPost]);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -143,6 +151,7 @@ const Navbar = () => {
           <NavItem
             title="Services"
             mobile
+            onNavigate={closeMobileMenu}
             dropdownItems={[
               {
                 label: "Website Development",
@@ -175,6 +184,7 @@ const Navbar = () => {
           <NavItem
             title="Portfolio"
             mobile
+            onNavigate={closeMobileMenu}
             dropdownItems={[
               {
                 label: "Website Development",
@@ -202,6 +212,7 @@ const Navbar = () => {
           <NavItem
             title="Results"
             mobile
+            onNavigate={closeMobileMenu}
             dropdownItems={[
               {
                 label: "Social Media Marketing",
@@ -210,14 +221,29 @@ const Navbar = () => {
               { label: "SEO Results", href: "/results/seo" },
             ]}
           />
-          <NavItem title="Blog" href="/blog" mobile />
-          <NavItem title="Careers" href="/careers" mobile />
-          <NavItem title="About & Contact" href="/about-contact" mobile />
+          <NavItem
+            title="Blog"
+            href="/blog"
+            mobile
+            onNavigate={closeMobileMenu}
+          />
+          <NavItem
+            title="Careers"
+            href="/careers"
+            mobile
+            onNavigate={closeMobileMenu}
+          />
+          <NavItem
+            title="About & Contact"
+            href="/about-contact"
+            mobile
+            onNavigate={closeMobileMenu}
+          />
           <div className="pt-2">
             <GlassButton
               href="/about-contact"
               className="block w-full text-center bg-white/10 hover:bg-white/20 py-3 rounded-xl"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMobileMenu}
             >
               Get Started
             </GlassButton>

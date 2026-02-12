@@ -307,7 +307,7 @@ export default function SEO() {
                     <div className="absolute bottom-0 w-full bg-[#a855f7] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-300 shadow-[0_0_30px_rgba(168,85,247,0.6)]"></div>
                   </div>
                 </div>
-                <div className="mt-6 flex justify-between px-4 md:px-12 text-xs font-medium text-purple-200/70 font-mono tracking-wider">
+                <div className="mt-6 flex justify-between px-4 md:px-12 text-[10px] sm:text-xs font-medium text-purple-200/70 font-mono tracking-wider">
                   <span>MONTH 1</span>
                   <span>MONTH 2</span>
                   <span>MONTH 3</span>

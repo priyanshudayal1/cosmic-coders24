@@ -184,7 +184,7 @@ export default function VideoEditing() {
             subtitle=""
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
             {/* 5 column grid on medium and larger screens using md:grid-cols-5 is tricky with equal widths if not careful, 
                  using flex-wrap or simpler grid is safer for responsive. 
                  But let's stick to the grid for alignment described in image, using flex on mobile/tablet */}

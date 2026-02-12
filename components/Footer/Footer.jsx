@@ -163,7 +163,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>
+          <p suppressHydrationWarning>
             &copy; {new Date().getFullYear()} Cosmic Coders. All rights
             reserved.
           </p>

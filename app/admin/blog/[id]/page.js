@@ -147,7 +147,7 @@ export default function EditBlogPage({ params }) {
     );
 
   return (
-    <div className="h-screen bg-black flex flex-col overflow-hidden">
+    <div className="min-h-screen md:h-screen bg-black flex flex-col md:overflow-hidden">
       <AdminModal
         isOpen={modal.isOpen}
         onClose={() => setModal({ ...modal, isOpen: false })}
@@ -188,7 +188,7 @@ export default function EditBlogPage({ params }) {
       </div>
 
       <div className="flex-1 min-h-0">
-        <div className="grid grid-cols-2 gap-0 h-full max-w-450 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 h-full max-w-450 mx-auto">
           {/* Preview - Left Side */}
           <div className="h-full overflow-y-auto bg-[#0F061A] border-r border-zinc-800">
             <div className="relative w-full h-75">

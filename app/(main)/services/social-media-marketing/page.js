@@ -41,7 +41,7 @@ export default function SocialMediaMarketing() {
           <SectionHeading
             eyebrow="Introduction"
             title={
-              <span className="whitespace-nowrap text-3xl md:text-4xl lg:text-5xl">
+              <span className="text-3xl md:text-4xl lg:text-5xl">
                 Impactful Social Presence
               </span>
             }
@@ -86,7 +86,7 @@ export default function SocialMediaMarketing() {
             subtitle=""
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {/* Instagram */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all duration-300">
               <div className="w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-pink-500 group-hover:bg-pink-500/10 group-hover:border-pink-500/50 transition-all duration-300 shadow-inner shadow-white/5">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Dropdown from "./Dropdown";
 
-const NavItem = ({ title, href, dropdownItems, mobile }) => {
+const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -20,24 +20,33 @@ const NavItem = ({ title, href, dropdownItems, mobile }) => {
     if (mobile) setIsOpen(!isOpen);
   };
 
+  const handleLinkClick = () => {
+    setIsOpen(false);
+    if (onNavigate) onNavigate();
+  };
+
   if (mobile) {
+    if (href && !dropdownItems) {
+      return (
+        <div className="flex flex-col border-b border-white/10 last:border-0 pb-2 last:pb-0">
+          <Link
+            href={href}
+            onClick={handleLinkClick}
+            className="flex items-center text-white/80 hover:text-white py-2 w-full transition-colors"
+          >
+            {title}
+          </Link>
+        </div>
+      );
+    }
+
     return (
       <div className="flex flex-col border-b border-white/10 last:border-0 pb-2 last:pb-0">
         <button
-          onClick={dropdownItems ? toggleDropdown : undefined}
+          onClick={toggleDropdown}
           className="flex items-center justify-between text-white/80 hover:text-white py-2 w-full text-left transition-colors"
         >
-          {href ? (
-            <Link
-              href={href}
-              className="flex-1"
-              onClick={() => setIsOpen(false)}
-            >
-              {title}
-            </Link>
-          ) : (
-            <span className="flex-1">{title}</span>
-          )}
+          <span className="flex-1">{title}</span>
           {dropdownItems && (
             <ChevronDown
               size={16}
@@ -54,7 +63,7 @@ const NavItem = ({ title, href, dropdownItems, mobile }) => {
                 key={index}
                 href={item.href}
                 className="text-sm text-white/60 hover:text-white py-1 transition-colors block"
-                onClick={() => setIsOpen(false)}
+                onClick={handleLinkClick}
               >
                 {item.label}
               </Link>

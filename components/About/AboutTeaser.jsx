@@ -26,7 +26,7 @@ const AboutTeaser = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-col items-center"
         >
-          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-10 max-w-3xl">
+          <p className="text-base sm:text-xl md:text-2xl text-gray-300 leading-relaxed mb-10 max-w-3xl">
             We are a team of visionary developers and designers dedicated to
             crafting digital experiences that transcend the ordinary. Our
             mission is to empower businesses with innovative technology and
