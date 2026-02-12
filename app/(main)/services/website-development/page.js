@@ -31,7 +31,7 @@ export default function WebsiteDevelopment() {
       />
 
       {/* 2. What is Website Development? */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="What is Website Development?"
@@ -89,7 +89,7 @@ export default function WebsiteDevelopment() {
       </section>
 
       {/* 3. If You're Not Online */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Why do your business need a website ?"
@@ -167,7 +167,7 @@ export default function WebsiteDevelopment() {
       </section>
 
       {/* 4. Our Work */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Our Work"
@@ -271,10 +271,10 @@ export default function WebsiteDevelopment() {
       </section>
 
       {/* 5. Why Choose CosmicCoder24? */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
             spotlightColor="rgba(139, 92, 246, 0.3)"
           >
             {/* Header glow effect */}
@@ -346,7 +346,7 @@ export default function WebsiteDevelopment() {
       </section>
 
       {/* 6. Contact Form */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Contact Us"

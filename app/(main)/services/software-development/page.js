@@ -32,7 +32,7 @@ export default function SoftwareDevelopment() {
       />
 
       {/* 2. What is Software Development? */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading
             eyebrow="What is Software Development?"
@@ -70,7 +70,7 @@ export default function SoftwareDevelopment() {
       </section>
 
       {/* 3. Possible Use Cases */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Use Cases"
@@ -135,7 +135,7 @@ export default function SoftwareDevelopment() {
       </section>
 
       {/* 4. Why Custom Software? */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Benefits"
@@ -208,10 +208,10 @@ export default function SoftwareDevelopment() {
       </section>
 
       {/* 5. Imagine the Possibilities */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
             spotlightColor="rgba(139, 92, 246, 0.3)"
           >
             {/* Header glow effect */}
@@ -271,7 +271,7 @@ export default function SoftwareDevelopment() {
       </section>
 
       {/* 6. Contact Form */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Start Building"

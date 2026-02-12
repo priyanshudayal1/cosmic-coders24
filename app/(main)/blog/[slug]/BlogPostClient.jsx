@@ -50,7 +50,7 @@ export default function BlogPostClient({ post }) {
               {post.title}
             </h1>
 
-            <div className="flex items-center gap-6 text-gray-400 mb-12 pb-6 border-b border-white/10">
+            <div className="flex flex-wrap items-center gap-6 text-gray-400 mb-12 pb-6 border-b border-white/10">
               <div className="flex items-center gap-2">
                 <User className="w-5 h-5 text-purple-400" />
                 <span>{post.author}</span>
@@ -66,7 +66,7 @@ export default function BlogPostClient({ post }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="rich-content max-w-none mb-20 text-zinc-300"
+            className="rich-content max-w-none mb-20 text-zinc-300 overflow-x-auto"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

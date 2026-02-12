@@ -11,7 +11,7 @@ const ServiceHero = ({
   ctaHref = "#contact",
 }) => {
   return (
-    <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+    <section className="relative pt-32 pb-20 px-4 sm:px-6 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-125 h-125 bg-purple-600/20 rounded-full blur-[100px] -z-10" />
       <div className="absolute bottom-0 left-0 w-125 h-125 bg-blue-600/10 rounded-full blur-[100px] -z-10" />
@@ -26,7 +26,7 @@ const ServiceHero = ({
             </span>
           )}
         </h1>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
           {subtitle}
         </p>
         <div className="flex justify-center">

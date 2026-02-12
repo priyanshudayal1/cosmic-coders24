@@ -39,7 +39,7 @@ export default function VideoEditing() {
       />
 
       {/* Impact Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Impact"
@@ -91,7 +91,7 @@ export default function VideoEditing() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Services"
@@ -176,7 +176,7 @@ export default function VideoEditing() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Features"
@@ -184,7 +184,7 @@ export default function VideoEditing() {
             subtitle=""
           />
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {/* 5 column grid on medium and larger screens using md:grid-cols-5 is tricky with equal widths if not careful, 
                  using flex-wrap or simpler grid is safer for responsive. 
                  But let's stick to the grid for alignment described in image, using flex on mobile/tablet */}
@@ -213,7 +213,7 @@ export default function VideoEditing() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Get Started"

@@ -46,7 +46,7 @@ export default function SocialMediaMarketingResults() {
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             {/* Case Studies Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-24">
               {caseStudies.map((study, index) => (
                 <SpotlightCard
                   key={index}

@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import DarkVeil from "../backgrounds/DarkVeil";
 import GlassButton from "../ui/GlassButton";
 import FloatingLines from "../backgrounds/FloatingLines";
 
@@ -12,27 +11,25 @@ const Hero = () => {
     <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0F061A] text-white pt-20">
       {/* FloatingLines Background */}
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
-        <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+        <div style={{ width: "100%", height: "100vh", position: "relative" }}>
           <FloatingLines
-            enabledWaves={["top", "middle", "bottom"]}
-            // Array - specify line count per wave; Number - same count for all waves
-            lineCount={5}
-            // Array - specify line distance per wave; Number - same distance for all waves
+            enabledWaves={["top", "middle"]}
+            lineCount={3}
             lineDistance={5}
             bendRadius={5}
             bendStrength={-0.5}
-            interactive={true}
-            parallax={true}
+            interactive={false}
+            parallax={false}
           />
         </div>
       </div>
 
       {/* Spotlights/Beams */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-600/40 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-indigo-500/35 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-600/40 blur-[80px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
+      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-indigo-500/35 blur-[80px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
 
       {/* Additional Purple Accent */}
-      <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-[40%] h-[40%] bg-violet-500/30 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
+      <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-[40%] h-[40%] bg-violet-500/30 blur-[60px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
 
       <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto space-y-8">
         {/* Headline */}

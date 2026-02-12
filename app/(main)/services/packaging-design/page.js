@@ -39,7 +39,7 @@ export default function PackagingDesign() {
       />
 
       {/* Impact Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Impact"
@@ -91,7 +91,7 @@ export default function PackagingDesign() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Services"
@@ -176,7 +176,7 @@ export default function PackagingDesign() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Workflow"
@@ -237,7 +237,7 @@ export default function PackagingDesign() {
       </section>
 
       {/* Deliverables Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Deliverables"
@@ -306,7 +306,7 @@ export default function PackagingDesign() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-white/5">
+      <section id="contact" className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Get Started"

@@ -72,7 +72,7 @@ export default async function Blog({ searchParams }) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-4 mt-12">
+              <div className="flex flex-wrap justify-center items-center gap-4 mt-12">
                 {page > 1 ? (
                   <Link
                     href={`/blog?page=${page - 1}`}

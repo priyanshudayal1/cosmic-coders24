@@ -33,7 +33,7 @@ export default function BrandingLogoDesign() {
       {/* BRANDING SECTION */}
 
       {/* Why Branding is More Than Just a Logo */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Branding"
@@ -89,7 +89,7 @@ export default function BrandingLogoDesign() {
       </section>
 
       {/* What We Offer - Branding Services */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Services"
@@ -158,7 +158,7 @@ export default function BrandingLogoDesign() {
       </section>
 
       {/* Our Branding Process */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Process"
@@ -219,7 +219,7 @@ export default function BrandingLogoDesign() {
       </section>
 
       {/* What You'll Receive */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Deliverables"
@@ -299,10 +299,10 @@ export default function BrandingLogoDesign() {
       {/* GRAPHICS DESIGN SECTION */}
 
       {/* Graphics That Speak Louder Than Words */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
             spotlightColor="rgba(139, 92, 246, 0.3)"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm user-select-none pointer-events-none" />
@@ -327,7 +327,7 @@ export default function BrandingLogoDesign() {
       </section>
 
       {/* Why Professional Graphics Matter */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Impact"
@@ -385,7 +385,7 @@ export default function BrandingLogoDesign() {
       </section>
 
       {/* Types of Graphics We Offer */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Graphics Services"
@@ -462,7 +462,7 @@ export default function BrandingLogoDesign() {
       </section>
 
       {/* Contact Form */}
-      <section id="contact" className="py-20 px-6 bg-white/5">
+      <section id="contact" className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Get Started"

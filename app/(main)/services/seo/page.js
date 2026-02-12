@@ -30,7 +30,7 @@ export default function SEO() {
       />
 
       {/* 2. Why SEO is Important */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading
             eyebrow="Importance"
@@ -67,7 +67,7 @@ export default function SEO() {
       </section>
 
       {/* 3. Types of SEO Services */}
-      <section className="py-20 px-6 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Services"
@@ -112,11 +112,11 @@ export default function SEO() {
       </section>
 
       {/* 4. SEO Packages */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading eyebrow="Pricing" title="SEO Packages" subtitle="" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {/* Basic SEO */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 group hover:bg-white/10 transition-all duration-300">
               <div className="flex flex-col h-full p-8 text-center">
@@ -265,10 +265,10 @@ export default function SEO() {
       </section>
 
       {/* 5. Proven SEO Results */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#35254f] to-[#0F061A] p-8 md:p-16 text-center relative overflow-hidden group"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#35254f] to-[#0F061A] p-8 md:p-16 text-center relative overflow-hidden group"
             spotlightColor="rgba(139, 92, 246, 0.3)"
           >
             {/* Header glow effect */}
@@ -333,7 +333,7 @@ export default function SEO() {
       </section>
 
       {/* 6. Contact Form */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Get Started"
