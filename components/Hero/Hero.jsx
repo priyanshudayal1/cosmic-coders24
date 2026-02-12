@@ -12,7 +12,7 @@ const Hero = () => {
     <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0F061A] text-white pt-20">
       {/* FloatingLines Background */}
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
-        {/* <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+        <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
           <FloatingLines
             enabledWaves={["top", "middle", "bottom"]}
             // Array - specify line count per wave; Number - same count for all waves
@@ -24,7 +24,7 @@ const Hero = () => {
             interactive={true}
             parallax={true}
           />
-        </div> */}
+        </div>
       </div>
 
       {/* Spotlights/Beams */}
