@@ -38,9 +38,9 @@ export default function AboutContact() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#030014] text-white overflow-hidden font-sans">
+    <div className="relative w-full min-h-screen bg-[#0F061A] text-white overflow-hidden font-sans">
       {/* Background Effects */}
-      <div className="fixed inset-0 z-0 bg-[#030014] pointer-events-none" />
+      <div className="fixed inset-0 z-0 bg-[#0F061A] pointer-events-none" />
 
       {/* Spotlights/Beams - Static Flares */}
       <div className="fixed bottom-0 left-[-20%] w-[60%] h-[60%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
@@ -81,7 +81,7 @@ export default function AboutContact() {
           <Testimonials />
         </motion.section>
 
-        {/* --- Portfolio Section --- */}
+
 
         {/* --- Contact Contact Section --- */}
         <motion.section
@@ -148,7 +148,7 @@ export default function AboutContact() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 blur-[80px] rounded-full pointer-events-none" />
 
               <p className="text-lg font-semibold text-white mb-6 text-center">
-                Let&apos;s Work Together
+                General Inquiries & Support
               </p>
 
               <form

@@ -85,7 +85,7 @@ const Portfolio = () => {
             return (
               <SpotlightCard
                 key={index}
-                className="p-0 h-full flex flex-col group bg-white/5 border-white/10"
+                className="p-0 h-full flex flex-col group bg-white/10 border-white/10 hover:bg-white/20 transition-colors duration-300"
                 spotlightColor={item.spotlightColor}
               >
                 {/* Image Placeholder Area */}
@@ -97,7 +97,7 @@ const Portfolio = () => {
                   </div>
 
                   {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60" />
                 </div>
 
                 {/* Content Area */}

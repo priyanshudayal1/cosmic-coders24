@@ -48,7 +48,7 @@ export default function SEOResults() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#0F061A] text-white">
       <main className="grow">
         <PageHeader
           eyebrow="SEO Results"
@@ -56,19 +56,14 @@ export default function SEOResults() {
           description="See how we've helped brands improve rankings, traffic, and leads through Website SEO & Local GMB."
         />
 
-        
         <div className="flex justify-center">
-          <GlassButton
-            
-            className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10 mb-20"
-          >
+          <GlassButton className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10 mb-20">
             View Full SEO Case Studies
           </GlassButton>
         </div>
 
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
-            
             <SectionHeading
               eyebrow="Website SEO Results"
               title="Improved rankings, traffic, and organic visibility"
@@ -89,7 +84,7 @@ export default function SEOResults() {
                     <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
                       <study.Icon className="w-16 h-16" />
                     </div>
-                    <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#1A0B2E] to-transparent opacity-60" />
                   </div>
 
                   <div className="p-8 flex flex-col grow">
@@ -113,8 +108,6 @@ export default function SEOResults() {
               ))}
             </div>
 
-            
-
             <SectionHeading
               eyebrow="Local SEO & GMB Results"
               title="Growth in calls, directions, and local reach with GMB optimization"
@@ -135,7 +128,7 @@ export default function SEOResults() {
                     <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
                       <study.Icon className="w-16 h-16" />
                     </div>
-                    <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#1A0B2E] to-transparent opacity-60" />
                   </div>
 
                   <div className="p-8 flex flex-col grow">

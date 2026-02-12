@@ -29,7 +29,7 @@ const AdminModal = ({
 
   const modalContent = (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl transform transition-all">
+      <div className="w-full max-w-md bg-zinc-800 border border-zinc-800 rounded-xl shadow-2xl transform transition-all">
         <div className="flex justify-between items-center p-6 border-b border-zinc-800">
           <h3 className="text-xl font-semibold text-white flex items-center gap-2">
             {type === "danger" && (
@@ -40,7 +40,7 @@ const AdminModal = ({
           </h3>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-zinc-800 rounded-lg transition-colors text-zinc-400 hover:text-white"
+            className="p-1 hover:bg-zinc-700 rounded-lg transition-colors text-zinc-400 hover:text-white"
           >
             <X className="w-5 h-5" />
           </button>
@@ -64,7 +64,7 @@ const AdminModal = ({
             <button
               onClick={onClose}
               disabled={isLoading}
-              className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-700 rounded-lg transition-colors disabled:opacity-50"
             >
               Cancel
             </button>

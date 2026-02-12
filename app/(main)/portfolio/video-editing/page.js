@@ -54,7 +54,7 @@ export default function VideoEditingPortfolio() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#0F061A] text-white">
       <main className="flex-grow">
         <PageHeader
           title="Video Editing Portfolio"

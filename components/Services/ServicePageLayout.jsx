@@ -7,7 +7,7 @@ import GlassButton from "@/components/ui/GlassButton";
 
 const ServicePageLayout = ({ title, description, features, children }) => {
   return (
-    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#0F061A] text-white">
       <main className="grow">
         <PageHeader title={title} description={description} />
 

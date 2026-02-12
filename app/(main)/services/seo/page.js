@@ -11,6 +11,7 @@ import {
   BarChart3,
   CheckCircle,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import GlassButton from "@/components/ui/GlassButton";
 import SpotlightCard from "@/components/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -19,7 +20,7 @@ import ContactForm from "@/components/Form/ContactForm";
 
 export default function SEO() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-[#0F061A] text-white selection:bg-purple-500/30">
       {/* 1. Hero Section */}
       <ServiceHero
         title="Found Where It Matters"
@@ -38,11 +39,28 @@ export default function SEO() {
           />
           <div className="flex justify-center mt-12">
             <div className="relative w-32 h-32">
-              <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full"></div>
-              <Search
-                className="w-full h-full text-purple-400/80 relative z-10 animate-pulse"
-                strokeWidth={0.5}
+              <motion.div
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.4, 0.9, 0.4],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-purple-500/60 blur-2xl rounded-full"
               />
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full relative z-10"
+              >
+                <Search
+                  className="w-full h-full text-purple-400/80 animate-pulse"
+                  strokeWidth={0.5}
+                />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -68,7 +86,8 @@ export default function SEO() {
                   Website SEO
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed grow group-hover:text-gray-300 transition-colors duration-300">
-                  On-page SEO, Technical SEO, Content Optimization, Keyword Ranking
+                  On-page SEO, Technical SEO, Content Optimization, Keyword
+                  Ranking
                 </p>
               </div>
             </SpotlightCard>
@@ -83,7 +102,8 @@ export default function SEO() {
                   Local SEO (Google My Business)
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed grow group-hover:text-gray-300 transition-colors duration-300">
-                  GMB Setup, Local keyword targeting, Reviews management, Maps ranking
+                  GMB Setup, Local keyword targeting, Reviews management, Maps
+                  ranking
                 </p>
               </div>
             </SpotlightCard>
@@ -94,11 +114,7 @@ export default function SEO() {
       {/* 4. SEO Packages */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading
-            eyebrow="Pricing"
-            title="SEO Packages"
-            subtitle=""
-          />
+          <SectionHeading eyebrow="Pricing" title="SEO Packages" subtitle="" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Basic SEO */}
@@ -110,15 +126,24 @@ export default function SEO() {
                 <p className="text-gray-400 text-sm mb-6">For startups</p>
                 <ul className="text-left space-y-3 mb-8 grow">
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Basic keyword research</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>On-page optimization</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Monthly reporting</span>
                   </li>
                 </ul>
@@ -137,30 +162,50 @@ export default function SEO() {
                 <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-200 transition-colors duration-300">
                   Standard SEO
                 </h3>
-                <p className="text-gray-400 text-sm mb-6">For growing businesses</p>
+                <p className="text-gray-400 text-sm mb-6">
+                  For growing businesses
+                </p>
                 <ul className="text-left space-y-3 mb-8 grow">
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Advanced keyword research</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Technical SEO audit</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Content optimization</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Link building</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Bi-weekly reporting</span>
                   </li>
                 </ul>
-                <GlassButton href="#contact" className="w-full text-center bg-purple-500/20 border-purple-500/50">
+                <GlassButton
+                  href="#contact"
+                  className="w-full text-center bg-purple-500/20 border-purple-500/50"
+                >
                   Get Started
                 </GlassButton>
               </div>
@@ -175,23 +220,38 @@ export default function SEO() {
                 <p className="text-gray-400 text-sm mb-6">For enterprise</p>
                 <ul className="text-left space-y-3 mb-8 grow">
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Comprehensive SEO strategy</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Competitor analysis</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Advanced link building</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Local SEO & GMB</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-gray-400">
-                    <CheckCircle size={16} className="text-purple-400 mt-0.5 shrink-0" />
+                    <CheckCircle
+                      size={16}
+                      className="text-purple-400 mt-0.5 shrink-0"
+                    />
                     <span>Weekly reporting & consultation</span>
                   </li>
                 </ul>
@@ -208,7 +268,7 @@ export default function SEO() {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
+            className="w-full rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#35254f] to-[#0F061A] p-8 md:p-16 text-center relative overflow-hidden group"
             spotlightColor="rgba(139, 92, 246, 0.3)"
           >
             {/* Header glow effect */}
@@ -258,9 +318,13 @@ export default function SEO() {
             </div>
             <div className="mt-12">
               <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-                SEO is a long-term strategy. Expect results to improve over time as our experts work on your campaigns regularly.
+                SEO is a long-term strategy. Expect results to improve over time
+                as our experts work on your campaigns regularly.
               </p>
-              <GlassButton href="/results/seo" className="bg-white/10 hover:bg-white/20">
+              <GlassButton
+                href="/results/seo"
+                className="bg-white/10 hover:bg-white/20"
+              >
                 See More Results
               </GlassButton>
             </div>

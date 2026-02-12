@@ -13,7 +13,7 @@ import ContactSection from "@/components/Contact/ContactSection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#0F061A] text-white">
       <Hero />
       <Services />
       <Portfolio />

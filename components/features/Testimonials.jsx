@@ -128,8 +128,8 @@ export default function Testimonials() {
                   "flex flex-col justify-between h-64 md:h-72",
                   "backdrop-blur-xl transition-colors duration-500",
                   style.diff === 0
-                    ? "bg-white/[0.06] border-white/20 shadow-[0_8px_32px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
-                    : "bg-white/[0.03] border-white/[0.06]",
+                    ? "bg-white/10 border-white/20 shadow-[0_8px_32px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
+                    : "bg-white/5 border-white/[0.06]",
                 )}
                 style={{
                   y: "-50%",
@@ -200,7 +200,7 @@ export default function Testimonials() {
       <div className="flex items-center gap-8 mt-8 z-30">
         <button
           onClick={prev}
-          className="p-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-white/10 hover:border-purple-500/50 transition-all active:scale-95 group"
+          className="p-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-purple-500/50 transition-all active:scale-95 group"
           aria-label="Previous testimonial"
         >
           <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
@@ -224,7 +224,7 @@ export default function Testimonials() {
 
         <button
           onClick={next}
-          className="p-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-white/10 hover:border-purple-500/50 transition-all active:scale-95 group"
+          className="p-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-purple-500/50 transition-all active:scale-95 group"
           aria-label="Next testimonial"
         >
           <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />

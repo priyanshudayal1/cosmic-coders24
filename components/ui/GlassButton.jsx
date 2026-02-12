@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const GlassButton = ({ href, className, children, ...props }) => {
   const baseStyles =
-    "bg-white/5 hover:bg-white/10 text-white border border-white/10 px-6 py-2 rounded-full transition-all duration-300 font-medium backdrop-blur-sm";
+    "bg-white/10 hover:bg-white/20 text-white border border-white/10 px-6 py-2 rounded-full transition-all duration-300 font-medium backdrop-blur-sm";
 
   if (href) {
     return (

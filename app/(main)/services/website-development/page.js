@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import GlassButton from "@/components/ui/GlassButton";
 import SpotlightCard from "@/components/SpotlightCard";
+import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
@@ -288,57 +289,57 @@ export default function WebsiteDevelopment() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {/* Feature 1 */}
-              <SpotlightCard className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group">
-                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+              <Card className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group/card">
+                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover/card:text-white group-hover/card:bg-purple-600/20 transition-colors duration-300 w-fit">
                   <Search size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   SEO-First Architecture
                 </h3>
-                <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
                   Built on Next.js for superior indexing and ranking
                   capabilities.
                 </p>
-              </SpotlightCard>
+              </Card>
 
               {/* Feature 2 */}
-              <SpotlightCard className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group">
-                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+              <Card className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group/card">
+                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover/card:text-white group-hover/card:bg-purple-600/20 transition-colors duration-300 w-fit">
                   <Smartphone size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   Mobile-First Design
                 </h3>
-                <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
                   Responsive layouts that look perfect on every device screen.
                 </p>
-              </SpotlightCard>
+              </Card>
 
               {/* Feature 3 */}
-              <SpotlightCard className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group">
-                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+              <Card className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group/card">
+                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover/card:text-white group-hover/card:bg-purple-600/20 transition-colors duration-300 w-fit">
                   <Layout size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   Clean UI/UX
                 </h3>
-                <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
                   Intuitive interfaces designed to maximize user engagement.
                 </p>
-              </SpotlightCard>
+              </Card>
 
               {/* Feature 4 */}
-              <SpotlightCard className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group">
-                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+              <Card className="text-left flex flex-col items-start bg-white/5 border-white/5 hover:border-purple-500/20 group/card">
+                <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover/card:text-white group-hover/card:bg-purple-600/20 transition-colors duration-300 w-fit">
                   <Zap size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
                   High Performance
                 </h3>
-                <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
                   Optimized for lightning-fast load times and security.
                 </p>
-              </SpotlightCard>
+              </Card>
             </div>
           </SpotlightCard>
         </div>

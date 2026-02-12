@@ -70,12 +70,12 @@ const servicesData = [
 const Services = () => {
   return (
     <section
-      className="relative w-full py-20 px-4 md:px-8 bg-[#030014] overflow-hidden"
+      className="relative w-full py-20 px-4 md:px-8 bg-[#0F061A] overflow-hidden"
       id="services"
     >
       {/* Background Decorations */}
-      <div className="absolute top-0 right-0 w-100 h-100 bg-purple-900/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-75 h-75 bg-blue-900/10 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-100 h-100 bg-purple-700/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-75 h-75 bg-blue-700/20 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -97,10 +97,10 @@ const Services = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full"
               >
-                <SpotlightCard className="h-full bg-white/5 border-white/10 group hover:bg-white/10 transition-colors duration-300">
+                <SpotlightCard className="h-full bg-white/10 border-white/10 group hover:bg-white/20 transition-colors duration-300">
                   <div className="flex flex-col h-full">
                     {/* Icon */}
-                    <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+                    <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/10 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
                       <Icon size={32} strokeWidth={1.5} />
                     </div>
 

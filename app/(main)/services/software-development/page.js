@@ -13,6 +13,7 @@ import {
   CheckCircle,
   BarChart3,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import GlassButton from "@/components/ui/GlassButton";
 import SpotlightCard from "@/components/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -35,22 +36,34 @@ export default function SoftwareDevelopment() {
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading
             eyebrow="What is Software Development?"
-            title={
-              <span className="whitespace-nowrap text-3xl md:text-4xl lg:text-5xl">
-                Custom Software That Automates, Scales & Simplifies Your
-                Business
-              </span>
-            }
+            title="Custom Software That Automates, Scales & Simplifies Your Business"
             subtitle="Custom software is designed specifically to meet the unique needs of a business, offering greater flexibility and functionality than off-the-shelf solutions."
           />
           {/* Abstract Graphic/Icon placeholder */}
           <div className="flex justify-center">
             <div className="relative w-32 h-32">
-              <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full"></div>
-              <Settings
-                className="w-full h-full text-purple-400/80 relative z-10 animate-spin-slow"
-                strokeWidth={0.5}
+              <motion.div
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.4, 0.9, 0.4],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-purple-500/60 blur-2xl rounded-full"
               />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 180 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="w-full h-full relative z-10"
+              >
+                <Settings
+                  className="w-full h-full text-purple-400/80 animate-spin-slow"
+                  strokeWidth={0.5}
+                />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -229,7 +242,7 @@ export default function SoftwareDevelopment() {
                     <div className="absolute bottom-0 w-full bg-white/20 rounded-t-lg h-[50%] group-hover:h-[70%] transition-all duration-500 ease-out delay-150"></div>
                   </div>
                   {/* Bar 4 - Highlighted */}
-                  <div className="w-full bg-white/5 rounded-t-lg h-[50%] relative group border-t border-x border-white/5">
+                  <div className="w-full bg-white/5 rounded-t-lg h-[100%] relative group border-t border-x border-white/5">
                     <div className="absolute bottom-0 w-full bg-[#a855f7] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-200 shadow-[0_0_30px_rgba(168,85,247,0.6)]"></div>
                   </div>
                   {/* Bar 5 */}

@@ -6,11 +6,11 @@ import CTACard from "@/components/ui/CTACard";
 export default function Careers() {
   const handleApplyClick = (e) => {
     e.preventDefault();
-    document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#0F061A] text-white selection:bg-purple-500/30">
       <main className="grow">
         <ServiceHero
           title="Join Our"

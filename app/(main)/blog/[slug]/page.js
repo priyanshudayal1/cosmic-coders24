@@ -35,7 +35,7 @@ export default async function BlogPost({ params }) {
 
   if (!post) {
     return (
-      <div className="flex flex-col min-h-screen bg-[#030014] text-white">
+      <div className="flex flex-col min-h-screen bg-[#0F061A] text-white">
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>

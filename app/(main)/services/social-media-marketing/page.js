@@ -17,6 +17,7 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import GlassButton from "@/components/ui/GlassButton";
 import SpotlightCard from "@/components/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -49,11 +50,28 @@ export default function SocialMediaMarketing() {
           {/* Abstract Graphic/Icon placeholder */}
           <div className="flex justify-center mt-12">
             <div className="relative w-32 h-32">
-              <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full"></div>
-              <Share2
-                className="w-full h-full text-purple-400/80 relative z-10 animate-pulse"
-                strokeWidth={0.5}
+              <motion.div
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.4, 0.9, 0.4],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-purple-500/60 blur-2xl rounded-full"
               />
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full relative z-10"
+              >
+                <Share2
+                  className="w-full h-full text-purple-400/80"
+                  strokeWidth={0.5}
+                />
+              </motion.div>
             </div>
           </div>
         </div>

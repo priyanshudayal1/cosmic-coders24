@@ -62,7 +62,7 @@ const CareersSection = () => {
                     </motion.div>
 
                     {/* Right Column: Application Form */}
-                    <ResumeForm />
+                    <ResumeForm showRoleDropdown={true} />
                 </div>
             </div>
         </section>

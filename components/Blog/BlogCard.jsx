@@ -9,7 +9,7 @@ import SpotlightCard from "../SpotlightCard";
 const BlogCard = ({ post }) => {
   return (
     <Link href={`/blog/${post.slug}`} className="block h-full">
-      <SpotlightCard className="h-full bg-white/5 border-white/10 p-0 flex flex-col group hover:bg-white/10 transition-colors duration-300">
+      <SpotlightCard className="h-full bg-white/10 border-white/10 p-0 flex flex-col group hover:bg-white/20 transition-colors duration-300">
         {/* Image Container */}
         <div className="relative w-full h-48 overflow-hidden rounded-t-3xl border-b border-white/10">
           <Image
@@ -19,7 +19,7 @@ const BlogCard = ({ post }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60" />
 
           {/* Badge */}
           <div className="absolute top-4 left-4 bg-purple-600/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-white uppercase tracking-wider shadow-lg">

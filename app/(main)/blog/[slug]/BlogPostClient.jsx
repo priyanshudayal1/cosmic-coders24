@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function BlogPostClient({ post }) {
   return (
-    <div className="flex flex-col min-h-screen bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen bg-[#1A0B2E] text-white">
       <article className="flex-grow">
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
@@ -23,7 +23,7 @@ export default function BlogPostClient({ post }) {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-[#030014]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A0B2E] via-[#1A0B2E]/50 to-transparent" />
         </motion.div>
 
         <div className="max-w-4xl mx-auto px-4 -mt-32 relative z-10">

@@ -35,7 +35,7 @@ export default function SocialMediaMarketingResults() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#030014] text-white">
+    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#0F061A] text-white">
       <main className="flex-grow">
         <PageHeader
           eyebrow="Social Media Marketing Results"
@@ -59,7 +59,7 @@ export default function SocialMediaMarketingResults() {
                     <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
                       <study.Icon className="w-16 h-16" />
                     </div>
-                    <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60" />
                   </div>
 
                   <div className="p-8 flex flex-col grow">
