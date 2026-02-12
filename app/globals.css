@@ -118,8 +118,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
   body {
-    @apply bg-background text-foreground;
+    @apply overflow-x-hidden;
+    background-color: #030014;
+  }
+  body {
+    @apply text-foreground;
   }
 }
 
