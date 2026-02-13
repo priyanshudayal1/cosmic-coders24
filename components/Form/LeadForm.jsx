@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import ConfirmationModal from "../ui/ConfirmationModal";
 
 const LeadForm = () => {
   const [formState, setFormState] = useState({
@@ -13,6 +14,7 @@ const LeadForm = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     setFormState({
@@ -39,6 +41,7 @@ const LeadForm = () => {
       }
 
       setSubmitted(true);
+      setShowModal(true);
       setFormState({ name: "", email: "", message: "" });
       setTimeout(() => setSubmitted(false), 3000);
     } catch (error) {
@@ -135,6 +138,13 @@ const LeadForm = () => {
           )}
         </Button>
       </div>
+
+      <ConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Message Sent!"
+        message="Thanks for reaching out! We'll be in touch soon."
+      />
     </form>
   );
 };

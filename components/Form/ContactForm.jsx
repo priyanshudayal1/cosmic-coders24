@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import GlassButton from "../ui/GlassButton";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import ConfirmationModal from "../ui/ConfirmationModal";
 
 const ContactForm = ({ serviceName = "Website Development" }) => {
   const [formState, setFormState] = useState({
@@ -16,6 +17,7 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     setFormState({
@@ -44,6 +46,7 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
 
       if (res.ok) {
         setSubmitted(true);
+        setShowModal(true);
         setFormState((prev) => ({
           ...prev,
           name: "",
@@ -207,6 +210,12 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
           )}
         </GlassButton>
       </div>
+      <ConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Request Received!"
+        message="Thank you for your interest. We will get back to you shortly."
+      />
     </form>
   );
 };

@@ -6,6 +6,7 @@ import { Upload, Send, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
 import SpotlightCard from "../SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
+import ConfirmationModal from "../ui/ConfirmationModal";
 
 const ResumeForm = ({ showRoleDropdown = false }) => {
   const roles = [
@@ -24,6 +25,7 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploadingFile, setUploadingFile] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -60,6 +62,7 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
 
       if (res.ok) {
         setSubmitted(true);
+        setShowModal(true);
         setFile(null);
         setFormData({ firstName: "", lastName: "", email: "", role: "" });
         setTimeout(() => setSubmitted(false), 3000);
@@ -257,6 +260,12 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
           )}
         </form>
       </SpotlightCard>
+      <ConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Application Sent!"
+        message="Resume uploaded successfully! We'll be in touch soon."
+      />
     </motion.div>
   );
 };
