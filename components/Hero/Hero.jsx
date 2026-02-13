@@ -6,6 +6,8 @@ import { ArrowRight } from "lucide-react";
 import GlassButton from "../ui/GlassButton";
 import FloatingLines from "../backgrounds/FloatingLines";
 
+const ENABLED_WAVES = ["top", "middle", "bottom"];
+
 const Hero = () => {
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0F061A] text-white pt-20">
@@ -13,7 +15,7 @@ const Hero = () => {
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
         <div style={{ width: "100%", height: "100vh", position: "relative" }}>
           <FloatingLines
-            enabledWaves={["top", "middle", "bottom"]}
+            enabledWaves={ENABLED_WAVES}
             // Array - specify line count per wave; Number - same count for all waves
             lineCount={5}
             // Array - specify line distance per wave; Number - same distance for all waves
@@ -22,6 +24,7 @@ const Hero = () => {
             bendStrength={-0.5}
             interactive={true}
             parallax={true}
+            pixelRatio={0.7}
           />
         </div>
       </div>
