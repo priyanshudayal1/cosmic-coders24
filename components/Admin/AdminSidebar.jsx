@@ -21,7 +21,7 @@ const AdminSidebar = ({ activeTab, setActiveTab, userRole }) => {
   const menuItems = [
     {
       id: "forms",
-      label: "Form Submissions",
+      label: "Service Requests",
       icon: FileText,
       roles: ["admin"],
     },

@@ -24,22 +24,41 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitted(true);
+
+    try {
+      const res = await fetch("/api/service-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formState.name,
+          business: formState.business,
+          email: formState.email,
+          phone: formState.phone,
+          service: formState.service,
+          message: formState.message,
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormState((prev) => ({
+          ...prev,
+          name: "",
+          business: "",
+          email: "",
+          phone: "",
+          message: "",
+        }));
+        setTimeout(() => setSubmitted(false), 3000);
+      }
+    } catch (error) {
+      console.error("Service request submission error:", error);
+    } finally {
       setSubmitting(false);
-      setFormState((prev) => ({
-        ...prev,
-        name: "",
-        business: "",
-        email: "",
-        phone: "",
-        message: "",
-      }));
-      setTimeout(() => setSubmitted(false), 3000);
-    }, 1000);
+    }
   };
 
   // Update form state if serviceName prop changes

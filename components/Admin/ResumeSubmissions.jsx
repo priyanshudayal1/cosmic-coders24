@@ -1,14 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Download, Trash2, Filter } from "lucide-react";
+import {
+  Download,
+  Trash2,
+  Filter,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import AdminModal from "@/components/ui/AdminModal";
+import { formatDate } from "@/utils/dateUtils";
+
+const ITEMS_PER_PAGE = 10;
 
 const ResumeSubmissions = () => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRole, setSelectedRole] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
   const [modal, setModal] = useState({
     isOpen: false,
     id: null,
@@ -31,6 +41,10 @@ const ResumeSubmissions = () => {
   useEffect(() => {
     fetchApplications();
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedRole]);
 
   const fetchApplications = async () => {
     try {
@@ -86,6 +100,70 @@ const ResumeSubmissions = () => {
       ? applications
       : applications.filter((app) => app.role === selectedRole);
 
+  const totalPages = Math.ceil(filteredApplications.length / ITEMS_PER_PAGE);
+  const paginatedApplications = filteredApplications.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE,
+  );
+
+  const renderPagination = () => {
+    if (totalPages <= 1) return null;
+    return (
+      <div className="flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-lg p-4 mt-4">
+        <p className="text-sm text-zinc-400">
+          Page {currentPage} of {totalPages}
+        </p>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className="p-2 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter(
+              (page) =>
+                page === 1 ||
+                page === totalPages ||
+                Math.abs(page - currentPage) <= 1,
+            )
+            .reduce((acc, page, idx, arr) => {
+              if (idx > 0 && page - arr[idx - 1] > 1) acc.push("...");
+              acc.push(page);
+              return acc;
+            }, [])
+            .map((page, idx) =>
+              page === "..." ? (
+                <span key={`dots-${idx}`} className="text-zinc-500 px-1">
+                  ...
+                </span>
+              ) : (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-8 h-8 rounded-lg text-sm transition-colors ${
+                    currentPage === page
+                      ? "bg-purple-600 text-white"
+                      : "border border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                  }`}
+                >
+                  {page}
+                </button>
+              ),
+            )}
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            className="p-2 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -110,7 +188,9 @@ const ResumeSubmissions = () => {
         <h2 className="text-3xl font-bold text-white mb-2">
           Career Applications
         </h2>
-        <p className="text-zinc-400">View and manage resume submissions</p>
+        <p className="text-zinc-400">
+          View and manage resume submissions ({applications.length} total)
+        </p>
       </div>
 
       {applications.length > 0 && (
@@ -159,81 +239,85 @@ const ResumeSubmissions = () => {
           <p className="text-zinc-400">No applications yet</p>
         </div>
       ) : (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-zinc-950 border-b border-zinc-800">
-                <tr>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
-                    Name
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
-                    Email
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
-                    Role
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
-                    Submitted
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
-                    Resume
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-800">
-                {filteredApplications.map((app) => (
-                  <tr
-                    key={app.id}
-                    className="hover:bg-zinc-800/50 transition-colors"
-                  >
-                    <td className="px-6 py-4 text-white">
-                      {app.firstName} {app.lastName}
-                    </td>
-                    <td className="px-6 py-4 text-zinc-400">{app.email}</td>
-                    <td className="px-6 py-4 text-zinc-400">
-                      {app.role ? (
-                        <span className="px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-lg text-xs">
-                          {app.role}
-                        </span>
-                      ) : (
-                        <span className="text-zinc-500">Not specified</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 text-zinc-400">
-                      {new Date(app.submittedAt).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() =>
-                            handleDownload(app.resumeUrl, app.fileName)
-                          }
-                          className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded-lg transition-colors text-sm"
-                        >
-                          <Download className="w-4 h-4" />
-                          <span>Download</span>
-                        </button>
-                        <button
-                          onClick={() =>
-                            setModal({
-                              isOpen: true,
-                              id: app.id,
-                              isLoading: false,
-                            })
-                          }
-                          className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg transition-colors text-sm"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
+        <>
+          <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-zinc-950 border-b border-zinc-800">
+                  <tr>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
+                      Name
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
+                      Email
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
+                      Role
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
+                      Submitted
+                    </th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-zinc-300">
+                      Resume
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-zinc-800">
+                  {paginatedApplications.map((app) => (
+                    <tr
+                      key={app.id}
+                      className="hover:bg-zinc-800/50 transition-colors"
+                    >
+                      <td className="px-6 py-4 text-white">
+                        {app.firstName} {app.lastName}
+                      </td>
+                      <td className="px-6 py-4 text-zinc-400">{app.email}</td>
+                      <td className="px-6 py-4 text-zinc-400">
+                        {app.role ? (
+                          <span className="px-2 py-1 bg-indigo-500/20 text-indigo-400 rounded-lg text-xs">
+                            {app.role}
+                          </span>
+                        ) : (
+                          <span className="text-zinc-500">Not specified</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-zinc-400">
+                        {formatDate(app.submittedAt)}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() =>
+                              handleDownload(app.resumeUrl, app.fileName)
+                            }
+                            className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded-lg transition-colors text-sm"
+                          >
+                            <Download className="w-4 h-4" />
+                            <span>Download</span>
+                          </button>
+                          <button
+                            onClick={() =>
+                              setModal({
+                                isOpen: true,
+                                id: app.id,
+                                isLoading: false,
+                              })
+                            }
+                            className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg transition-colors text-sm"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+
+          {renderPagination()}
+        </>
       )}
     </div>
   );
