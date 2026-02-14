@@ -29,14 +29,14 @@ const BlogCard = ({ post }) => {
 
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
-          <div className="flex items-center gap-4 text-xs text-gray-400 mb-4">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-purple-400" />
-              <span>{post.date}</span>
+          <div className="flex items-center flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400 mb-4">
+            <div className="flex items-center gap-1.5 shrink-0">
+              <Calendar className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <span className="whitespace-nowrap">{post.date}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <User className="w-3.5 h-3.5 text-purple-400" />
-              <span>{post.author}</span>
+            <div className="flex items-center gap-1.5 min-w-0">
+              <User className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <span className="truncate">{post.author}</span>
             </div>
           </div>
 
