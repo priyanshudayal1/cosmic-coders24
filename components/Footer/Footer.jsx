@@ -28,13 +28,13 @@ const Footer = () => {
               className="flex items-center gap-2"
             >
               <Image
-                src="/assets/main logo/Blue Typo.png"
+                src="/assets/main-logo/Blue-Typo.png"
                 alt="Cosmic Coders"
                 width={180}
                 height={40}
               />
               <Image
-                src="/assets/main logo/Blue 24.png"
+                src="/assets/main-logo/Blue-24.png"
                 alt="24"
                 width={36}
                 height={36}

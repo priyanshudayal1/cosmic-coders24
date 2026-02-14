@@ -53,7 +53,7 @@ const Navbar = () => {
           className="flex items-center"
         >
           <Image
-            src="/assets/main logo/White Typo with 2.png"
+            src="/assets/main-logo/White-Typo-with-2.png"
             alt="Cosmic Coders"
             width={120}
             height={30}

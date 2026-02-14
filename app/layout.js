@@ -17,7 +17,7 @@ export const metadata = {
   title: "Cosmic Coders 24",
   description: "Cosmic Coders 24",
   icons: {
-    icon: "/assets/star logo/star logo blue.png",
+    icon: "/assets/star-logo/star-logo-blue.png",
   },
 };
 
