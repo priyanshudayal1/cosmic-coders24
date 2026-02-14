@@ -80,10 +80,7 @@ export async function PUT(req, { params }) {
     if (title) updateData.title = title;
     if (content) updateData.content = content;
     if (excerpt !== null) updateData.excerpt = excerpt;
-    if (author) {
-      updateData.author = author;
-      updateData.authorEmail = author;
-    }
+    if (author) updateData.author = author;
     if (category) updateData.category = category;
 
     if (imageFile && typeof imageFile !== "string") {

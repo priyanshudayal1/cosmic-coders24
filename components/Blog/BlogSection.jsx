@@ -23,7 +23,7 @@ const BlogSection = () => {
             title: blog.title,
             excerpt: blog.excerpt,
             date: formatDate(blog.createdAt),
-            author: blog.authorEmail || blog.author || "Admin",
+            author: blog.author || blog.authorEmail || "Admin",
             category: blog.category || "Uncategorized",
             slug: blog.id,
             image:

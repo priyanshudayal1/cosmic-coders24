@@ -74,7 +74,7 @@ export default function EditBlogPage({ params }) {
             "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
           content: data.content,
           excerpt: data.excerpt || "",
-          author: data.authorEmail || data.author || "Admin",
+          author: data.author || data.authorEmail || "Admin",
           category: data.category || "Technology",
           createdAt: data.createdAt,
         });

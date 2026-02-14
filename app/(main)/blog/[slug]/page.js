@@ -21,7 +21,7 @@ export default async function BlogPost({ params }) {
           title: data.title,
           content: data.content,
           date: formatDate(data.createdAt),
-          author: data.authorEmail || data.author || "Admin",
+          author: data.author || data.authorEmail || "Admin",
           category: data.category || "Uncategorized",
           image:
             data.image ||
