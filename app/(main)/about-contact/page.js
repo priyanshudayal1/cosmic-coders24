@@ -148,25 +148,40 @@ export default function AboutContact() {
                   <div className="p-3 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition-colors">
                     <Mail className="w-6 h-6 text-purple-400" />
                   </div>
-                  <span>info@cosmic-coders.com</span>
+                  <span>contact@cosmiccoder24.com</span>
                 </div>
                 <div className="flex items-center space-x-4 text-gray-300 group">
                   <div className="p-3 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition-colors">
                     <Phone className="w-6 h-6 text-purple-400" />
                   </div>
-                  <span>(123) 456-7890</span>
+                  <span>+91 9713990593</span>
                 </div>
-                <div className="flex items-center space-x-4 text-gray-300 group">
-                  <div className="p-3 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition-colors">
+                <div className="flex items-start space-x-4 text-gray-300 group">
+                  <div className="p-3 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition-colors shrink-0">
                     <MapPin className="w-6 h-6 text-purple-400" />
                   </div>
-                  <span>123 Creative Street, Design City</span>
+                  <span>
+                    I 04 Guru Arjan Dev Colony, GaurIghat, Jabalpur (M.P), India,
+                    482008
+                  </span>
                 </div>
               </div>
 
               {/* Decorative Map Placeholder */}
-              <div className="w-full h-48 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center text-gray-500 text-sm">
-                [Map Visualization Placeholder]
+              <div className="w-full h-48 bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                <iframe
+                  src="https://maps.google.com/maps?q=I%2004%20Guru%20Arjan%20Dev%20Colony%20GaurIghat%20Jabalpur%20India%20482008&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{
+                    border: 0,
+                    filter: "invert(90%) hue-rotate(180deg) brightness(0.9)",
+                  }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-300"
+                ></iframe>
               </div>
             </SpotlightCard>
 
@@ -270,8 +285,8 @@ export default function AboutContact() {
               </form>
             </SpotlightCard>
           </div>
-        </motion.section>
-      </main>
-    </div>
+        </motion.section >
+      </main >
+    </div >
   );
 }

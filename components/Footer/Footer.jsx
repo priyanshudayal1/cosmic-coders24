@@ -10,6 +10,7 @@ import {
   Mail,
   MapPin,
   Phone,
+  Youtube,
 } from "lucide-react";
 
 const Footer = () => {
@@ -34,28 +35,44 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href="https://www.facebook.com/cosmiccoder24/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-purple-600/20 hover:text-purple-400 transition-all duration-300"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://x.com/cosmic_coder_24"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-purple-600/20 hover:text-purple-400 transition-all duration-300"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/cosmiccoder24"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-purple-600/20 hover:text-purple-400 transition-all duration-300"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/cosmiccoder24/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-purple-600/20 hover:text-purple-400 transition-all duration-300"
               >
                 <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.youtube.com/@CosmicCoder24"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-purple-600/20 hover:text-purple-400 transition-all duration-300"
+              >
+                <Youtube className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -147,15 +164,18 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-400 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-purple-500 shrink-0" />
-                <span>123 Creative Street, Design City, DC 10101</span>
+                <span>
+                  I 04 Guru Arjan Dev Colony, GaurIghat, Jabalpur (M.P), India,
+                  482008
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-purple-500 shrink-0" />
-                <span>(123) 456-7890</span>
+                <span>+91 9713990593</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-purple-500 shrink-0" />
-                <span>info@cosmic-coders.com</span>
+                <span>contact@cosmiccoder24.com</span>
               </li>
             </ul>
           </div>
