@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Cosmic Coders 24",
   description: "Cosmic Coders 24",
+  icons: {
+    icon: "/assets/star logo/star logo blue.png",
+  },
 };
 
 export default function RootLayout({ children }) {

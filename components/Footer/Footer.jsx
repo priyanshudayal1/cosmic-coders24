@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Facebook,
   Instagram,
@@ -24,9 +25,14 @@ const Footer = () => {
           <div className="space-y-6">
             <Link
               href="/"
-              className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-purple-400"
+              className="inline-block"
             >
-              Cosmic Coders
+              <Image
+                src="/assets/main logo/Blue Typo.png"
+                alt="Cosmic Coders"
+                width={180}
+                height={50}
+              />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
               Crafting digital experiences that transcend the ordinary. We build

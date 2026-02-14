@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronDown, Menu, X } from "lucide-react";
 import NavItem from "./NavItem";
 import GlassButton from "../ui/GlassButton";
@@ -49,9 +50,15 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="text-white font-bold text-xl tracking-wide flex items-center gap-2"
+          className="flex items-center"
         >
-          Cosmic Coders
+          <Image
+            src="/assets/main logo/White Typo with 2.png"
+            alt="Cosmic Coders"
+            width={150}
+            height={40}
+            priority
+          />
         </Link>
 
         {/* Desktop Menu */}
