@@ -15,7 +15,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#150824] border-t border-white/5 pt-20 pb-10 relative overflow-hidden">
+    <footer className="w-full bg-[#150824] border-t border-white/5 pt-10 pb-10 relative overflow-hidden">
       {/* Glow effect */}
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[1000px] h-[300px] bg-purple-700/20 rounded-[100%] blur-[100px] pointer-events-none" />
 
@@ -25,13 +25,20 @@ const Footer = () => {
           <div className="space-y-6">
             <Link
               href="/"
-              className="inline-block"
+              className="flex items-center gap-2"
             >
               <Image
                 src="/assets/main logo/Blue Typo.png"
                 alt="Cosmic Coders"
                 width={180}
-                height={50}
+                height={40}
+              />
+              <Image
+                src="/assets/main logo/Blue 24.png"
+                alt="24"
+                width={36}
+                height={36}
+                className="rounded"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
