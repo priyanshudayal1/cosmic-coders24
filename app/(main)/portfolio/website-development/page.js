@@ -2,18 +2,17 @@
 
 import React from "react";
 import {
-  ExternalLink,
-  ShoppingCart,
-  BarChart3,
-  Building2,
-  Home,
-  BookOpen,
   UtensilsCrossed,
   Code,
   Smartphone,
   Search,
   Zap,
+  Globe,
+  Car,
+  Sparkles,
+  ExternalLink,
 } from "lucide-react";
+import Link from "next/link";
 import SpotlightCard from "@/components/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
@@ -22,46 +21,36 @@ import GlassButton from "@/components/ui/GlassButton";
 export default function WebsiteDevelopmentPortfolio() {
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Shree Tattva - Astrology Website",
       description:
-        "Modern online shopping experience with seamless checkout and inventory management.",
-      tech: ["Next.js", "React", "Stripe", "MongoDB"],
-      icon: ShoppingCart,
+        "Comprehensive eCommerce and consultation platform offering astrology, Vastu, and numerology services. Includes expert consultation booking and spiritual product sales.",
+      tech: ["Next.js", "React", "Node.js", "MongoDB"],
+      link: "https://www.shreetattva.com",
+      icon: Sparkles,
     },
     {
-      title: "SaaS Dashboard",
+      title: "Vaishnav Travels",
       description:
-        "Analytics dashboard for business intelligence with real-time data visualization.",
-      tech: ["React", "D3.js", "Node.js", "PostgreSQL"],
-      icon: BarChart3,
+        "High-performance corporate mobility website for a leader trusted by brands like Reliance JIO and Vodafone Idea. Showcases premium fleet and nationwide operations.",
+      tech: ["React", "Tailwind CSS", "Framer Motion"],
+      link: "https://www.vaishnavtravelsco.com",
+      icon: Car,
     },
     {
-      title: "Corporate Website",
+      title: "Niematuh Foodstuff Trading",
       description:
-        "Professional corporate presence with CMS integration and multilingual support.",
-      tech: ["Next.js", "Tailwind CSS", "Contentful"],
-      icon: Building2,
-    },
-    {
-      title: "Real Estate Portal",
-      description:
-        "Property listing platform with advanced search and virtual tours.",
-      tech: ["React", "Google Maps API", "Firebase"],
-      icon: Home,
-    },
-    {
-      title: "Educational Platform",
-      description:
-        "Online learning management system with video streaming and progress tracking.",
-      tech: ["Next.js", "AWS", "Stripe", "MySQL"],
-      icon: BookOpen,
-    },
-    {
-      title: "Restaurant Booking",
-      description:
-        "Table reservation system with menu management and customer reviews.",
-      tech: ["React", "Node.js", "Express", "MongoDB"],
+        "Modern website for a UAE-based global food importer, reflecting international supply chain standards and premium product offerings.",
+      tech: ["Next.js", "React", "Tailwind CSS"],
+      link: "https://www.niematuh.com",
       icon: UtensilsCrossed,
+    },
+    {
+      title: "MS Raghav Enterprise",
+      description:
+        "Global export–import company website connecting agricultural and FMCG products to international markets. Supported by US-FDA and D-U-N-S® registrations.",
+      tech: ["Next.js", "React", "Tailwind CSS"],
+      link: "https://www.msraghaventerprises.com",
+      icon: Globe,
     },
   ];
 
@@ -122,14 +111,14 @@ export default function WebsiteDevelopmentPortfolio() {
       </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[96rem] mx-auto">
           <SectionHeading
             eyebrow="Our Work"
             title="Featured Web Projects"
             subtitle="From e-commerce platforms to SaaS dashboards, see how we craft digital experiences that convert."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <SpotlightCard
                 key={index}
@@ -154,10 +143,15 @@ export default function WebsiteDevelopmentPortfolio() {
                     </span>
                   ))}
                 </div>
-                <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto">
+                <Link
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
+                >
                   <span className="text-sm font-medium">View Project</span>
                   <ExternalLink className="w-4 h-4" />
-                </button>
+                </Link>
               </SpotlightCard>
             ))}
           </div>
