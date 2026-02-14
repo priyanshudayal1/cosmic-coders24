@@ -47,27 +47,11 @@ export default function VideoEditingPortfolio() {
       icon: Smartphone,
     },
     {
-      title: "Corporate Training",
-      description:
-        "Educational video series with screen recordings and animations.",
-      duration: "15:00",
-      type: "Educational",
-      icon: GraduationCap,
-    },
-    {
       title: "Event Highlight Reel",
       description: "Conference recap video with interviews and b-roll footage.",
       duration: "5:00",
       type: "Event",
       icon: PartyPopper,
-    },
-    {
-      title: "Testimonial Compilation",
-      description:
-        "Customer testimonial video with professional color grading.",
-      duration: "3:45",
-      type: "Marketing",
-      icon: MessageSquare,
     },
   ];
 
