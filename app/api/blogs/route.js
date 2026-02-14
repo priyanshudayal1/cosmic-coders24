@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
 import { uploadImage } from "@/config/cloudinary";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req) {
   try {
     const cookieStore = await cookies();

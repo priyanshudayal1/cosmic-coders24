@@ -4,6 +4,8 @@ import { verifyToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { uploadImage } from "@/config/cloudinary";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req, { params }) {
   try {
     const resolvedParams = await params;
@@ -77,8 +79,11 @@ export async function PUT(req, { params }) {
 
     if (title) updateData.title = title;
     if (content) updateData.content = content;
-    if (excerpt) updateData.excerpt = excerpt;
-    if (author) updateData.author = author;
+    if (excerpt !== null) updateData.excerpt = excerpt;
+    if (author) {
+      updateData.author = author;
+      updateData.authorEmail = author;
+    }
     if (category) updateData.category = category;
 
     if (imageFile && typeof imageFile !== "string") {
