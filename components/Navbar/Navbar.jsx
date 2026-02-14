@@ -42,9 +42,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 ${
-        scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-      }`}
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+        }`}
     >
       <div className="px-6 py-3 flex justify-between items-center">
         {/* Logo */}
@@ -109,10 +108,7 @@ const Navbar = () => {
           <NavItem
             title="Results"
             dropdownItems={[
-              {
-                label: "Social Media Marketing",
-                href: "/results/social-media-marketing",
-              },
+
               { label: "SEO Results", href: "/results/seo" },
             ]}
           />
@@ -198,10 +194,7 @@ const Navbar = () => {
             mobile
             onNavigate={closeMobileMenu}
             dropdownItems={[
-              {
-                label: "Social Media Marketing",
-                href: "/results/social-media-marketing",
-              },
+
               { label: "SEO Results", href: "/results/seo" },
             ]}
           />

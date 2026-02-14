@@ -17,55 +17,9 @@ const Results = () => {
           subtitle="Our data-driven approach ensures measurable growth and ROI for your business."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* SMM Results Card */}
-          <SpotlightCard className="flex flex-col items-center text-center group bg-white/5 border-white/10">
-            <div className="w-full flex justify-center mb-8">
-              {/* Mock Bar Chart */}
-              <div className="flex items-end gap-3 h-32">
-                <motion.div
-                  initial={{ height: 0 }}
-                  whileInView={{ height: "40%" }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                  className="w-8 bg-white/10 rounded-t-sm"
-                />
-                <motion.div
-                  initial={{ height: 0 }}
-                  whileInView={{ height: "65%" }}
-                  transition={{ duration: 1, delay: 0.3 }}
-                  className="w-8 bg-white/20 rounded-t-sm"
-                />
-                <motion.div
-                  initial={{ height: 0 }}
-                  whileInView={{ height: "50%" }}
-                  transition={{ duration: 1, delay: 0.4 }}
-                  className="w-8 bg-white/10 rounded-t-sm"
-                />
-                <motion.div
-                  initial={{ height: 0 }}
-                  whileInView={{ height: "85%" }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="w-8 bg-purple-500/80 rounded-t-sm shadow-[0_0_15px_rgba(168,85,247,0.4)]"
-                />
-                <motion.div
-                  initial={{ height: 0 }}
-                  whileInView={{ height: "30%" }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                  className="w-8 bg-white/10 rounded-t-sm"
-                />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-2">
-              Social Media Marketing Results
-            </h3>
-            <p className="text-gray-400">
-              Consistent engagement growth and audience reach expansion across
-              all platforms.
-            </p>
-          </SpotlightCard>
-
+        <div className="flex justify-center mb-12">
           {/* SEO Results Card */}
-          <SpotlightCard className="flex flex-col items-center text-center group bg-white/5 border-white/10">
+          <SpotlightCard className="w-full max-w-2xl flex flex-col items-center text-center group bg-white/5 border-white/10">
             <div className="w-full flex justify-center mb-8 relative h-32">
               {/* Mock Line Chart SVG */}
               <svg
