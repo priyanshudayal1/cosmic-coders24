@@ -29,31 +29,51 @@ export async function GET(req) {
     }
 
     const blogsRef = adminDb.collection("blogs");
-    let query = blogsRef.orderBy("createdAt", "desc");
 
     const { searchParams } = new URL(req.url);
     const limit = parseInt(searchParams.get("limit"));
     const my = searchParams.get("my");
 
-    if (limit) {
-      query = query.limit(limit);
-    }
+    // Build query: apply .where() BEFORE .orderBy() for Firestore best practice
+    let query = blogsRef;
 
     if (my === "true" && user) {
       query = query.where("authorId", "==", user.id);
     }
 
-    // If we want to filter by author for managers strictly:
-    // if (user && user.type === 'blog-manager') {
-    //    query = query.where("authorId", "==", user.id);
-    // }
-    // But let's assume they might want to see others' headlines.
-    // Actually, "edit the blog written by them" implies strict control.
-    // Let's play safe: if ?my=true or just return all and frontend filters?
-    // Let's return all.
+    query = query.orderBy("createdAt", "desc");
 
-    const snapshot = await query.get();
+    if (limit) {
+      query = query.limit(limit);
+    }
+
+    let snapshot;
+    try {
+      snapshot = await query.get();
+    } catch (indexError) {
+      // Fallback: if composite index is not yet created, fetch without orderBy
+      if (indexError.code === 9) {
+        console.warn(
+          "Composite index not found, falling back to unordered query. " +
+          "Please create the index: " + (indexError.details || "")
+        );
+        let fallbackQuery = blogsRef;
+        if (my === "true" && user) {
+          fallbackQuery = fallbackQuery.where("authorId", "==", user.id);
+        }
+        if (limit) {
+          fallbackQuery = fallbackQuery.limit(limit);
+        }
+        snapshot = await fallbackQuery.get();
+      } else {
+        throw indexError;
+      }
+    }
+
     const blogs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    // Sort in memory as fallback (ensures consistent ordering)
+    blogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     return NextResponse.json(blogs);
   } catch (error) {
