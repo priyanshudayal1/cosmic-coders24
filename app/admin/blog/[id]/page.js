@@ -20,7 +20,7 @@ export default function EditBlogPage({ params }) {
     type: "confirm",
     title: "",
     message: "",
-    onConfirm: () => {},
+    onConfirm: () => { },
     confirmText: "Close",
   });
 
@@ -54,6 +54,18 @@ export default function EditBlogPage({ params }) {
       const res = await fetch(`/api/blogs/${id}`);
       if (res.ok) {
         const data = await res.json();
+
+        // Access control: managers can only edit their own blogs
+        const storedUser = localStorage.getItem("adminUser");
+        const currentUser = storedUser ? JSON.parse(storedUser) : null;
+        if (
+          currentUser?.type === "blog-manager" &&
+          String(data.authorId) !== String(currentUser.id)
+        ) {
+          router.push("/admin");
+          return;
+        }
+
         setFormData({
           title: data.title,
           image: data.image, // Keep existing URL

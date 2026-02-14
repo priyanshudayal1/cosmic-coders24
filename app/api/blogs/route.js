@@ -9,13 +9,6 @@ export async function GET(req) {
     const cookieStore = await cookies();
     const token = cookieStore.get("admin_token")?.value;
 
-    // We allow public access to GET blogs? Usually yes for the frontend.
-    // But this is the /api/blogs route. It might be used by the public site too.
-    // However, the user specifically asked about the "manager user... to login and add/edit".
-    // Let's check if the token exists. If not, maybe return all public blogs?
-    // But currently, let's assume this endpoint is for the Admin/Manager panel.
-    // Or we handle both.
-
     let user = null;
     if (token) {
       user = verifyToken(token);
