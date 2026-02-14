@@ -1,89 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
-  Rocket,
   UtensilsCrossed,
-  Package,
-  Dumbbell,
-  Gem,
-  Coffee,
   Palette,
-  Crown,
-  FileText,
-  Sparkles,
-  CheckCircle,
+  Car,
+  Globe,
 } from "lucide-react";
 import SpotlightCard from "@/components/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import GlassButton from "@/components/ui/GlassButton";
+import dynamic from "next/dynamic";
+
+const PDFModal = dynamic(() => import("@/components/ui/PDFModal"), {
+  ssr: false,
+});
 
 export default function BrandingLogoDesignPortfolio() {
+  const [selectedPdf, setSelectedPdf] = useState(null);
+
   const projects = [
     {
-      title: "Tech Startup Branding",
+      title: "Vaishnav Travels",
       description:
-        "Complete brand identity including logo, color system, and brand guidelines.",
-      deliverables: ["Logo Design", "Brand Guidelines", "Business Cards"],
-      icon: Rocket,
+        "Complete rebranding for a trusted travel service with over 15 years of experience. The new identity balances professionalism with approachability, featuring a versatile logo system and a trustworthy color palette.",
+      deliverables: ["Brand Identity", "Logo Design", "Stationery", "Vehicle Branding"],
+      icon: Car,
+      pdfPath: "/VAISHNAV TRAVELS.pdf",
     },
     {
-      title: "Restaurant Rebrand",
-      description: "Modern logo redesign with menu design and signage system.",
-      deliverables: ["Logo Redesign", "Menu Design", "Signage"],
+      title: "Niematuh Foodstuff Trading",
+      description:
+        "Premium brand identity for a global agro-commodities trader. The design utilizes golden gradients and bold typography to establish authority and quality in the international market.",
+      deliverables: ["Logo Design", "Brand Pattern", "Social Media Assets", "Packaging Design"],
       icon: UtensilsCrossed,
-    },
-    {
-      title: "E-Commerce Packaging",
-      description:
-        "Sustainable packaging design with unboxing experience focus.",
-      deliverables: ["Box Design", "Tissue Paper", "Stickers"],
-      icon: Package,
-    },
-    {
-      title: "Fitness Brand Identity",
-      description:
-        "Athletic brand with bold typography and energetic color palette.",
-      deliverables: ["Logo", "Brand Book", "Apparel Mockups"],
-      icon: Dumbbell,
-    },
-    {
-      title: "Luxury Product Packaging",
-      description: "Premium packaging with foil stamping and embossed details.",
-      deliverables: ["Package Design", "Label Design", "Gift Box"],
-      icon: Gem,
-    },
-    {
-      title: "Coffee Brand",
-      description: "Artisanal coffee brand with bag design and loyalty card.",
-      deliverables: ["Logo", "Bag Design", "Loyalty Card"],
-      icon: Coffee,
+      pdfPath: "/NIEMATUH FOODSTUFF TRADING.pdf",
     },
   ];
 
-  const highlights = [
-    {
-      icon: Crown,
-      title: "Brand Strategy",
-      description: "Research-driven identity systems",
-    },
-    {
-      icon: Palette,
-      title: "Visual Identity",
-      description: "Logos, colors, and typography",
-    },
-    {
-      icon: FileText,
-      title: "Collateral Design",
-      description: "Stationery and brand assets",
-    },
-    {
-      icon: Sparkles,
-      title: "Rebranding",
-      description: "Modernizing existing brands",
-    },
-  ];
+
 
   return (
     <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
@@ -95,32 +51,7 @@ export default function BrandingLogoDesignPortfolio() {
         ctaHref="/services/branding-logo-design"
       />
 
-      <section className="py-12 md:py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading
-            eyebrow="What We Deliver"
-            title="Our Branding Expertise"
-            subtitle=""
-          />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {highlights.map((item, idx) => (
-              <SpotlightCard
-                key={idx}
-                className="h-full bg-white/5 border-white/10 p-6 text-center group hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="mb-4 inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 mx-auto">
-                  <item.icon size={28} strokeWidth={1.5} />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-400">{item.description}</p>
-              </SpotlightCard>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
@@ -130,7 +61,7 @@ export default function BrandingLogoDesignPortfolio() {
             subtitle="Each project reflects our commitment to creating impactful, lasting brand identities."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
             {projects.map((project, index) => (
               <SpotlightCard
                 key={index}
@@ -160,7 +91,10 @@ export default function BrandingLogoDesignPortfolio() {
                     ))}
                   </div>
                 </div>
-                <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto">
+                <button
+                  onClick={() => setSelectedPdf({ path: project.pdfPath, title: project.title })}
+                  className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
+                >
                   <Palette className="w-4 h-4" />
                   <span className="text-sm font-medium">View Brand</span>
                 </button>
@@ -202,6 +136,13 @@ export default function BrandingLogoDesignPortfolio() {
           </SpotlightCard>
         </div>
       </section>
+
+      <PDFModal
+        isOpen={!!selectedPdf}
+        onClose={() => setSelectedPdf(null)}
+        pdfUrl={selectedPdf?.path}
+        title={selectedPdf?.title}
+      />
     </div>
   );
 }
