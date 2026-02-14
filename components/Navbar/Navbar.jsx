@@ -55,9 +55,9 @@ const Navbar = () => {
           <Image
             src="/assets/main-logo/White-Typo-with-2.png"
             alt="Cosmic Coders"
-            width={120}
-            height={30}
-            className="h-7 w-auto"
+            width={200}
+            height={48}
+            className="h-12 w-auto"
             priority
           />
         </Link>
