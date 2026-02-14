@@ -50,7 +50,7 @@ export default function BlogPostClient({ post }) {
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-gray-400 mb-12 pb-6 border-b border-white/10">
+            <div className="flex flex-col gap-2 text-gray-400 mb-12 pb-6 border-b border-white/10">
               <div className="flex items-center gap-2">
                 <User className="w-5 h-5 text-purple-400" />
                 <span>{post.author}</span>
