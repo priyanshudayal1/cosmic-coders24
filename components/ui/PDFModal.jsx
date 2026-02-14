@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { X, ChevronLeft, ChevronRight, Loader2, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Loader2, ZoomIn, ZoomOut, RotateCcw, Download } from "lucide-react";
 
 // Configure PDF worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -57,15 +57,15 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
             // Calculate scale to fit entire page within container
             const scaleWidth = (clientWidth - 48) / originalWidth; // -48 for safety padding
             const scaleHeight = (clientHeight - 48) / originalHeight;
-            
+
             // If the document is long (Portrait), fit to width.
             // If it's a slide (Landscape), fit to screen (both dimensions).
             const isLandscape = originalWidth > originalHeight;
             const optimalScale = isLandscape ? Math.min(scaleWidth, scaleHeight) : scaleWidth;
 
             if (optimalScale > 0 && optimalScale < 10) {
-                 setScale(optimalScale);
-                 autoFitPerformed.current = true;
+                setScale(optimalScale);
+                autoFitPerformed.current = true;
             }
         }
     }
@@ -101,9 +101,9 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
 
     function resetZoom() {
         if (containerRef.current) {
-           // Reset to initial fit logic
+            // Reset to initial fit logic
             // Ideally trigger onPageLoadSuccess logic again or just sensible default
-            setScale(1); 
+            setScale(1);
         } else {
             setScale(1);
         }
@@ -125,12 +125,22 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-white/10 bg-neutral-900/50">
                     <h3 className="text-white font-medium truncate pr-4">{title || "Document Viewer"}</h3>
-                    <button
-                        onClick={onClose}
-                        className="p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"
-                    >
-                        <X size={20} />
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <a
+                            href={pdfUrl}
+                            download
+                            className="p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+                            title="Download PDF"
+                        >
+                            <Download size={20} />
+                        </a>
+                        <button
+                            onClick={onClose}
+                            className="p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+                        >
+                            <X size={20} />
+                        </button>
+                    </div>
                 </div>
 
                 {/* Content */}
