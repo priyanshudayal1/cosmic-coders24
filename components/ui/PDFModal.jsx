@@ -145,25 +145,21 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
 
                 {/* Content */}
                 <div ref={containerRef} className="flex-1 overflow-auto overscroll-contain flex bg-neutral-950 relative [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-neutral-900 [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
-                    {loading && (
-                        <div className="absolute inset-0 flex items-center justify-center">
+                    {(loading || pageRendering) && (
+                        <div className="absolute inset-0 flex items-center justify-center z-20">
                             <Loader2 className="w-8 h-8 text-purple-500 animate-spin" />
                         </div>
                     )}
 
                     <div className="p-4 m-auto">
                         <div className="relative min-h-[50vh] flex items-center justify-center">
-                            {pageRendering && (
-                                <div className="absolute inset-0 flex items-center justify-center z-10">
-                                    <Loader2 className="w-8 h-8 text-purple-500 animate-spin" />
-                                </div>
-                            )}
                             <Document
                                 file={pdfUrl}
                                 onLoadSuccess={onDocumentLoadSuccess}
                                 onLoadError={(error) => {
                                     console.error("Error loading PDF:", error);
                                     setLoading(false);
+                                    setPageRendering(false);
                                 }}
                                 loading={null} // Handle loading manually
                                 className="flex justify-center"

@@ -60,7 +60,7 @@ const portfolioItems = [
 const Portfolio = () => {
   return (
     <section className="w-full py-10">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[90rem] mx-auto">
         <SectionHeading
           eyebrow="Portfolio"
           title="Our Work"
