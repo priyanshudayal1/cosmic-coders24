@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Quote, User } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote, User, Star } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +51,7 @@ export default function Testimonials() {
   const getCardStyle = (index) => {
     const total = reviews.length;
     if (total === 0) return {};
-    
+
     let diff = (index - activeIndex + total) % total;
     if (diff > total / 2) diff -= total;
 
@@ -97,9 +97,9 @@ export default function Testimonials() {
   }
 
   if (error || reviews.length === 0) {
-     // Optional: Render nothing or a fallback message if prefered, but keeping it empty for now as requested to remove hardcoded data.
-     // You might want to display a message like "No reviews available yet."
-     return null; 
+    // Optional: Render nothing or a fallback message if prefered, but keeping it empty for now as requested to remove hardcoded data.
+    // You might want to display a message like "No reviews available yet."
+    return null;
   }
 
   return (
@@ -165,6 +165,24 @@ export default function Testimonials() {
                     <p className="text-xs text-gray-400/80 truncate font-medium">
                       {item.role}
                     </p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="flex gap-0.5 items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={cn(
+                              "w-3.5 h-3.5",
+                              i < item.rating
+                                ? "fill-yellow-500 text-yellow-500"
+                                : "fill-gray-600/20 text-gray-600"
+                            )}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-gray-400 font-medium ml-1.5 pt-0.5">
+                        {item.relative_time_description}
+                      </span>
+                    </div>
                   </div>
                 </div>
 

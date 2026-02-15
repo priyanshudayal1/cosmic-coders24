@@ -28,15 +28,20 @@ export async function GET() {
         const reviews = data.result.reviews || [];
 
         // Format reviews for the frontend
-        const formattedReviews = reviews.map((review, index) => ({
-            id: index,
-            name: review.author_name,
-            role: "Client", // Google reviews don't have roles, defaulting to Client
-            text: review.text,
-            image: review.profile_photo_url,
-            rating: review.rating,
-            relative_time_description: review.relative_time_description,
-        }));
+        const formattedReviews = reviews.map((review, index) => {
+            const text = review.text.toLowerCase();
+            const isBusinessOwner = text.includes("business") || text.includes("company") || text.includes("services");
+
+            return {
+                id: index,
+                name: review.author_name,
+                role: isBusinessOwner ? "Business Owner" : "Client",
+                text: review.text,
+                image: review.profile_photo_url,
+                rating: review.rating,
+                relative_time_description: review.relative_time_description,
+            };
+        });
 
         return NextResponse.json({ reviews: formattedReviews });
     } catch (error) {
