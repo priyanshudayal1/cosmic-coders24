@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { X, ChevronLeft, ChevronRight, Loader2, ZoomIn, ZoomOut, RotateCcw, Download } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Loader2, ZoomIn, ZoomOut, RotateCcw /*, Download */ } from "lucide-react";
 
 // Configure PDF worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -126,14 +126,14 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
                 <div className="flex items-center justify-between p-4 border-b border-white/10 bg-neutral-900/50">
                     <h3 className="text-white font-medium truncate pr-4">{title || "Document Viewer"}</h3>
                     <div className="flex items-center gap-2">
-                        <a
+                        {/* <a
                             href={pdfUrl}
                             download
                             className="p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"
                             title="Download PDF"
                         >
                             <Download size={20} />
-                        </a>
+                        </a> */}
                         <button
                             onClick={onClose}
                             className="p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"

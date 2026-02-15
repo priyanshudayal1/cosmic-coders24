@@ -183,7 +183,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-purple-500 shrink-0" />
                 <span>
-                  I 04 Guru Arjan Dev Colony, GaurIghat, Jabalpur (M.P), India,
+                  I 04 Guru Arjan Dev Colony, Gaurighat, Jabalpur (M.P), India,
                   482008
                 </span>
               </li>

@@ -161,7 +161,7 @@ export default function AboutContact() {
                     <MapPin className="w-6 h-6 text-purple-400" />
                   </div>
                   <span>
-                    I 04 Guru Arjan Dev Colony, GaurIghat, Jabalpur (M.P), India,
+                    I 04 Guru Arjan Dev Colony, Gaurighat, Jabalpur (M.P), India,
                     482008
                   </span>
                 </div>
@@ -170,7 +170,7 @@ export default function AboutContact() {
               {/* Decorative Map Placeholder */}
               <div className="w-full h-48 bg-white/5 rounded-xl border border-white/10 overflow-hidden">
                 <iframe
-                  src="https://maps.google.com/maps?q=I%2004%20Guru%20Arjan%20Dev%20Colony%20GaurIghat%20Jabalpur%20India%20482008&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=I%2004%20Guru%20Arjan%20Dev%20Colony%20Gaurighat%20Jabalpur%20India%20482008&t=&z=13&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{
