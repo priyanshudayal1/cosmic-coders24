@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import SpotlightCard from "../SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import Button from "./Button";
 
 const CTACard = ({

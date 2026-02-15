@@ -13,7 +13,7 @@ import {
   Server,
 } from "lucide-react";
 import GlassButton from "@/components/ui/GlassButton";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";

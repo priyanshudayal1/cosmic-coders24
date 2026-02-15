@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BarChart, TrendingUp, ArrowRight } from "lucide-react";
-import SpotlightCard from "../SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 import GlassButton from "../ui/GlassButton";
 

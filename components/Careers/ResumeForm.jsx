@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, Send, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
-import SpotlightCard from "../SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 import ConfirmationModal from "../ui/ConfirmationModal";
 

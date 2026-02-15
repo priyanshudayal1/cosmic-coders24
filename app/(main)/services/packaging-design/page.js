@@ -21,7 +21,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import GlassButton from "@/components/ui/GlassButton";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";

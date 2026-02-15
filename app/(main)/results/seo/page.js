@@ -8,7 +8,7 @@ const PDFModal = dynamic(() => import("@/components/ui/PDFModal"), {
 });
 
 import { prefetchPdf } from "@/lib/prefetchPdf";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import LeadForm from "@/components/Form/LeadForm";
 import GlassButton from "@/components/ui/GlassButton";
 import Eyebrow from "@/components/ui/Eyebrow";

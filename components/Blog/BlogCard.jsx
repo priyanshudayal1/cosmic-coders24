@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar, User } from "lucide-react";
-import SpotlightCard from "../SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 const BlogCard = ({ post }) => {
   return (

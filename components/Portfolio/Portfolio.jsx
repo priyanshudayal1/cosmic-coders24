@@ -11,7 +11,7 @@ import {
   Video,
   Package,
 } from "lucide-react";
-import SpotlightCard from "../SpotlightCard"; // Updated import
+import SpotlightCard from "@/components/ui/SpotlightCard"; // Updated import
 import SectionHeading from "../ui/SectionHeading";
 
 const portfolioItems = [

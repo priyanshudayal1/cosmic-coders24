@@ -30,7 +30,7 @@ export async function GET() {
         // Format reviews for the frontend
         const formattedReviews = reviews.map((review, index) => {
             const text = review.text.toLowerCase();
-            const isBusinessOwner = text.includes("business") || text.includes("company") || text.includes("services");
+            const isBusinessOwner = text.includes("business") || text.includes("company");
 
             return {
                 id: index,

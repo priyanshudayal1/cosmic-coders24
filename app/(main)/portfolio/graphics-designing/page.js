@@ -13,7 +13,7 @@ import {
   Layers,
   PenTool,
 } from "lucide-react";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import GlassButton from "@/components/ui/GlassButton";

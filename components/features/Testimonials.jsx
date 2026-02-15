@@ -7,6 +7,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 
+import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -104,6 +105,11 @@ export default function Testimonials() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative">
+      <SectionHeading
+        eyebrow="Testimonials"
+        title="What Clients Say"
+        subtitle="Real feedback from teams we have helped grow, launch, and scale."
+      />
       {/* Carousel Container */}
       <div className="relative w-full max-w-7xl h-80 md:h-[22rem] flex items-center justify-center">
         <AnimatePresence initial={false} mode="popLayout">

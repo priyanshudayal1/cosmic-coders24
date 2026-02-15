@@ -14,7 +14,7 @@ import {
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Testimonials from "@/components/features/Testimonials";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default function AboutContact() {
@@ -105,11 +105,6 @@ export default function AboutContact() {
           custom={1}
           variants={fadeIn}
         >
-          <SectionHeading
-            eyebrow="Testimonials"
-            title="What Clients Say"
-            subtitle="Real feedback from teams we have helped grow, launch, and scale."
-          />
 
           <Testimonials />
         </motion.section>

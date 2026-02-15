@@ -2,7 +2,7 @@
 
 import React from "react";
 import SectionHeading from "../ui/SectionHeading";
-import SpotlightCard from "../SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import LeadForm from "../Form/LeadForm";
 
 const ContactSection = () => {

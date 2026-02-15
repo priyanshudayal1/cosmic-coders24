@@ -1,5 +1,5 @@
 import PageHeader from "@/components/shared/PageHeader";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import LeadForm from "@/components/Form/LeadForm";
 import GlassButton from "@/components/ui/GlassButton";
 import { Users, TrendingUp, Instagram } from "lucide-react";

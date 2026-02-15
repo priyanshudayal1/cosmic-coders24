@@ -2,7 +2,7 @@
 
 import React from "react";
 import PageHeader from "@/components/shared/PageHeader";
-import SpotlightCard from "@/components/SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import GlassButton from "@/components/ui/GlassButton";
 
 const ServicePageLayout = ({ title, description, features, children }) => {

@@ -13,7 +13,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import SpotlightCard from "../SpotlightCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 
 const servicesData = [
