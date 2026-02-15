@@ -6,55 +6,42 @@ import { ArrowLeft, ArrowRight, Quote, User } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Eleanor Pena",
-    role: "Nursing Assistant",
-    text: "The workflow automation has saved us countless hours. It's intuitive, fast, and exactly what our team needed to scale efficiently.",
-    image: null,
-  },
-  {
-    id: 2,
-    name: "Dr. Ari Zelmanow",
-    role: "Head of UX Research",
-    text: "Genway dramatically reduces the time and effort required to uncover high-quality insights, empowering researchers with fast, accurate, and scalable results through advanced AI technology.",
-    image: null, // Using generic User icon if no image
-  },
-  {
-    id: 3,
-    name: "Wade Warren",
-    role: "President of Sales",
-    text: "Our sales outreach improved significantly with the automated tools provided. We've seen a 40% increase in response rates.",
-    image: null,
-  },
-  {
-    id: 4,
-    name: "Jane Cooper",
-    role: "Product Manager",
-    text: "The analytics dashboard is a game changer. We can finally see the impact of our campaigns in real-time.",
-    image: null,
-  },
-  {
-    id: 5,
-    name: "Robert Fox",
-    role: "marketing Coordinator",
-    text: "Customer support is top-notch. Any issues we had were resolved within minutes. seamless integration.",
-    image: null,
-  },
-];
+
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  React.useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch("/api/reviews");
+        if (!response.ok) {
+          throw new Error("Failed to fetch reviews");
+        }
+        const data = await response.json();
+        setReviews(data.reviews || []);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+        setError("Failed to load reviews.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   const next = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    if (reviews.length === 0) return;
+    setActiveIndex((prev) => (prev + 1) % reviews.length);
   };
 
   const prev = () => {
-    setActiveIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-    );
+    if (reviews.length === 0) return;
+    setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
 
   const goToSlide = (index) => {
@@ -62,7 +49,9 @@ export default function Testimonials() {
   };
 
   const getCardStyle = (index) => {
-    const total = testimonials.length;
+    const total = reviews.length;
+    if (total === 0) return {};
+    
     let diff = (index - activeIndex + total) % total;
     if (diff > total / 2) diff -= total;
 
@@ -99,12 +88,26 @@ export default function Testimonials() {
     return { x, scale, opacity, zIndex, blur, diff };
   };
 
+  if (loading) {
+    return (
+      <div className="w-full flex items-center justify-center py-20 h-96">
+        <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error || reviews.length === 0) {
+     // Optional: Render nothing or a fallback message if prefered, but keeping it empty for now as requested to remove hardcoded data.
+     // You might want to display a message like "No reviews available yet."
+     return null; 
+  }
+
   return (
     <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative">
       {/* Carousel Container */}
       <div className="relative w-full max-w-7xl h-80 md:h-[22rem] flex items-center justify-center">
         <AnimatePresence initial={false} mode="popLayout">
-          {testimonials.map((item, index) => {
+          {reviews.map((item, index) => {
             const style = getCardStyle(index);
 
             return (
@@ -196,12 +199,13 @@ export default function Testimonials() {
           onClick={prev}
           className="p-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-purple-500/50 transition-all active:scale-95 group"
           aria-label="Previous testimonial"
+          disabled={reviews.length <= 1}
         >
           <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
         </button>
 
         <div className="flex gap-2.5">
-          {testimonials.map((_, idx) => (
+          {reviews.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
@@ -220,6 +224,7 @@ export default function Testimonials() {
           onClick={next}
           className="p-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-purple-500/50 transition-all active:scale-95 group"
           aria-label="Next testimonial"
+          disabled={reviews.length <= 1}
         >
           <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
         </button>
