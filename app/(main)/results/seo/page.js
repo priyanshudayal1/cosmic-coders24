@@ -6,6 +6,8 @@ import PageHeader from "@/components/shared/PageHeader";
 const PDFModal = dynamic(() => import("@/components/ui/PDFModal"), {
   ssr: false,
 });
+
+import { prefetchPdf } from "@/lib/prefetchPdf";
 import SpotlightCard from "@/components/SpotlightCard";
 import LeadForm from "@/components/Form/LeadForm";
 import GlassButton from "@/components/ui/GlassButton";
@@ -91,6 +93,7 @@ export default function SEOResults() {
                       {study.description}
                     </p>
                     <GlassButton
+                      onMouseEnter={() => prefetchPdf(study.pdfUrl)}
                       onClick={() => setActivePdf({ url: study.pdfUrl, title: study.pdfTitle })}
                       className="w-full text-center text-sm cursor-pointer"
                     >

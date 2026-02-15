@@ -17,6 +17,8 @@ const PDFModal = dynamic(() => import("@/components/ui/PDFModal"), {
   ssr: false,
 });
 
+import { prefetchPdf } from "@/lib/prefetchPdf";
+
 export default function BrandingLogoDesignPortfolio() {
   const [selectedPdf, setSelectedPdf] = useState(null);
 
@@ -92,6 +94,7 @@ export default function BrandingLogoDesignPortfolio() {
                   </div>
                 </div>
                 <button
+                  onMouseEnter={() => prefetchPdf(project.pdfPath)}
                   onClick={() => setSelectedPdf({ path: project.pdfPath, title: project.title })}
                   className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
                 >

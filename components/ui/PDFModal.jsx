@@ -1,19 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo, memo } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { X, ChevronLeft, ChevronRight, Loader2, ZoomIn, ZoomOut, RotateCcw /*, Download */ } from "lucide-react";
 
-// Configure PDF worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Use self-hosted worker for faster loading (avoids external CDN request)
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
-export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
+
+
+function PDFModal({ isOpen, onClose, pdfUrl, title }) {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [loading, setLoading] = useState(true);
     const [pageRendering, setPageRendering] = useState(true);
     const [scale, setScale] = useState(1);
     const containerRef = React.useRef(null);
+
+    // Memoize PDF.js options to prevent unnecessary document reloads
+    const pdfOptions = useMemo(() => ({
+        disableAutoFetch: false,
+        disableStream: false,
+        isEvalSupported: false,
+    }), []);
     const autoFitPerformed = React.useRef(false);
 
     // Prevent background scrolling when modal is open
@@ -41,25 +50,21 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
         autoFitPerformed.current = false;
     }, [pdfUrl]);
 
-    if (!isOpen) return null;
-
-    function onDocumentLoadSuccess({ numPages }) {
+    // Memoized callbacks to prevent unnecessary re-renders
+    const onDocumentLoadSuccess = useCallback(({ numPages }) => {
         setNumPages(numPages);
         setLoading(false);
-    }
+    }, []);
 
-    function onPageLoadSuccess(page) {
+    const onPageLoadSuccess = useCallback((page) => {
         if (containerRef.current && !autoFitPerformed.current) {
             const { clientWidth, clientHeight } = containerRef.current;
             const originalWidth = page.originalWidth || page.width;
             const originalHeight = page.originalHeight || page.height;
 
-            // Calculate scale to fit entire page within container
-            const scaleWidth = (clientWidth - 48) / originalWidth; // -48 for safety padding
+            const scaleWidth = (clientWidth - 48) / originalWidth;
             const scaleHeight = (clientHeight - 48) / originalHeight;
 
-            // If the document is long (Portrait), fit to width.
-            // If it's a slide (Landscape), fit to screen (both dimensions).
             const isLandscape = originalWidth > originalHeight;
             const optimalScale = isLandscape ? Math.min(scaleWidth, scaleHeight) : scaleWidth;
 
@@ -68,53 +73,54 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
                 autoFitPerformed.current = true;
             }
         }
-    }
+    }, []);
 
-    function onPageRenderSuccess() {
+    const onPageRenderSuccess = useCallback(() => {
         setPageRendering(false);
-    }
+    }, []);
 
-    function changePage(offset) {
+    const onLoadError = useCallback((error) => {
+        console.error("Error loading PDF:", error);
+        setLoading(false);
+        setPageRendering(false);
+    }, []);
+
+    const changePage = useCallback((offset) => {
         setPageNumber((prevPageNumber) => {
             setPageRendering(true);
-            autoFitPerformed.current = false; // Reset auto-fit for new page
+            autoFitPerformed.current = false;
             return prevPageNumber + offset;
         });
-    }
+    }, []);
 
-    function previousPage() {
-        changePage(-1);
-    }
+    const previousPage = useCallback(() => changePage(-1), [changePage]);
+    const nextPage = useCallback(() => changePage(1), [changePage]);
 
-    function nextPage() {
-        changePage(1);
-    }
-
-    // Zoom handlers
-    function zoomIn() {
+    const zoomIn = useCallback(() => {
         setScale(prev => Math.min(prev + 0.2, 2.5));
-    }
+    }, []);
 
-    function zoomOut() {
+    const zoomOut = useCallback(() => {
         setScale(prev => Math.max(prev - 0.2, 0.4));
-    }
+    }, []);
 
-    function resetZoom() {
-        if (containerRef.current) {
-            // Reset to initial fit logic
-            // Ideally trigger onPageLoadSuccess logic again or just sensible default
-            setScale(1);
-        } else {
-            setScale(1);
-        }
-    }
+    const resetZoom = useCallback(() => {
+        setScale(1);
+    }, []);
 
-    // Handle click outside to close
-    const handleBackdropClick = (e) => {
+    const handleBackdropClick = useCallback((e) => {
         if (e.target === e.currentTarget) {
             onClose();
         }
-    };
+    }, [onClose]);
+
+    // Memoize the page class name to avoid recalculating on every render
+    const pageClassName = useMemo(() =>
+        `shadow-xl transition-opacity duration-300 ${pageRendering ? 'opacity-0' : 'opacity-100'}`,
+        [pageRendering]
+    );
+
+    if (!isOpen) return null;
 
     return (
         <div
@@ -156,20 +162,18 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
                             <Document
                                 file={pdfUrl}
                                 onLoadSuccess={onDocumentLoadSuccess}
-                                onLoadError={(error) => {
-                                    console.error("Error loading PDF:", error);
-                                    setLoading(false);
-                                    setPageRendering(false);
-                                }}
-                                loading={null} // Handle loading manually
+                                onLoadError={onLoadError}
+                                loading={null}
                                 className="flex justify-center"
+                                options={pdfOptions}
                             >
                                 <Page
                                     pageNumber={pageNumber}
                                     renderTextLayer={false}
                                     renderAnnotationLayer={false}
-                                    className={`shadow-xl transition-opacity duration-300 ${pageRendering ? 'opacity-0' : 'opacity-100'}`}
+                                    className={pageClassName}
                                     scale={scale}
+                                    devicePixelRatio={1}
                                     onLoadSuccess={onPageLoadSuccess}
                                     onRenderSuccess={onPageRenderSuccess}
                                     loading={null}
@@ -239,3 +243,5 @@ export default function PDFModal({ isOpen, onClose, pdfUrl, title }) {
         </div>
     );
 }
+
+export default memo(PDFModal);
