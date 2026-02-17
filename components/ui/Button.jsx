@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -8,7 +9,14 @@ function cn(...inputs) {
 
 const Button = React.forwardRef(
   (
-    { className, variant = "glass", size = "default", children, ...props },
+    {
+      className,
+      variant = "glass",
+      size = "default",
+      href,
+      children,
+      ...props
+    },
     ref,
   ) => {
     const variants = {
@@ -26,17 +34,23 @@ const Button = React.forwardRef(
       icon: "p-2 rounded-full",
     };
 
+    const combinedClassName = cn(
+      "transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
+      variants[variant],
+      sizes[size],
+      className,
+    );
+
+    if (href) {
+      return (
+        <Link href={href} className={combinedClassName} {...props} ref={ref}>
+          {children}
+        </Link>
+      );
+    }
+
     return (
-      <button
-        ref={ref}
-        className={cn(
-          "transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none",
-          variants[variant],
-          sizes[size],
-          className,
-        )}
-        {...props}
-      >
+      <button ref={ref} className={combinedClassName} {...props}>
         {children}
       </button>
     );

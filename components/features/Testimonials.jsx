@@ -6,7 +6,6 @@ import { ArrowLeft, ArrowRight, Quote, User, Star } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Testimonials() {
@@ -180,7 +179,7 @@ export default function Testimonials() {
                               "w-3.5 h-3.5",
                               i < item.rating
                                 ? "fill-yellow-500 text-yellow-500"
-                                : "fill-gray-600/20 text-gray-600"
+                                : "fill-gray-600/20 text-gray-600",
                             )}
                           />
                         ))}
@@ -194,8 +193,8 @@ export default function Testimonials() {
 
                 {/* Quote */}
                 <div className="relative flex-1 flex flex-col justify-center">
-                  <Quote className="absolute -top-1 -left-1 text-purple-500/15 w-7 h-7 transform scale-x-[-1]" />
-                  <Quote className="absolute -bottom-1 right-0 text-purple-500/15 w-7 h-7 rotate-180" />
+                  <Quote className="absolute -top-1 -left-1 text-purple-500/15 w-7 h-7 transform scale-x-[-1] scale-y-[-1]" />
+                  <Quote className="absolute -bottom-1 right-0 text-purple-500/15 w-7 h-7 " />
                   <p
                     className={cn(
                       "text-sm md:text-[15px] leading-relaxed relative z-10 transition-colors duration-300 line-clamp-5",

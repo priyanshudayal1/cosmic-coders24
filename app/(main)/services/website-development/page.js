@@ -198,7 +198,10 @@ export default function WebsiteDevelopment() {
                   A seamless shopping experience with secure payment
                   integration.
                 </p>
-                <GlassButton href="#" className="w-full text-center text-sm">
+                <GlassButton
+                  href="/portfolio/website-development"
+                  className="w-full text-center text-sm"
+                >
                   View Case Study
                 </GlassButton>
               </div>
@@ -225,7 +228,10 @@ export default function WebsiteDevelopment() {
                 <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">
                   Showcasing creativity at its best with immersive interactions.
                 </p>
-                <GlassButton href="#" className="w-full text-center text-sm">
+                <GlassButton
+                  href="/portfolio/website-development"
+                  className="w-full text-center text-sm"
+                >
                   View Case Study
                 </GlassButton>
               </div>
@@ -252,7 +258,10 @@ export default function WebsiteDevelopment() {
                 <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">
                   Professional, user-centric design for enterprise businesses.
                 </p>
-                <GlassButton href="#" className="w-full text-center text-sm">
+                <GlassButton
+                  href="/portfolio/website-development"
+                  className="w-full text-center text-sm"
+                >
                   View Case Study
                 </GlassButton>
               </div>

@@ -105,7 +105,6 @@ export default function AboutContact() {
           custom={1}
           variants={fadeIn}
         >
-
           <Testimonials />
         </motion.section>
 
@@ -156,28 +155,34 @@ export default function AboutContact() {
                     <MapPin className="w-6 h-6 text-purple-400" />
                   </div>
                   <span>
-                    I 04 Guru Arjan Dev Colony, Gaurighat, Jabalpur (M.P), India,
-                    482008
+                    I 04 Guru Arjan Dev Colony, Gaurighat, Jabalpur (M.P),
+                    India, 482008
                   </span>
                 </div>
               </div>
 
               {/* Decorative Map Placeholder */}
-              <div className="w-full h-48 bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+              <a
+                href="https://maps.app.goo.gl/UbPTKT8jy3MupqWj7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full h-48 block bg-white/5 rounded-xl border border-white/10 overflow-hidden relative group cursor-pointer"
+              >
+                <div className="absolute inset-0 z-10 bg-transparent" />
                 <iframe
-                  src="https://maps.google.com/maps?q=I%2004%20Guru%20Arjan%20Dev%20Colony%20Gaurighat%20Jabalpur%20India%20482008&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1835.2680172222675!2d79.9170500149669!3d23.118365840975944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3981b3a83a450d43%3A0xe09c868473761ba9!2sCosmic%20Coder%2024%20-%20Best%20Website%20Development%20Company%20In%20Jabalpur!5e0!3m2!1sen!2sin!4v1771313389629!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{
                     border: 0,
-                    filter: "invert(90%) hue-rotate(180deg) brightness(0.9)",
+                    pointerEvents: "none",
                   }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  className="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                 ></iframe>
-              </div>
+              </a>
             </SpotlightCard>
 
             {/* Contact Form */}
@@ -280,8 +285,8 @@ export default function AboutContact() {
               </form>
             </SpotlightCard>
           </div>
-        </motion.section >
-      </main >
-    </div >
+        </motion.section>
+      </main>
+    </div>
   );
 }

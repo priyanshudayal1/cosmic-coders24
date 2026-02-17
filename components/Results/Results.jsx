@@ -87,7 +87,10 @@ const Results = () => {
         </div>
 
         <div className="flex justify-center">
-          <GlassButton className="rounded-full shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] flex items-center">
+          <GlassButton
+            href="/results/seo"
+            className="rounded-full shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] flex items-center"
+          >
             View Full Results
             <ArrowRight className="w-4 h-4 ml-2" />
           </GlassButton>

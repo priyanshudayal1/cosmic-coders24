@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 
@@ -20,48 +21,56 @@ const servicesData = [
   {
     title: "Website Development",
     icon: Monitor,
+    href: "/services/website-development",
     description:
       "Custom, high-performance websites tailored to your brand's needs. We build responsive, SEO-friendly, and scalable web solutions using the latest technologies.",
   },
   {
     title: "Software Development",
     icon: Code2,
+    href: "/services/software-development",
     description:
       "Robust and scalable software solutions to streamline your business operations. From enterprise applications to custom tools, we engineer efficiency.",
   },
   {
     title: "Social Media Marketing",
     icon: Share2,
+    href: "/services/social-media-marketing",
     description:
       "Strategic social media campaigns to boost your brand presence and engage your audience. We create compelling content that drives growth and conversion.",
   },
   {
     title: "SEO",
     icon: Search,
+    href: "/services/seo",
     description:
       "Data-driven SEO strategies to improve your search engine rankings and drive organic traffic. We optimize your digital footprint for maximum visibility.",
   },
   {
     title: "Branding & Logo Design",
     icon: PenTool,
+    href: "/services/branding-logo-design",
     description:
       "Unique and memorable brand identities that resonate with your audience. We craft logos and brand guidelines that tell your story effectively.",
   },
   {
     title: "Graphics Designing",
     icon: Palette,
+    href: "/services/graphics-design",
     description:
       "Stunning visual designs for marketing materials, social media, and more. Our creative team delivers eye-catching graphics that communicate your message.",
   },
   {
     title: "Video Editing",
     icon: Video,
+    href: "/services/video-editing",
     description:
       "Professional video editing services to transform your footage into captivating stories. Perfect for commercials, social media reels, and corporate videos.",
   },
   {
     title: "Packaging Design",
     icon: Package,
+    href: "/services/packaging-design",
     description:
       "Innovative packaging designs that stand out on the shelf. We combine aesthetics with functionality to create packaging that enhances your product's appeal.",
   },
@@ -97,30 +106,32 @@ const Services = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full"
               >
-                <SpotlightCard className="h-full bg-white/10 border-white/10 group hover:bg-white/20 transition-colors duration-300">
-                  <div className="flex flex-col h-full">
-                    {/* Icon */}
-                    <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/10 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
-                      <Icon size={32} strokeWidth={1.5} />
+                <Link href={service.href} className="block h-full">
+                  <SpotlightCard className="h-full bg-white/10 border-white/10 group hover:bg-white/20 transition-colors duration-300">
+                    <div className="flex flex-col h-full">
+                      {/* Icon */}
+                      <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/10 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
+                        <Icon size={32} strokeWidth={1.5} />
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">
+                        {service.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-gray-400 text-sm leading-relaxed mb-6 grow group-hover:text-gray-300 transition-colors duration-300">
+                        {service.description}
+                      </p>
+
+                      {/* Learn More / Action (Visual only for now) */}
+                      <div className="flex items-center text-sm font-medium text-purple-400 group-hover:text-white transition-colors duration-300 mt-auto">
+                        <span>Learn more</span>
+                        <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                      </div>
                     </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">
-                      {service.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6 grow group-hover:text-gray-300 transition-colors duration-300">
-                      {service.description}
-                    </p>
-
-                    {/* Learn More / Action (Visual only for now) */}
-                    <div className="flex items-center text-sm font-medium text-purple-400 group-hover:text-white transition-colors duration-300 mt-auto">
-                      <span>Learn more</span>
-                      <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-                    </div>
-                  </div>
-                </SpotlightCard>
+                  </SpotlightCard>
+                </Link>
               </motion.div>
             );
           })}

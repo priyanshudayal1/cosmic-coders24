@@ -13,6 +13,7 @@ import {
   Layers,
   PenTool,
 } from "lucide-react";
+import Link from "next/link";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
@@ -26,6 +27,7 @@ export default function GraphicsDesigningPortfolio() {
         "Cohesive Instagram feed templates with consistent branding and visual appeal.",
       category: "Social Media",
       icon: Smartphone,
+      link: "/about-contact",
     },
     {
       title: "Marketing Collateral",
@@ -33,6 +35,7 @@ export default function GraphicsDesigningPortfolio() {
         "Brochures, flyers, and promotional materials for product launches.",
       category: "Print Design",
       icon: FileText,
+      link: "/about-contact",
     },
     {
       title: "Infographics",
@@ -40,6 +43,7 @@ export default function GraphicsDesigningPortfolio() {
         "Data visualization and educational infographics for content marketing.",
       category: "Information Design",
       icon: BarChart3,
+      link: "/about-contact",
     },
     {
       title: "Event Graphics",
@@ -47,6 +51,7 @@ export default function GraphicsDesigningPortfolio() {
         "Conference banners, booth designs, and event promotional materials.",
       category: "Event Design",
       icon: PartyPopper,
+      link: "/about-contact",
     },
     {
       title: "Email Templates",
@@ -54,6 +59,7 @@ export default function GraphicsDesigningPortfolio() {
         "Responsive email newsletter designs with high conversion rates.",
       category: "Digital Marketing",
       icon: Mail,
+      link: "/about-contact",
     },
     {
       title: "Presentation Decks",
@@ -61,6 +67,7 @@ export default function GraphicsDesigningPortfolio() {
         "Professional pitch decks and corporate presentation templates.",
       category: "Business",
       icon: Presentation,
+      link: "/about-contact",
     },
   ];
 
@@ -152,10 +159,13 @@ export default function GraphicsDesigningPortfolio() {
                 <p className="text-sm text-gray-400 mb-4 grow group-hover:text-gray-300 transition-colors duration-300">
                   {project.description}
                 </p>
-                <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto">
+                <Link
+                  href={project.link || "#"}
+                  className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
+                >
                   <Palette className="w-4 h-4" />
                   <span className="text-sm font-medium">View Designs</span>
-                </button>
+                </Link>
               </SpotlightCard>
             ))}
           </div>

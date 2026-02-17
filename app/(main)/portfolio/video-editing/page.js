@@ -15,6 +15,7 @@ import {
   Music,
   Palette,
 } from "lucide-react";
+import Link from "next/link";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
@@ -29,6 +30,7 @@ export default function VideoEditingPortfolio() {
       duration: "2:30",
       type: "Commercial",
       icon: Clapperboard,
+      link: "/about-contact",
     },
     {
       title: "YouTube Channel Intro",
@@ -37,6 +39,7 @@ export default function VideoEditingPortfolio() {
       duration: "0:15",
       type: "Branding",
       icon: MonitorPlay,
+      link: "/about-contact",
     },
     {
       title: "Social Media Ads",
@@ -45,6 +48,7 @@ export default function VideoEditingPortfolio() {
       duration: "0:30",
       type: "Advertising",
       icon: Smartphone,
+      link: "/about-contact",
     },
     {
       title: "Event Highlight Reel",
@@ -52,6 +56,7 @@ export default function VideoEditingPortfolio() {
       duration: "5:00",
       type: "Event",
       icon: PartyPopper,
+      link: "/about-contact",
     },
   ];
 
@@ -129,10 +134,13 @@ export default function VideoEditingPortfolio() {
                 <p className="text-sm text-gray-400 mb-6 grow group-hover:text-gray-300 transition-colors duration-300">
                   {project.description}
                 </p>
-                <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto">
+                <Link
+                  href={project.link || "#"}
+                  className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
+                >
                   <Play className="w-4 h-4" />
                   <span className="text-sm font-medium">Watch Video</span>
-                </button>
+                </Link>
               </SpotlightCard>
             ))}
           </div>
