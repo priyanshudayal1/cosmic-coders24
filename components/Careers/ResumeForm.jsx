@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Upload, Send, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
 import SpotlightCard from "@/components/ui/SpotlightCard";
-import SectionHeading from "../ui/SectionHeading";
 import ConfirmationModal from "../ui/ConfirmationModal";
 
 const ResumeForm = ({ showRoleDropdown = false }) => {
@@ -20,6 +19,7 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
     "S.E.O Executives",
     "Wix Developers",
     "Shopify Developers",
+    "Sales Executives",
   ];
   const [file, setFile] = useState(null);
   const [submitted, setSubmitted] = useState(false);
