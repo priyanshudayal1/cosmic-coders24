@@ -14,6 +14,7 @@ import {
   Scissors,
   Music,
   Palette,
+  Gamepad2,
 } from "lucide-react";
 import Link from "next/link";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -27,36 +28,48 @@ export default function VideoEditingPortfolio() {
       title: "Product Launch Video",
       description:
         "Cinematic product reveal with motion graphics and dynamic transitions.",
-      duration: "2:30",
       type: "Commercial",
       icon: Clapperboard,
-      link: "/about-contact",
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxWkxJgDvSRpRW8WmpGuZt0z&si=xBs4j0PBcRBctPWM",
     },
     {
       title: "YouTube Channel Intro",
       description:
         "Branded intro sequence with custom animations and sound design.",
-      duration: "0:15",
       type: "Branding",
       icon: MonitorPlay,
-      link: "/about-contact",
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxXUl7i39mZcRH6ITwMcVE8A&si=yLl0YNgjr4aIf48S",
     },
     {
       title: "Social Media Ads",
       description:
         "High-converting short-form ads optimized for Instagram and TikTok.",
-      duration: "0:30",
       type: "Advertising",
       icon: Smartphone,
-      link: "/about-contact",
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxW6muupLYbEbswcR1sVwXvk&si=aX4t6EFiCTUWAcJ2",
     },
     {
       title: "Event Highlight Reel",
       description: "Conference recap video with interviews and b-roll footage.",
-      duration: "5:00",
       type: "Event",
       icon: PartyPopper,
-      link: "/about-contact",
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxX_J2NHUasyOJUjHt9w8g9n&si=3r6odGGAlwdv4hNA",
+    },
+    {
+      title: "Cinematic Videos",
+      description:
+        "High-impact cinematic sequences with advanced color grading and visual effects.",
+      type: "Cinematic",
+      icon: Film,
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxVL5vJw8TVPN8YmvfRFJ6XE&si=sX7axmJRQZz0iPlP",
+    },
+    {
+      title: "E-Sport Videos",
+      description:
+        "Dynamic esports highlights and tournament coverage with fast-paced editing.",
+      type: "Gaming",
+      icon: Gamepad2,
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxUrmV8-6oSN6LoNj30dH7OI&si=_WeT0UKwDTKa5Fjb",
     },
   ];
 
@@ -123,9 +136,6 @@ export default function VideoEditingPortfolio() {
                 <div className="flex gap-2 mb-3">
                   <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs border border-purple-500/20">
                     {project.type}
-                  </span>
-                  <span className="px-3 py-1 bg-white/10 text-gray-300 rounded-full text-xs border border-white/10">
-                    {project.duration}
                   </span>
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">

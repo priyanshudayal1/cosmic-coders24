@@ -12,6 +12,7 @@ import {
   Share2,
   Layers,
   PenTool,
+  Gamepad2,
 } from "lucide-react";
 import Link from "next/link";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -22,28 +23,12 @@ import GlassButton from "@/components/ui/GlassButton";
 export default function GraphicsDesigningPortfolio() {
   const projects = [
     {
-      title: "Social Media Templates",
-      description:
-        "Cohesive Instagram feed templates with consistent branding and visual appeal.",
-      category: "Social Media",
-      icon: Smartphone,
-      link: "/about-contact",
-    },
-    {
       title: "Marketing Collateral",
       description:
         "Brochures, flyers, and promotional materials for product launches.",
       category: "Print Design",
       icon: FileText,
-      link: "/about-contact",
-    },
-    {
-      title: "Infographics",
-      description:
-        "Data visualization and educational infographics for content marketing.",
-      category: "Information Design",
-      icon: BarChart3,
-      link: "/about-contact",
+      link: "https://www.behance.net/gallery/244906287/Marketing-Collateral",
     },
     {
       title: "Event Graphics",
@@ -51,23 +36,39 @@ export default function GraphicsDesigningPortfolio() {
         "Conference banners, booth designs, and event promotional materials.",
       category: "Event Design",
       icon: PartyPopper,
-      link: "/about-contact",
+      link: "https://www.behance.net/gallery/244906495/Event-Graphics",
     },
     {
-      title: "Email Templates",
+      title: "Pitch Decks",
       description:
-        "Responsive email newsletter designs with high conversion rates.",
-      category: "Digital Marketing",
-      icon: Mail,
-      link: "/about-contact",
-    },
-    {
-      title: "Presentation Decks",
-      description:
-        "Professional pitch decks and corporate presentation templates.",
-      category: "Business",
+        "Visually compelling pitch decks and presentation materials for startups and businesses.",
+      category: "Presentations",
       icon: Presentation,
-      link: "/about-contact",
+      link: "https://www.behance.net/gallery/244921521/PITCH-DECK",
+    },
+    {
+      title: "Social Media Templates",
+      description:
+        "Cohesive Instagram feed templates with consistent branding and visual appeal.",
+      category: "Social Media",
+      icon: Smartphone,
+      link: "https://www.behance.net/gallery/244431959/Social-Media-Posts",
+    },
+    {
+      title: "Infographics",
+      description:
+        "Data visualization and educational infographics for content marketing.",
+      category: "Information Design",
+      icon: BarChart3,
+      link: "https://www.behance.net/gallery/244421427/INFOGRAPHICS",
+    },
+    {
+      title: "E-Sports Banners",
+      description:
+        "Custom banners and promotional graphics for e-sports events.",
+      category: "E-Sports",
+      icon: Gamepad2,
+      link: "https://www.behance.net/gallery/244438771/E-SPORTS-BANNER",
     },
   ];
 
