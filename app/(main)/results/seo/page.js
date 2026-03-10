@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import PageHeader from "@/components/shared/PageHeader";
 
 const PDFModal = dynamic(() => import("@/components/ui/PDFModal"), {
@@ -13,6 +14,7 @@ import LeadForm from "@/components/Form/LeadForm";
 import GlassButton from "@/components/ui/GlassButton";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { Particles } from "@/components/ui/particles";
 import { TrendingUp, BarChart3, LineChart, MapPin, Store } from "lucide-react";
 
 export default function SEOResults() {
@@ -47,11 +49,39 @@ export default function SEOResults() {
   return (
     <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#0F061A] text-white">
       <main className="grow">
-        <PageHeader
-          eyebrow="SEO Results"
-          title="Proven SEO Results That Drive Growth"
-          description="See how we've helped PetSquare dominate local search with improved rankings, traffic, and leads through GMB Optimization."
-        />
+        <div className="relative">
+          {/* ── Particles & Glow backdrop for PageHeader ── */}
+          <motion.div
+            className="absolute -top-10 -bottom-10 left-1/2 -translate-x-1/2 w-[220%] max-w-[1400px] pointer-events-none overflow-hidden"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168,85,247,0.10) 0%, rgba(139,92,246,0.03) 50%, transparent 75%)",
+              }}
+            />
+            <Particles
+              className="absolute inset-0 w-full h-full"
+              quantity={80}
+              staticity={40}
+              ease={60}
+              size={0.5}
+              color="#a855f7"
+              vx={0}
+              vy={-0.05}
+            />
+          </motion.div>
+          <PageHeader
+            eyebrow="SEO Results"
+            title="Proven SEO Results That Drive Growth"
+            description="See how we've helped PetSquare dominate local search with improved rankings, traffic, and leads through GMB Optimization."
+          />
+        </div>
 
         <div className="flex justify-center">
           {/* Optional: Add a general CTA or summary stats here if needed */}
@@ -112,15 +142,42 @@ export default function SEOResults() {
             />
 
             {/* Footer Section with LeadForm */}
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
+            <div className="max-w-4xl mx-auto relative">
+              {/* ── Particles & Glow backdrop for CTA section ── */}
+              <motion.div
+                className="absolute -top-10 -bottom-10 left-1/2 -translate-x-1/2 w-[220%] max-w-[1400px] pointer-events-none overflow-hidden"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168,85,247,0.10) 0%, rgba(139,92,246,0.03) 50%, transparent 75%)",
+                  }}
+                />
+                <Particles
+                  className="absolute inset-0 w-full h-full"
+                  quantity={80}
+                  staticity={40}
+                  ease={60}
+                  size={0.5}
+                  color="#a855f7"
+                  vx={0}
+                  vy={-0.05}
+                />
+              </motion.div>
+
+              <Eyebrow text="Start Your Growth Journey" />
+              <div className="text-center mb-12 relative z-10">
                 <p className="text-xl md:text-2xl font-medium text-gray-300 italic leading-relaxed">
-                  "Our organic traffic skyrocketed within months. The ROI from
-                  SEO has been incredible."
+                  &quot;Our organic traffic skyrocketed within months. The ROI from
+                  SEO has been incredible.&quot;
                 </p>
               </div>
 
-              <Eyebrow text="Start Your Growth Journey" />
 
               <div className="bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
