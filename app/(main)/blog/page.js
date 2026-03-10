@@ -4,6 +4,7 @@ import { adminDb } from "@/config/firebaseAdminConfig";
 import { formatDate } from "@/utils/dateUtils";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import ParticleHeader from "@/components/shared/ParticleHeader";
 
 export const dynamic = "force-dynamic";
 
@@ -53,10 +54,13 @@ export default async function Blog({ searchParams }) {
   return (
     <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] bg-[#0F061A] text-white">
       <main className="flex-grow">
-        <PageHeader
-          title="Blog"
-          description="Insights, tips, and trends from the world of digital marketing, web development, and design. Stay ahead with our expert perspectives."
-        />
+        <ParticleHeader>
+          <PageHeader
+            eyebrow="Insights & Ideas"
+            title="Our Blog"
+            description="Expert perspectives on digital marketing, web development, and design — crafted to help you stay ahead of the curve."
+          />
+        </ParticleHeader>
 
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
@@ -93,8 +97,8 @@ export default async function Blog({ searchParams }) {
                         key={pageNum}
                         href={`/blog?page=${pageNum}`}
                         className={`px-4 py-2 rounded-lg transition-colors ${page === pageNum
-                            ? "bg-purple-500 text-white"
-                            : "bg-white/10 text-gray-300 hover:bg-white/20"
+                          ? "bg-purple-500 text-white"
+                          : "bg-white/10 text-gray-300 hover:bg-white/20"
                           }`}
                       >
                         {pageNum}

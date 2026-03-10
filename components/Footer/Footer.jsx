@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { Particles } from "@/components/ui/particles";
 import {
   Facebook,
   Instagram,
@@ -30,6 +32,26 @@ const Footer = () => {
         isVisible={showToast}
         onClose={() => setShowToast(false)}
       />
+      {/* ── Particles backdrop ── */}
+      <motion.div
+        className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <Particles
+          className="absolute inset-0 w-full h-full"
+          quantity={60}
+          staticity={40}
+          ease={60}
+          size={0.5}
+          color="#a855f7"
+          vx={0}
+          vy={-0.05}
+        />
+      </motion.div>
+
       {/* Glow effect */}
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[1000px] h-[300px] bg-purple-700/20 rounded-[100%] blur-[100px] pointer-events-none" />
 
