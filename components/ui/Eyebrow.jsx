@@ -22,7 +22,7 @@ const Eyebrow = ({ text, className }) => {
       <div className="h-0.5 w-24 sm:w-40 bg-linear-to-l from-purple-500 to-transparent opacity-80" />
 
       {/* Left Icon */}
-      <span className="text-purple-200 text-2xl leading-none drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] -ml-px relative -top-[1.05px]">
+      <span className="text-purple-200 text-2xl leading-none drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] -ml-px relative -top-[1.015 px]">
         ✦
       </span>
 
@@ -32,7 +32,7 @@ const Eyebrow = ({ text, className }) => {
       </span>
 
       {/* Right Icon */}
-      <span className="text-purple-200 text-2xl leading-none drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] -mr-px relative -top-[1.05px]">
+      <span className="text-purple-200 text-2xl leading-none drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] -mr-px relative -top-[1.015 px]">
         ✦
       </span>
 
