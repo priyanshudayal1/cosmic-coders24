@@ -19,6 +19,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { DEV_TOOLS } from "@/components/features/TechStack";
 
 export default function SoftwareDevelopment() {
   return (
@@ -269,6 +270,14 @@ export default function SoftwareDevelopment() {
           </SpotlightCard>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={DEV_TOOLS}
+        eyebrow="Technologies We Use"
+        title="Built With The Best Tools"
+        subtitle="We use modern technologies to build robust, scalable software solutions."
+      />
 
       {/* 6. Contact Form */}
       <section id="contact" className="py-20 px-4 sm:px-6">

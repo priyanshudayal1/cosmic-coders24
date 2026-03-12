@@ -5,6 +5,7 @@ import Portfolio from "@/components/Portfolio/Portfolio";
 import Results from "@/components/Results/Results";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import AboutTeaser from "@/components/About/AboutTeaser";
+import TechStack from "@/components/features/TechStack";
 import Testimonials from "@/components/features/Testimonials";
 import BlogSection from "@/components/Blog/BlogSection";
 import CareersSection from "@/components/Careers/CareersSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <Portfolio />
       <Results />
       <AboutTeaser />
+      <TechStack />
       <Testimonials />
       <BlogSection />
       <CareersSection />

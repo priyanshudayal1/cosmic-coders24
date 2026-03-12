@@ -17,6 +17,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { SEO_TOOLS } from "@/components/features/TechStack";
 
 export default function SEO() {
   return (
@@ -331,6 +332,14 @@ export default function SEO() {
           </SpotlightCard>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={SEO_TOOLS}
+        eyebrow="Tools We Use"
+        title="Powered By Industry-Leading SEO Tools"
+        subtitle="We leverage the best SEO platforms to analyse, optimise, and grow your rankings."
+      />
 
       {/* 6. Contact Form */}
       <section id="contact" className="py-20 px-4 sm:px-6">

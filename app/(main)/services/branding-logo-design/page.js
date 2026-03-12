@@ -18,6 +18,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function BrandingLogoDesign() {
   return (
@@ -460,6 +461,14 @@ export default function BrandingLogoDesign() {
           </div>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={DESIGN_TOOLS}
+        eyebrow="Tools We Use"
+        title="Designed With World-Class Software"
+        subtitle="We use professional design tools to craft logos and brand identities that stand the test of time."
+      />
 
       {/* Contact Form */}
       <section id="contact" className="py-20 px-4 sm:px-6 bg-white/5">

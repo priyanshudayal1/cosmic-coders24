@@ -23,6 +23,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function SocialMediaMarketing() {
   return (
@@ -271,6 +272,14 @@ export default function SocialMediaMarketing() {
           </SpotlightCard>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={DESIGN_TOOLS}
+        eyebrow="Tools We Use"
+        title="Creatives Made With Professional Tools"
+        subtitle="We design all social media creatives using industry-standard software for maximum visual impact."
+      />
 
       {/* 7. Contact Form */}
       <section id="contact" className="py-20 px-6 bg-white/5">

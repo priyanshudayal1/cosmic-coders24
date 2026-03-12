@@ -21,6 +21,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function GraphicsDesign() {
   return (
@@ -291,6 +292,14 @@ export default function GraphicsDesign() {
           </div>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={DESIGN_TOOLS}
+        eyebrow="Tools We Use"
+        title="Crafted With Professional Design Tools"
+        subtitle="We use industry-leading software to create graphics that are striking, polished, and on-brand."
+      />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 bg-white/5">

@@ -25,6 +25,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { VIDEO_TOOLS } from "@/components/features/TechStack";
 
 export default function VideoEditing() {
   return (
@@ -211,6 +212,14 @@ export default function VideoEditing() {
           </div>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={VIDEO_TOOLS}
+        eyebrow="Tools We Use"
+        title="Edited With Professional Software"
+        subtitle="We use industry-standard video editing software to produce stunning, high-quality content."
+      />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 sm:px-6">

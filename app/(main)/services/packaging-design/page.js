@@ -25,6 +25,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
+import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function PackagingDesign() {
   return (
@@ -304,6 +305,14 @@ export default function PackagingDesign() {
           </div>
         </div>
       </section>
+
+      {/* Tech Stack */}
+      <TechStack
+        items={DESIGN_TOOLS}
+        eyebrow="Tools We Use"
+        title="Packaging Designed With Precision"
+        subtitle="We use professional software to craft packaging that grabs attention and communicates your brand."
+      />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 bg-white/5">
