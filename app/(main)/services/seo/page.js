@@ -336,9 +336,10 @@ export default function SEO() {
       {/* Tech Stack */}
       <TechStack
         items={SEO_TOOLS}
+        showSingleRow={true}
         eyebrow="Tools We Use"
-        title="Powered By Industry-Leading SEO Tools"
-        subtitle="We leverage the best SEO platforms to analyse, optimise, and grow your rankings."
+        title="Data-Driven Strategy"
+        subtitle="We use industry-leading SEO tools to analyze data, track rankings, and drive growth."
       />
 
       {/* 6. Contact Form */}

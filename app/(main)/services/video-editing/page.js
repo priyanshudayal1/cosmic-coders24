@@ -216,8 +216,9 @@ export default function VideoEditing() {
       {/* Tech Stack */}
       <TechStack
         items={VIDEO_TOOLS}
-        eyebrow="Tools We Use"
-        title="Edited With Professional Software"
+        showSingleRow={true}
+        eyebrow="Tools of the Trade"
+        title="Software We Use for Video Editing"
         subtitle="We use industry-standard video editing software to produce stunning, high-quality content."
       />
 

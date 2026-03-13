@@ -18,7 +18,7 @@ import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import ContactForm from "@/components/Form/ContactForm";
-import TechStack, { DEV_TOOLS } from "@/components/features/TechStack";
+import TechStack, { WEB_DEV_TOOLS } from "@/components/features/TechStack";
 
 export default function WebsiteDevelopment() {
   return (
@@ -357,9 +357,10 @@ export default function WebsiteDevelopment() {
 
       {/* Tech Stack */}
       <TechStack
-        items={DEV_TOOLS}
-        eyebrow="Technologies We Use"
-        title="Built With The Best Tools"
+        items={WEB_DEV_TOOLS}
+        showSingleRow={true}
+        eyebrow="Our Tech Stack"
+        title="Technologies We Work With"
         subtitle="We use modern, industry-standard technologies to build fast, scalable websites."
       />
 

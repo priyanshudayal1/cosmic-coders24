@@ -465,9 +465,10 @@ export default function BrandingLogoDesign() {
       {/* Tech Stack */}
       <TechStack
         items={DESIGN_TOOLS}
+        showSingleRow={true}
         eyebrow="Tools We Use"
-        title="Designed With World-Class Software"
-        subtitle="We use professional design tools to craft logos and brand identities that stand the test of time."
+        title="Built With Professional Tools"
+        subtitle="We use industry-standard design software to ensure the highest quality results."
       />
 
       {/* Contact Form */}

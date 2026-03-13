@@ -35,21 +35,27 @@ import {
 import { VscVscode } from "react-icons/vsc";
 import { Search } from "lucide-react";
 
-export const DEV_TOOLS = [
+export const WEB_DEV_TOOLS = [
   { name: "VS Code", icon: VscVscode, color: "#007ACC" },
   { name: "GitHub", icon: SiGithub, color: "#ffffff" },
-  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
-  { name: "SQL", icon: SiMysql, color: "#4479A1" },
-  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
   { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
   { name: "React.js", icon: SiReact, color: "#61DAFB" },
-  { name: "Python", icon: SiPython, color: "#3776AB" },
   { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
   { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
   { name: "Vercel", icon: SiVercel, color: "#ffffff" },
+  { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
   { name: "Wix", icon: SiWix, color: "#0C6EFC" },
   { name: "Shopify", icon: SiShopify, color: "#96BF48" },
-  { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
+];
+
+export const SOFT_DEV_TOOLS = [
+  { name: "VS Code", icon: VscVscode, color: "#007ACC" },
+  { name: "GitHub", icon: SiGithub, color: "#ffffff" },
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "SQL", icon: SiMysql, color: "#4479A1" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
 ];
 
 export const DESIGN_TOOLS = [
@@ -71,36 +77,52 @@ export const SEO_TOOLS = [
   { name: "Google Analytics", icon: SiGoogleanalytics, color: "#E37400" },
   { name: "SEMrush", icon: SiSemrush, color: "#FF642D" },
   { name: "Search Console", icon: SiGooglesearchconsole, color: "#458CF5" },
-  { name: "Ahrefs", icon: Search, color: "#FF7A00" },
+  { name: "Ahrefs", isImage: true, src: "/ahrefs-logo.png" },
   { name: "Keyword Planner", icon: SiGoogleads, color: "#4285F4" },
 ];
 
+const UNIQUE_DEV_TOOLS = [...WEB_DEV_TOOLS, ...SOFT_DEV_TOOLS].filter(
+  (tool, index, self) => index === self.findIndex((t) => t.name === tool.name)
+);
+
 export const ALL_TOOLS = [
-  ...DEV_TOOLS,
+  ...UNIQUE_DEV_TOOLS,
   ...DESIGN_TOOLS,
   ...VIDEO_TOOLS,
   ...SEO_TOOLS,
 ];
 
-const ToolChip = ({ name, icon: Icon, color }) => (
+const ToolChip = ({ name, icon: Icon, color, isImage, src }) => (
   <div
     className={cn(
       "flex items-center gap-3 rounded-full border px-6 py-3 text-base font-semibold whitespace-nowrap select-none shrink-0",
       "border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white transition-colors cursor-default",
     )}
   >
-    <Icon size={22} style={{ color }} className="shrink-0" />
+    {isImage ? (
+      <img src={src} alt={`${name} logo`} className="shrink-0 w-7 h-7 rounded-full object-cover bg-white" />
+    ) : (
+      <Icon size={22} style={{ color }} className="shrink-0" />
+    )}
     <span>{name}</span>
   </div>
 );
 
-function TickerRow({ items, reverse = false, duration = 30 }) {
-  const doubled = [...items, ...items];
+function TickerRow({ items, reverse = false, speed = 4 }) {
+  // Ensure we have enough items to fill ultrawide screens without showing blank spaces
+  let baseItems = [...items];
+  while (baseItems.length > 0 && baseItems.length < 25) {
+    baseItems = [...baseItems, ...items];
+  }
+  const doubled = [...baseItems, ...baseItems];
+  const duration = baseItems.length * speed;
+
   return (
     <div
       className="flex gap-4 w-max"
       style={{
         animation: `${reverse ? "ticker-reverse" : "ticker"} ${duration}s linear infinite`,
+        willChange: "transform",
       }}
       onMouseEnter={(e) =>
         (e.currentTarget.style.animationPlayState = "paused")
@@ -121,14 +143,13 @@ export default function TechStack({
   eyebrow = "Our Tech Stack",
   title = "Tools We Work With",
   subtitle = "A curated set of industry-leading tools powering every project we deliver.",
+  showSingleRow = false,
 }) {
-  // If few items, show same set in both rows; otherwise split in half
-  const shouldSplit = items.length > 7;
+  // If single row is requested or few items exist, keep all in row1.
+  const shouldSplit = !showSingleRow && items.length > 7;
   const half = Math.ceil(items.length / 2);
   const row1 = shouldSplit ? items.slice(0, half) : items;
-  const row2 = shouldSplit ? items.slice(half) : items;
-  const dur1 = Math.max(12, row1.length * 2);
-  const dur2 = Math.max(12, row2.length * 2);
+  const row2 = shouldSplit ? items.slice(half) : [];
 
   return (
     <section className="w-full py-20 overflow-hidden bg-[#0F061A]">
@@ -136,14 +157,14 @@ export default function TechStack({
 
       <div className="mt-12 flex flex-col gap-5">
         {[
-          { items: row1, reverse: false, duration: dur1 },
-          { items: row2, reverse: true, duration: dur2 },
+          { items: row1, reverse: false },
+          ...(row2.length > 0 ? [{ items: row2, reverse: true }] : []),
         ].map((row, idx) => (
           <div key={idx} className="relative w-full overflow-hidden">
             <TickerRow
               items={row.items}
               reverse={row.reverse}
-              duration={row.duration}
+              speed={4}
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-linear-to-r from-[#0F061A] to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-linear-to-l from-[#0F061A] to-transparent" />

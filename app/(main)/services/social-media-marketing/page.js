@@ -273,9 +273,9 @@ export default function SocialMediaMarketing() {
         </div>
       </section>
 
-      {/* Tech Stack */}
       <TechStack
         items={DESIGN_TOOLS}
+        showSingleRow={true}
         eyebrow="Tools We Use"
         title="Creatives Made With Professional Tools"
         subtitle="We design all social media creatives using industry-standard software for maximum visual impact."

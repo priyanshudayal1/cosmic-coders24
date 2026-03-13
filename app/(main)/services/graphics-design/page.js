@@ -296,9 +296,10 @@ export default function GraphicsDesign() {
       {/* Tech Stack */}
       <TechStack
         items={DESIGN_TOOLS}
+        showSingleRow={true}
         eyebrow="Tools We Use"
-        title="Crafted With Professional Design Tools"
-        subtitle="We use industry-leading software to create graphics that are striking, polished, and on-brand."
+        title="Designed With Professional Tools"
+        subtitle="We use industry-standard software to create high-quality, scalable designs."
       />
 
       {/* Contact Section */}

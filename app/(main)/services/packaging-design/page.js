@@ -309,9 +309,10 @@ export default function PackagingDesign() {
       {/* Tech Stack */}
       <TechStack
         items={DESIGN_TOOLS}
+        showSingleRow={true}
         eyebrow="Tools We Use"
-        title="Packaging Designed With Precision"
-        subtitle="We use professional software to craft packaging that grabs attention and communicates your brand."
+        title="Designed With Professional Tools"
+        subtitle="We craft standout packaging using industry-standard design software."
       />
 
       {/* Contact Section */}
