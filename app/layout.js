@@ -31,7 +31,8 @@ export const metadata = {
     "Video Editing Services",
   ],
   icons: {
-    icon: "/assets/star-logo/star-logo-blue.png",
+    icon: "/fav.png",
+    shortcut: "/fav.png",
   },
 };
 

@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useId } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { ArrowRight, BarChart3, TrendingUp } from "lucide-react";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 import GlassButton from "../ui/GlassButton";
 
 const Results = () => {
-  const gradientId = useId();
+  const gradientId = "seoBarGradient";
   const seoGrowthData = [42, 55, 63, 78, 91, 108];
 
   return (
@@ -29,10 +28,6 @@ const Results = () => {
                 <span className="text-sm md:text-base font-semibold">
                   Organic Traffic Growth
                 </span>
-              </div>
-              <div className="flex items-center gap-1 text-emerald-300 text-xs md:text-sm font-semibold">
-                <TrendingUp className="w-4 h-4" />
-                +157% in 6 months
               </div>
             </div>
 
@@ -93,26 +88,24 @@ const Results = () => {
 
                   return (
                     <g key={`${months[index]}-${value}`}>
-                      <motion.rect
+                      <rect
                         x={x}
-                        y={yBase}
+                        y={yBase - barHeight}
                         width={barWidth}
-                        height="0"
+                        height={barHeight}
                         rx="6"
                         fill={`url(#${gradientId})`}
-                        initial={{ height: 0, y: yBase, opacity: 0 }}
-                        whileInView={{
-                          height: barHeight,
-                          y: yBase - barHeight,
-                          opacity: 1,
-                        }}
-                        viewport={{ once: true, amount: 0.7 }}
-                        transition={{
-                          duration: 0.55,
-                          delay: index * 0.12,
-                          ease: "easeOut",
-                        }}
+                        opacity="0.96"
                       />
+                      <text
+                        x={x + barWidth / 2}
+                        y={yBase - barHeight - 8}
+                        fill="rgba(255,255,255,0.78)"
+                        fontSize="10"
+                        textAnchor="middle"
+                      >
+                        {value}k
+                      </text>
                       <text
                         x={x + barWidth / 2}
                         y="160"
