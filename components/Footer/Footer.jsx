@@ -59,19 +59,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center">
               <Image
-                src="/assets/main-logo/Blue-Typo.png"
+                src="/assets/main-logo/White-Typo-with-2.png"
                 alt="Cosmic Coders"
-                width={180}
-                height={40}
-              />
-              <Image
-                src="/assets/main-logo/Blue-24.png"
-                alt="24"
-                width={36}
-                height={36}
-                className="rounded"
+                width={200}
+                height={48}
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
@@ -170,7 +164,7 @@ const Footer = () => {
                   href="/services/seo"
                   className="hover:text-purple-400 cursor-pointer transition-colors"
                 >
-                  SEO
+                  Search Engine Optimization (SEO)
                 </Link>
               </li>
               <li>

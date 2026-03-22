@@ -16,43 +16,43 @@ import SectionHeading from "../ui/SectionHeading";
 
 const portfolioItems = [
   {
-    title: "E-commerce Website",
-    category: "Web Development",
+    title: "Website Development",
+    category: "Website Development",
     icon: ShoppingCart,
     imageColor: "from-blue-500/20 to-purple-500/20",
     spotlightColor: "rgba(59, 130, 246, 0.2)",
     description:
-      "A full-featured online store with secure payment integration and real-time inventory management.",
+      "High-performance websites and E-Commerce solutions built with responsive design, SEO-ready structure, and seamless user experience for better engagement and growth.",
     href: "/portfolio/website-development",
   },
   {
-    title: "Tech Brand Identity",
+    title: "Branding",
     category: "Branding",
     icon: Zap,
     imageColor: "from-orange-500/20 to-red-500/20",
     spotlightColor: "rgba(249, 115, 22, 0.2)",
     description:
-      "Complete brand overhaul for a tech startup, including logo design, color palette, and typography guidelines.",
+      "Complete brand launch solutions for new or growing businesses, including logo design, color palette, and typography guidelines.",
     href: "/portfolio/branding-logo-design",
   },
   {
-    title: "Digital Art Collection",
-    category: "Graphics",
+    title: "Graphic Design",
+    category: "Graphic Design",
     icon: Palette,
     imageColor: "from-pink-500/20 to-rose-500/20",
     spotlightColor: "rgba(236, 72, 153, 0.2)",
     description:
-      "A series of abstract digital artworks created for a high-profile NFT collection launch.",
+      "Creative digital artworks designed for a premium project, focused on delivering visually appealing and impactful designs.",
     href: "/portfolio/graphics-designing",
   },
   {
-    title: "Corporate promo",
+    title: "Video Editing",
     category: "Video Editing",
     icon: Video,
     imageColor: "from-indigo-500/20 to-cyan-500/20",
     spotlightColor: "rgba(99, 102, 241, 0.2)",
     description:
-      "High-energy promotional video showcasing company culture and values for recruitment campaigns.",
+      "High-quality video edits created for a premium project, focused on delivering engaging visuals and a smooth, impactful viewing experience.",
     href: "/portfolio/video-editing",
   },
 ];
@@ -60,7 +60,7 @@ const portfolioItems = [
 const Portfolio = () => {
   return (
     <section className="w-full py-10">
-      <div className="max-w-[90rem] mx-auto">
+      <div className="max-w-360 mx-auto">
         <SectionHeading
           eyebrow="Portfolio"
           title="Our Work"
@@ -101,7 +101,7 @@ const Portfolio = () => {
                     </p>
 
                     <div className="flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors mt-auto">
-                      View Case Study
+                      View Project
                     </div>
                   </div>
                 </SpotlightCard>

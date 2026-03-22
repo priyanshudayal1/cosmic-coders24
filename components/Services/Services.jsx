@@ -40,7 +40,7 @@ const servicesData = [
       "Strategic social media campaigns to boost your brand presence and engage your audience. We create compelling content that drives growth and conversion.",
   },
   {
-    title: "SEO",
+    title: "Search Engine Optimization (SEO)",
     icon: Search,
     href: "/services/seo",
     description:
@@ -58,7 +58,7 @@ const servicesData = [
     icon: Palette,
     href: "/services/graphics-design",
     description:
-      "Stunning visual designs for marketing materials, social media, and more. Our creative team delivers eye-catching graphics that communicate your message.",
+      "Stunning visual designs for digital marketing, social media, and more. Our creative team delivers eye-catching graphics that communicate your message.",
   },
   {
     title: "Video Editing",

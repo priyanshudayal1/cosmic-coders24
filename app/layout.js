@@ -17,6 +17,19 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Cosmic Coders 24",
   description: "Cosmic Coders 24",
+  keywords: [
+    "Google Business Profile Optimization Services",
+    "GMB Optimization Services",
+    "Local SEO Services",
+    "Website Development Services",
+    "Ecommerce Website Development",
+    "Website SEO Services",
+    "SEO Services",
+    "Branding Services",
+    "UI UX Design Services",
+    "Graphic and Logo Design Services",
+    "Video Editing Services",
+  ],
   icons: {
     icon: "/assets/star-logo/star-logo-blue.png",
   },

@@ -52,7 +52,9 @@ const BlogSection = () => {
         <SectionHeading
           eyebrow="Our Blog"
           title="Latest Insights"
-          subtitle="Expert articles, industry trends, and tips to help you stay ahead in the digital landscape."
+          subtitle="Practical insights, industry trends, and expert tips to help you grow, adapt, and stay ahead in the digital space. 
+Keep view all - in place of view all posts in button
+"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">

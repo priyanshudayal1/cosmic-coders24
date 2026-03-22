@@ -46,7 +46,7 @@ const Hero = () => {
         >
           We Build Digital Experiences
           <br />
-          That Glow in the Dark
+          That Drive Visibility & Real Growth
         </motion.h1>
 
         {/* Subtext */}
@@ -56,9 +56,10 @@ const Hero = () => {
           transition={{ duration: 0.7, delay: 0.6 }}
           className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
         >
-          Websites, branding, SEO, and performance-driven marketing—crafted to
-          help modern businesses establish credibility, attract attention, and
-          convert consistently.
+          From Google Business Profile optimization to complete local SEO,
+          website development, and branding — we help businesses rank higher,
+          attract quality leads, and grow consistently across search and digital
+          platforms.
         </motion.p>
 
         {/* CTAs */}
