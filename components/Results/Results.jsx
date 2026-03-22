@@ -26,7 +26,9 @@ const Results = () => {
             <div className="w-full flex justify-between items-start mb-5">
               <div className="flex items-center gap-2 text-white/90">
                 <BarChart3 className="w-5 h-5 text-indigo-300" />
-                <span className="text-sm md:text-base font-semibold">Organic Traffic Growth</span>
+                <span className="text-sm md:text-base font-semibold">
+                  Organic Traffic Growth
+                </span>
               </div>
               <div className="flex items-center gap-1 text-emerald-300 text-xs md:text-sm font-semibold">
                 <TrendingUp className="w-4 h-4" />
@@ -44,7 +46,11 @@ const Results = () => {
                 <defs>
                   <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#a78bfa" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0.55" />
+                    <stop
+                      offset="100%"
+                      stopColor="#6366f1"
+                      stopOpacity="0.55"
+                    />
                   </linearGradient>
                 </defs>
 
@@ -95,9 +101,17 @@ const Results = () => {
                         rx="6"
                         fill={`url(#${gradientId})`}
                         initial={{ height: 0, y: yBase, opacity: 0 }}
-                        whileInView={{ height: barHeight, y: yBase - barHeight, opacity: 1 }}
+                        whileInView={{
+                          height: barHeight,
+                          y: yBase - barHeight,
+                          opacity: 1,
+                        }}
                         viewport={{ once: true, amount: 0.7 }}
-                        transition={{ duration: 0.55, delay: index * 0.12, ease: "easeOut" }}
+                        transition={{
+                          duration: 0.55,
+                          delay: index * 0.12,
+                          ease: "easeOut",
+                        }}
                       />
                       <text
                         x={x + barWidth / 2}
