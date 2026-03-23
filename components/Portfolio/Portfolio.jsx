@@ -3,14 +3,7 @@
 import Link from "next/link";
 
 import React from "react";
-import {
-  ShoppingCart,
-  Smartphone,
-  Palette,
-  Zap,
-  Video,
-  Package,
-} from "lucide-react";
+import Image from "next/image";
 import SpotlightCard from "@/components/ui/SpotlightCard"; // Updated import
 import SectionHeading from "../ui/SectionHeading";
 
@@ -18,7 +11,7 @@ const portfolioItems = [
   {
     title: "Website Development",
     category: "Website Development",
-    icon: ShoppingCart,
+    imageSrc: "/assets/Website Dashboard Line Icon (1).jpg.jpeg",
     imageColor: "from-blue-500/20 to-purple-500/20",
     spotlightColor: "rgba(59, 130, 246, 0.2)",
     description:
@@ -28,7 +21,7 @@ const portfolioItems = [
   {
     title: "Branding",
     category: "Branding",
-    icon: Zap,
+    imageSrc: "/assets/Branding free icons designed by Freepik.jpg.jpeg",
     imageColor: "from-orange-500/20 to-red-500/20",
     spotlightColor: "rgba(249, 115, 22, 0.2)",
     description:
@@ -38,7 +31,7 @@ const portfolioItems = [
   {
     title: "Graphic Design",
     category: "Graphic Design",
-    icon: Palette,
+    imageSrc: "/assets/graphic design icon (2).jpg.jpeg",
     imageColor: "from-pink-500/20 to-rose-500/20",
     spotlightColor: "rgba(236, 72, 153, 0.2)",
     description:
@@ -48,7 +41,7 @@ const portfolioItems = [
   {
     title: "Video Editing",
     category: "Video Editing",
-    icon: Video,
+    imageSrc: "/assets/editing line icon.jpg.jpeg",
     imageColor: "from-indigo-500/20 to-cyan-500/20",
     spotlightColor: "rgba(99, 102, 241, 0.2)",
     description:
@@ -69,23 +62,26 @@ const Portfolio = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
           {portfolioItems.map((item, index) => {
-            const Icon = item.icon;
             return (
               <Link key={index} href={item.href} className="block h-full group">
                 <SpotlightCard
                   className="p-0 h-full flex flex-col bg-white/10 border-white/10 hover:bg-white/20 transition-colors duration-300"
                   spotlightColor={item.spotlightColor}
                 >
-                  {/* Image Placeholder Area */}
+                  {/* Image Area */}
                   <div
-                    className={`h-40 w-full bg-linear-to-br ${item.imageColor} relative overflow-hidden`}
+                    className={`h-64 w-full bg-linear-to-br ${item.imageColor} relative overflow-hidden flex items-center justify-center`}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon className="w-16 h-16 text-white/20 group-hover:text-white/40 group-hover:scale-110 transition-all duration-300" />
-                    </div>
+                    <Image
+                      src={item.imageSrc}
+                      alt={item.title}
+                      width={160}
+                      height={160}
+                      className="w-40 h-40 object-contain group-hover:scale-110 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                    />
 
                     {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60 pointer-events-none" />
                   </div>
 
                   {/* Content Area */}

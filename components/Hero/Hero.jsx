@@ -44,7 +44,9 @@ const Hero = () => {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
         >
-          We Build Digital Experiences
+          <span className="whitespace-nowrap">
+            We Build Digital Experiences
+          </span>
           <br />
           That Drive Visibility & Real Growth
         </motion.h1>

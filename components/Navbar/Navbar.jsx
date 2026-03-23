@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import NavItem from "./NavItem";
 import GlassButton from "../ui/GlassButton";
 import { usePathname } from "next/navigation";
@@ -43,21 +43,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+      className={`fixed top-4 left-1/2 z-50 w-[calc(100%-1rem)] max-w-7xl -translate-x-1/2 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 sm:w-[95%] ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
         }`}
     >
-      <div className="px-6 py-3 flex justify-between items-center">
+      <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center"
+          className="min-w-0 flex-1"
         >
           <Image
             src="/assets/main-logo/White-Typo-with-2.png"
             alt="Cosmic Coders"
             width={200}
             height={48}
-            className="h-12 w-auto"
+            className="h-10 w-auto max-w-[150px] sm:h-12 sm:max-w-[200px]"
             priority
           />
         </Link>
@@ -131,10 +131,11 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="lg:hidden">
+        <div className="shrink-0 lg:hidden">
           <button
             onClick={toggleMenu}
-            className="text-white hover:text-gray-300 transition-colors focus:outline-none"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 hover:text-gray-300 focus:outline-none"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -143,7 +144,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full mt-2 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col gap-4">
+        <div className="absolute top-full left-0 mt-2 flex w-full max-w-full flex-col gap-4 overflow-hidden rounded-2xl border border-white/10 bg-black/80 p-4 backdrop-blur-xl lg:hidden">
           <NavItem
             title="Services"
             mobile

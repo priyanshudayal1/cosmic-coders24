@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Dropdown from "./Dropdown";
 
 const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
@@ -32,7 +32,7 @@ const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
           <Link
             href={href}
             onClick={handleLinkClick}
-            className="flex items-center text-white/80 hover:text-white py-2 w-full transition-colors"
+            className="w-full py-2 text-white/80 transition-colors hover:text-white break-words"
           >
             {title}
           </Link>
@@ -44,13 +44,13 @@ const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
       <div className="flex flex-col border-b border-white/10 last:border-0 pb-2 last:pb-0">
         <button
           onClick={toggleDropdown}
-          className="flex items-center justify-between text-white/80 hover:text-white py-2 w-full text-left transition-colors"
+          className="flex w-full items-start justify-between gap-3 py-2 text-left text-white/80 transition-colors hover:text-white"
         >
-          <span className="flex-1">{title}</span>
+          <span className="flex-1 break-words">{title}</span>
           {dropdownItems && (
             <ChevronDown
               size={16}
-              className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+              className={`mt-1 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
             />
           )}
         </button>
@@ -62,7 +62,7 @@ const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
               <Link
                 key={index}
                 href={item.href}
-                className="text-sm text-white/60 hover:text-white py-1 transition-colors block"
+                className="block break-words py-1 text-sm text-white/60 transition-colors hover:text-white"
                 onClick={handleLinkClick}
               >
                 {item.label}
