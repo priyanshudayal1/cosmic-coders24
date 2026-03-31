@@ -11,7 +11,7 @@ const portfolioItems = [
   {
     title: "Website Development",
     category: "Website Development",
-    imageSrc: "/assets/Website Dashboard Line Icon (1).jpg.jpeg",
+    imageSrc: "/assets/Website_Dashboard.png",
     imageColor: "from-blue-500/20 to-purple-500/20",
     spotlightColor: "rgba(59, 130, 246, 0.2)",
     description:
@@ -21,7 +21,7 @@ const portfolioItems = [
   {
     title: "Branding",
     category: "Branding",
-    imageSrc: "/assets/Branding free icons designed by Freepik.jpg.jpeg",
+    imageSrc: "/assets/Branding.png",
     imageColor: "from-orange-500/20 to-red-500/20",
     spotlightColor: "rgba(249, 115, 22, 0.2)",
     description:
@@ -31,7 +31,7 @@ const portfolioItems = [
   {
     title: "Graphic Design",
     category: "Graphic Design",
-    imageSrc: "/assets/graphic design icon (2).jpg.jpeg",
+    imageSrc: "/assets/Graphic_Design.png",
     imageColor: "from-pink-500/20 to-rose-500/20",
     spotlightColor: "rgba(236, 72, 153, 0.2)",
     description:
@@ -41,7 +41,7 @@ const portfolioItems = [
   {
     title: "Video Editing",
     category: "Video Editing",
-    imageSrc: "/assets/editing line icon.jpg.jpeg",
+    imageSrc: "/assets/Video_Editing.png",
     imageColor: "from-indigo-500/20 to-cyan-500/20",
     spotlightColor: "rgba(99, 102, 241, 0.2)",
     description:
