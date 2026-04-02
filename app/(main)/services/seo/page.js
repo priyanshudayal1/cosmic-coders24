@@ -284,9 +284,9 @@ export default function SEO() {
 
             <div className="mt-12 flex justify-center">
               {/* Bar Chart Illustration */}
-              <div className="bg-white/5 p-8 rounded-3xl border border-white/10 max-w-2xl w-full relative overflow-hidden backdrop-blur-sm">
+              <div className="bg-white/5 p-5 md:p-8 rounded-3xl border border-white/10 max-w-sm md:max-w-2xl w-full mx-auto relative overflow-hidden backdrop-blur-sm aspect-4/3 md:aspect-auto">
                 <div className="absolute inset-0 bg-linear-to-b from-purple-500/5 to-transparent pointer-events-none" />
-                <div className="flex items-end justify-between h-64 px-4 md:px-12 gap-4 md:gap-8">
+                <div className="flex items-end justify-between h-[65%] md:h-64 px-2 sm:px-4 md:px-12 gap-3 sm:gap-4 md:gap-8 mt-2 md:mt-0">
                   {/* Bar 1 */}
                   <div className="w-full bg-white/5 rounded-t-lg h-[20%] relative group border-t border-x border-white/5">
                     <div className="absolute bottom-0 w-full bg-white/10 rounded-t-lg h-[60%] group-hover:h-[80%] transition-all duration-500 ease-out"></div>
@@ -308,12 +308,12 @@ export default function SEO() {
                     <div className="absolute bottom-0 w-full bg-[#a855f7] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-300 shadow-[0_0_30px_rgba(168,85,247,0.6)]"></div>
                   </div>
                 </div>
-                <div className="mt-6 flex justify-between px-4 md:px-12 text-[10px] sm:text-xs font-medium text-purple-200/70 font-mono tracking-wider">
-                  <span>MONTH 1</span>
-                  <span>MONTH 2</span>
-                  <span>MONTH 3</span>
-                  <span>MONTH 4</span>
-                  <span>MONTH 5</span>
+                <div className="mt-6 flex justify-between px-2 sm:px-4 md:px-12 text-[10px] sm:text-xs font-medium text-purple-200/70 font-mono tracking-wider">
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>1</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>2</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>3</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>4</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>5</span>
                 </div>
               </div>
             </div>
