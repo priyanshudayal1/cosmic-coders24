@@ -12,7 +12,7 @@ const Card = ({ children, className, index = 0, ...props }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className={cn(
-        "group relative p-8 rounded-3xl bg-white/10 border border-white/10 overflow-hidden hover:bg-white/20 transition-colors duration-300",
+        "group relative p-6 rounded-3xl bg-white/10 border border-white/10 overflow-hidden hover:bg-white/20 transition-colors duration-300",
         className,
       )}
       {...props}

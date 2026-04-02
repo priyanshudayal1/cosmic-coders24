@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import React from "react";
 import Image from "next/image";
-import SpotlightCard from "@/components/ui/SpotlightCard"; // Updated import
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "../ui/SectionHeading";
 
 const portfolioItems = [
@@ -70,14 +70,14 @@ const Portfolio = () => {
                 >
                   {/* Image Area */}
                   <div
-                    className={`h-64 w-full bg-linear-to-br ${item.imageColor} relative overflow-hidden flex items-center justify-center`}
+                    className={`h-48 w-full bg-linear-to-br ${item.imageColor} relative overflow-hidden flex items-center justify-center`}
                   >
                     <Image
                       src={item.imageSrc}
                       alt={item.title}
                       width={160}
                       height={160}
-                      className="w-40 h-40 object-contain group-hover:scale-110 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                      className="w-32 h-32 object-contain group-hover:scale-110 transition-all duration-300 opacity-80 group-hover:opacity-100"
                     />
 
                     {/* Overlay Gradient */}
@@ -85,11 +85,11 @@ const Portfolio = () => {
                   </div>
 
                   {/* Content Area */}
-                  <div className="p-6 flex flex-col grow">
+                  <div className="p-5 flex flex-col grow">
                     <span className="text-xs font-medium text-purple-400 uppercase tracking-wider mb-2">
                       {item.category}
                     </span>
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">

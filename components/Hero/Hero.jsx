@@ -10,7 +10,7 @@ const ENABLED_WAVES = ["top", "middle", "bottom"];
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-screen flex items-centre justify-center overflow-hidden bg-[#0F061A] text-white pb-24 pt-32">
+    <div className="relative w-full min-h-svh flex flex-col items-center justify-center overflow-hidden bg-[#0F061A] text-white">
       {/* FloatingLines Background */}
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
         <div style={{ width: "100%", height: "100vh", position: "relative" }}>
@@ -36,19 +36,21 @@ const Hero = () => {
       {/* Additional Purple Accent */}
       <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-[40%] h-[40%] bg-violet-500/30 blur-[60px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto space-y-8">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto space-y-8">
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
         >
-          <span className="whitespace-nowrap">
+          <span className="block sm:inline sm:whitespace-nowrap text-balance sm:text-wrap">
             We Build Digital Experiences
           </span>
-          <br />
-          That Drive Visibility & Real Growth
+          <br className="hidden sm:block" />
+          <span className="text-balance sm:text-wrap">
+            That Drive Visibility & Real Growth
+          </span>
         </motion.h1>
 
         {/* Subtext */}
@@ -56,7 +58,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
+          className="text-base md:text-lg text-gray-400 max-w-2xl leading-relaxed"
         >
           From Google Business Profile optimization to complete local SEO,
           website development, and branding — we help businesses rank higher,
