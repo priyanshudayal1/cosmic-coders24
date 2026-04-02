@@ -14,6 +14,9 @@ export default function Testimonials() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
   React.useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -46,6 +49,25 @@ export default function Testimonials() {
 
   const goToSlide = (index) => {
     setActiveIndex(index);
+  };
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      next();
+    } else if (distance < -minSwipeDistance) {
+      prev();
+    }
   };
 
   const getCardStyle = (index) => {
@@ -110,7 +132,12 @@ export default function Testimonials() {
         subtitle="Real feedback from teams we have helped grow, launch, and scale."
       />
       {/* Carousel Container */}
-      <div className="relative w-full max-w-7xl h-80 md:h-[22rem] flex items-center justify-center">
+      <div
+        className="relative w-full max-w-7xl h-80 md:h-[22rem] flex items-center justify-center"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <AnimatePresence initial={false} mode="popLayout">
           {reviews.map((item, index) => {
             const style = getCardStyle(index);
@@ -131,9 +158,9 @@ export default function Testimonials() {
                   ease: [0.32, 0.72, 0, 1],
                 }}
                 className={cn(
-                  "absolute top-1/2 left-1/2 w-[75%] sm:w-[380px] md:w-[420px] lg:w-[440px]",
-                  "p-6 md:p-7 rounded-2xl border",
-                  "flex flex-col justify-between h-64 md:h-72",
+                  "absolute top-1/2 left-1/2 w-[92%] sm:w-[380px] md:w-[400px]",
+                  "p-5 md:p-6 rounded-2xl border",
+                  "flex flex-col justify-between h-64",
                   "backdrop-blur-xl transition-colors duration-500",
                   style.diff === 0
                     ? "bg-white/10 border-white/20 shadow-[0_8px_32px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
@@ -146,8 +173,8 @@ export default function Testimonials() {
                 }}
               >
                 {/* Top: Avatar + Name */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-400 to-blue-500 p-[2px] shrink-0">
+                <div className="flex items-start md:items-center gap-3 md:gap-4 mb-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-tr from-purple-400 to-blue-500 p-[2px] shrink-0 mt-1 md:mt-0">
                     <div className="w-full h-full rounded-full bg-[#0f0e13] overflow-hidden relative">
                       {item.image ? (
                         <Image
@@ -158,25 +185,25 @@ export default function Testimonials() {
                         />
                       ) : (
                         <div className="w-full h-full bg-white/[0.04] flex items-center justify-center">
-                          <User className="w-6 h-6 text-white/40" />
+                          <User className="w-5 h-5 md:w-6 md:h-6 text-white/40" />
                         </div>
                       )}
                     </div>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-white font-semibold text-base truncate">
+                    <h3 className="text-white font-semibold text-sm md:text-base truncate">
                       {item.name}
                     </h3>
                     <p className="text-xs text-gray-400/80 truncate font-medium">
                       {item.role}
                     </p>
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1">
                       <div className="flex gap-0.5 items-center">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
                             className={cn(
-                              "w-3.5 h-3.5",
+                              "w-3 md:w-3.5 h-3 md:h-3.5",
                               i < item.rating
                                 ? "fill-yellow-500 text-yellow-500"
                                 : "fill-gray-600/20 text-gray-600",
@@ -184,7 +211,7 @@ export default function Testimonials() {
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-gray-400 font-medium ml-1.5 pt-0.5">
+                      <span className="text-[10px] md:text-xs text-gray-400 font-medium pt-0.5 truncate">
                         {item.relative_time_description}
                       </span>
                     </div>
