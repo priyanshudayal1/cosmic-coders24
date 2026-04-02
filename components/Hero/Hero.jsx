@@ -10,8 +10,7 @@ const ENABLED_WAVES = ["top", "middle", "bottom"];
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-svh flex flex-col items-center justify-center overflow-hidden bg-[#0F061A] text-white">
-      {/* FloatingLines Background */}
+    <div className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#0F061A] text-white pt-28">
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
         <div style={{ width: "100%", height: "100vh", position: "relative" }}>
           <FloatingLines

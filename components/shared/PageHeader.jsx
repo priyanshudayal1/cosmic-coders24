@@ -5,7 +5,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 
 const PageHeader = ({ title, description, eyebrow }) => {
   return (
-    <div className="w-full min-h-[40vh] flex flex-col items-center justify-center text-center px-4">
+    <div className="w-full min-h-[40vh] flex flex-col items-center justify-center text-center px-4 pt-32 pb-10">
       {eyebrow && <Eyebrow text={eyebrow} />}
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-purple-400 mb-6">
         {title}
