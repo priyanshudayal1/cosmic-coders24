@@ -28,7 +28,7 @@ const BlogCard = ({ post }) => {
         </div>
 
         {/* Content */}
-        <div className="p-6 flex flex-col flex-1">
+        <div className="p-5 flex flex-col flex-1">
           <div className="flex flex-col gap-1.5 text-xs text-gray-400 mb-4">
             <div className="flex items-center gap-1.5 min-w-0">
               <User className="w-3.5 h-3.5 text-purple-400 shrink-0" />
@@ -40,7 +40,7 @@ const BlogCard = ({ post }) => {
             </div>
           </div>
 
-          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-purple-300 transition-colors">
+          <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-purple-300 transition-colors">
             {post.title}
           </h3>
 

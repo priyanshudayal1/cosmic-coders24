@@ -10,7 +10,7 @@ export default function GlassCard({ className, children, ...props }) {
   return (
     <div
       className={cn(
-        "group relative p-6 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-white/20",
+        "group relative p-5 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-white/20",
         className,
       )}
       {...props}
