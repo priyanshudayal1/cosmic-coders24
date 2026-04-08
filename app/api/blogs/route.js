@@ -16,6 +16,17 @@ const isAspectRatio16By9 = (width, height) => {
   return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
 };
 
+const parseTags = (tagsValue) => {
+  if (!tagsValue || typeof tagsValue !== "string") {
+    return [];
+  }
+
+  return [...new Set(tagsValue
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean))];
+};
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req) {
@@ -62,7 +73,8 @@ export async function GET(req) {
       if (indexError.code === 9) {
         console.warn(
           "Composite index not found, falling back to unordered query. " +
-          "Please create the index: " + (indexError.details || "")
+            "Please create the index: " +
+            (indexError.details || ""),
         );
         let fallbackQuery = blogsRef;
         if (my === "true" && user) {
@@ -116,6 +128,7 @@ export async function POST(req) {
     const excerpt = formData.get("excerpt");
     const author = formData.get("author");
     const category = formData.get("category");
+    const tags = parseTags(formData.get("tags"));
     const imageFile = formData.get("image");
 
     if (!title || !content) {
@@ -158,6 +171,7 @@ export async function POST(req) {
       excerpt,
       author: author || user.email || "Admin",
       category: category || "Technology",
+      tags,
       image: imageUrl,
       authorId: user.id || "admin",
       authorEmail: user.email || "admin",

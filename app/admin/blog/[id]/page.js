@@ -51,7 +51,7 @@ export default function EditBlogPage({ params }) {
     type: "confirm",
     title: "",
     message: "",
-    onConfirm: () => { },
+    onConfirm: () => {},
     confirmText: "Close",
   });
 
@@ -63,6 +63,7 @@ export default function EditBlogPage({ params }) {
     excerpt: "",
     author: "",
     category: "Technology", // Default or fetch
+    tags: "",
     createdAt: new Date().toISOString(), // for preview
   });
 
@@ -107,6 +108,7 @@ export default function EditBlogPage({ params }) {
           excerpt: data.excerpt || "",
           author: data.author || data.authorEmail || "Admin",
           category: data.category || "Technology",
+          tags: Array.isArray(data.tags) ? data.tags.join(", ") : "",
           createdAt: data.createdAt,
         });
       } else {
@@ -174,6 +176,7 @@ export default function EditBlogPage({ params }) {
     data.append("excerpt", formData.excerpt);
     data.append("author", formData.author);
     data.append("category", formData.category);
+    data.append("tags", formData.tags);
 
     // Only append image if it's a File object (new upload)
     // If it's a string, it means we kept the old URL, backend handles it if we don't send "image"
@@ -348,6 +351,22 @@ export default function EditBlogPage({ params }) {
                     className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="text-sm text-zinc-400 mb-2 block">Tags</label>
+                <input
+                  type="text"
+                  value={formData.tags}
+                  onChange={(e) =>
+                    setFormData({ ...formData, tags: e.target.value })
+                  }
+                  placeholder="seo, web development, marketing"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
+                />
+                <p className="text-xs text-zinc-500 mt-2">
+                  Use comma-separated tags for SEO metadata.
+                </p>
               </div>
 
               <div>

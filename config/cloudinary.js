@@ -63,13 +63,12 @@ export const deleteImage = async (imageUrl) => {
  */
 export const uploadPDF = async (buffer, folder = "resumes") => {
   return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload_stream(
-      { resource_type: "raw", folder },
-      (error, result) => {
+    cloudinary.uploader
+      .upload_stream({ resource_type: "raw", folder }, (error, result) => {
         if (error) reject(error);
         else resolve(result.secure_url);
-      }
-    ).end(buffer);
+      })
+      .end(buffer);
   });
 };
 

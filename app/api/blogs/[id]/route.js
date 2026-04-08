@@ -16,6 +16,17 @@ const isAspectRatio16By9 = (width, height) => {
   return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
 };
 
+const parseTags = (tagsValue) => {
+  if (!tagsValue || typeof tagsValue !== "string") {
+    return [];
+  }
+
+  return [...new Set(tagsValue
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean))];
+};
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req, { params }) {
@@ -83,6 +94,7 @@ export async function PUT(req, { params }) {
     const excerpt = formData.get("excerpt");
     const author = formData.get("author");
     const category = formData.get("category");
+    const tags = formData.get("tags");
     const imageFile = formData.get("image");
 
     const updateData = {
@@ -94,6 +106,7 @@ export async function PUT(req, { params }) {
     if (excerpt !== null) updateData.excerpt = excerpt;
     if (author) updateData.author = author;
     if (category) updateData.category = category;
+    if (tags !== null) updateData.tags = parseTags(tags);
 
     if (imageFile && typeof imageFile !== "string") {
       // Convert file to base64 or buffer

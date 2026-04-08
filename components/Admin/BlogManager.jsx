@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Edit, Trash2, Save, Image as ImageIcon } from "lucide-react";
 import AdminModal from "@/components/ui/AdminModal";
@@ -49,6 +49,7 @@ const BlogManager = ({ user }) => {
     excerpt: "",
     author: "",
     category: "",
+    tags: "",
     image: null,
   });
 
@@ -90,6 +91,7 @@ const BlogManager = ({ user }) => {
     data.append("excerpt", formData.excerpt);
     data.append("author", formData.author || user?.email || "Admin");
     data.append("category", formData.category);
+    data.append("tags", formData.tags);
     if (formData.image) {
       data.append("image", formData.image);
     }
@@ -211,6 +213,22 @@ const BlogManager = ({ user }) => {
                   required
                 />
               </div>
+            </div>
+
+            <div>
+              <label className="text-sm text-zinc-400 mb-2 block">Tags</label>
+              <input
+                type="text"
+                value={formData.tags}
+                onChange={(e) =>
+                  setFormData({ ...formData, tags: e.target.value })
+                }
+                placeholder="seo, web development, marketing"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
+              />
+              <p className="text-xs text-zinc-500 mt-2">
+                Use comma-separated tags for SEO metadata.
+              </p>
             </div>
 
             <div>
@@ -365,7 +383,9 @@ const BlogManager = ({ user }) => {
                     </h3>
                     <p className="text-zinc-400 text-sm mb-2">{blog.excerpt}</p>
                     <div className="flex gap-4 text-sm text-zinc-500">
-                      <span>By {blog.author || blog.authorEmail || "Unknown"}</span>
+                      <span>
+                        By {blog.author || blog.authorEmail || "Unknown"}
+                      </span>
                       <span>•</span>
                       <span>{blog.category || "Uncategorized"}</span>
                       <span>•</span>
