@@ -21,10 +21,14 @@ const parseTags = (tagsValue) => {
     return [];
   }
 
-  return [...new Set(tagsValue
-    .split(",")
-    .map((tag) => tag.trim())
-    .filter(Boolean))];
+  return [
+    ...new Set(
+      tagsValue
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean),
+    ),
+  ];
 };
 
 export const dynamic = "force-dynamic";
