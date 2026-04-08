@@ -2,7 +2,19 @@ import { NextResponse } from "next/server";
 import { adminDb } from "@/config/firebaseAdminConfig";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
-import { uploadImage } from "@/config/cloudinary";
+import { deleteImage, uploadImageDetailed } from "@/config/cloudinary";
+
+const TARGET_BLOG_IMAGE_RATIO = 16 / 9;
+const RATIO_TOLERANCE = 0.02;
+
+const isAspectRatio16By9 = (width, height) => {
+  if (!width || !height) {
+    return false;
+  }
+
+  const ratio = width / height;
+  return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
+};
 
 export const dynamic = "force-dynamic";
 
@@ -121,7 +133,23 @@ export async function POST(req) {
       const base64 = buffer.toString("base64");
       const dataURI = `data:${imageFile.type};base64,${base64}`;
 
-      imageUrl = await uploadImage(dataURI, "cosmic-coders/blogs");
+      const uploadResult = await uploadImageDetailed(
+        dataURI,
+        "cosmic-coders/blogs",
+      );
+
+      if (!isAspectRatio16By9(uploadResult.width, uploadResult.height)) {
+        await deleteImage(uploadResult.secure_url);
+        return NextResponse.json(
+          {
+            error:
+              "Invalid image ratio. Please upload a 16:9 image (example: 1600x900 or 1920x1080).",
+          },
+          { status: 400 },
+        );
+      }
+
+      imageUrl = uploadResult.secure_url;
     }
 
     const newBlog = {

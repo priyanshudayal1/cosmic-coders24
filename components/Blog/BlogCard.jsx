@@ -11,13 +11,13 @@ const BlogCard = ({ post }) => {
     <Link href={`/blog/${post.slug}`} className="block h-full">
       <SpotlightCard className="h-full bg-white/10 border-white/10 p-0 flex flex-col group hover:bg-white/20 transition-colors duration-300">
         {/* Image Container */}
-        <div className="relative w-full h-48 overflow-hidden rounded-t-3xl border-b border-white/10">
+        <div className="relative w-full aspect-video overflow-hidden rounded-t-3xl border-b border-white/10 bg-[#120a20]">
           <Image
             src={post.image}
             alt={post.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60" />
 

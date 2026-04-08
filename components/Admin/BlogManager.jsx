@@ -6,6 +6,37 @@ import { Plus, Edit, Trash2, Save, Image as ImageIcon } from "lucide-react";
 import AdminModal from "@/components/ui/AdminModal";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
+const TARGET_BLOG_IMAGE_RATIO = 16 / 9;
+const RATIO_TOLERANCE = 0.02;
+
+const getImageDimensions = (file) =>
+  new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const img = new window.Image();
+
+    img.onload = () => {
+      const dimensions = { width: img.naturalWidth, height: img.naturalHeight };
+      URL.revokeObjectURL(objectUrl);
+      resolve(dimensions);
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Failed to read image dimensions."));
+    };
+
+    img.src = objectUrl;
+  });
+
+const isAspectRatio16By9 = (width, height) => {
+  if (!width || !height) {
+    return false;
+  }
+
+  const ratio = width / height;
+  return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
+};
+
 const BlogManager = ({ user }) => {
   const router = useRouter();
   const [blogs, setBlogs] = useState([]);
@@ -190,9 +221,44 @@ const BlogManager = ({ user }) => {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => {
-                    if (e.target.files?.[0]) {
-                      setFormData({ ...formData, image: e.target.files[0] });
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) {
+                      return;
+                    }
+
+                    try {
+                      const { width, height } = await getImageDimensions(file);
+                      if (!isAspectRatio16By9(width, height)) {
+                        setModal({
+                          isOpen: true,
+                          type: "danger",
+                          title: "Invalid Image Ratio",
+                          message:
+                            "Please upload a 16:9 image for blog covers (example: 1600x900 or 1920x1080).",
+                          confirmText: "Close",
+                          isLoading: false,
+                          onConfirm: () =>
+                            setModal((prev) => ({ ...prev, isOpen: false })),
+                        });
+                        e.target.value = "";
+                        return;
+                      }
+
+                      setFormData({ ...formData, image: file });
+                    } catch {
+                      setModal({
+                        isOpen: true,
+                        type: "danger",
+                        title: "Image Error",
+                        message:
+                          "We could not read this image. Please try another file.",
+                        confirmText: "Close",
+                        isLoading: false,
+                        onConfirm: () =>
+                          setModal((prev) => ({ ...prev, isOpen: false })),
+                      });
+                      e.target.value = "";
                     }
                   }}
                   className="hidden"
@@ -209,6 +275,9 @@ const BlogManager = ({ user }) => {
                       : "Upload Cover Image"}
                   </span>
                 </label>
+                <p className="text-xs text-zinc-500 mt-2">
+                  Only 16:9 images are accepted.
+                </p>
               </div>
             </div>
 
