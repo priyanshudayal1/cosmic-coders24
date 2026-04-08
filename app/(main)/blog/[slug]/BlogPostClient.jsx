@@ -8,25 +8,25 @@ import { motion } from "framer-motion";
 export default function BlogPostClient({ post }) {
   return (
     <div className="flex flex-col min-h-screen bg-[#1A0B2E] text-white">
-      <article className="flex-grow">
+      <article className="grow">
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative w-full h-[400px] md:h-[500px] overflow-hidden"
+          className="relative w-full aspect-video overflow-hidden bg-[#120a20]"
         >
           <Image
             src={post.image}
             alt={post.title}
             fill
             sizes="100vw"
-            className="object-cover"
+            className="object-contain"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1A0B2E] via-[#1A0B2E]/50 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#1A0B2E] via-[#1A0B2E]/50 to-transparent" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto px-4 -mt-32 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 -mt-20 md:-mt-28 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
