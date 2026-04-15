@@ -38,7 +38,7 @@ export default async function Blog({ searchParams }) {
           author: data.author || data.authorEmail || "Admin",
           date: formatDate(data.createdAt),
           category: data.category || "Uncategorized",
-          slug: doc.id,
+          slug: data.slug || doc.id,
           image:
             data.image ||
             "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2064&auto=format&fit=crop",
@@ -96,10 +96,11 @@ export default async function Blog({ searchParams }) {
                       <Link
                         key={pageNum}
                         href={`/blog?page=${pageNum}`}
-                        className={`px-4 py-2 rounded-lg transition-colors ${page === pageNum
-                          ? "bg-purple-500 text-white"
-                          : "bg-white/10 text-gray-300 hover:bg-white/20"
-                          }`}
+                        className={`px-4 py-2 rounded-lg transition-colors ${
+                          page === pageNum
+                            ? "bg-purple-500 text-white"
+                            : "bg-white/10 text-gray-300 hover:bg-white/20"
+                        }`}
                       >
                         {pageNum}
                       </Link>

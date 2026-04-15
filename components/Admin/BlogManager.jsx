@@ -37,14 +37,24 @@ const isAspectRatio16By9 = (width, height) => {
   return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
 };
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const BlogManager = ({ user }) => {
   const router = useRouter();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [useTitleAsUniqueName, setUseTitleAsUniqueName] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
+    uniqueName: "",
     content: "",
     excerpt: "",
     author: "",
@@ -84,9 +94,27 @@ const BlogManager = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const normalizedUniqueName = slugify(formData.uniqueName || formData.title);
+
+    if (!normalizedUniqueName) {
+      setModal({
+        isOpen: true,
+        type: "danger",
+        title: "Unique Name Required",
+        message:
+          "Please enter a valid unique name. Use letters, numbers, and hyphens only.",
+        confirmText: "Close",
+        isLoading: false,
+        onConfirm: () =>
+          setModal((prev) => ({ ...prev, isOpen: false, isLoading: false })),
+      });
+      return;
+    }
+
     setCreating(true);
     const data = new FormData();
     data.append("title", formData.title);
+    data.append("uniqueName", normalizedUniqueName);
     data.append("content", formData.content);
     data.append("excerpt", formData.excerpt);
     data.append("author", formData.author || user?.email || "Admin");
@@ -106,6 +134,20 @@ const BlogManager = ({ user }) => {
         const newBlog = await res.json();
         // Redirect to edit/preview page immediately
         router.push(`/admin/blog/${newBlog.id}`);
+      } else {
+        const errorPayload = await res.json().catch(() => ({}));
+        setModal({
+          isOpen: true,
+          type: "danger",
+          title: "Failed to Create Blog",
+          message:
+            errorPayload.error ||
+            "Something went wrong while creating the blog. Please try again.",
+          confirmText: "Close",
+          isLoading: false,
+          onConfirm: () =>
+            setModal((prev) => ({ ...prev, isOpen: false, isLoading: false })),
+        });
       }
     } catch (error) {
       console.error("Failed to create blog", error);
@@ -177,11 +219,62 @@ const BlogManager = ({ user }) => {
                 type="text"
                 value={formData.title}
                 onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
+                  setFormData((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                    uniqueName: useTitleAsUniqueName
+                      ? slugify(e.target.value)
+                      : prev.uniqueName,
+                  }))
                 }
                 className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
                 required
               />
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center justify-between gap-3">
+                <label className="text-sm text-zinc-400">
+                  Unique Name (URL Slug)
+                </label>
+                <label className="inline-flex items-center gap-2 text-xs text-zinc-400 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={useTitleAsUniqueName}
+                    onChange={(e) => {
+                      const checked = e.target.checked;
+                      setUseTitleAsUniqueName(checked);
+                      if (checked) {
+                        setFormData((prev) => ({
+                          ...prev,
+                          uniqueName: slugify(prev.title),
+                        }));
+                      }
+                    }}
+                    className="accent-zinc-600"
+                  />
+                  <span>Same as title</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                value={formData.uniqueName}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    uniqueName: slugify(e.target.value),
+                  })
+                }
+                placeholder="why-your-business-needs-local-seo"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700 disabled:opacity-60"
+                disabled={useTitleAsUniqueName}
+                required
+              />
+              <p className="text-xs text-zinc-500">
+                Final URL: /blog/
+                {slugify(formData.uniqueName || formData.title) ||
+                  "your-blog-name"}
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

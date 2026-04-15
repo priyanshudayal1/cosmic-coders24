@@ -31,6 +31,14 @@ const parseTags = (tagsValue) => {
   ];
 };
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req) {
@@ -128,6 +136,7 @@ export async function POST(req) {
 
     const formData = await req.formData();
     const title = formData.get("title");
+    const uniqueName = formData.get("uniqueName");
     const content = formData.get("content");
     const excerpt = formData.get("excerpt");
     const author = formData.get("author");
@@ -139,6 +148,32 @@ export async function POST(req) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },
+      );
+    }
+
+    const normalizedUniqueName = slugify(uniqueName || title);
+
+    if (!normalizedUniqueName) {
+      return NextResponse.json(
+        {
+          error: "Invalid unique name. Use letters, numbers, and hyphens only.",
+        },
+        { status: 400 },
+      );
+    }
+
+    const existingBlog = await adminDb
+      .collection("blogs")
+      .doc(normalizedUniqueName)
+      .get();
+
+    if (existingBlog.exists) {
+      return NextResponse.json(
+        {
+          error:
+            "This unique name is already in use. Please choose a different one.",
+        },
+        { status: 409 },
       );
     }
 
@@ -171,6 +206,7 @@ export async function POST(req) {
 
     const newBlog = {
       title,
+      slug: normalizedUniqueName,
       content,
       excerpt,
       author: author || user.email || "Admin",
@@ -183,9 +219,12 @@ export async function POST(req) {
       updatedAt: new Date().toISOString(),
     };
 
-    const docRef = await adminDb.collection("blogs").add(newBlog);
+    await adminDb.collection("blogs").doc(normalizedUniqueName).set(newBlog);
 
-    return NextResponse.json({ id: docRef.id, ...newBlog }, { status: 201 });
+    return NextResponse.json(
+      { id: normalizedUniqueName, ...newBlog },
+      { status: 201 },
+    );
   } catch (error) {
     console.error("Error creating blog:", error);
     return NextResponse.json(

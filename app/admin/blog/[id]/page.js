@@ -41,11 +41,20 @@ const isAspectRatio16By9 = (width, height) => {
   return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
 };
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 export default function EditBlogPage({ params }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [blogId, setBlogId] = useState(null);
+  const [useTitleAsUniqueName, setUseTitleAsUniqueName] = useState(false);
   const [modal, setModal] = useState({
     isOpen: false,
     type: "confirm",
@@ -57,6 +66,7 @@ export default function EditBlogPage({ params }) {
 
   const [formData, setFormData] = useState({
     title: "",
+    uniqueName: "",
     image: null, // File object or URL string
     imagePreview: "",
     content: "",
@@ -100,6 +110,7 @@ export default function EditBlogPage({ params }) {
 
         setFormData({
           title: data.title,
+          uniqueName: data.slug || data.id || id,
           image: data.image, // Keep existing URL
           imagePreview:
             data.image ||
@@ -111,6 +122,10 @@ export default function EditBlogPage({ params }) {
           tags: Array.isArray(data.tags) ? data.tags.join(", ") : "",
           createdAt: data.createdAt,
         });
+
+        setUseTitleAsUniqueName(
+          (data.slug || data.id || id) === slugify(data.title || ""),
+        );
       } else {
         console.error("Failed to fetch");
         router.push("/admin");
@@ -172,6 +187,10 @@ export default function EditBlogPage({ params }) {
     setSaving(true);
     const data = new FormData();
     data.append("title", formData.title);
+    data.append(
+      "uniqueName",
+      slugify(formData.uniqueName || formData.title || blogId || ""),
+    );
     data.append("content", formData.content);
     data.append("excerpt", formData.excerpt);
     data.append("author", formData.author);
@@ -194,6 +213,10 @@ export default function EditBlogPage({ params }) {
       });
 
       if (res.ok) {
+        const updatedBlog = await res.json();
+        if (updatedBlog?.id && updatedBlog.id !== blogId) {
+          setBlogId(updatedBlog.id);
+        }
         router.push("/admin");
       } else {
         const err = await res.json();
@@ -318,10 +341,60 @@ export default function EditBlogPage({ params }) {
                   type="text"
                   value={formData.title}
                   onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
+                    setFormData((prev) => ({
+                      ...prev,
+                      title: e.target.value,
+                      uniqueName: useTitleAsUniqueName
+                        ? slugify(e.target.value)
+                        : prev.uniqueName,
+                    }))
                   }
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white text-xl font-semibold focus:outline-none focus:border-zinc-700"
                 />
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <label className="text-sm text-zinc-400">
+                    Unique Name (URL Slug)
+                  </label>
+                  <label className="inline-flex items-center gap-2 text-xs text-zinc-400 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={useTitleAsUniqueName}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        setUseTitleAsUniqueName(checked);
+                        if (checked) {
+                          setFormData((prev) => ({
+                            ...prev,
+                            uniqueName: slugify(prev.title),
+                          }));
+                        }
+                      }}
+                      className="accent-zinc-600"
+                    />
+                    <span>Same as title</span>
+                  </label>
+                </div>
+                <input
+                  type="text"
+                  value={formData.uniqueName}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      uniqueName: slugify(e.target.value),
+                    }))
+                  }
+                  placeholder="why-your-business-needs-local-seo"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700 disabled:opacity-60"
+                  disabled={useTitleAsUniqueName}
+                />
+                <p className="text-xs text-zinc-500">
+                  Final URL: /blog/
+                  {slugify(formData.uniqueName || formData.title) ||
+                    "your-blog-name"}
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">

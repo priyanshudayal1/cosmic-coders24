@@ -31,6 +31,14 @@ const parseTags = (tagsValue) => {
   ];
 };
 
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req, { params }) {
@@ -99,11 +107,28 @@ export async function PUT(req, { params }) {
     const author = formData.get("author");
     const category = formData.get("category");
     const tags = formData.get("tags");
+    const uniqueName = formData.get("uniqueName");
     const imageFile = formData.get("image");
 
     const updateData = {
       updatedAt: new Date().toISOString(),
     };
+
+    let nextId = id;
+    if (uniqueName !== null) {
+      const normalizedUniqueName = slugify(uniqueName);
+      if (!normalizedUniqueName) {
+        return NextResponse.json(
+          {
+            error:
+              "Invalid unique name. Use letters, numbers, and hyphens only.",
+          },
+          { status: 400 },
+        );
+      }
+      nextId = normalizedUniqueName;
+      updateData.slug = normalizedUniqueName;
+    }
 
     if (title) updateData.title = title;
     if (content) updateData.content = content;
@@ -138,9 +163,39 @@ export async function PUT(req, { params }) {
       updateData.image = uploadResult.secure_url;
     }
 
-    await docRef.update(updateData);
+    if (nextId !== id) {
+      const targetRef = adminDb.collection("blogs").doc(nextId);
+      const targetDoc = await targetRef.get();
 
-    return NextResponse.json({ message: "Blog updated", id, ...updateData });
+      if (targetDoc.exists) {
+        return NextResponse.json(
+          {
+            error:
+              "This unique name is already in use. Please choose a different one.",
+          },
+          { status: 409 },
+        );
+      }
+
+      const mergedData = {
+        ...doc.data(),
+        ...updateData,
+      };
+
+      await targetRef.set(mergedData);
+      await docRef.delete();
+    } else {
+      if (!doc.data().slug) {
+        updateData.slug = id;
+      }
+      await docRef.update(updateData);
+    }
+
+    return NextResponse.json({
+      message: "Blog updated",
+      id: nextId,
+      ...updateData,
+    });
   } catch (error) {
     console.error("Error updating blog:", error);
     return NextResponse.json(
