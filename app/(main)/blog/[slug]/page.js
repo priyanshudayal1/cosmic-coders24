@@ -41,25 +41,25 @@ export async function generateMetadata({ params }) {
 
     if (!post) {
       return {
-        title: "Post Not Found | Cosmic Coders",
+        title: "Post Not Found | Cosmic Coder",
         description: "The requested blog post could not be found.",
       };
     }
 
     const description =
       post.excerpt ||
-      "Read expert insights from Cosmic Coders on digital growth and technology.";
+      "Read expert insights from Cosmic Coder on digital growth and technology.";
     const keywords = [
       ...post.tags,
       post.category,
-      "Cosmic Coders",
+      "Cosmic Coder",
       "blog",
       "digital marketing",
       "web development",
     ];
 
     return {
-      title: `${post.title} | Cosmic Coders Blog`,
+      title: `${post.title} | Cosmic Coder Blog`,
       description,
       keywords,
       openGraph: {
@@ -78,8 +78,8 @@ export async function generateMetadata({ params }) {
   } catch (error) {
     console.error("Error generating blog metadata:", error);
     return {
-      title: "Blog | Cosmic Coders",
-      description: "Insights and ideas from Cosmic Coders.",
+      title: "Blog | Cosmic Coder",
+      description: "Insights and ideas from Cosmic Coder.",
     };
   }
 }
