@@ -19,16 +19,18 @@ const BlogCard = ({ post }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] to-transparent opacity-60" />
-
-          {/* Badge */}
-          <div className="absolute top-4 left-4 bg-purple-600/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-white uppercase tracking-wider shadow-lg">
-            {post.category}
-          </div>
+          <div className="absolute inset-0 bg-linear-to-t from-site-bg to-transparent opacity-60" />
         </div>
 
         {/* Content */}
         <div className="p-5 flex flex-col flex-1">
+          {/* Badge */}
+          <div className="mb-3 overflow-hidden">
+            <span className="bg-purple-600/80 px-3 py-1 rounded-full text-xs font-semibold text-white uppercase tracking-wider whitespace-nowrap inline-block max-w-full overflow-hidden text-ellipsis">
+              {post.category}
+            </span>
+          </div>
+
           <div className="flex flex-col gap-1.5 text-xs text-gray-400 mb-4">
             <div className="flex items-center gap-1.5 min-w-0">
               <User className="w-3.5 h-3.5 text-purple-400 shrink-0" />

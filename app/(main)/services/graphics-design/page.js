@@ -25,11 +25,11 @@ import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function GraphicsDesign() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* Hero Section */}
       <ServiceHero
-        title="Graphics That Speak"
-        highlightedText="Louder Than Words"
+        title="Graphics That Communicate"
+        highlightedText="Your Brand Clearly"
         subtitle="From social media creatives to professional brochures, our designs help your brand stand out and connect with your audience."
         ctaText="Get Custom Designs"
         ctaHref="#contact"
@@ -39,9 +39,9 @@ export default function GraphicsDesign() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Impact"
+            eyebrow="Best Graphic Design Service In Jabalpur"
             title="Why Professional Graphics Matter"
-            subtitle="Professional graphics make a significant impact on your brand identity and engagement. They are crucial for ensuring cohesive messaging and a strong visual presence."
+            subtitle="Professional graphic design plays an important role in shaping brand identity and improving audience engagement. Strong visuals support clear communication and create a consistent presence across digital and marketing platforms."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -52,7 +52,7 @@ export default function GraphicsDesign() {
                   First Impressions Count
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Catch attention instantly with stunning visuals
+                  Strong visuals help capture attention quickly and create a positive first impression.
                 </p>
               </div>
             </SpotlightCard>
@@ -64,7 +64,7 @@ export default function GraphicsDesign() {
                   Boost Engagement
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Attractive visuals perform better across all platforms
+                  Well-designed graphics encourage higher interaction across social media and marketing channels.
                 </p>
               </div>
             </SpotlightCard>
@@ -76,7 +76,7 @@ export default function GraphicsDesign() {
                   Brand Consistency
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Cohesive visuals across all customer touchpoints
+                  Consistent visual design strengthens recognition across all customer touchpoints.
                 </p>
               </div>
             </SpotlightCard>
@@ -282,7 +282,7 @@ export default function GraphicsDesign() {
                   <Zap size={24} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  Quick turnaround
+                  Timely Delivery
                 </h3>
                 <p className="text-sm text-gray-400">
                   Fast delivery and Revisions as per package.
@@ -313,7 +313,7 @@ export default function GraphicsDesign() {
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="Graphics Design" />
           </SpotlightCard>

@@ -202,8 +202,8 @@ export default function EditBlogPage({ params }) {
       <div className="flex-1 min-h-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 h-full max-w-450 mx-auto">
           {/* Preview - Left Side */}
-          <div className="h-full overflow-y-auto bg-[#0F061A] border-r border-zinc-800">
-            <div className="relative w-full h-75">
+          <div className="h-full overflow-y-auto bg-site-bg border-r border-zinc-800">
+            <div className="relative w-full aspect-video bg-[#120a20]">
               <Image
                 src={formData.imagePreview}
                 alt={formData.title}
@@ -211,7 +211,7 @@ export default function EditBlogPage({ params }) {
                 sizes="50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] via-[#0F061A]/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-site-bg via-site-bg/50 to-transparent" />
             </div>
 
             <div className="max-w-3xl mx-auto px-6 -mt-24 relative z-10 pb-20">

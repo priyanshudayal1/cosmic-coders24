@@ -3,18 +3,10 @@
 import React from "react";
 import {
   Play,
-  Clapperboard,
-  MonitorPlay,
-  Smartphone,
-  GraduationCap,
-  PartyPopper,
-  MessageSquare,
-  Tv,
   Film,
   Scissors,
   Music,
   Palette,
-  Gamepad2,
 } from "lucide-react";
 import Link from "next/link";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -29,7 +21,7 @@ export default function VideoEditingPortfolio() {
       description:
         "Cinematic product reveal with motion graphics and dynamic transitions.",
       type: "Commercial",
-      icon: Clapperboard,
+      playlistId: "PL_6UKhKZJVxWkxJgDvSRpRW8WmpGuZt0z",
       link: "https://youtube.com/playlist?list=PL_6UKhKZJVxWkxJgDvSRpRW8WmpGuZt0z&si=xBs4j0PBcRBctPWM",
     },
     {
@@ -37,7 +29,7 @@ export default function VideoEditingPortfolio() {
       description:
         "Branded intro sequence with custom animations and sound design.",
       type: "Branding",
-      icon: MonitorPlay,
+      playlistId: "PL_6UKhKZJVxXUl7i39mZcRH6ITwMcVE8A",
       link: "https://youtube.com/playlist?list=PL_6UKhKZJVxXUl7i39mZcRH6ITwMcVE8A&si=yLl0YNgjr4aIf48S",
     },
     {
@@ -45,14 +37,14 @@ export default function VideoEditingPortfolio() {
       description:
         "High-converting short-form ads optimized for Instagram and TikTok.",
       type: "Advertising",
-      icon: Smartphone,
+      playlistId: "PL_6UKhKZJVxW6muupLYbEbswcR1sVwXvk",
       link: "https://youtube.com/playlist?list=PL_6UKhKZJVxW6muupLYbEbswcR1sVwXvk&si=aX4t6EFiCTUWAcJ2",
     },
     {
       title: "Event Highlight Reel",
-      description: "Conference recap video with interviews and b-roll footage.",
+      description: "Highlight videos capturing important moments from events and occasions.",
       type: "Event",
-      icon: PartyPopper,
+      playlistId: "PL_6UKhKZJVxX_J2NHUasyOJUjHt9w8g9n",
       link: "https://youtube.com/playlist?list=PL_6UKhKZJVxX_J2NHUasyOJUjHt9w8g9n&si=3r6odGGAlwdv4hNA",
     },
     {
@@ -60,7 +52,7 @@ export default function VideoEditingPortfolio() {
       description:
         "High-impact cinematic sequences with advanced color grading and visual effects.",
       type: "Cinematic",
-      icon: Film,
+      playlistId: "PL_6UKhKZJVxVL5vJw8TVPN8YmvfRFJ6XE",
       link: "https://youtube.com/playlist?list=PL_6UKhKZJVxVL5vJw8TVPN8YmvfRFJ6XE&si=sX7axmJRQZz0iPlP",
     },
     {
@@ -68,7 +60,7 @@ export default function VideoEditingPortfolio() {
       description:
         "Dynamic esports highlights and tournament coverage with fast-paced editing.",
       type: "Gaming",
-      icon: Gamepad2,
+      playlistId: "PL_6UKhKZJVxUrmV8-6oSN6LoNj30dH7OI",
       link: "https://youtube.com/playlist?list=PL_6UKhKZJVxUrmV8-6oSN6LoNj30dH7OI&si=_WeT0UKwDTKa5Fjb",
     },
   ];
@@ -81,11 +73,11 @@ export default function VideoEditingPortfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       <ServiceHero
         title="Video Editing"
-        highlightedText="Portfolio"
-        subtitle="Watch our video editing work come to life. From commercials to social content, we create videos that engage, inspire, and convert."
+        highlightedText="Projects"
+        subtitle="From short-form social media content to cinematic brand videos, our projects demonstrate the power of strategic storytelling, seamless editing, motion graphics, and platform-optimized content that captivates viewers and delivers measurable impact."
         ctaText="Get Your Video Edited"
         ctaHref="/services/video-editing"
       />
@@ -122,6 +114,7 @@ export default function VideoEditingPortfolio() {
             eyebrow="Our Work"
             title="Featured Video Projects"
             subtitle="From quick social media reels to full-length corporate videos, see how we bring stories to life."
+            titleClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight drop-shadow-lg relative z-10"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -130,8 +123,15 @@ export default function VideoEditingPortfolio() {
                 key={index}
                 className="h-full bg-white/5 border-white/10 p-6 flex flex-col group hover:bg-white/10 transition-all duration-300"
               >
-                <div className="mb-6 inline-flex p-4 rounded-2xl bg-white/5 border border-white/10 text-purple-400 group-hover:text-white group-hover:bg-purple-600/20 transition-colors duration-300 w-fit">
-                  <project.icon size={32} strokeWidth={1.5} />
+                <div className="mb-6 w-full aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black/40">
+                  <iframe
+                    src={`https://www.youtube.com/embed/videoseries?list=${project.playlistId}`}
+                    title={project.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
                 </div>
                 <div className="flex gap-2 mb-3">
                   <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs border border-purple-500/20">
@@ -146,10 +146,12 @@ export default function VideoEditingPortfolio() {
                 </p>
                 <Link
                   href={project.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
                 >
                   <Play className="w-4 h-4" />
-                  <span className="text-sm font-medium">Watch Video</span>
+                  <span className="text-sm font-medium">Watch on YouTube</span>
                 </Link>
               </SpotlightCard>
             ))}
@@ -160,15 +162,15 @@ export default function VideoEditingPortfolio() {
       <section className="py-12 md:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-site-card-from to-site-card-to p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm pointer-events-none" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-linear-to-r from-transparent via-purple-400 to-transparent pointer-events-none" />
 
             <SectionHeading
               eyebrow="Get Started"
-              title="Need a Video Edited?"
+              title="Need a professional video editing?"
               subtitle="Transform your raw footage into compelling stories that captivate your audience."
             />
 

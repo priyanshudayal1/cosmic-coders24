@@ -163,7 +163,7 @@ export default function Testimonials() {
                   "flex flex-col justify-between h-64",
                   "backdrop-blur-xl transition-colors duration-500",
                   style.diff === 0
-                    ? "bg-white/10 border-white/20 shadow-[0_8px_32px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
+                    ? "bg-white/10 border-white/20 shadow-[0_8px_32px_rgba(88,166,255,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
                     : "bg-white/5 border-white/[0.06]",
                 )}
                 style={{
@@ -262,7 +262,7 @@ export default function Testimonials() {
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
                 idx === activeIndex
-                  ? "w-7 bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                  ? "w-7 bg-purple-500 shadow-[0_0_10px_rgba(88,166,255,0.5)]"
                   : "w-1.5 bg-gray-700 hover:bg-gray-500",
               )}
               aria-label={`Go to slide ${idx + 1}`}

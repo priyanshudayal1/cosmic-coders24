@@ -29,12 +29,12 @@ import TechStack, { VIDEO_TOOLS } from "@/components/features/TechStack";
 
 export default function VideoEditing() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* Hero Section */}
       <ServiceHero
-        title="Transform Your Raw Footage"
-        highlightedText="Into Compelling Stories"
-        subtitle="From reels to promos, we craft videos that engage, inspire, and convert."
+        title="Transform Raw Footage Into"
+        highlightedText="Engaging Visual Stories"
+        subtitle="From reels to promotional videos, professional editing helps shape content that captures attention, communicates ideas clearly, and strengthens audience engagement."
         ctaText="Get Your Video Edited"
         ctaHref="#contact"
       />
@@ -43,9 +43,9 @@ export default function VideoEditing() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Impact"
+            eyebrow="Best Video Editing Service In Jabalpur"
             title="Why Professional Editing Matters"
-            subtitle="Polished videos boost engagement, conversions, and brand credibility. Our professional editing ensures your content stands out in the crowded digital landscape."
+            subtitle="Professional video editing plays a key role in shaping engaging visual content that captures attention and strengthens brand communication across digital platforms."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -56,7 +56,7 @@ export default function VideoEditing() {
                   Boost Engagement
                 </h3>
                 <p className="text-sm text-gray-400">
-                  High-quality visuals keep viewers watching longer
+                  High-quality visuals and smooth editing help keep viewers interested for longer.
                 </p>
               </div>
             </SpotlightCard>
@@ -71,7 +71,7 @@ export default function VideoEditing() {
                   Build Credibility
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Professional editing builds trust with your audience
+                  Well-edited videos present a professional image and strengthen audience trust.
                 </p>
               </div>
             </SpotlightCard>
@@ -83,7 +83,7 @@ export default function VideoEditing() {
                   Drive Action
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Compelling stories convert viewers into customers
+                  Structured storytelling encourages viewers to engage and respond to your message.
                 </p>
               </div>
             </SpotlightCard>
@@ -157,7 +157,7 @@ export default function VideoEditing() {
                 Event Highlights
               </h3>
               <p className="text-sm text-gray-400">
-                Tailor-made edits on request
+                Highlight videos capturing important moments from events and occasions.
               </p>
             </SpotlightCard>
 
@@ -233,7 +233,7 @@ export default function VideoEditing() {
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="Video Editing" />
           </SpotlightCard>

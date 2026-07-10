@@ -15,7 +15,16 @@ import GlassButton from "@/components/ui/GlassButton";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Particles } from "@/components/ui/particles";
-import { TrendingUp, BarChart3, LineChart, MapPin, Store } from "lucide-react";
+import ImageCarousel from "@/components/ui/ImageCarousel";
+
+const dashboardImages = [
+  { src: "/assets/results/dashboard-1.png", alt: "SEO performance dashboard" },
+  { src: "/assets/results/dashboard-2.png", alt: "SEO performance dashboard" },
+  { src: "/assets/results/dashboard-3.png", alt: "SEO performance dashboard" },
+  { src: "/assets/results/dashboard-4.png", alt: "SEO performance dashboard" },
+  { src: "/assets/results/dashboard-5.png", alt: "SEO performance dashboard" },
+  { src: "/assets/results/dashboard-6.png", alt: "SEO performance dashboard" },
+];
 
 export default function SEOResults() {
 
@@ -23,31 +32,29 @@ export default function SEOResults() {
 
   const caseStudies = [
     {
-      category: "GMB Growth",
-      title: "PetSquare (Aug 2025)",
+      category: "GBP Growth",
+      title: "Vastu & Astrology Expert, Jabalpur",
       description:
-        "Achieved +144% increase in calls and +177% in profile views. Keyword rankings improved from position 45 to Top 10.",
-      Icon: MapPin,
-      gradient: "from-blue-500/20 to-cyan-500/20",
+        "12 months of continuous GBP management delivering a #1 Google ranking in Jabalpur for core search terms and 900 Business Profile interactions.",
+      image: "/assets/results/tile-1.png",
       spotlight: "rgba(59, 130, 246, 0.2)",
-      pdfUrl: "/PET SQUARE-GMB REPORT (JANUARY - AUGUST).pdf",
-      pdfTitle: "PetSquare GMB Report (Jan - Aug 2025)"
+      pdfUrl: "/assets/results/astrologer-gmb-case-study.pdf",
+      pdfTitle: "Astrologer GMB Case Study"
     },
     {
-      category: "GMB Growth",
-      title: "PetSquare (Oct 2025)",
+      category: "Local SEO Case Study",
+      title: "Pet Product Shop, Jabalpur",
       description:
-        "6x growth in calls and +692% increase in visibility. Ranked Top 5 for 'pet store in jabalpur'.",
-      Icon: TrendingUp,
-      gradient: "from-purple-500/20 to-pink-500/20",
-      spotlight: "rgba(168, 85, 247, 0.2)",
-      pdfUrl: "/PET SQUARE-GMB REPORT (MAY - OCTOBER).pdf",
-      pdfTitle: "PetSquare GMB Report (May - Oct 2025)"
+        "From a suspended listing to a Top 3 ranking in Jabalpur — 1 year of continuous GBP management, 1,000+ total profile reach, and 300+ calls generated.",
+      image: "/assets/results/tile-2.png",
+      spotlight: "rgba(88, 166, 255, 0.2)",
+      pdfUrl: "/assets/results/petshop-gbp-case-study.pdf",
+      pdfTitle: "Pet Product Shop GBP Case Study"
     },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#0F061A] text-white">
+    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-site-bg text-white">
       <main className="grow">
         <div className="relative">
           {/* ── Particles & Glow backdrop for PageHeader ── */}
@@ -62,7 +69,7 @@ export default function SEOResults() {
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168,85,247,0.10) 0%, rgba(139,92,246,0.03) 50%, transparent 75%)",
+                  "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(88,166,255,0.10) 0%, rgba(163,113,247,0.03) 50%, transparent 75%)",
               }}
             />
             <Particles
@@ -71,15 +78,14 @@ export default function SEOResults() {
               staticity={40}
               ease={60}
               size={0.5}
-              color="#a855f7"
+              color="#ffffff"
               vx={0}
               vy={-0.05}
             />
           </motion.div>
           <PageHeader
-            eyebrow="SEO Results"
+            eyebrow="Best SEO Company"
             title="Proven SEO Results That Drive Growth"
-            description="See how we've helped PetSquare dominate local search with improved rankings, traffic, and leads through GMB Optimization."
           />
         </div>
 
@@ -87,11 +93,19 @@ export default function SEOResults() {
           {/* Optional: Add a general CTA or summary stats here if needed */}
         </div>
 
+        <section className="py-10 md:py-14">
+          <ImageCarousel
+            images={dashboardImages}
+            duration="55s"
+            fadeColor="var(--site-bg)"
+          />
+        </section>
+
         <section className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <SectionHeading
-              eyebrow="GMB Performance Reports"
-              title="PetSquare Growth Journey"
+              eyebrow="Our Work"
+              title="Case Studies"
               subtitle="Detailed performance breakdowns showing consistent growth in calls, views, and rankings."
             />
 
@@ -103,13 +117,13 @@ export default function SEOResults() {
                   className="p-0 h-full flex flex-col group bg-white/5 border-white/10"
                   spotlightColor={study.spotlight}
                 >
-                  <div
-                    className={`h-48 w-full bg-linear-to-br ${study.gradient} relative overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
-                      <study.Icon className="w-16 h-16" />
-                    </div>
-                    <div className="absolute inset-0 bg-linear-to-t from-[#1A0B2E] to-transparent opacity-60" />
+                  <div className="w-full bg-white relative overflow-hidden">
+                    <img
+                      src={study.image}
+                      alt={study.pdfTitle}
+                      loading="lazy"
+                      className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                    />
                   </div>
 
                   <div className="p-8 flex flex-col grow">
@@ -155,7 +169,7 @@ export default function SEOResults() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168,85,247,0.10) 0%, rgba(139,92,246,0.03) 50%, transparent 75%)",
+                      "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(88,166,255,0.10) 0%, rgba(163,113,247,0.03) 50%, transparent 75%)",
                   }}
                 />
                 <Particles
@@ -164,7 +178,7 @@ export default function SEOResults() {
                   staticity={40}
                   ease={60}
                   size={0.5}
-                  color="#a855f7"
+                  color="#ffffff"
                   vx={0}
                   vy={-0.05}
                 />
@@ -173,8 +187,7 @@ export default function SEOResults() {
               <Eyebrow text="Start Your Growth Journey" />
               <div className="text-center mb-12 relative z-10">
                 <p className="text-xl md:text-2xl font-medium text-gray-300 italic leading-relaxed">
-                  &quot;Our organic traffic skyrocketed within months. The ROI from
-                  SEO has been incredible.&quot;
+                  &quot;From improved search rankings to increased conversions, the results exceeded our expectations and delivered lasting business growth.&quot;
                 </p>
               </div>
 

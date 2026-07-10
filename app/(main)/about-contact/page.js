@@ -71,15 +71,15 @@ export default function AboutContact() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#0F061A] text-white overflow-hidden font-sans">
+    <div className="relative w-full min-h-screen bg-site-bg text-white overflow-hidden font-sans">
       {/* Background Effects */}
-      <div className="fixed inset-0 z-0 bg-[#0F061A] pointer-events-none" />
+      <div className="fixed inset-0 z-0 bg-site-bg pointer-events-none" />
 
       {/* Spotlights/Beams - Static Flares */}
       <div className="fixed bottom-0 left-[-20%] w-[60%] h-[60%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
       <div className="fixed bottom-0 right-[-20%] w-[60%] h-[60%] bg-blue-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
 
-      <main className="relative z-10 pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center space-y-20">
+      <main className="relative z-10 pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center space-y-20">
         {/* --- Who We Are Section --- */}
         <motion.section
           className="text-center max-w-4xl space-y-6"
@@ -92,7 +92,7 @@ export default function AboutContact() {
           <SectionHeading
             eyebrow="About Us"
             title="Who We Are"
-            subtitle="We are a dedicated team of creative professionals committed to building brands that stand out in the digital space. Our expertise spans web development, marketing, and design, ensuring your brand reaches its full potential."
+            subtitle="We are a team of creative professionals focused on building brands that stand out and grow in the digital space. Our expertise in website development, SEO, branding, and design helps businesses reach their full potential with clarity, visibility, and lasting impact. "
           />
         </motion.section>
 
@@ -126,7 +126,7 @@ export default function AboutContact() {
             {/* Contact Info */}
             <SpotlightCard
               className="space-y-8 p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl h-full"
-              spotlightColor="rgba(168, 85, 247, 0.2)"
+              spotlightColor="rgba(88, 166, 255, 0.2)"
             >
               <div>
                 <p className="text-lg font-semibold text-white mb-2">
@@ -188,7 +188,7 @@ export default function AboutContact() {
             {/* Contact Form */}
             <SpotlightCard
               className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl relative overflow-hidden"
-              spotlightColor="rgba(168, 85, 247, 0.2)"
+              spotlightColor="rgba(88, 166, 255, 0.2)"
             >
               {/* Form Glow Effect */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 blur-[80px] rounded-full pointer-events-none" />
@@ -263,7 +263,7 @@ export default function AboutContact() {
                   size="lg"
                   disabled={submitting}
                   suppressHydrationWarning
-                  className="w-full rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(88,166,255,0.15)] hover:shadow-[0_0_25px_rgba(88,166,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitting ? (
                     <>

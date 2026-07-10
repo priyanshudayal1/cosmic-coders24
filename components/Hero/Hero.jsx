@@ -2,74 +2,100 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import GlassButton from "../ui/GlassButton";
-import FloatingLines from "../backgrounds/FloatingLines";
+import { Particles } from "../ui/particles";
 
-const ENABLED_WAVES = ["top", "middle", "bottom"];
+// Fixed configs (not Math.random) so server & client render identically
+const METEORS = [
+  { top: "-5%", left: "10%", delay: "0s", duration: "6s" },
+  { top: "-10%", left: "30%", delay: "1.8s", duration: "7.5s" },
+  { top: "-5%", left: "45%", delay: "3.2s", duration: "5.5s" },
+  { top: "-12%", left: "60%", delay: "0.9s", duration: "8s" },
+  { top: "-8%", left: "75%", delay: "4.5s", duration: "6.5s" },
+  { top: "-4%", left: "90%", delay: "2.6s", duration: "7s" },
+];
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#0F061A] text-white pt-28">
-      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-60">
-        <div style={{ width: "100%", height: "100vh", position: "relative" }}>
-          <FloatingLines
-            enabledWaves={ENABLED_WAVES}
-            // Array - specify line count per wave; Number - same count for all waves
-            lineCount={5}
-            // Array - specify line distance per wave; Number - same distance for all waves
-            lineDistance={5}
-            bendRadius={5}
-            bendStrength={-0.5}
-            interactive={true}
-            parallax={true}
-            pixelRatio={0.7}
-          />
-        </div>
-      </div>
+    <div className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-site-bg text-white pt-28">
+      {/* ── Starfield ── */}
+      <Particles
+        className="absolute inset-0 w-full h-full z-0"
+        quantity={140}
+        staticity={35}
+        ease={60}
+        size={0.6}
+        color="#ffffff"
+        vx={0}
+        vy={-0.04}
+      />
 
-      {/* Spotlights/Beams */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[80%] bg-purple-600/40 blur-[80px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
-      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[80%] bg-indigo-500/35 blur-[80px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
+      {/* ── Aurora glows (GitHub blue → purple, drift slowly) ── */}
+      <div
+        className="absolute top-[-25%] left-[-15%] w-[60%] h-[70%] rounded-full blur-[110px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
+        style={{ background: "var(--site-accent-600)", opacity: 0.35 }}
+      />
+      <div
+        className="absolute top-[-20%] right-[-15%] w-[55%] h-[65%] rounded-full blur-[110px] mix-blend-screen pointer-events-none animate-aurora-slow will-change-transform"
+        style={{ background: "var(--site-secondary-500)", opacity: 0.3 }}
+      />
+      <div
+        className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[45%] h-[40%] rounded-full blur-[90px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
+        style={{ background: "var(--site-accent-500)", opacity: 0.18 }}
+      />
 
-      {/* Additional Purple Accent */}
-      <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-[40%] h-[40%] bg-violet-500/30 blur-[60px] rounded-full mix-blend-screen pointer-events-none will-change-transform" />
-
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto space-y-8">
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
+      {/* ── Meteors ── */}
+      {METEORS.map((m, i) => (
+        <span
+          key={i}
+          className="absolute h-0.5 w-0.5 rounded-full animate-meteor pointer-events-none"
+          style={{
+            top: m.top,
+            left: m.left,
+            animationDelay: m.delay,
+            animationDuration: m.duration,
+            background: "var(--site-accent-300)",
+            boxShadow: "0 0 0 1px rgba(255,255,255,0.1)",
+          }}
         >
-          <span className="block sm:inline sm:whitespace-nowrap text-balance sm:text-wrap">
+          <span
+            className="absolute top-1/2 -translate-y-1/2 left-0 h-px w-[70px]"
+            style={{
+              background:
+                "linear-gradient(90deg, var(--site-accent-300), transparent)",
+            }}
+          />
+        </span>
+      ))}
+
+      {/* ── Content ── */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto space-y-8">
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.15] drop-shadow-2xl"
+        >
+          <span className="block sm:inline sm:whitespace-nowrap">
             We Build Digital Experiences
           </span>
           <br className="hidden sm:block" />
-          <span className="text-balance sm:text-wrap">
-            That Drive Visibility & Real Growth
+          <span
+            className="block sm:inline bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, var(--site-accent-300), var(--site-accent-400) 35%, var(--site-secondary-400) 70%, var(--site-pink))",
+            }}
+          >
+            That Drive Visibility &amp; Real Growth
           </span>
         </motion.h1>
-
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-base md:text-lg text-gray-400 max-w-2xl leading-relaxed"
-        >
-          From Google Business Profile optimization to complete local SEO,
-          website development, and branding — we help businesses rank higher,
-          attract quality leads, and grow consistently across search and digital
-          platforms.
-        </motion.p>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
+          transition={{ duration: 0.7, delay: 0.7 }}
           className="flex flex-col sm:flex-row items-center gap-4 mt-8"
         >
           <GlassButton
@@ -87,11 +113,23 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Glowing Orb/Planet */}
-      <div className="absolute bottom-[-40%] left-1/2 transform -translate-x-1/2 w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] bg-linear-to-t from-indigo-700 via-purple-600 to-transparent opacity-30 blur-[100px] rounded-full pointer-events-none" />
+      {/* ── Glowing horizon arc (GitHub Universe style) ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.6, delay: 0.9 }}
+        className="absolute bottom-[-55vw] md:bottom-[-42vw] left-1/2 -translate-x-1/2 w-[160vw] md:w-[120vw] aspect-square rounded-full pointer-events-none"
+        style={{
+          border: "1px solid rgba(var(--site-glow), 0.5)",
+          boxShadow:
+            "0 -20px 80px 10px rgba(var(--site-glow), 0.25), inset 0 20px 120px 0 rgba(var(--site-glow), 0.12)",
+          background:
+            "radial-gradient(circle at 50% 0%, rgba(var(--site-glow), 0.08), var(--site-bg) 45%)",
+        }}
+      />
 
-      {/* Bottom Gradient Fade for seamless transition */}
-      <div className="absolute bottom-0 left-0 w-full h-48 bg-linear-to-t from-[#0F061A] to-transparent pointer-events-none" />
+      {/* Bottom fade for seamless transition into next section */}
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-site-bg to-transparent pointer-events-none" />
     </div>
   );
 };

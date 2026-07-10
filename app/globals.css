@@ -25,6 +25,42 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ════════════════════════════════════════════════════════════════════
+   SITE BRAND PALETTE — GitHub landing page style
+   Edit the values below to retheme the entire website.
+   ════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Backgrounds (GitHub dark canvas) ── */
+  --site-bg: #0d1117;          /* page canvas */
+  --site-bg-subtle: #161b22;   /* raised surfaces / section tint */
+  --site-bg-inset: #010409;    /* deepest sections */
+  --site-card-from: #161b22;   /* CTA card gradient start */
+  --site-card-to: #0d1117;     /* CTA card gradient end */
+  --site-border: #30363d;      /* default border */
+
+  /* ── Primary accent scale (GitHub blue) ──
+     Every purple-* Tailwind class on the site resolves to these. */
+  --site-accent-200: #a5d6ff;
+  --site-accent-300: #79c0ff;
+  --site-accent-400: #58a6ff;
+  --site-accent-500: #388bfd;
+  --site-accent-600: #1f6feb;
+  --site-accent-700: #1158c7;
+  --site-accent-900: #0c2d6b;
+
+  /* ── Secondary accent scale (GitHub purple, for gradients) ──
+     Every indigo-* / violet-* Tailwind class resolves to these. */
+  --site-secondary-300: #d2a8ff;
+  --site-secondary-400: #a371f7;
+  --site-secondary-500: #8957e5;
+  --site-secondary-600: #6e40c9;
+  --site-secondary-700: #553098;
+
+  /* ── Extras ── */
+  --site-pink: #db61a2;        /* gradient tail (GitHub pink) */
+  --site-glow: 88, 166, 255;   /* RGB triplet for rgba() glows */
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -64,8 +100,66 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Site palette utilities (bg-site-bg, border-site-border, from-site-card-from, …) */
+  --color-site-bg: var(--site-bg);
+  --color-site-bg-subtle: var(--site-bg-subtle);
+  --color-site-bg-inset: var(--site-bg-inset);
+  --color-site-card-from: var(--site-card-from);
+  --color-site-card-to: var(--site-card-to);
+  --color-site-border: var(--site-border);
+
+  /* Remap Tailwind accent scales onto the brand variables so every
+     existing purple-* / indigo-* / violet-* class follows the palette */
+  --color-purple-200: var(--site-accent-200);
+  --color-purple-300: var(--site-accent-300);
+  --color-purple-400: var(--site-accent-400);
+  --color-purple-500: var(--site-accent-500);
+  --color-purple-600: var(--site-accent-600);
+  --color-purple-700: var(--site-accent-700);
+  --color-purple-900: var(--site-accent-900);
+  --color-indigo-300: var(--site-secondary-300);
+  --color-indigo-400: var(--site-secondary-400);
+  --color-indigo-500: var(--site-secondary-500);
+  --color-indigo-600: var(--site-secondary-600);
+  --color-indigo-700: var(--site-secondary-700);
+  --color-violet-500: var(--site-secondary-500);
+  --color-pink-500: var(--site-pink);
+
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-aurora: aurora 16s ease-in-out infinite alternate;
+  --animate-aurora-slow: aurora 24s ease-in-out infinite alternate-reverse;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 1;
+    }
+
+    70% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(215deg) translateX(-600px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes aurora {
+    0% {
+      transform: translate(-8%, -4%) scale(1);
+    }
+
+    50% {
+      transform: translate(6%, 5%) scale(1.15);
+    }
+
+    100% {
+      transform: translate(-4%, 8%) scale(0.95);
+    }
+  }
 
   @keyframes marquee {
     from {
@@ -160,7 +254,7 @@
 /* Custom Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) #171717;
+  scrollbar-color: rgba(255, 255, 255, 0.1) var(--site-bg-subtle);
 }
 
 *::-webkit-scrollbar {
@@ -169,7 +263,7 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #171717;
+  background: var(--site-bg-subtle);
 }
 
 *::-webkit-scrollbar-thumb {
@@ -189,7 +283,7 @@
   html,
   body {
     @apply overflow-x-hidden;
-    background-color: #030014;
+    background-color: var(--site-bg);
   }
 
   body {
@@ -267,7 +361,7 @@
 }
 
 .rich-content blockquote {
-  border-left: 4px solid #a855f7;
+  border-left: 4px solid var(--site-accent-400);
   padding-left: 1rem;
   color: #a1a1aa;
   font-style: italic;
@@ -275,17 +369,17 @@
 }
 
 .rich-content a {
-  color: #c084fc;
+  color: var(--site-accent-300);
   text-decoration: none;
 }
 
 .rich-content a:hover {
-  color: #d8b4fe;
+  color: var(--site-accent-200);
   text-decoration: underline;
 }
 
 .rich-content code {
-  color: #c084fc;
+  color: var(--site-accent-300);
   background: #18181b;
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;

@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-6 left-1/2 z-50 w-[calc(100%-1rem)] max-w-7xl -translate-x-1/2 rounded-2xl border border-white/5 bg-[#030014]/50 backdrop-blur-md shadow-lg transition-all duration-500 sm:w-[95%] ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+      className={`fixed top-6 left-1/2 z-50 w-[calc(100%-1rem)] max-w-7xl -translate-x-1/2 rounded-2xl border border-white/5 bg-site-bg/50 backdrop-blur-md shadow-lg transition-all duration-500 sm:w-[95%] ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
         }`}
     >
       <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
@@ -118,6 +118,12 @@ const Navbar = () => {
             dropdownItems={[
 
               { label: "SEO Results", href: "/results/seo" },
+            ]}
+          />
+          <NavItem
+            title="Cities We Serve"
+            dropdownItems={[
+              { label: "Delhi", href: "/delhi" },
             ]}
           />
           <NavItem title="Blog" href="/blog" />
@@ -205,6 +211,14 @@ const Navbar = () => {
             dropdownItems={[
 
               { label: "SEO Results", href: "/results/seo" },
+            ]}
+          />
+          <NavItem
+            title="Cities We Serve"
+            mobile
+            onNavigate={closeMobileMenu}
+            dropdownItems={[
+              { label: "Delhi", href: "/delhi" },
             ]}
           />
           <NavItem

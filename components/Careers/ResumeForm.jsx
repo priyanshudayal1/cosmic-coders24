@@ -83,7 +83,7 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
     >
       <SpotlightCard
         className="bg-white/5 border-white/10 p-8 pt-10 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-        spotlightColor="rgba(168, 85, 247, 0.2)"
+        spotlightColor="rgba(88, 166, 255, 0.2)"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-[60px] rounded-full pointer-events-none" />
         <form
@@ -229,7 +229,7 @@ const ResumeForm = ({ showRoleDropdown = false }) => {
             variant="glass"
             size="lg"
             disabled={loading || !file}
-            className="w-full mt-4 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full mt-4 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(88,166,255,0.15)] hover:shadow-[0_0_25px_rgba(88,166,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitted ? (
               <>

@@ -75,7 +75,7 @@ Keep view all - in place of view all posts in button
         <div className="flex justify-center">
           <GlassButton
             href="/blog"
-            className="flex items-center gap-2 text-lg px-8 py-4 bg-white/5 hover:bg-white/10 hover:scale-105 transition-all duration-300 rounded-full border border-white/10 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
+            className="flex items-center gap-2 text-lg px-8 py-4 bg-white/5 hover:bg-white/10 hover:scale-105 transition-all duration-300 rounded-full border border-white/10 shadow-[0_0_20px_rgba(31,111,235,0.3)] hover:shadow-[0_0_30px_rgba(31,111,235,0.5)]"
           >
             <span>View All Posts</span>
             <ArrowRight className="w-5 h-5 ml-1" />

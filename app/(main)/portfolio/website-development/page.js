@@ -17,6 +17,15 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import GlassButton from "@/components/ui/GlassButton";
+import ImageCarousel from "@/components/ui/ImageCarousel";
+
+const carouselImages = [
+  { src: "/assets/portfolio/websites/website-01.png", alt: "Website development project" },
+  { src: "/assets/portfolio/websites/website-02.png", alt: "Website development project" },
+  { src: "/assets/portfolio/websites/website-03.png", alt: "Website development project" },
+  { src: "/assets/portfolio/websites/website-04.png", alt: "Website development project" },
+  { src: "/assets/portfolio/websites/website-05.png", alt: "Website development project" },
+];
 
 export default function WebsiteDevelopmentPortfolio() {
   const projects = [
@@ -74,14 +83,18 @@ export default function WebsiteDevelopmentPortfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       <ServiceHero
         title="Website Development"
-        highlightedText="Portfolio"
-        subtitle="Explore our collection of stunning websites and web applications. Each project showcases our commitment to excellence, innovation, and user-centric design."
+        highlightedText="Projects"
+        subtitle="From business websites to custom web applications, our projects showcase innovative solutions optimized for search rankings, fast loading speeds, mobile-first performance, and higher conversions."
         ctaText="Get Your Website"
         ctaHref="/services/website-development"
       />
+
+      <section className="py-12 md:py-16">
+        <ImageCarousel images={carouselImages} duration="50s" />
+      </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
@@ -116,6 +129,7 @@ export default function WebsiteDevelopmentPortfolio() {
             eyebrow="Our Work"
             title="Featured Web Projects"
             subtitle="From e-commerce platforms to SaaS dashboards, see how we craft digital experiences that convert."
+            titleClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight drop-shadow-lg relative z-10"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -161,8 +175,8 @@ export default function WebsiteDevelopmentPortfolio() {
       <section className="py-12 md:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-site-card-from to-site-card-to p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm pointer-events-none" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-linear-to-r from-transparent via-purple-400 to-transparent pointer-events-none" />

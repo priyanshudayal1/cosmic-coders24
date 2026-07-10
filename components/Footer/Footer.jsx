@@ -46,7 +46,7 @@ const Footer = () => {
           staticity={40}
           ease={60}
           size={0.5}
-          color="#a855f7"
+          color="#ffffff"
           vx={0}
           vy={-0.05}
         />

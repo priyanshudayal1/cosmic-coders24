@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Eyebrow from "./Eyebrow";
 import { Particles } from "./particles";
 
-const SectionHeading = ({ title, subtitle, eyebrow }) => {
+const SectionHeading = ({ title, subtitle, eyebrow, titleClassName }) => {
   return (
     <div className="flex flex-col items-center text-center mb-16 relative z-10">
       {/* ── Particles & Glow backdrop ── */}
@@ -21,7 +21,7 @@ const SectionHeading = ({ title, subtitle, eyebrow }) => {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168,85,247,0.10) 0%, rgba(139,92,246,0.03) 50%, transparent 75%)",
+              "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(88,166,255,0.10) 0%, rgba(163,113,247,0.03) 50%, transparent 75%)",
           }}
         />
 
@@ -32,7 +32,7 @@ const SectionHeading = ({ title, subtitle, eyebrow }) => {
           staticity={40}
           ease={60}
           size={0.5}
-          color="#a855f7"
+          color="#ffffff"
           vx={0}
           vy={-0.05}
         />
@@ -48,7 +48,7 @@ const SectionHeading = ({ title, subtitle, eyebrow }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-lg relative z-10"
+          className={titleClassName ?? "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-lg relative z-10"}
         >
           {title}
         </motion.h2>

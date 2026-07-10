@@ -20,7 +20,7 @@ const ContactSection = () => {
 
         <SpotlightCard
           className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-          spotlightColor="rgba(168, 85, 247, 0.2)"
+          spotlightColor="rgba(88, 166, 255, 0.2)"
         >
           {/* simple form layout */}
           <LeadForm />

@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { Analytics } from "@vercel/analytics/next";
@@ -40,11 +41,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full bg-[#0F061A]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full bg-site-bg`}
         suppressHydrationWarning
       >
         {children}
         <Analytics />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CZ18R0QW6H"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CZ18R0QW6H');
+          `}
+        </Script>
       </body>
     </html>
   );
