@@ -21,7 +21,7 @@ const SectionHeading = ({ title, subtitle, eyebrow, titleClassName }) => {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(88,166,255,0.10) 0%, rgba(163,113,247,0.03) 50%, transparent 75%)",
+              "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(var(--glow-purple), 0.11) 0%, rgba(var(--glow-blue), 0.04) 50%, transparent 75%)",
           }}
         />
 

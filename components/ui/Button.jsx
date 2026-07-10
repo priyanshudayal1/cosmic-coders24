@@ -23,7 +23,7 @@ const Button = React.forwardRef(
       glass:
         "bg-white/10 hover:bg-white/20 text-white border border-white/10 backdrop-blur-sm",
       primary:
-        "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-900/40",
+        "bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-md shadow-purple-900/25",
       ghost:
         "bg-transparent hover:bg-white/5 text-white border border-transparent",
     };

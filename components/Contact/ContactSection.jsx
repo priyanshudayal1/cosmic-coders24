@@ -7,7 +7,7 @@ import LeadForm from "../Form/LeadForm";
 
 const ContactSection = () => {
   return (
-    <section className="w-full py-20 relative overflow-hidden" id="contact">
+    <section className="w-full py-20 relative overflow-hidden lx-purple" id="contact">
       {/* Background Gradients */}
       <div className="absolute center w-200 h-200 bg-purple-900/10 rounded-full blur-[120px] pointer-events-none transform -translate-x-1/2 left-1/2" />
 

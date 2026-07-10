@@ -19,7 +19,7 @@ const ParticleHeader = ({ children }) => {
                     className="absolute inset-0"
                     style={{
                         background:
-                            "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(88,166,255,0.10) 0%, rgba(163,113,247,0.03) 50%, transparent 75%)",
+                            "radial-gradient(ellipse 62% 52% at 50% 38%, rgba(var(--glow-purple), 0.12) 0%, rgba(var(--glow-blue), 0.05) 48%, transparent 74%)",
                     }}
                 />
                 <Particles

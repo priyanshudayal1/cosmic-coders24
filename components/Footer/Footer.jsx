@@ -26,7 +26,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-[#150824] border-t border-white/5 pt-10 pb-10 relative overflow-hidden">
+    <footer className="w-full bg-site-bg-inset lx-footer border-t border-white/5 pt-10 pb-10 relative overflow-hidden">
       <Toast
         message="Phone number copied to clipboard!"
         isVisible={showToast}

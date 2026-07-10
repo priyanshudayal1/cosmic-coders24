@@ -9,7 +9,7 @@ import ResumeForm from "./ResumeForm";
 const CareersSection = () => {
 
     return (
-        <section className="w-full py-20 relative overflow-hidden" id="careers">
+        <section className="w-full py-20 relative overflow-hidden lx-blue" id="careers">
             {/* Background Gradients */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none" />

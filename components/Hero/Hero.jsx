@@ -30,18 +30,18 @@ const Hero = () => {
         vy={-0.04}
       />
 
-      {/* ── Aurora glows (GitHub blue → purple, drift slowly) ── */}
+      {/* ── Aurora glows (indigo-blue shoulders + soft purple core, drift slowly) ── */}
       <div
-        className="absolute top-[-25%] left-[-15%] w-[60%] h-[70%] rounded-full blur-[110px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
-        style={{ background: "var(--site-accent-600)", opacity: 0.35 }}
+        className="absolute top-[-25%] left-[-15%] w-[60%] h-[70%] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
+        style={{ background: "rgb(var(--glow-blue))", opacity: 0.32 }}
       />
       <div
-        className="absolute top-[-20%] right-[-15%] w-[55%] h-[65%] rounded-full blur-[110px] mix-blend-screen pointer-events-none animate-aurora-slow will-change-transform"
-        style={{ background: "var(--site-secondary-500)", opacity: 0.3 }}
+        className="absolute top-[-20%] right-[-15%] w-[55%] h-[65%] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-aurora-slow will-change-transform"
+        style={{ background: "rgb(var(--glow-indigo))", opacity: 0.3 }}
       />
       <div
-        className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[45%] h-[40%] rounded-full blur-[90px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
-        style={{ background: "var(--site-accent-500)", opacity: 0.18 }}
+        className="absolute top-[16%] left-1/2 -translate-x-1/2 w-[58%] h-[48%] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
+        style={{ background: "rgb(var(--glow-purple))", opacity: 0.26 }}
       />
 
       {/* ── Meteors ── */}

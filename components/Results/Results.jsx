@@ -51,7 +51,7 @@ const Results = () => {
   const drawDuration = 1.7;
 
   return (
-    <section className="w-full py-20 relative">
+    <section className="w-full py-20 relative lx-cyan">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <SectionHeading
           eyebrow="Proven Results"

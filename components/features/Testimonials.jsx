@@ -125,7 +125,7 @@ export default function Testimonials() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative">
+    <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative lx-indigo">
       <SectionHeading
         eyebrow="Testimonials"
         title="What Clients Say"

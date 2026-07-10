@@ -9,7 +9,7 @@ import GlassButton from "../ui/GlassButton";
 const AboutTeaser = () => {
   return (
     <section
-      className="w-full py-20 relative overflow-hidden"
+      className="w-full py-20 relative overflow-hidden lx-purple"
       id="about-teaser"
     >
       {/* Background Elements */}

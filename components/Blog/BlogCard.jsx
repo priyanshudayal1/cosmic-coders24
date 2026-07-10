@@ -11,7 +11,7 @@ const BlogCard = ({ post }) => {
     <Link href={`/blog/${post.slug}`} className="block h-full">
       <SpotlightCard className="h-full bg-white/10 border-white/10 p-0 flex flex-col group hover:bg-white/20 transition-colors duration-300">
         {/* Image Container */}
-        <div className="relative w-full h-48 overflow-hidden rounded-t-3xl border-b border-white/10">
+        <div className="relative w-full h-48 overflow-hidden rounded-t-3xl border-b border-white/10 bg-site-bg-inset">
           <Image
             src={post.image}
             alt={post.title}

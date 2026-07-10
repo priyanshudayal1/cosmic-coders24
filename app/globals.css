@@ -30,35 +30,118 @@
    Edit the values below to retheme the entire website.
    ════════════════════════════════════════════════════════════════════ */
 :root {
-  /* ── Backgrounds (GitHub dark canvas) ── */
-  --site-bg: #0d1117;          /* page canvas */
-  --site-bg-subtle: #161b22;   /* raised surfaces / section tint */
-  --site-bg-inset: #010409;    /* deepest sections */
-  --site-card-from: #161b22;   /* CTA card gradient start */
-  --site-card-to: #0d1117;     /* CTA card gradient end */
-  --site-border: #30363d;      /* default border */
+  /* ═══════════════════════════════════════════════════════════════════
+     BACKGROUNDS — deep midnight blue canvas (GitHub landing feel)
+     Rich blue-indigo neutrals, never pure black. The page reads as
+     "illuminated from inside" once the ambient gradients are layered on.
+     ═══════════════════════════════════════════════════════════════════ */
+  --site-bg: #0a0e1c;          /* page canvas — deep midnight blue */
+  --site-bg-subtle: #12182f;   /* raised surface / indigo-tinted section */
+  --site-bg-inset: #070a15;    /* deepest sections — still soft, never #000 */
+  --site-card-from: #171d36;   /* card surface top — clearly above canvas */
+  --site-card-to: #111730;     /* card surface bottom */
 
-  /* ── Primary accent scale (GitHub blue) ──
-     Every purple-* Tailwind class on the site resolves to these. */
-  --site-accent-200: #a5d6ff;
-  --site-accent-300: #79c0ff;
-  --site-accent-400: #58a6ff;
-  --site-accent-500: #388bfd;
-  --site-accent-600: #1f6feb;
-  --site-accent-700: #1158c7;
-  --site-accent-900: #0c2d6b;
+  /* ═══ Primary accent scale (GitHub blue) — purple-* classes map here ═══ */
+  --site-accent-200: #b3daff;
+  --site-accent-300: #85c3ff;
+  --site-accent-400: #61a6fa;
+  --site-accent-500: #4392f5;
+  --site-accent-600: #2f7ceb;
+  --site-accent-700: #1f5fcf;
+  --site-accent-900: #14356f;
 
-  /* ── Secondary accent scale (GitHub purple, for gradients) ──
-     Every indigo-* / violet-* Tailwind class resolves to these. */
-  --site-secondary-300: #d2a8ff;
-  --site-secondary-400: #a371f7;
-  --site-secondary-500: #8957e5;
-  --site-secondary-600: #6e40c9;
-  --site-secondary-700: #553098;
+  /* ═══ Secondary accent scale (refined violet) — indigo / violet classes ═══
+     Softened and shifted toward indigo so purple reads as light, not paint. */
+  --site-secondary-300: #cbbaf6;
+  --site-secondary-400: #a992ea;
+  --site-secondary-500: #8d72da;
+  --site-secondary-600: #6f57c2;
+  --site-secondary-700: #574aa2;
+  --site-pink: #d16db0;        /* pink highlight (2% of the palette) */
 
-  /* ── Extras ── */
-  --site-pink: #db61a2;        /* gradient tail (GitHub pink) */
-  --site-glow: 88, 166, 255;   /* RGB triplet for rgba() glows */
+  /* ═══════════════════════════════════════════════════════════════════
+     GLOW FAMILIES — RGB triplets consumed as rgba(var(--glow-*), a)
+     A small, reusable set. Every gradient in the site draws from these
+     so the whole page shares one lighting vocabulary.
+     ═══════════════════════════════════════════════════════════════════ */
+  --glow-blue: 56, 116, 235;    /* rich indigo-blue — the "open" light */
+  --glow-indigo: 92, 104, 232;  /* indigo bridge between blue & purple */
+  --glow-purple: 149, 110, 232; /* soft purple light */
+  --glow-pink: 209, 109, 176;   /* pink highlight, used sparingly */
+  --glow-cyan: 96, 158, 210;    /* muted cool highlight (never electric) */
+  --site-glow: var(--glow-blue);/* legacy alias for existing rgba() usages */
+
+  /* ═══ Borders — translucent, quietly defining (subtle blue/purple tint) ═══ */
+  --site-border: rgba(230, 238, 255, 0.09);
+  --border-soft: rgba(230, 238, 255, 0.08);
+  --border-indigo: rgba(120, 132, 255, 0.16);
+  --border-purple: rgba(174, 132, 240, 0.16);
+
+  /* ═══ Opacity + blur scale (keeps every glow in the same soft register) ═══ */
+  --glow-o-strong: 0.24;
+  --glow-o-medium: 0.14;
+  --glow-o-soft: 0.09;
+  --glow-o-faint: 0.05;
+  --blur-glow: 120px;
+
+  /* ═══ Shadows — atmospheric depth instead of hard drop shadows ═══ */
+  --shadow-ambient: 0 30px 90px -30px rgba(3, 5, 12, 0.75);
+  --shadow-glow-purple: 0 24px 90px -24px rgba(var(--glow-purple), 0.32);
+  --shadow-glow-blue: 0 24px 90px -24px rgba(var(--glow-blue), 0.30);
+
+  /* ═══════════════════════════════════════════════════════════════════
+     GRADIENT FAMILIES — the reusable lighting design system.
+     Each belongs to a named family so lighting stays consistent.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /* Global background field — anchored to the viewport, shared by all pages.
+     Layered purple + blue + indigo so the page always reads as illuminated. */
+  --gradient-background:
+    radial-gradient(1100px 720px at 16% -6%, rgba(var(--glow-purple), 0.22), transparent 56%),
+    radial-gradient(1200px 820px at 86% 4%, rgba(var(--glow-blue), 0.20), transparent 56%),
+    radial-gradient(1300px 1000px at 50% 118%, rgba(var(--glow-indigo), 0.18), transparent 58%);
+
+  /* Hero — the strongest treatment: purple core, blue/indigo shoulders,
+     soft purple rising from the bottom. Reads as atmosphere, not a circle. */
+  --gradient-hero:
+    radial-gradient(60% 52% at 50% 22%, rgba(var(--glow-purple), 0.42), transparent 70%),
+    radial-gradient(80% 62% at 14% 6%, rgba(var(--glow-blue), 0.30), transparent 64%),
+    radial-gradient(80% 62% at 88% 12%, rgba(var(--glow-indigo), 0.28), transparent 64%),
+    radial-gradient(95% 75% at 50% 106%, rgba(var(--glow-purple), 0.22), transparent 70%);
+
+  /* Feature sections — indigo-led ambient behind screenshots / content */
+  --gradient-feature:
+    radial-gradient(70% 60% at 50% -4%, rgba(var(--glow-indigo), 0.26), transparent 66%),
+    radial-gradient(58% 55% at 82% 26%, rgba(var(--glow-blue), 0.16), transparent 62%);
+
+  /* CTA — a focused purple/blue glow to draw the eye */
+  --gradient-cta:
+    radial-gradient(58% 82% at 50% -6%, rgba(var(--glow-purple), 0.34), transparent 70%),
+    radial-gradient(80% 60% at 50% 110%, rgba(var(--glow-blue), 0.22), transparent 70%);
+
+  /* Footer — purple light rising from the bottom edge */
+  --gradient-footer:
+    radial-gradient(62% 130% at 50% 128%, rgba(var(--glow-purple), 0.34), transparent 58%),
+    radial-gradient(54% 100% at 14% 120%, rgba(var(--glow-blue), 0.18), transparent 60%);
+
+  /* Card surface — subtle internal top-light for gentle elevation */
+  --gradient-card:
+    linear-gradient(158deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02) 42%, rgba(255, 255, 255, 0) 100%);
+
+  /* Card external glow — sits behind featured cards (outside them) */
+  --gradient-card-glow:
+    radial-gradient(60% 60% at 50% 0%, rgba(var(--glow-purple), 0.16), transparent 72%);
+
+  /* Section identity variants — soft but visible; each section carries its
+     own colored light so the page never feels flat or repetitive. */
+  --ambient-indigo: radial-gradient(80% 68% at 50% 0%, rgba(var(--glow-indigo), 0.22), transparent 68%);
+  --ambient-purple: radial-gradient(76% 66% at 50% 8%, rgba(var(--glow-purple), 0.22), transparent 68%);
+  --ambient-cyan:   radial-gradient(76% 64% at 50% 2%, rgba(var(--glow-cyan), 0.18), transparent 68%);
+  --ambient-blue:   radial-gradient(84% 66% at 50% 0%, rgba(var(--glow-blue), 0.22), transparent 68%);
+  --ambient-subtle: radial-gradient(88% 78% at 50% 6%, rgba(var(--glow-indigo), 0.15), transparent 72%);
+
+  /* Legacy alias — existing var(--site-ambient) usages resolve to the field */
+  --site-ambient: var(--gradient-background);
 }
 
 @theme inline {
@@ -251,10 +334,64 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* ── Ambient lighting on canvas surfaces ──
+   Every full-width page/section wrapper that uses `bg-site-bg` picks up the
+   shared ambient gradient. `background-attachment: fixed` anchors the glow to
+   the viewport so stacked sections read as one continuous, softly lit field
+   (the GitHub homepage effect) rather than a repeated per-section pattern.
+   Opacity-modified variants (e.g. `bg-site-bg/50` on the navbar) use a
+   different class name and are intentionally left untouched. */
+.bg-site-bg {
+  background-image: var(--gradient-background);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   LIGHTING UTILITIES — reusable atmospheric layers
+   Apply these classes to existing section/card wrappers to place a
+   named glow behind their content. They only paint background layers
+   (always behind text) and never affect layout, size, or spacing.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Section identities — the gradient is the element's own background layer,
+   so it always renders behind child content. Sections are transparent by
+   default, so this composites over the page-wide fixed ambient field. */
+.lx-indigo  { background-image: var(--ambient-indigo);  background-repeat: no-repeat; background-position: center top; }
+.lx-purple  { background-image: var(--ambient-purple);  background-repeat: no-repeat; background-position: center top; }
+.lx-cyan    { background-image: var(--ambient-cyan);    background-repeat: no-repeat; background-position: center top; }
+.lx-blue    { background-image: var(--ambient-blue);    background-repeat: no-repeat; background-position: center top; }
+.lx-subtle  { background-image: var(--ambient-subtle);  background-repeat: no-repeat; background-position: center top; }
+.lx-feature { background-image: var(--gradient-feature); background-repeat: no-repeat; background-position: center top; }
+.lx-cta     { background-image: var(--gradient-cta);     background-repeat: no-repeat; background-position: center top; }
+
+/* Surface — subtle internal top-light + atmospheric depth for premium cards.
+   Uses an inset highlight + soft ambient shadow (not background-image), so it
+   never conflicts with a card's own background color or gradient. */
+.lx-surface {
+  border-color: var(--border-soft);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    var(--shadow-ambient);
+}
+
+/* External card glow — a soft halo behind a featured card (outside it).
+   Requires the element to establish a positioning context (already common). */
+.lx-card-glow { position: relative; }
+.lx-card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -14% -8% -18% -8%;
+  z-index: -1;
+  background-image: var(--gradient-card-glow);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
 /* Custom Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) var(--site-bg-subtle);
+  scrollbar-color: rgba(230, 238, 255, 0.14) var(--site-bg-subtle);
 }
 
 *::-webkit-scrollbar {
@@ -267,12 +404,12 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(230, 238, 255, 0.14);
   border-radius: 9999px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(230, 238, 255, 0.24);
 }
 
 @layer base {
@@ -287,7 +424,9 @@
   }
 
   body {
-    @apply text-foreground;
+    /* Soft off-white base text (GitHub-style) instead of harsh pure white.
+       Explicit text-* utilities on components still take precedence. */
+    color: #e6edf3;
   }
 }
 
@@ -303,7 +442,7 @@
   font-weight: 700;
   line-height: 1.2;
   margin: 2rem 0 1rem;
-  color: #ffffff;
+  color: #f0f4fa;
 }
 
 .rich-content h1 {

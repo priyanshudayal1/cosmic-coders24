@@ -47,7 +47,7 @@ const BlogSection = () => {
   if (blogPosts.length === 0) return null;
 
   return (
-    <section className="w-full py-20 relative" id="blog">
+    <section className="w-full py-20 relative lx-subtle" id="blog">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <SectionHeading
           eyebrow="Our Blog"
