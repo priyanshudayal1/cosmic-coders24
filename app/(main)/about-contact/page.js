@@ -79,7 +79,7 @@ export default function AboutContact() {
       <div className="fixed bottom-0 left-[-20%] w-[60%] h-[60%] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
       <div className="fixed bottom-0 right-[-20%] w-[60%] h-[60%] bg-blue-900/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
 
-      <main className="relative z-10 pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center space-y-20">
+      <main className="relative z-10 pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center space-y-20">
         {/* --- Who We Are Section --- */}
         <motion.section
           className="text-center max-w-4xl space-y-6"
