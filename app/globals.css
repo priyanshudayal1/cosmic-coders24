@@ -211,8 +211,6 @@
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --animate-meteor: meteor 5s linear infinite;
-  --animate-aurora: aurora 16s ease-in-out infinite alternate;
-  --animate-aurora-slow: aurora 24s ease-in-out infinite alternate-reverse;
 
   @keyframes meteor {
     0% {
@@ -227,20 +225,6 @@
     100% {
       transform: rotate(215deg) translateX(-600px);
       opacity: 0;
-    }
-  }
-
-  @keyframes aurora {
-    0% {
-      transform: translate(-8%, -4%) scale(1);
-    }
-
-    50% {
-      transform: translate(6%, 5%) scale(1.15);
-    }
-
-    100% {
-      transform: translate(-4%, 8%) scale(0.95);
     }
   }
 
@@ -386,6 +370,121 @@
   background-image: var(--gradient-card-glow);
   filter: blur(28px);
   pointer-events: none;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   HERO SKY — immersive GitHub-landing-style cosmic backdrop.
+   PERFORMANCE CONTRACT: every animated class below animates ONLY
+   transform and/or opacity, so each layer is rasterised once and every
+   frame after that is GPU compositing — no per-frame repaints, ever.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Base lighting — the theme's hero gradient, painted once, fully static. */
+.hero-glow {
+  background-image: var(--gradient-hero);
+}
+
+/* Nebula clouds — big blurred colour blobs with an ultra-slow breathe.
+   The blur is static (rasterised once); only transform animates. */
+.nebula {
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  will-change: transform;
+  animation: nebula-breathe 36s ease-in-out infinite alternate;
+}
+@keyframes nebula-breathe {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(1.5%, 1%, 0) scale(1.12); }
+}
+
+/* Twinkling stars — gentle opacity/scale pulse. */
+.star-twinkle {
+  will-change: transform, opacity;
+  animation: twinkle 3.4s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  0%   { opacity: 0.15; transform: scale(0.75); }
+  100% { opacity: 1;    transform: scale(1.2); }
+}
+
+/* Shooting stars — a thin streak whose bright head is its right end,
+   FALLING down-right (translate3d x AND y increase together; the 35deg
+   rotation matches atan(23.8 / 34) so the streak lies along its path).
+   scaleX from the head stretches the tail as it flies. */
+.star-fall {
+  opacity: 0;
+  transform-origin: 100% 50%;
+  will-change: transform, opacity;
+  animation: star-fall 7s linear infinite;
+}
+@keyframes star-fall {
+  0%   { transform: translate3d(0, 0, 0) rotate(35deg) scaleX(0.5); opacity: 0; }
+  8%   { opacity: 1; }
+  60%  { opacity: 1; }
+  90%  { opacity: 0; }
+  100% { transform: translate3d(34rem, 23.8rem, 0) rotate(35deg) scaleX(1); opacity: 0; }
+}
+
+/* Milky-way band — static diagonal wash of faint light across the sky. */
+.milky-way {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(133, 195, 255, 0.10) 30%,
+    rgba(230, 238, 255, 0.14) 50%,
+    rgba(174, 132, 240, 0.10) 70%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  transform: rotate(-16deg);
+  mix-blend-mode: screen;
+}
+
+/* Mini planet — CSS Saturn in the upper sky. Sphere and ring are static;
+   only the tiny moon wrapper rotates (transform-only). */
+.mini-planet {
+  background: radial-gradient(circle at 32% 28%, #b9a7f0 0%, #8d72da 32%, #3f2f7a 68%, #241c4a 100%);
+  box-shadow:
+    inset -10px -8px 22px rgba(7, 10, 21, 0.75),
+    0 0 24px 4px rgba(149, 110, 232, 0.28);
+}
+.mini-planet-ring {
+  border: 1.5px solid rgba(203, 186, 246, 0.35);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  box-shadow: 0 0 10px rgba(149, 110, 232, 0.18);
+}
+.moon-orbit {
+  will-change: transform;
+  animation: orbit-spin 22s linear infinite;
+}
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+.mini-moon {
+  background: radial-gradient(circle at 35% 35%, #e6eeff, #85c3ff 60%, #2f7ceb);
+  box-shadow: 0 0 8px 2px rgba(133, 195, 255, 0.5);
+}
+
+/* Scroll hint — gentle bob. Centering lives on a wrapper element so this
+   transform doesn't fight the -translate-x-1/2. */
+.scroll-hint {
+  animation: scroll-bob 2.4s ease-in-out infinite;
+}
+@keyframes scroll-bob {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 8px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* A frozen streak reads as a scratch — hide it. Everything else just
+     holds still. */
+  .star-fall { animation: none !important; opacity: 0 !important; }
+  .star-twinkle,
+  .nebula,
+  .moon-orbit,
+  .scroll-hint { animation: none !important; }
 }
 
 /* Custom Scrollbar */

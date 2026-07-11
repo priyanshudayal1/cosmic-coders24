@@ -4,16 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import GlassButton from "../ui/GlassButton";
 import { Particles } from "../ui/particles";
-
-// Fixed configs (not Math.random) so server & client render identically
-const METEORS = [
-  { top: "-5%", left: "10%", delay: "0s", duration: "6s" },
-  { top: "-10%", left: "30%", delay: "1.8s", duration: "7.5s" },
-  { top: "-5%", left: "45%", delay: "3.2s", duration: "5.5s" },
-  { top: "-12%", left: "60%", delay: "0.9s", duration: "8s" },
-  { top: "-8%", left: "75%", delay: "4.5s", duration: "6.5s" },
-  { top: "-4%", left: "90%", delay: "2.6s", duration: "7s" },
-];
+import HeroBackground from "../backgrounds/HeroBackground";
 
 const Hero = () => {
   return (
@@ -27,49 +18,25 @@ const Hero = () => {
         size={0.6}
         color="#ffffff"
         vx={0}
-        vy={-0.04}
+        vy={0.05}
       />
 
-      {/* ── Aurora glows (indigo-blue shoulders + soft purple core, drift slowly) ── */}
-      <div
-        className="absolute top-[-25%] left-[-15%] w-[60%] h-[70%] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
-        style={{ background: "rgb(var(--glow-blue))", opacity: 0.32 }}
-      />
-      <div
-        className="absolute top-[-20%] right-[-15%] w-[55%] h-[65%] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-aurora-slow will-change-transform"
-        style={{ background: "rgb(var(--glow-indigo))", opacity: 0.3 }}
-      />
-      <div
-        className="absolute top-[16%] left-1/2 -translate-x-1/2 w-[58%] h-[48%] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-aurora will-change-transform"
-        style={{ background: "rgb(var(--glow-purple))", opacity: 0.26 }}
-      />
-
-      {/* ── Meteors ── */}
-      {METEORS.map((m, i) => (
-        <span
-          key={i}
-          className="absolute h-0.5 w-0.5 rounded-full animate-meteor pointer-events-none"
-          style={{
-            top: m.top,
-            left: m.left,
-            animationDelay: m.delay,
-            animationDuration: m.duration,
-            background: "var(--site-accent-300)",
-            boxShadow: "0 0 0 1px rgba(255,255,255,0.1)",
-          }}
-        >
-          <span
-            className="absolute top-1/2 -translate-y-1/2 left-0 h-px w-[70px]"
-            style={{
-              background:
-                "linear-gradient(90deg, var(--site-accent-300), transparent)",
-            }}
-          />
-        </span>
-      ))}
+      {/* ── Static cosmic glow + shooting stars (no per-frame repaints) ── */}
+      <HeroBackground />
 
       {/* ── Content ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto space-y-8">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="inline-flex items-center gap-2 rounded-full border border-site-border bg-white/5 px-4 py-1.5 text-xs sm:text-sm text-slate-200/90 backdrop-blur-sm tracking-wide"
+        >
+          <span className="text-purple-300">✦</span>
+          Full-Service Digital Agency
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,6 +57,17 @@ const Hero = () => {
             That Drive Visibility &amp; Real Growth
           </span>
         </motion.h1>
+
+        {/* Subheadline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
+          className="max-w-2xl text-base sm:text-lg text-slate-300/85 leading-relaxed"
+        >
+          Websites, SEO and growth engineering for brands that want to stand
+          out — designed, built and launched by one dedicated crew.
+        </motion.p>
 
         {/* CTAs */}
         <motion.div
@@ -113,6 +91,11 @@ const Hero = () => {
         </motion.div>
       </div>
 
+      {/* ── Outer orbit ring — faint second ring above the horizon ── */}
+      <div
+        className="absolute bottom-[-58vw] md:bottom-[-44vw] left-1/2 -translate-x-1/2 w-[172vw] md:w-[130vw] aspect-square rounded-full pointer-events-none border border-white/5"
+      />
+
       {/* ── Glowing horizon arc (GitHub Universe style) ── */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -124,9 +107,24 @@ const Hero = () => {
           boxShadow:
             "0 -20px 80px 10px rgba(var(--site-glow), 0.25), inset 0 20px 120px 0 rgba(var(--site-glow), 0.12)",
           background:
-            "radial-gradient(circle at 50% 0%, rgba(var(--site-glow), 0.08), var(--site-bg) 45%)",
+            "radial-gradient(circle at 50% 0%, rgba(var(--site-glow), 0.10), rgba(var(--site-glow), 0.03) 28%, transparent 50%)",
         }}
       />
+
+      {/* ── Scroll hint ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.4 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+      >
+        <div className="scroll-hint flex flex-col items-center gap-1.5 text-slate-400/70">
+          <span className="text-[10px] uppercase tracking-[0.25em]">Scroll</span>
+          <span className="flex h-8 w-5 items-start justify-center rounded-full border border-slate-400/40 p-1">
+            <span className="h-1.5 w-0.5 rounded-full bg-slate-300/80" />
+          </span>
+        </div>
+      </motion.div>
 
       {/* Bottom fade for seamless transition into next section */}
       <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-site-bg to-transparent pointer-events-none" />
