@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import NavItem from "./NavItem";
 import GlassButton from "../ui/GlassButton";
 import { usePathname } from "next/navigation";
+import { CITY_NAV_ITEMS } from "@/lib/cities";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,12 +121,7 @@ const Navbar = () => {
               { label: "SEO Results", href: "/results/seo" },
             ]}
           />
-          <NavItem
-            title="Cities We Serve"
-            dropdownItems={[
-              { label: "Delhi", href: "/delhi" },
-            ]}
-          />
+          <NavItem title="Cities We Serve" dropdownItems={CITY_NAV_ITEMS} />
           <NavItem title="Blog" href="/blog" />
           <NavItem title="Careers" href="/careers" />
           <NavItem title="About & Contact" href="/about-contact" />
@@ -217,9 +213,7 @@ const Navbar = () => {
             title="Cities We Serve"
             mobile
             onNavigate={closeMobileMenu}
-            dropdownItems={[
-              { label: "Delhi", href: "/delhi" },
-            ]}
+            dropdownItems={CITY_NAV_ITEMS}
           />
           <NavItem
             title="Blog"

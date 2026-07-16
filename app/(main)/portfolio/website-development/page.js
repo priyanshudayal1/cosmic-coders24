@@ -88,12 +88,21 @@ export default function WebsiteDevelopmentPortfolio() {
         title="Website Development"
         highlightedText="Projects"
         subtitle="From business websites to custom web applications, our projects showcase innovative solutions optimized for search rankings, fast loading speeds, mobile-first performance, and higher conversions."
-        ctaText="Get Your Website"
-        ctaHref="/services/website-development"
+        showCta={false}
+        compact
       />
 
-      <section className="py-12 md:py-16">
+      <section className="pt-6 pb-12 md:pt-8 md:pb-16">
         <ImageCarousel images={carouselImages} duration="50s" />
+
+        <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
+          <GlassButton
+            href="/services/website-development"
+            className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10"
+          >
+            Get Your Website
+          </GlassButton>
+        </div>
       </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6">

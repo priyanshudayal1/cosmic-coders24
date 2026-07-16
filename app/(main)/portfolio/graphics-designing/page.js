@@ -111,12 +111,21 @@ export default function GraphicsDesigningPortfolio() {
         title="Graphic Design"
         highlightedText="Projects"
         subtitle="Explore our collection of creative designs crafted to strengthen brand identity, boost engagement, and drive results."
-        ctaText="Get Custom Designs"
-        ctaHref="/services/graphics-design"
+        showCta={false}
+        compact
       />
 
-      <section className="py-12 md:py-16">
+      <section className="pt-6 pb-12 md:pt-8 md:pb-16">
         <ImageCarousel images={carouselImages} duration="50s" />
+
+        <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
+          <GlassButton
+            href="/services/graphics-design"
+            className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10"
+          >
+            Get Custom Designs
+          </GlassButton>
+        </div>
       </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6">

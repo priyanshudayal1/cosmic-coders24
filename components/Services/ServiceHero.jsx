@@ -11,9 +11,15 @@ const ServiceHero = ({
   ctaText = "Get Started",
   ctaHref = "#contact",
   onCtaClick,
+  showCta = true,
+  compact = false,
 }) => {
   return (
-    <section className="relative min-h-[50vh] flex flex-col items-center justify-center pt-32 pb-12 px-4 sm:px-6 overflow-hidden">
+    <section
+      className={`relative flex flex-col items-center justify-center pt-32 px-4 sm:px-6 overflow-hidden ${
+        compact ? "pb-6" : "min-h-[50vh] pb-12"
+      }`}
+    >
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-125 h-125 bg-purple-600/20 rounded-full blur-[100px] -z-10" />
       <div className="absolute bottom-0 left-0 w-125 h-125 bg-blue-600/10 rounded-full blur-[100px] -z-10" />
@@ -37,24 +43,28 @@ const ServiceHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-sm sm:text-base md:text-lg text-gray-400 max-w-3xl mx-auto mb-10"
+          className={`text-sm sm:text-base md:text-lg text-gray-400 max-w-3xl mx-auto ${
+            showCta ? "mb-10" : ""
+          }`}
         >
           {subtitle}
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex justify-center"
-        >
-          <GlassButton
-            href={ctaHref}
-            onClick={onCtaClick}
-            className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10"
+        {showCta && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex justify-center"
           >
-            {ctaText}
-          </GlassButton>
-        </motion.div>
+            <GlassButton
+              href={ctaHref}
+              onClick={onCtaClick}
+              className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10"
+            >
+              {ctaText}
+            </GlassButton>
+          </motion.div>
+        )}
       </div>
     </section>
   );

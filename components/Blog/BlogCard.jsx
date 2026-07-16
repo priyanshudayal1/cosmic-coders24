@@ -31,24 +31,24 @@ const BlogCard = ({ post }) => {
             </span>
           </div>
 
-          <div className="flex flex-col gap-1.5 text-xs text-gray-400 mb-4">
-            <div className="flex items-center gap-1.5 min-w-0">
-              <User className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-              <span className="truncate">{post.author}</span>
-            </div>
-            <div className="flex items-center gap-1.5 shrink-0">
-              <Calendar className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-              <span className="whitespace-nowrap">{post.date}</span>
-            </div>
-          </div>
-
           <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-purple-300 transition-colors">
             {post.title}
           </h3>
 
-          <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-6 flex-1">
+          <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
             {post.excerpt}
           </p>
+
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-gray-500 mb-4">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <User className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+              <span className="truncate">{post.author}</span>
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <Calendar className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+              <span className="whitespace-nowrap">{post.date}</span>
+            </div>
+          </div>
 
           <div className="flex items-center text-sm font-medium text-purple-400 group-hover:text-white transition-colors mt-auto">
             <span>Read Article</span>

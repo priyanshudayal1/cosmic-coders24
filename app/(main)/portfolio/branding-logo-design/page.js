@@ -29,11 +29,11 @@ export default function BrandingLogoDesignPortfolio() {
         title="Branding & Logo Design"
         highlightedText="Projects"
         subtitle="Explore our brand identity, logo design, and packaging projects crafted to help businesses stand out in competitive markets. Each project combines strategic thinking, creative storytelling, and visual consistency to build memorable brands that connect with audiences and inspire long-term trust."
-        ctaText="Start Your Brand"
-        ctaHref="/services/branding-logo-design"
+        showCta={false}
+        compact
       />
 
-      <section className="py-12 md:py-20 bg-white/5">
+      <section className="pt-8 pb-12 md:pt-10 md:pb-20 bg-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionHeading
             eyebrow="Our Work"
@@ -43,6 +43,15 @@ export default function BrandingLogoDesignPortfolio() {
           />
         </div>
         <ImageCarousel images={carouselImages} duration="60s" />
+
+        <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
+          <GlassButton
+            href="/services/branding-logo-design"
+            className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10"
+          >
+            Start Your Brand
+          </GlassButton>
+        </div>
       </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6">
