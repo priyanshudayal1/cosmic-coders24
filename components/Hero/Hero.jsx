@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import GlassButton from "../ui/GlassButton";
 import { Particles } from "../ui/particles";
 import HeroBackground from "../backgrounds/HeroBackground";
+import MagicRings from "../backgrounds/MagicRings";
 
 const Hero = () => {
   return (
@@ -22,7 +23,23 @@ const Hero = () => {
       />
 
       {/* ── Static cosmic glow + shooting stars (no per-frame repaints) ── */}
-      <HeroBackground />
+      {/* <HeroBackground /> */}
+
+      {/* ── Magic rings halo behind the headline ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* THREE.Color cannot parse var(), so these mirror the literal
+            --site-secondary-400 / --site-accent-400 values. */}
+        <MagicRings
+          color="#a992ea"
+          colorTwo="#61a6fa"
+          speed={0.55}
+          ringCount={5}
+          opacity={0.5}
+          lineThickness={1.6}
+          noiseAmount={0.04}
+          scaleRate={0.14}
+        />
+      </div>
 
       {/* ── Content ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto space-y-8">
