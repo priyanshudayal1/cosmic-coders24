@@ -9,7 +9,7 @@ import GlassButton from "../ui/GlassButton";
 const AboutTeaser = () => {
   return (
     <section
-      className="w-full py-20 relative overflow-hidden"
+      className="w-full py-20 relative overflow-hidden lx-purple"
       id="about-teaser"
     >
       {/* Background Elements */}
@@ -32,7 +32,7 @@ const AboutTeaser = () => {
 
           <GlassButton
             href="/about-contact"
-            className="flex items-center gap-2 text-lg px-8 py-4 bg-white/10 hover:bg-white/20 hover:scale-105 transition-all duration-300 rounded-full border border-white/10 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
+            className="flex items-center gap-2 text-lg px-8 py-4 bg-white/10 hover:bg-white/20 hover:scale-105 transition-all duration-300 rounded-full border border-white/10 shadow-[0_0_20px_rgba(31,111,235,0.3)] hover:shadow-[0_0_30px_rgba(31,111,235,0.5)]"
           >
             <span>Connect With Us</span>
             <ArrowRight className="w-5 h-5 ml-1" />

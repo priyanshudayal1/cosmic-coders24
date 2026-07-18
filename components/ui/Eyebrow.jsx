@@ -27,7 +27,7 @@ const Eyebrow = ({ text, className }) => {
       </span>
 
       {/* Eyebrow Text */}
-      <span className="px-5 text-lg font-semibold tracking-[0.2em] uppercase bg-clip-text text-transparent bg-linear-to-r from-purple-200 via-white to-purple-200 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+      <span className="px-5 text-lg font-semibold tracking-[0.2em] uppercase bg-clip-text text-transparent bg-linear-to-r from-purple-200 via-white to-purple-200 drop-shadow-[0_0_10px_rgba(88,166,255,0.5)]">
         {text}
       </span>
 

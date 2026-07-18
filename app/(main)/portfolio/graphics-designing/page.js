@@ -19,6 +19,16 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceHero from "@/components/Services/ServiceHero";
 import GlassButton from "@/components/ui/GlassButton";
+import ImageCarousel from "@/components/ui/ImageCarousel";
+
+const carouselImages = [
+  { src: "/assets/portfolio/graphics/graphic-01.png", alt: "Graphic design work" },
+  { src: "/assets/portfolio/graphics/graphic-02.png", alt: "Graphic design work" },
+  { src: "/assets/portfolio/graphics/graphic-03.png", alt: "Graphic design work" },
+  { src: "/assets/portfolio/graphics/graphic-04.png", alt: "Graphic design work" },
+  { src: "/assets/portfolio/graphics/graphic-05.png", alt: "Graphic design work" },
+  { src: "/assets/portfolio/graphics/graphic-06.png", alt: "Graphic design work" },
+];
 
 export default function GraphicsDesigningPortfolio() {
   const projects = [
@@ -96,14 +106,27 @@ export default function GraphicsDesigningPortfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       <ServiceHero
-        title="Graphics Designing"
-        highlightedText="Portfolio"
-        subtitle="Browse our creative graphics work spanning social media, marketing materials, and digital design. Each piece crafted to captivate and convert."
-        ctaText="Get Custom Designs"
-        ctaHref="/services/graphics-design"
+        title="Graphic Design"
+        highlightedText="Projects"
+        subtitle="Explore our collection of creative designs crafted to strengthen brand identity, boost engagement, and drive results."
+        showCta={false}
+        compact
       />
+
+      <section className="pt-6 pb-12 md:pt-8 md:pb-16">
+        <ImageCarousel images={carouselImages} duration="50s" />
+
+        <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
+          <GlassButton
+            href="/services/graphics-design"
+            className="px-8 py-4 text-lg bg-white/10 hover:bg-white/20 border-white/10"
+          >
+            Get Custom Designs
+          </GlassButton>
+        </div>
+      </section>
 
       <section className="py-12 md:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
@@ -138,6 +161,7 @@ export default function GraphicsDesigningPortfolio() {
             eyebrow="Our Work"
             title="Featured Design Projects"
             subtitle="Every design tells a story. Here are some of our favorite projects that showcase creativity at its finest."
+            titleClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight drop-shadow-lg relative z-10"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -162,6 +186,8 @@ export default function GraphicsDesigningPortfolio() {
                 </p>
                 <Link
                   href={project.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mt-auto"
                 >
                   <Palette className="w-4 h-4" />
@@ -176,15 +202,15 @@ export default function GraphicsDesigningPortfolio() {
       <section className="py-12 md:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-site-card-from to-site-card-to p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm pointer-events-none" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-linear-to-r from-transparent via-purple-400 to-transparent pointer-events-none" />
 
             <SectionHeading
               eyebrow="Ready?"
-              title="Need Eye-Catching Graphics?"
+              title="Need Professional Graphics?"
               subtitle="From social media posts to marketing materials, we design visuals that captivate your audience."
             />
 

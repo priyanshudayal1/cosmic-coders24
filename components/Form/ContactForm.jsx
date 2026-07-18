@@ -190,7 +190,7 @@ const ContactForm = ({ serviceName = "Website Development" }) => {
           type="submit"
           disabled={submitting}
           size="lg"
-          className="w-full md:w-auto min-w-50 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full md:w-auto min-w-50 rounded-full hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(88,166,255,0.15)] hover:shadow-[0_0_25px_rgba(88,166,255,0.4)] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? (
             <>

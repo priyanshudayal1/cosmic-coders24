@@ -7,7 +7,7 @@ import GlassButton from "@/components/ui/GlassButton";
 
 const ServicePageLayout = ({ title, description, features, children }) => {
   return (
-    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#0F061A] text-white">
+    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-site-bg text-white">
       <main className="grow">
         <PageHeader title={title} description={description} />
 
@@ -18,8 +18,7 @@ const ServicePageLayout = ({ title, description, features, children }) => {
 
         {/* Features Section */}
         {features && features.length > 0 && (
-          <section className="py-20 px-4 relative">
-            <div className="absolute top-0 left-0 w-full h-full bg-purple-900/5 pointer-events-none" />
+          <section className="py-20 px-4 relative lx-feature">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12">
                 Key Features
@@ -45,8 +44,8 @@ const ServicePageLayout = ({ title, description, features, children }) => {
 
         {/* CTA Section */}
         <section className="py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto bg-linear-to-br from-purple-900/20 to-black border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-purple-500/5 blur-3xl pointer-events-none" />
+          <div className="max-w-4xl mx-auto bg-linear-to-br from-indigo-700/25 via-site-card-from to-site-card-to border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute inset-0 bg-purple-500/5 blur-3xl pointer-events-none" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6 relative z-10">
               Ready to Elevate Your Business?
             </h2>

@@ -29,12 +29,12 @@ import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function PackagingDesign() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* Hero Section */}
       <ServiceHero
-        title="Packaging That Sells Your Product"
-        highlightedText="Before They Even Try It"
-        subtitle="We design packaging that's not just beautiful, but strategic—crafted to stand out on shelves and online."
+        title="Packaging That Elevates"
+        highlightedText="Your Product Presence"
+        subtitle="Strategic packaging design created to attract attention, communicate product value, and strengthen brand identity across retail shelves and digital marketplaces."
         ctaText="Start Your Packaging Design"
         ctaHref="#contact"
       />
@@ -43,9 +43,9 @@ export default function PackagingDesign() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Impact"
+            eyebrow="Best Packaging Design Service In Jabalpur"
             title="Why Packaging Design Matters"
-            subtitle="Packaging is crucial in building customer trust, establishing brand identity, and boosting sales. It serves as the first point of interaction with your product, making a lasting impression that can influence purchasing decisions."
+            subtitle="Packaging plays an important role in shaping product perception, strengthening brand identity, and influencing purchasing decisions. It often serves as the first interaction customers have with a product."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -59,7 +59,7 @@ export default function PackagingDesign() {
                   Build Trust
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Professional packaging establishes immediate credibility
+                  Professional packaging creates a strong first impression and strengthens product credibility.
                 </p>
               </div>
             </SpotlightCard>
@@ -71,7 +71,7 @@ export default function PackagingDesign() {
                   Brand Identity
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Consistent visual language that tells your story
+                  Consistent visual elements help communicate brand story and product value.
                 </p>
               </div>
             </SpotlightCard>
@@ -83,7 +83,7 @@ export default function PackagingDesign() {
                   Boost Sales
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Stand out on the shelf and influence purchase decisions
+                  Distinct packaging design helps products stand out and attract customer attention.
                 </p>
               </div>
             </SpotlightCard>
@@ -109,7 +109,7 @@ export default function PackagingDesign() {
                 Box Packaging
               </h3>
               <p className="text-sm text-gray-400">
-                Retail boxes, mailers, and custom structures
+                Retail boxes, shipping mailers, and custom packaging structures.
               </p>
             </SpotlightCard>
 
@@ -121,7 +121,7 @@ export default function PackagingDesign() {
                 Bottle & Label Design
               </h3>
               <p className="text-sm text-gray-400">
-                Bottles, jars, pouches, and hang tags
+                Designs for bottles, jars, pouches, labels, and product tags.
               </p>
             </SpotlightCard>
 
@@ -133,7 +133,7 @@ export default function PackagingDesign() {
                 Food & Beverage Packaging
               </h3>
               <p className="text-sm text-gray-400">
-                FDA compliant designs for food products
+                Packaging designs suitable for food and beverage products with clear product presentation.
               </p>
             </SpotlightCard>
 
@@ -145,7 +145,7 @@ export default function PackagingDesign() {
                 E-commerce Packaging
               </h3>
               <p className="text-sm text-gray-400">
-                Unboxing experiences for online brands
+                Packaging concepts designed to enhance online brand presentation and unboxing experience.
               </p>
             </SpotlightCard>
 
@@ -157,7 +157,7 @@ export default function PackagingDesign() {
                 Luxury / Premium Packaging
               </h3>
               <p className="text-sm text-gray-400">
-                Rigid boxes, foil stamping, and premium finishes
+                Premium packaging styles including rigid boxes and specialized finishing elements.
               </p>
             </SpotlightCard>
 
@@ -169,7 +169,7 @@ export default function PackagingDesign() {
                 Custom Requests
               </h3>
               <p className="text-sm text-gray-400">
-                Tailor-made designs for unique products
+                Packaging designs tailored to unique product requirements.
               </p>
             </SpotlightCard>
           </div>
@@ -256,7 +256,7 @@ export default function PackagingDesign() {
                   Production-Ready Files
                 </h3>
                 <p className="text-sm text-gray-400">
-                  AI, PDF, and EPS files prepared for your printer.
+                  AI, PDF, and EPS formats prepared for printing and manufacturing.
                 </p>
               </div>
             </SpotlightCard>
@@ -270,7 +270,7 @@ export default function PackagingDesign() {
                   Die-Line Templates
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Precise structural blueprints for cutting and folding.
+                  Structural templates designed for accurate cutting and folding.
                 </p>
               </div>
             </SpotlightCard>
@@ -284,7 +284,7 @@ export default function PackagingDesign() {
                   3D Mockups
                 </h3>
                 <p className="text-sm text-gray-400">
-                  High-res renders for marketing and presentations.
+                  High-resolution visual previews useful for presentations and marketing materials.
                 </p>
               </div>
             </SpotlightCard>
@@ -298,7 +298,7 @@ export default function PackagingDesign() {
                   Print Consultation
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Guidance on materials, finishes, and vendors.
+                  Guidance on suitable materials, finishes, and printing considerations.
                 </p>
               </div>
             </SpotlightCard>
@@ -326,7 +326,7 @@ export default function PackagingDesign() {
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="Packaging Design" />
           </SpotlightCard>

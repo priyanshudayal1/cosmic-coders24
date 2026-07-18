@@ -81,7 +81,7 @@ export default function SoftwareDevelopmentPortfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       <ServiceHero
         title="Software Development"
         highlightedText="Portfolio"
@@ -163,8 +163,8 @@ export default function SoftwareDevelopmentPortfolio() {
       <section className="py-12 md:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-site-card-from to-site-card-to p-6 sm:p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm pointer-events-none" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-linear-to-r from-transparent via-purple-400 to-transparent pointer-events-none" />

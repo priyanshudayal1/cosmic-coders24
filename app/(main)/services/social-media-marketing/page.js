@@ -27,7 +27,7 @@ import TechStack, { DESIGN_TOOLS } from "@/components/features/TechStack";
 
 export default function SocialMediaMarketing() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* 1. Hero Section */}
       <ServiceHero
         title="Grow Your Brand Organically"
@@ -40,13 +40,13 @@ export default function SocialMediaMarketing() {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading
-            eyebrow="Introduction"
+            eyebrow="Best Social Media Marketing In Jabalpur"
             title={
               <span className="text-3xl md:text-4xl lg:text-5xl">
-                Impactful Social Presence
+                Why a Social Presence Matters?
               </span>
             }
-            subtitle="In today's digital-first business world, Social Media Marketing is crucial for building brand presence, engaging with customers, and driving organic growth. Our services help you maximize your impact across popular social media platforms."
+            subtitle="In today's digital world, being active on social media isn't enough, you need to show up in a way that people notice and connect with. We help you create meaningful content, stay consistent, and build a presence that keeps your audience engaged."
           />
           {/* Abstract Graphic/Icon placeholder */}
           <div className="flex justify-center mt-12">
@@ -90,7 +90,7 @@ export default function SocialMediaMarketing() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {/* Instagram */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-pink-500 group-hover:bg-pink-500/10 group-hover:border-pink-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-16 h-16 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-pink-500 group-hover:bg-pink-500/10 group-hover:border-pink-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Instagram size={32} strokeWidth={1.5} />
               </div>
               <div>
@@ -103,7 +103,7 @@ export default function SocialMediaMarketing() {
 
             {/* Facebook */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-blue-500 group-hover:bg-blue-500/10 group-hover:border-blue-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-16 h-16 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-blue-500 group-hover:bg-blue-500/10 group-hover:border-blue-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Facebook size={32} strokeWidth={1.5} />
               </div>
               <div>
@@ -118,7 +118,7 @@ export default function SocialMediaMarketing() {
 
             {/* LinkedIn */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-blue-400 group-hover:bg-blue-400/10 group-hover:border-blue-400/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-16 h-16 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-blue-400 group-hover:bg-blue-400/10 group-hover:border-blue-400/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Linkedin size={32} strokeWidth={1.5} />
               </div>
               <div>
@@ -131,7 +131,7 @@ export default function SocialMediaMarketing() {
 
             {/* Twitter/X */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-white/10 group-hover:border-white/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-16 h-16 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-white/10 group-hover:border-white/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <svg
                   width="32"
                   height="32"
@@ -151,7 +151,7 @@ export default function SocialMediaMarketing() {
 
             {/* YouTube */}
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-red-500 group-hover:bg-red-500/10 group-hover:border-red-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-16 h-16 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-red-500 group-hover:bg-red-500/10 group-hover:border-red-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Youtube size={32} strokeWidth={1.5} />
               </div>
               <div>
@@ -169,8 +169,8 @@ export default function SocialMediaMarketing() {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Benefits"
-            title="Benefits of Social Media Marketing"
+            eyebrow="Marketing Impact"
+            title="Why Social Media Marketing Works?"
             subtitle=""
           />
 
@@ -182,11 +182,10 @@ export default function SocialMediaMarketing() {
                   <Megaphone size={24} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  Build strong brand presence
+                  Build Strong Brand Presence
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Establish your brand identity across social platforms and make
-                  your voice heard.
+                  Establish a consistent brand identity across social platforms and strengthen visibility among target audiences.
                 </p>
               </div>
             </SpotlightCard>
@@ -198,11 +197,10 @@ export default function SocialMediaMarketing() {
                   <Users size={24} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  Drive organic engagement
+                  Drive Organic Engagement
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Increase interaction and engagement with your audience through
-                  meaningful content.
+                  Encourage meaningful interaction through relevant content that keeps audiences connected and active.
                 </p>
               </div>
             </SpotlightCard>
@@ -214,11 +212,10 @@ export default function SocialMediaMarketing() {
                   <TrendingUp size={24} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  Convert followers into leads
+                  Convert Followers into Leads
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Turn your social media followers into potential customers with
-                  targeted strategies.
+                  Strategic content and communication help transform social followers into potential business opportunities.
                 </p>
               </div>
             </SpotlightCard>
@@ -230,11 +227,10 @@ export default function SocialMediaMarketing() {
                   <Clock size={24} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  Stay top-of-mind with customers
+                  Stay Top-of-Mind with Customers
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Keep your brand at the forefront of your customers&apos; minds
-                  with consistent activity.
+                  Regular activity across social channels helps maintain brand awareness and ongoing audience connection.
                 </p>
               </div>
             </SpotlightCard>
@@ -242,43 +238,12 @@ export default function SocialMediaMarketing() {
         </div>
       </section>
 
-      {/* 5. What to Expect */}
-      <section className="py-20 px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeading
-            eyebrow="Expectations"
-            title="What to Expect"
-            subtitle=""
-          />
-          <SpotlightCard className="w-full bg-white/5 border-white/10 p-8 flex flex-col md:flex-row items-center md:items-start gap-6 group hover:bg-white/10 transition-all duration-300">
-            <div
-              className="shrink-0 w-16 h-16 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-400 
-                        group-hover:text-white group-hover:bg-purple-600/20
-                         group-hover:border-purple-600/50 
-                         transition-all duration-300 shadow-inner shadow-white/5"
-            >
-              <Calendar size={32} strokeWidth={1.5} />
-            </div>
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-white mb-2">
-                Timeline for Growth
-              </h3>
-              <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                Social media growth is not instant. Realistic results take 3–6
-                months of consistent strategy, content, and engagement to build
-                a loyal following and see significant ROI.
-              </p>
-            </div>
-          </SpotlightCard>
-        </div>
-      </section>
-
       <TechStack
         items={DESIGN_TOOLS}
         showSingleRow={true}
         eyebrow="Tools We Use"
-        title="Creatives Made With Professional Tools"
-        subtitle="We design all social media creatives using industry-standard software for maximum visual impact."
+        title="Designed with Professional Tools"
+        subtitle="We create all social media creatives using industry-standard tools to ensure quality, consistency, and strong visual impact."
       />
 
       {/* 7. Contact Form */}
@@ -292,7 +257,7 @@ export default function SocialMediaMarketing() {
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="Social Media Marketing" />
           </SpotlightCard>

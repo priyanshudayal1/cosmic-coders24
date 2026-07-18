@@ -45,7 +45,7 @@ const SpotlightCard = ({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-3xl border border-neutral-800 bg-white/10 overflow-hidden p-6 ${className}`}
+      className={`lx-surface relative rounded-3xl border border-white/10 bg-white/[0.055] overflow-hidden p-6 ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"

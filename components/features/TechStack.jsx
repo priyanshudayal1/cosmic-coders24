@@ -152,7 +152,7 @@ export default function TechStack({
   const row2 = shouldSplit ? items.slice(half) : [];
 
   return (
-    <section className="w-full py-20 overflow-hidden bg-[#0F061A]">
+    <section className="w-full py-20 overflow-hidden bg-site-bg">
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
 
       <div className="mt-12 flex flex-col gap-5">
@@ -166,8 +166,8 @@ export default function TechStack({
               reverse={row.reverse}
               speed={4}
             />
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-linear-to-r from-[#0F061A] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-linear-to-l from-[#0F061A] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-linear-to-r from-site-bg to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-linear-to-l from-site-bg to-transparent" />
           </div>
         ))}
       </div>

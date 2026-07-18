@@ -21,12 +21,12 @@ import TechStack, { SEO_TOOLS } from "@/components/features/TechStack";
 
 export default function SEO() {
   return (
-    <div className="min-h-screen bg-[#0F061A] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* 1. Hero Section */}
       <ServiceHero
-        title="Found Where It Matters"
+        title="Improve Your Visibility on"
         highlightedText="Google Search & Maps"
-        subtitle="Get discovered by customers searching for your services. We optimize your presence on Google Search and Maps."
+        subtitle="We help your business appear in the right searches, reach the right customers, and turn visibility into real leads with optimized listings."
         ctaText="Start Ranking Today"
       />
 
@@ -34,36 +34,10 @@ export default function SEO() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading
-            eyebrow="Importance"
+            eyebrow="Best SEO Services In Jabalpur"
             title="Why SEO is Important"
-            subtitle="A website without visibility is like a store without customers. SEO ensures your business appears where your audience is searching — on Google Search & Maps."
+            subtitle="A website without visibility is like a store without customers. SEO helps your business appear where people are actively searching on Google Search and Maps, so the right audience can find you at the right time. It improves your discoverability, builds trust, and brings consistent organic traffic without relying only on paid ads. Whether it is local SEO or website SEO, it plays a key role in driving quality leads and supporting long term business growth."
           />
-          <div className="flex justify-center mt-12">
-            <div className="relative w-32 h-32">
-              <motion.div
-                animate={{
-                  scale: [1, 1.4, 1],
-                  opacity: [0.4, 0.9, 0.4],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute inset-0 bg-purple-500/60 blur-2xl rounded-full"
-              />
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ duration: 0.5 }}
-                className="w-full h-full relative z-10"
-              >
-                <Search
-                  className="w-full h-full text-purple-400/80 animate-pulse"
-                  strokeWidth={0.5}
-                />
-              </motion.div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -87,8 +61,7 @@ export default function SEO() {
                   Website SEO
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed grow group-hover:text-gray-300 transition-colors duration-300">
-                  On-page SEO, Technical SEO, Content Optimization, Keyword
-                  Ranking
+                  Website SEO focuses on improving your website's visibility in search engine results for relevant keywords. It involves optimizing your website structure, content, speed, and technical elements so that search engines can easily understand and rank your pages. From keyword optimization and on-page SEO to technical improvements and content strategy, website SEO helps attract the right audience to your site. The goal is to increase organic traffic, improve user experience, and convert visitors into customers over time.
                 </p>
               </div>
             </SpotlightCard>
@@ -103,8 +76,7 @@ export default function SEO() {
                   Local SEO (Google My Business)
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed grow group-hover:text-gray-300 transition-colors duration-300">
-                  GMB Setup, Local keyword targeting, Reviews management, Maps
-                  ranking
+                  Local SEO is focused on helping your business appear in location-based searches, especially on Google Search and Maps. It includes optimizing your Google Business Profile, managing reviews, improving local listings, and targeting location-specific keywords. Local SEO ensures that when nearby customers search for services you offer, your business shows up at the right place and time. It is especially important for service-based and local businesses looking to generate calls, visits, and enquiries from their surrounding area.
                 </p>
               </div>
             </SpotlightCard>
@@ -269,8 +241,8 @@ export default function SEO() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#35254f] to-[#0F061A] p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#35254f] to-site-bg p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             {/* Header glow effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm user-select-none pointer-events-none" />
@@ -278,15 +250,15 @@ export default function SEO() {
 
             <SectionHeading
               eyebrow="Results"
-              title="Proven SEO Results"
-              subtitle="Watch Your Rankings Climb and Traffic Soar"
+              title="Proven SEO Growth"
+              subtitle="See how consistent optimization improves rankings, visibility, and traffic over time."
             />
 
             <div className="mt-12 flex justify-center">
               {/* Bar Chart Illustration */}
-              <div className="bg-white/5 p-8 rounded-3xl border border-white/10 max-w-2xl w-full relative overflow-hidden backdrop-blur-sm">
+              <div className="bg-white/5 p-5 md:p-8 rounded-3xl border border-white/10 max-w-sm md:max-w-2xl w-full mx-auto relative overflow-hidden backdrop-blur-sm aspect-4/3 md:aspect-auto">
                 <div className="absolute inset-0 bg-linear-to-b from-purple-500/5 to-transparent pointer-events-none" />
-                <div className="flex items-end justify-between h-64 px-4 md:px-12 gap-4 md:gap-8">
+                <div className="flex items-end justify-between h-[65%] md:h-64 px-2 sm:px-4 md:px-12 gap-3 sm:gap-4 md:gap-8 mt-2 md:mt-0">
                   {/* Bar 1 */}
                   <div className="w-full bg-white/5 rounded-t-lg h-[20%] relative group border-t border-x border-white/5">
                     <div className="absolute bottom-0 w-full bg-white/10 rounded-t-lg h-[60%] group-hover:h-[80%] transition-all duration-500 ease-out"></div>
@@ -305,28 +277,27 @@ export default function SEO() {
                   </div>
                   {/* Bar 5 - Highlighted */}
                   <div className="w-full bg-white/5 rounded-t-lg h-full relative group border-t border-x border-white/5">
-                    <div className="absolute bottom-0 w-full bg-[#a855f7] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-300 shadow-[0_0_30px_rgba(168,85,247,0.6)]"></div>
+                    <div className="absolute bottom-0 w-full bg-[#58a6ff] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-300 shadow-[0_0_30px_rgba(88,166,255,0.6)]"></div>
                   </div>
                 </div>
-                <div className="mt-6 flex justify-between px-4 md:px-12 text-[10px] sm:text-xs font-medium text-purple-200/70 font-mono tracking-wider">
-                  <span>MONTH 1</span>
-                  <span>MONTH 2</span>
-                  <span>MONTH 3</span>
-                  <span>MONTH 4</span>
-                  <span>MONTH 5</span>
+                <div className="mt-6 flex justify-between px-2 sm:px-4 md:px-12 text-[10px] sm:text-xs font-medium text-purple-200/70 font-mono tracking-wider">
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>1</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>2</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>3</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>4</span>
+                  <span className="whitespace-nowrap"><span className="hidden sm:inline">MONTH </span><span className="sm:hidden">M</span>5</span>
                 </div>
               </div>
             </div>
             <div className="mt-12">
               <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-                SEO is a long-term strategy. Expect results to improve over time
-                as our experts work on your campaigns regularly.
+                SEO is not instant, but it delivers lasting results. With the right strategy and consistent optimization, your rankings improve, visibility increases, and quality traffic grows month by month.
               </p>
               <GlassButton
                 href="/results/seo"
                 className="bg-white/10 hover:bg-white/20"
               >
-                See More Results
+                View Detailed Results
               </GlassButton>
             </div>
           </SpotlightCard>
@@ -339,7 +310,7 @@ export default function SEO() {
         showSingleRow={true}
         eyebrow="Tools We Use"
         title="Data-Driven Strategy"
-        subtitle="We use industry-leading SEO tools to analyze data, track rankings, and drive growth."
+        subtitle="Industry-standard SEO tools used to analyze search data, monitor rankings, and identify optimization opportunities that support consistent website visibility and growth."
       />
 
       {/* 6. Contact Form */}
@@ -347,13 +318,13 @@ export default function SEO() {
         <div className="max-w-4xl mx-auto">
           <SectionHeading
             eyebrow="Get Started"
-            title="Request Your SEO Proposal"
-            subtitle="Tell us about your business and we'll create a customized SEO strategy for you."
+            title="Let's Grow Your Business with SEO"
+            subtitle="Tell us about your goals, and we'll create a strategy focused on visibility, traffic, and real results."
           />
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="SEO" />
           </SpotlightCard>

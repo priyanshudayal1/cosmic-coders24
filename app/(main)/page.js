@@ -7,13 +7,14 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import AboutTeaser from "@/components/About/AboutTeaser";
 import TechStack from "@/components/features/TechStack";
 import Testimonials from "@/components/features/Testimonials";
+import CityCoverage from "@/components/features/CityCoverage";
 import BlogSection from "@/components/Blog/BlogSection";
 import CareersSection from "@/components/Careers/CareersSection";
 import ContactSection from "@/components/Contact/ContactSection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-[#0F061A] text-white">
+    <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-site-bg text-white">
       <Hero />
       <Services />
       <Portfolio />
@@ -21,6 +22,7 @@ export default function Home() {
       <AboutTeaser />
       <TechStack />
       <Testimonials />
+      <CityCoverage />
       <BlogSection />
       <CareersSection />
       <ContactSection />

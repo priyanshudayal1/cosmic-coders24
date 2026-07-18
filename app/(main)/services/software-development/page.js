@@ -23,11 +23,11 @@ import TechStack, { SOFT_DEV_TOOLS } from "@/components/features/TechStack";
 
 export default function SoftwareDevelopment() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* 1. Hero Section */}
       <ServiceHero
         title="Custom Software Solutions"
-        highlightedText="to Simplify & Scale Your Business"
+        highlightedText="for Business Efficiency & Growth"
         subtitle="From billing systems to project management tools, we build exactly what your business needs."
         ctaText="Get Your Custom Software"
       />
@@ -36,9 +36,9 @@ export default function SoftwareDevelopment() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading
-            eyebrow="What is Software Development?"
-            title="Custom Software That Automates, Scales & Simplifies Your Business"
-            subtitle="Custom software is designed specifically to meet the unique needs of a business, offering greater flexibility and functionality than off-the-shelf solutions."
+            eyebrow="Best Software Development Services In Jabalpur"
+            title="Custom Software That Automates, Scales & Simplifies Business Operations"
+            subtitle="Custom software is developed to match the specific operational needs of a business, providing greater flexibility, efficiency, and functionality compared to standard off-the-shelf solutions."
           />
           {/* Abstract Graphic/Icon placeholder */}
           <div className="flex justify-center">
@@ -74,14 +74,14 @@ export default function SoftwareDevelopment() {
       <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Use Cases"
-            title="Possible Use Cases"
+            eyebrow="Software Solutions"
+            title="Software That Powers Businesses"
             subtitle=""
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex items-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-14 h-14 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <FileText size={28} strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-semibold text-white">
@@ -90,7 +90,7 @@ export default function SoftwareDevelopment() {
             </SpotlightCard>
 
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex items-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-14 h-14 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Package size={28} strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-semibold text-white">
@@ -99,7 +99,7 @@ export default function SoftwareDevelopment() {
             </SpotlightCard>
 
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex items-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-14 h-14 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <ListTodo size={28} strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-semibold text-white">
@@ -108,14 +108,14 @@ export default function SoftwareDevelopment() {
             </SpotlightCard>
 
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex items-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-14 h-14 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Users size={28} strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-semibold text-white">CRM Systems</h3>
             </SpotlightCard>
 
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex items-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-14 h-14 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Banknote size={28} strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-semibold text-white">
@@ -124,7 +124,7 @@ export default function SoftwareDevelopment() {
             </SpotlightCard>
 
             <SpotlightCard className="h-full bg-white/5 border-white/10 p-6 flex items-center gap-4 group hover:bg-white/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#1a152e] border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
+              <div className="w-14 h-14 rounded-2xl bg-site-bg-subtle border border-white/10 flex items-center justify-center text-purple-300 group-hover:text-white group-hover:bg-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300 shadow-inner shadow-white/5">
                 <Settings size={28} strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-semibold text-white">
@@ -139,8 +139,8 @@ export default function SoftwareDevelopment() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Benefits"
-            title="Why Custom Software?"
+            eyebrow="Software Advantage"
+            title="Why Businesses Need Custom Software?"
             subtitle=""
           />
 
@@ -212,8 +212,8 @@ export default function SoftwareDevelopment() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-site-card-from to-site-card-to p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             {/* Header glow effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm user-select-none pointer-events-none" />
@@ -244,7 +244,7 @@ export default function SoftwareDevelopment() {
                   </div>
                   {/* Bar 4 - Highlighted */}
                   <div className="w-full bg-white/5 rounded-t-lg h-[100%] relative group border-t border-x border-white/5">
-                    <div className="absolute bottom-0 w-full bg-[#a855f7] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-200 shadow-[0_0_30px_rgba(168,85,247,0.6)]"></div>
+                    <div className="absolute bottom-0 w-full bg-[#58a6ff] rounded-t-lg h-[70%] group-hover:h-[90%] transition-all duration-500 ease-out delay-200 shadow-[0_0_30px_rgba(88,166,255,0.6)]"></div>
                   </div>
                   {/* Bar 5 */}
                   <div className="w-full bg-white/5 rounded-t-lg h-[70%] relative group border-t border-x border-white/5">
@@ -291,7 +291,7 @@ export default function SoftwareDevelopment() {
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="Software Development" />
           </SpotlightCard>

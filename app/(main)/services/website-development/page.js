@@ -22,7 +22,7 @@ import TechStack, { WEB_DEV_TOOLS } from "@/components/features/TechStack";
 
 export default function WebsiteDevelopment() {
   return (
-    <div className="min-h-screen bg-[#030014] text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       {/* 1. Hero Section */}
       <ServiceHero
         title="Build Websites That"
@@ -35,9 +35,9 @@ export default function WebsiteDevelopment() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="What is Website Development?"
+            eyebrow="Best Website Development Services In Jabalpur"
             title="Website Development — From Idea to Launch"
-            subtitle="Website development involves creating websites, from simple no-code platforms to complex custom-coded solutions."
+            subtitle="From no-code to fully custom solutions, we build websites that fit your needs and scale with your growth."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -77,7 +77,7 @@ export default function WebsiteDevelopment() {
                   <Monitor size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">
-                  Custom Websites (MERN/Next.js)
+                  Custom Websites <span className="inline-block">(MERN/Next.js)</span>
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-6 grow group-hover:text-gray-300 transition-colors duration-300">
                   Fully coded, SEO-friendly, scalable solutions for serious
@@ -93,9 +93,9 @@ export default function WebsiteDevelopment() {
       <section className="py-20 px-4 sm:px-6 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
-            eyebrow="Why do your business need a website ?"
-            title="Why do your business need a website ?"
-            subtitle="In today’s digital age, a website is essential for any business to establish credibility, reach a wider audience, and drive growth."
+            eyebrow="Build Your Digital Presence with a Powerful Website"
+            title="Build Your Digital Presence with a Powerful Website"
+            subtitle="In today’s digital environment, a website helps businesses establish credibility, reach a wider audience, and support long-term digital growth."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -108,7 +108,7 @@ export default function WebsiteDevelopment() {
                   Trust Factor
                 </h3>
                 <p className="text-sm text-gray-400">
-                  People Google before buying—your website builds credibility.
+                  Most customers search online before making a decision—your website strengthens credibility and trust.
                 </p>
               </div>
             </SpotlightCard>
@@ -122,7 +122,7 @@ export default function WebsiteDevelopment() {
                   24/7 Presence
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Your digital storefront never closes.
+                  A website keeps your business accessible anytime, allowing customers to discover services, products, and information without time limitations.
                 </p>
               </div>
             </SpotlightCard>
@@ -136,7 +136,7 @@ export default function WebsiteDevelopment() {
                   Competitive Edge
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Stand out in today&apos;s crowded market.
+                  A professionally developed website helps businesses stand out in competitive markets and present services more effectively than competitors without a strong digital presence.
                 </p>
               </div>
             </SpotlightCard>
@@ -150,7 +150,7 @@ export default function WebsiteDevelopment() {
                   SEO Visibility
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Rank on Google and be found by customers.
+                  Search-friendly website structure improves discoverability on search engines, helping potential customers find businesses through relevant online searches.
                 </p>
               </div>
             </SpotlightCard>
@@ -172,8 +172,8 @@ export default function WebsiteDevelopment() {
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Our Work"
-            title="From Startups to Enterprises: Websites That Drive Results"
-            subtitle="Showcasing our diverse portfolio of successful website projects."
+            title="From Startups to Enterprises: Driving Real Growth"
+            subtitle="Explore websites built to enhance user experience, boost performance, and support long-term growth."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -186,18 +186,17 @@ export default function WebsiteDevelopment() {
                 <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
                   <Monitor className="w-16 h-16" />
                 </div>
-                <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-linear-to-t from-site-bg to-transparent opacity-60" />
               </div>
               <div className="p-8 flex flex-col grow">
                 <span className="text-xs font-medium text-purple-400 uppercase tracking-wider mb-2">
                   E-Commerce
                 </span>
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
-                  E-commerce Platform
+                  Ecommerce Platform
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">
-                  A seamless shopping experience with secure payment
-                  integration.
+                  Scalable online store designed for smooth shopping experiences with secure payment integration and optimized product management.
                 </p>
                 <GlassButton
                   href="/portfolio/website-development"
@@ -217,7 +216,7 @@ export default function WebsiteDevelopment() {
                 <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
                   <Layout className="w-16 h-16" />
                 </div>
-                <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-linear-to-t from-site-bg to-transparent opacity-60" />
               </div>
               <div className="p-8 flex flex-col grow">
                 <span className="text-xs font-medium text-purple-400 uppercase tracking-wider mb-2">
@@ -227,7 +226,7 @@ export default function WebsiteDevelopment() {
                   Portfolio Showcase
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">
-                  Showcasing creativity at its best with immersive interactions.
+                  Creative portfolio websites designed to highlight projects, visual identity, and interactive user experiences.
                 </p>
                 <GlassButton
                   href="/portfolio/website-development"
@@ -247,17 +246,17 @@ export default function WebsiteDevelopment() {
                 <div className="absolute inset-0 flex items-center justify-center text-white/50 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300">
                   <Server className="w-16 h-16" />
                 </div>
-                <div className="absolute inset-0 bg-linear-to-t from-[#030014] to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-linear-to-t from-site-bg to-transparent opacity-60" />
               </div>
               <div className="p-8 flex flex-col grow">
                 <span className="text-xs font-medium text-purple-400 uppercase tracking-wider mb-2">
                   Corporate
                 </span>
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
-                  Corporate Site
+                  Corporate Website
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-6 grow">
-                  Professional, user-centric design for enterprise businesses.
+                  Professional business websites focused on clear communication, strong branding, and user-friendly navigation for enterprise organizations.
                 </p>
                 <GlassButton
                   href="/portfolio/website-development"
@@ -284,17 +283,17 @@ export default function WebsiteDevelopment() {
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <SpotlightCard
-            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-[#1a152e] to-[#050110] p-8 md:p-16 text-center relative overflow-hidden group"
-            spotlightColor="rgba(139, 92, 246, 0.3)"
+            className="w-full rounded-2xl md:rounded-[2.5rem] border border-white/10 bg-linear-to-b from-site-card-from to-site-card-to p-8 md:p-16 text-center relative overflow-hidden group"
+            spotlightColor="rgba(163, 113, 247, 0.3)"
           >
             {/* Header glow effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-linear-to-r from-transparent via-purple-500 to-transparent blur-sm user-select-none pointer-events-none" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-linear-to-r from-transparent via-purple-400 to-transparent user-select-none pointer-events-none" />
 
             <SectionHeading
-              eyebrow="Cosmic Advantage"
-              title="Why Choose CosmicCoder24?"
-              subtitle="We don't just write code; we engineer digital experiences that push boundaries."
+              eyebrow="Why Choose Us"
+              title="Built to Perform. Designed to Grow."
+              subtitle="We create digital experiences that blend speed, seamless usability, and scalability to support your business as it evolves."
             />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -304,11 +303,10 @@ export default function WebsiteDevelopment() {
                   <Search size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">
-                  SEO-First Architecture
+                  SEO-Friendly Architecture
                 </h3>
                 <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
-                  Built on Next.js for superior indexing and ranking
-                  capabilities.
+                  Built on modern frameworks like Next.js to support faster indexing, structured performance, and stronger search visibility.
                 </p>
               </Card>
 
@@ -321,7 +319,7 @@ export default function WebsiteDevelopment() {
                   Mobile-First Design
                 </h3>
                 <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
-                  Responsive layouts that look perfect on every device screen.
+                  Responsive layouts designed to deliver consistent user experiences across mobile, tablet, and desktop devices.
                 </p>
               </Card>
 
@@ -334,7 +332,7 @@ export default function WebsiteDevelopment() {
                   Clean UI/UX
                 </h3>
                 <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
-                  Intuitive interfaces designed to maximize user engagement.
+                  Simple, intuitive interfaces focused on usability, clear navigation, and better user engagement.
                 </p>
               </Card>
 
@@ -347,7 +345,7 @@ export default function WebsiteDevelopment() {
                   High Performance
                 </h3>
                 <p className="text-sm text-gray-400 group-hover/card:text-gray-300 transition-colors">
-                  Optimized for lightning-fast load times and security.
+                  Optimized website structure focused on fast loading speed, stability, and secure digital environments.
                 </p>
               </Card>
             </div>
@@ -375,7 +373,7 @@ export default function WebsiteDevelopment() {
 
           <SpotlightCard
             className="bg-white/5 border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative overflow-hidden"
-            spotlightColor="rgba(168, 85, 247, 0.2)"
+            spotlightColor="rgba(88, 166, 255, 0.2)"
           >
             <ContactForm serviceName="Website Development" />
           </SpotlightCard>

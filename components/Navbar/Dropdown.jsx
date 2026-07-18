@@ -6,7 +6,7 @@ import Link from "next/link";
 const Dropdown = ({ isOpen, items }) => {
   return (
     <div
-      className={`absolute top-full left-0 min-w-[200px] bg-[#0F061A]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform origin-top shadow-2xl z-50 ${
+      className={`absolute top-full left-0 min-w-[200px] bg-site-bg/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transition-all duration-300 ease-in-out transform origin-top shadow-2xl z-50 ${
         isOpen
           ? "opacity-100 scale-y-100 translate-y-2 pointer-events-auto"
           : "opacity-0 scale-y-95 translate-y-0 pointer-events-none"

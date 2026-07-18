@@ -296,7 +296,7 @@ export default function EditBlogPage({ params }) {
                 sizes="50vw"
                 className="object-contain"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-[#0F061A] via-[#0F061A]/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-site-bg via-site-bg/50 to-transparent" />
             </div>
 
             <div className="max-w-3xl mx-auto px-6 -mt-24 relative z-10 pb-20">

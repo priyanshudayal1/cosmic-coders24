@@ -25,6 +25,125 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ════════════════════════════════════════════════════════════════════
+   SITE BRAND PALETTE — GitHub landing page style
+   Edit the values below to retheme the entire website.
+   ════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ═══════════════════════════════════════════════════════════════════
+     BACKGROUNDS — deep midnight blue canvas (GitHub landing feel)
+     Rich blue-indigo neutrals, never pure black. The page reads as
+     "illuminated from inside" once the ambient gradients are layered on.
+     ═══════════════════════════════════════════════════════════════════ */
+  --site-bg: #0a0e1c;          /* page canvas — deep midnight blue */
+  --site-bg-subtle: #12182f;   /* raised surface / indigo-tinted section */
+  --site-bg-inset: #070a15;    /* deepest sections — still soft, never #000 */
+  --site-card-from: #171d36;   /* card surface top — clearly above canvas */
+  --site-card-to: #111730;     /* card surface bottom */
+
+  /* ═══ Primary accent scale (GitHub blue) — purple-* classes map here ═══ */
+  --site-accent-200: #b3daff;
+  --site-accent-300: #85c3ff;
+  --site-accent-400: #61a6fa;
+  --site-accent-500: #4392f5;
+  --site-accent-600: #2f7ceb;
+  --site-accent-700: #1f5fcf;
+  --site-accent-900: #14356f;
+
+  /* ═══ Secondary accent scale (refined violet) — indigo / violet classes ═══
+     Softened and shifted toward indigo so purple reads as light, not paint. */
+  --site-secondary-300: #cbbaf6;
+  --site-secondary-400: #a992ea;
+  --site-secondary-500: #8d72da;
+  --site-secondary-600: #6f57c2;
+  --site-secondary-700: #574aa2;
+  --site-pink: #d16db0;        /* pink highlight (2% of the palette) */
+
+  /* ═══════════════════════════════════════════════════════════════════
+     GLOW FAMILIES — RGB triplets consumed as rgba(var(--glow-*), a)
+     A small, reusable set. Every gradient in the site draws from these
+     so the whole page shares one lighting vocabulary.
+     ═══════════════════════════════════════════════════════════════════ */
+  --glow-blue: 56, 116, 235;    /* rich indigo-blue — the "open" light */
+  --glow-indigo: 92, 104, 232;  /* indigo bridge between blue & purple */
+  --glow-purple: 149, 110, 232; /* soft purple light */
+  --glow-pink: 209, 109, 176;   /* pink highlight, used sparingly */
+  --glow-cyan: 96, 158, 210;    /* muted cool highlight (never electric) */
+  --site-glow: var(--glow-blue);/* legacy alias for existing rgba() usages */
+
+  /* ═══ Borders — translucent, quietly defining (subtle blue/purple tint) ═══ */
+  --site-border: rgba(230, 238, 255, 0.09);
+  --border-soft: rgba(230, 238, 255, 0.08);
+  --border-indigo: rgba(120, 132, 255, 0.16);
+  --border-purple: rgba(174, 132, 240, 0.16);
+
+  /* ═══ Opacity + blur scale (keeps every glow in the same soft register) ═══ */
+  --glow-o-strong: 0.24;
+  --glow-o-medium: 0.14;
+  --glow-o-soft: 0.09;
+  --glow-o-faint: 0.05;
+  --blur-glow: 120px;
+
+  /* ═══ Shadows — atmospheric depth instead of hard drop shadows ═══ */
+  --shadow-ambient: 0 30px 90px -30px rgba(3, 5, 12, 0.75);
+  --shadow-glow-purple: 0 24px 90px -24px rgba(var(--glow-purple), 0.32);
+  --shadow-glow-blue: 0 24px 90px -24px rgba(var(--glow-blue), 0.30);
+
+  /* ═══════════════════════════════════════════════════════════════════
+     GRADIENT FAMILIES — the reusable lighting design system.
+     Each belongs to a named family so lighting stays consistent.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /* Global background field — anchored to the viewport, shared by all pages.
+     Layered purple + blue + indigo so the page always reads as illuminated. */
+  --gradient-background:
+    radial-gradient(1100px 720px at 16% -6%, rgba(var(--glow-purple), 0.22), transparent 56%),
+    radial-gradient(1200px 820px at 86% 4%, rgba(var(--glow-blue), 0.20), transparent 56%),
+    radial-gradient(1300px 1000px at 50% 118%, rgba(var(--glow-indigo), 0.18), transparent 58%);
+
+  /* Hero — the strongest treatment: purple core, blue/indigo shoulders,
+     soft purple rising from the bottom. Reads as atmosphere, not a circle. */
+  --gradient-hero:
+    radial-gradient(60% 52% at 50% 22%, rgba(var(--glow-purple), 0.42), transparent 70%),
+    radial-gradient(80% 62% at 14% 6%, rgba(var(--glow-blue), 0.30), transparent 64%),
+    radial-gradient(80% 62% at 88% 12%, rgba(var(--glow-indigo), 0.28), transparent 64%),
+    radial-gradient(95% 75% at 50% 106%, rgba(var(--glow-purple), 0.22), transparent 70%);
+
+  /* Feature sections — indigo-led ambient behind screenshots / content */
+  --gradient-feature:
+    radial-gradient(70% 60% at 50% -4%, rgba(var(--glow-indigo), 0.26), transparent 66%),
+    radial-gradient(58% 55% at 82% 26%, rgba(var(--glow-blue), 0.16), transparent 62%);
+
+  /* CTA — a focused purple/blue glow to draw the eye */
+  --gradient-cta:
+    radial-gradient(58% 82% at 50% -6%, rgba(var(--glow-purple), 0.34), transparent 70%),
+    radial-gradient(80% 60% at 50% 110%, rgba(var(--glow-blue), 0.22), transparent 70%);
+
+  /* Footer — purple light rising from the bottom edge */
+  --gradient-footer:
+    radial-gradient(62% 130% at 50% 128%, rgba(var(--glow-purple), 0.34), transparent 58%),
+    radial-gradient(54% 100% at 14% 120%, rgba(var(--glow-blue), 0.18), transparent 60%);
+
+  /* Card surface — subtle internal top-light for gentle elevation */
+  --gradient-card:
+    linear-gradient(158deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02) 42%, rgba(255, 255, 255, 0) 100%);
+
+  /* Card external glow — sits behind featured cards (outside them) */
+  --gradient-card-glow:
+    radial-gradient(60% 60% at 50% 0%, rgba(var(--glow-purple), 0.16), transparent 72%);
+
+  /* Section identity variants — soft but visible; each section carries its
+     own colored light so the page never feels flat or repetitive. */
+  --ambient-indigo: radial-gradient(80% 68% at 50% 0%, rgba(var(--glow-indigo), 0.22), transparent 68%);
+  --ambient-purple: radial-gradient(76% 66% at 50% 8%, rgba(var(--glow-purple), 0.22), transparent 68%);
+  --ambient-cyan:   radial-gradient(76% 64% at 50% 2%, rgba(var(--glow-cyan), 0.18), transparent 68%);
+  --ambient-blue:   radial-gradient(84% 66% at 50% 0%, rgba(var(--glow-blue), 0.22), transparent 68%);
+  --ambient-subtle: radial-gradient(88% 78% at 50% 6%, rgba(var(--glow-indigo), 0.15), transparent 72%);
+
+  /* Legacy alias — existing var(--site-ambient) usages resolve to the field */
+  --site-ambient: var(--gradient-background);
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -64,8 +183,50 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Site palette utilities (bg-site-bg, border-site-border, from-site-card-from, …) */
+  --color-site-bg: var(--site-bg);
+  --color-site-bg-subtle: var(--site-bg-subtle);
+  --color-site-bg-inset: var(--site-bg-inset);
+  --color-site-card-from: var(--site-card-from);
+  --color-site-card-to: var(--site-card-to);
+  --color-site-border: var(--site-border);
+
+  /* Remap Tailwind accent scales onto the brand variables so every
+     existing purple-* / indigo-* / violet-* class follows the palette */
+  --color-purple-200: var(--site-accent-200);
+  --color-purple-300: var(--site-accent-300);
+  --color-purple-400: var(--site-accent-400);
+  --color-purple-500: var(--site-accent-500);
+  --color-purple-600: var(--site-accent-600);
+  --color-purple-700: var(--site-accent-700);
+  --color-purple-900: var(--site-accent-900);
+  --color-indigo-300: var(--site-secondary-300);
+  --color-indigo-400: var(--site-secondary-400);
+  --color-indigo-500: var(--site-secondary-500);
+  --color-indigo-600: var(--site-secondary-600);
+  --color-indigo-700: var(--site-secondary-700);
+  --color-violet-500: var(--site-secondary-500);
+  --color-pink-500: var(--site-pink);
+
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-meteor: meteor 5s linear infinite;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 1;
+    }
+
+    70% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(215deg) translateX(-600px);
+      opacity: 0;
+    }
+  }
 
   @keyframes marquee {
     from {
@@ -157,10 +318,179 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* ── Ambient lighting on canvas surfaces ──
+   Every full-width page/section wrapper that uses `bg-site-bg` picks up the
+   shared ambient gradient. `background-attachment: fixed` anchors the glow to
+   the viewport so stacked sections read as one continuous, softly lit field
+   (the GitHub homepage effect) rather than a repeated per-section pattern.
+   Opacity-modified variants (e.g. `bg-site-bg/50` on the navbar) use a
+   different class name and are intentionally left untouched. */
+.bg-site-bg {
+  background-image: var(--gradient-background);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   LIGHTING UTILITIES — reusable atmospheric layers
+   Apply these classes to existing section/card wrappers to place a
+   named glow behind their content. They only paint background layers
+   (always behind text) and never affect layout, size, or spacing.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Section identities — the gradient is the element's own background layer,
+   so it always renders behind child content. Sections are transparent by
+   default, so this composites over the page-wide fixed ambient field. */
+.lx-indigo  { background-image: var(--ambient-indigo);  background-repeat: no-repeat; background-position: center top; }
+.lx-purple  { background-image: var(--ambient-purple);  background-repeat: no-repeat; background-position: center top; }
+.lx-cyan    { background-image: var(--ambient-cyan);    background-repeat: no-repeat; background-position: center top; }
+.lx-blue    { background-image: var(--ambient-blue);    background-repeat: no-repeat; background-position: center top; }
+.lx-subtle  { background-image: var(--ambient-subtle);  background-repeat: no-repeat; background-position: center top; }
+.lx-feature { background-image: var(--gradient-feature); background-repeat: no-repeat; background-position: center top; }
+.lx-cta     { background-image: var(--gradient-cta);     background-repeat: no-repeat; background-position: center top; }
+
+/* Surface — subtle internal top-light + atmospheric depth for premium cards.
+   Uses an inset highlight + soft ambient shadow (not background-image), so it
+   never conflicts with a card's own background color or gradient. */
+.lx-surface {
+  border-color: var(--border-soft);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    var(--shadow-ambient);
+}
+
+/* External card glow — a soft halo behind a featured card (outside it).
+   Requires the element to establish a positioning context (already common). */
+.lx-card-glow { position: relative; }
+.lx-card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -14% -8% -18% -8%;
+  z-index: -1;
+  background-image: var(--gradient-card-glow);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   HERO SKY — immersive GitHub-landing-style cosmic backdrop.
+   PERFORMANCE CONTRACT: every animated class below animates ONLY
+   transform and/or opacity, so each layer is rasterised once and every
+   frame after that is GPU compositing — no per-frame repaints, ever.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Base lighting — the theme's hero gradient, painted once, fully static. */
+.hero-glow {
+  background-image: var(--gradient-hero);
+}
+
+/* Nebula clouds — big blurred colour blobs with an ultra-slow breathe.
+   The blur is static (rasterised once); only transform animates. */
+.nebula {
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  will-change: transform;
+  animation: nebula-breathe 36s ease-in-out infinite alternate;
+}
+@keyframes nebula-breathe {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(1.5%, 1%, 0) scale(1.12); }
+}
+
+/* Twinkling stars — gentle opacity/scale pulse. */
+.star-twinkle {
+  will-change: transform, opacity;
+  animation: twinkle 3.4s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  0%   { opacity: 0.15; transform: scale(0.75); }
+  100% { opacity: 1;    transform: scale(1.2); }
+}
+
+/* Shooting stars — a thin streak whose bright head is its right end,
+   FALLING down-right (translate3d x AND y increase together; the 35deg
+   rotation matches atan(23.8 / 34) so the streak lies along its path).
+   scaleX from the head stretches the tail as it flies. */
+.star-fall {
+  opacity: 0;
+  transform-origin: 100% 50%;
+  will-change: transform, opacity;
+  animation: star-fall 7s linear infinite;
+}
+@keyframes star-fall {
+  0%   { transform: translate3d(0, 0, 0) rotate(35deg) scaleX(0.5); opacity: 0; }
+  8%   { opacity: 1; }
+  60%  { opacity: 1; }
+  90%  { opacity: 0; }
+  100% { transform: translate3d(34rem, 23.8rem, 0) rotate(35deg) scaleX(1); opacity: 0; }
+}
+
+/* Milky-way band — static diagonal wash of faint light across the sky. */
+.milky-way {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(133, 195, 255, 0.10) 30%,
+    rgba(230, 238, 255, 0.14) 50%,
+    rgba(174, 132, 240, 0.10) 70%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  transform: rotate(-16deg);
+  mix-blend-mode: screen;
+}
+
+/* Mini planet — CSS Saturn in the upper sky. Sphere and ring are static;
+   only the tiny moon wrapper rotates (transform-only). */
+.mini-planet {
+  background: radial-gradient(circle at 32% 28%, #b9a7f0 0%, #8d72da 32%, #3f2f7a 68%, #241c4a 100%);
+  box-shadow:
+    inset -10px -8px 22px rgba(7, 10, 21, 0.75),
+    0 0 24px 4px rgba(149, 110, 232, 0.28);
+}
+.mini-planet-ring {
+  border: 1.5px solid rgba(203, 186, 246, 0.35);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  box-shadow: 0 0 10px rgba(149, 110, 232, 0.18);
+}
+.moon-orbit {
+  will-change: transform;
+  animation: orbit-spin 22s linear infinite;
+}
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+.mini-moon {
+  background: radial-gradient(circle at 35% 35%, #e6eeff, #85c3ff 60%, #2f7ceb);
+  box-shadow: 0 0 8px 2px rgba(133, 195, 255, 0.5);
+}
+
+/* Scroll hint — gentle bob. Centering lives on a wrapper element so this
+   transform doesn't fight the -translate-x-1/2. */
+.scroll-hint {
+  animation: scroll-bob 2.4s ease-in-out infinite;
+}
+@keyframes scroll-bob {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 8px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* A frozen streak reads as a scratch — hide it. Everything else just
+     holds still. */
+  .star-fall { animation: none !important; opacity: 0 !important; }
+  .star-twinkle,
+  .nebula,
+  .moon-orbit,
+  .scroll-hint { animation: none !important; }
+}
+
 /* Custom Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) #171717;
+  scrollbar-color: rgba(230, 238, 255, 0.14) var(--site-bg-subtle);
 }
 
 *::-webkit-scrollbar {
@@ -169,16 +499,16 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #171717;
+  background: var(--site-bg-subtle);
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(230, 238, 255, 0.14);
   border-radius: 9999px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(230, 238, 255, 0.24);
 }
 
 @layer base {
@@ -189,11 +519,13 @@
   html,
   body {
     @apply overflow-x-hidden;
-    background-color: #030014;
+    background-color: var(--site-bg);
   }
 
   body {
-    @apply text-foreground;
+    /* Soft off-white base text (GitHub-style) instead of harsh pure white.
+       Explicit text-* utilities on components still take precedence. */
+    color: #e6edf3;
   }
 }
 
@@ -209,7 +541,7 @@
   font-weight: 700;
   line-height: 1.2;
   margin: 2rem 0 1rem;
-  color: #ffffff;
+  color: #f0f4fa;
 }
 
 .rich-content h1 {
@@ -267,7 +599,7 @@
 }
 
 .rich-content blockquote {
-  border-left: 4px solid #a855f7;
+  border-left: 4px solid var(--site-accent-400);
   padding-left: 1rem;
   color: #a1a1aa;
   font-style: italic;
@@ -275,17 +607,17 @@
 }
 
 .rich-content a {
-  color: #c084fc;
+  color: var(--site-accent-300);
   text-decoration: none;
 }
 
 .rich-content a:hover {
-  color: #d8b4fe;
+  color: var(--site-accent-200);
   text-decoration: underline;
 }
 
 .rich-content code {
-  color: #c084fc;
+  color: var(--site-accent-300);
   background: #18181b;
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;

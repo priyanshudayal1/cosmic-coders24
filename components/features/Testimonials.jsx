@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote, User, Star } from "lucide-react";
 import Image from "next/image";
@@ -8,11 +8,14 @@ import { cn } from "@/lib/utils";
 
 import SectionHeading from "@/components/ui/SectionHeading";
 
+const AUTOPLAY_INTERVAL = 5000;
+
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -37,6 +40,18 @@ export default function Testimonials() {
     fetchReviews();
   }, []);
 
+  // Restarts on every activeIndex change, so manual navigation gets a full interval.
+  useEffect(() => {
+    if (isPaused || reviews.length <= 1) return;
+
+    const timer = setTimeout(
+      () => setActiveIndex((prev) => (prev + 1) % reviews.length),
+      AUTOPLAY_INTERVAL,
+    );
+
+    return () => clearTimeout(timer);
+  }, [activeIndex, isPaused, reviews.length]);
+
   const next = () => {
     if (reviews.length === 0) return;
     setActiveIndex((prev) => (prev + 1) % reviews.length);
@@ -52,6 +67,7 @@ export default function Testimonials() {
   };
 
   const onTouchStart = (e) => {
+    setIsPaused(true);
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -59,6 +75,7 @@ export default function Testimonials() {
   const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
 
   const onTouchEnd = () => {
+    setIsPaused(false);
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const minSwipeDistance = 50;
@@ -125,7 +142,7 @@ export default function Testimonials() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative">
+    <div className="w-full flex flex-col items-center justify-center py-20 overflow-hidden relative lx-indigo">
       <SectionHeading
         eyebrow="Testimonials"
         title="What Clients Say"
@@ -134,6 +151,8 @@ export default function Testimonials() {
       {/* Carousel Container */}
       <div
         className="relative w-full max-w-7xl h-80 md:h-[22rem] flex items-center justify-center"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -163,7 +182,7 @@ export default function Testimonials() {
                   "flex flex-col justify-between h-64",
                   "backdrop-blur-xl transition-colors duration-500",
                   style.diff === 0
-                    ? "bg-white/10 border-white/20 shadow-[0_8px_32px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
+                    ? "bg-white/10 border-white/20 shadow-[0_8px_32px_rgba(88,166,255,0.15),inset_0_1px_0_rgba(255,255,255,0.1)]"
                     : "bg-white/5 border-white/[0.06]",
                 )}
                 style={{
@@ -244,7 +263,11 @@ export default function Testimonials() {
       </div>
 
       {/* Navigation Controls */}
-      <div className="flex items-center gap-8 mt-8 z-30">
+      <div
+        className="flex items-center gap-8 mt-8 z-30"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <button
           onClick={prev}
           className="p-3 rounded-full border border-white/10 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-purple-500/50 transition-all active:scale-95 group"
@@ -262,7 +285,7 @@ export default function Testimonials() {
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
                 idx === activeIndex
-                  ? "w-7 bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                  ? "w-7 bg-purple-500 shadow-[0_0_10px_rgba(88,166,255,0.5)]"
                   : "w-1.5 bg-gray-700 hover:bg-gray-500",
               )}
               aria-label={`Go to slide ${idx + 1}`}
