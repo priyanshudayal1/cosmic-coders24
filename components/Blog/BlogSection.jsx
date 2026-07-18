@@ -25,7 +25,7 @@ const BlogSection = () => {
             date: formatDate(blog.createdAt),
             author: blog.author || blog.authorEmail || "Admin",
             category: blog.category || "Uncategorized",
-            slug: blog.id,
+            slug: blog.slug || blog.id,
             image:
               blog.image ||
               "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",

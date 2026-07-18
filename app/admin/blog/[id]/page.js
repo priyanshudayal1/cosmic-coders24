@@ -10,28 +10,70 @@ import { formatDate } from "@/utils/dateUtils";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import AdminModal from "@/components/ui/AdminModal";
 
+const TARGET_BLOG_IMAGE_RATIO = 16 / 9;
+const RATIO_TOLERANCE = 0.02;
+
+const getImageDimensions = (file) =>
+  new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const img = new window.Image();
+
+    img.onload = () => {
+      const dimensions = { width: img.naturalWidth, height: img.naturalHeight };
+      URL.revokeObjectURL(objectUrl);
+      resolve(dimensions);
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Failed to read image dimensions."));
+    };
+
+    img.src = objectUrl;
+  });
+
+const isAspectRatio16By9 = (width, height) => {
+  if (!width || !height) {
+    return false;
+  }
+
+  const ratio = width / height;
+  return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
+};
+
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 export default function EditBlogPage({ params }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [blogId, setBlogId] = useState(null);
+  const [useTitleAsUniqueName, setUseTitleAsUniqueName] = useState(false);
   const [modal, setModal] = useState({
     isOpen: false,
     type: "confirm",
     title: "",
     message: "",
-    onConfirm: () => { },
+    onConfirm: () => {},
     confirmText: "Close",
   });
 
   const [formData, setFormData] = useState({
     title: "",
+    uniqueName: "",
     image: null, // File object or URL string
     imagePreview: "",
     content: "",
     excerpt: "",
     author: "",
     category: "Technology", // Default or fetch
+    tags: "",
     createdAt: new Date().toISOString(), // for preview
   });
 
@@ -68,6 +110,7 @@ export default function EditBlogPage({ params }) {
 
         setFormData({
           title: data.title,
+          uniqueName: data.slug || data.id || id,
           image: data.image, // Keep existing URL
           imagePreview:
             data.image ||
@@ -76,8 +119,13 @@ export default function EditBlogPage({ params }) {
           excerpt: data.excerpt || "",
           author: data.author || data.authorEmail || "Admin",
           category: data.category || "Technology",
+          tags: Array.isArray(data.tags) ? data.tags.join(", ") : "",
           createdAt: data.createdAt,
         });
+
+        setUseTitleAsUniqueName(
+          (data.slug || data.id || id) === slugify(data.title || ""),
+        );
       } else {
         console.error("Failed to fetch");
         router.push("/admin");
@@ -89,9 +137,37 @@ export default function EditBlogPage({ params }) {
     }
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      try {
+        const { width, height } = await getImageDimensions(file);
+        if (!isAspectRatio16By9(width, height)) {
+          setModal({
+            isOpen: true,
+            type: "danger",
+            title: "Invalid Image Ratio",
+            message:
+              "Please upload a 16:9 image for blog covers (example: 1600x900 or 1920x1080).",
+            confirmText: "Close",
+            onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+          });
+          e.target.value = "";
+          return;
+        }
+      } catch {
+        setModal({
+          isOpen: true,
+          type: "danger",
+          title: "Image Error",
+          message: "We could not read this image. Please try another file.",
+          confirmText: "Close",
+          onConfirm: () => setModal((prev) => ({ ...prev, isOpen: false })),
+        });
+        e.target.value = "";
+        return;
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
         // Set image to File object, and update preview
@@ -111,10 +187,15 @@ export default function EditBlogPage({ params }) {
     setSaving(true);
     const data = new FormData();
     data.append("title", formData.title);
+    data.append(
+      "uniqueName",
+      slugify(formData.uniqueName || formData.title || blogId || ""),
+    );
     data.append("content", formData.content);
     data.append("excerpt", formData.excerpt);
     data.append("author", formData.author);
     data.append("category", formData.category);
+    data.append("tags", formData.tags);
 
     // Only append image if it's a File object (new upload)
     // If it's a string, it means we kept the old URL, backend handles it if we don't send "image"
@@ -132,6 +213,10 @@ export default function EditBlogPage({ params }) {
       });
 
       if (res.ok) {
+        const updatedBlog = await res.json();
+        if (updatedBlog?.id && updatedBlog.id !== blogId) {
+          setBlogId(updatedBlog.id);
+        }
         router.push("/admin");
       } else {
         const err = await res.json();
@@ -202,14 +287,14 @@ export default function EditBlogPage({ params }) {
       <div className="flex-1 min-h-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 h-full max-w-450 mx-auto">
           {/* Preview - Left Side */}
-          <div className="h-full overflow-y-auto bg-site-bg border-r border-zinc-800">
+          <div className="h-full overflow-y-auto bg-[#0F061A] border-r border-zinc-800">
             <div className="relative w-full aspect-video bg-[#120a20]">
               <Image
                 src={formData.imagePreview}
                 alt={formData.title}
                 fill
                 sizes="50vw"
-                className="object-cover"
+                className="object-contain"
               />
               <div className="absolute inset-0 bg-linear-to-t from-site-bg via-site-bg/50 to-transparent" />
             </div>
@@ -256,10 +341,60 @@ export default function EditBlogPage({ params }) {
                   type="text"
                   value={formData.title}
                   onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
+                    setFormData((prev) => ({
+                      ...prev,
+                      title: e.target.value,
+                      uniqueName: useTitleAsUniqueName
+                        ? slugify(e.target.value)
+                        : prev.uniqueName,
+                    }))
                   }
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white text-xl font-semibold focus:outline-none focus:border-zinc-700"
                 />
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <label className="text-sm text-zinc-400">
+                    Unique Name (URL Slug)
+                  </label>
+                  <label className="inline-flex items-center gap-2 text-xs text-zinc-400 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={useTitleAsUniqueName}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        setUseTitleAsUniqueName(checked);
+                        if (checked) {
+                          setFormData((prev) => ({
+                            ...prev,
+                            uniqueName: slugify(prev.title),
+                          }));
+                        }
+                      }}
+                      className="accent-zinc-600"
+                    />
+                    <span>Same as title</span>
+                  </label>
+                </div>
+                <input
+                  type="text"
+                  value={formData.uniqueName}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      uniqueName: slugify(e.target.value),
+                    }))
+                  }
+                  placeholder="why-your-business-needs-local-seo"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700 disabled:opacity-60"
+                  disabled={useTitleAsUniqueName}
+                />
+                <p className="text-xs text-zinc-500">
+                  Final URL: /blog/
+                  {slugify(formData.uniqueName || formData.title) ||
+                    "your-blog-name"}
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -292,6 +427,22 @@ export default function EditBlogPage({ params }) {
               </div>
 
               <div>
+                <label className="text-sm text-zinc-400 mb-2 block">Tags</label>
+                <input
+                  type="text"
+                  value={formData.tags}
+                  onChange={(e) =>
+                    setFormData({ ...formData, tags: e.target.value })
+                  }
+                  placeholder="seo, web development, marketing"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
+                />
+                <p className="text-xs text-zinc-500 mt-2">
+                  Use comma-separated tags for SEO metadata.
+                </p>
+              </div>
+
+              <div>
                 <label className="text-sm text-zinc-400 mb-2 block">
                   Featured Image
                 </label>
@@ -312,6 +463,9 @@ export default function EditBlogPage({ params }) {
                       : "Current Image URL stored"}
                   </span>
                 )}
+                <p className="text-xs text-zinc-500 mt-2">
+                  Only 16:9 images are accepted.
+                </p>
               </div>
 
               <div>
