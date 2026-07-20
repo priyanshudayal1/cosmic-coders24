@@ -53,7 +53,7 @@ export default function VideoEditingPortfolio() {
         "High-impact cinematic sequences with advanced color grading and visual effects.",
       type: "Cinematic",
       playlistId: "PL_6UKhKZJVxVL5vJw8TVPN8YmvfRFJ6XE",
-      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxVL5vJw8TVPN8YmvfRFJ6XE&si=sX7axmJRQZz0iPlP",
+      link: "https://youtube.com/playlist?list=PL_6UKhKZJVxVL5vJw8TVPN8YmvfRFJ6XE&si=BxPBvCYJJuyjcBq4",
     },
     {
       title: "E-Sport Videos",
