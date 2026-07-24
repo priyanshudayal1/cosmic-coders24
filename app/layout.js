@@ -16,8 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Cosmic Coders 24",
-  description: "Cosmic Coders 24",
+  title: "Cosmic Coder 24",
+  description: "Cosmic Coder 24",
+  verification: {
+    google: "aQjbCrJ8O-_OtpQqSE9xG5Rr_Etaj96AvUV2Scu3W8A",
+  },
   keywords: [
     "Google Business Profile Optimization Services",
     "GMB Optimization Services",

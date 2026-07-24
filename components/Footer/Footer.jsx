@@ -62,7 +62,7 @@ const Footer = () => {
             <Link href="/" className="flex items-center">
               <Image
                 src="/assets/main-logo/White-Typo-with-2.png"
-                alt="Cosmic Coders"
+                alt="Cosmic Coder"
                 width={200}
                 height={48}
                 className="h-12 w-auto"
@@ -294,7 +294,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <p suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} Cosmic Coders. All rights
+            &copy; {new Date().getFullYear()} Cosmic Coder. All rights
             reserved.
           </p>
           <div className="flex items-center gap-6">

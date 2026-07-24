@@ -1,10 +1,49 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Edit, Trash2, Save, Image as ImageIcon } from "lucide-react";
 import AdminModal from "@/components/ui/AdminModal";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+
+const TARGET_BLOG_IMAGE_RATIO = 16 / 9;
+const RATIO_TOLERANCE = 0.02;
+
+const getImageDimensions = (file) =>
+  new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const img = new window.Image();
+
+    img.onload = () => {
+      const dimensions = { width: img.naturalWidth, height: img.naturalHeight };
+      URL.revokeObjectURL(objectUrl);
+      resolve(dimensions);
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Failed to read image dimensions."));
+    };
+
+    img.src = objectUrl;
+  });
+
+const isAspectRatio16By9 = (width, height) => {
+  if (!width || !height) {
+    return false;
+  }
+
+  const ratio = width / height;
+  return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
+};
+
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 const BlogManager = ({ user }) => {
   const router = useRouter();
@@ -12,12 +51,15 @@ const BlogManager = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [useTitleAsUniqueName, setUseTitleAsUniqueName] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
+    uniqueName: "",
     content: "",
     excerpt: "",
     author: "",
     category: "",
+    tags: "",
     image: null,
   });
 
@@ -52,13 +94,32 @@ const BlogManager = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const normalizedUniqueName = slugify(formData.uniqueName || formData.title);
+
+    if (!normalizedUniqueName) {
+      setModal({
+        isOpen: true,
+        type: "danger",
+        title: "Unique Name Required",
+        message:
+          "Please enter a valid unique name. Use letters, numbers, and hyphens only.",
+        confirmText: "Close",
+        isLoading: false,
+        onConfirm: () =>
+          setModal((prev) => ({ ...prev, isOpen: false, isLoading: false })),
+      });
+      return;
+    }
+
     setCreating(true);
     const data = new FormData();
     data.append("title", formData.title);
+    data.append("uniqueName", normalizedUniqueName);
     data.append("content", formData.content);
     data.append("excerpt", formData.excerpt);
     data.append("author", formData.author || user?.email || "Admin");
     data.append("category", formData.category);
+    data.append("tags", formData.tags);
     if (formData.image) {
       data.append("image", formData.image);
     }
@@ -73,6 +134,20 @@ const BlogManager = ({ user }) => {
         const newBlog = await res.json();
         // Redirect to edit/preview page immediately
         router.push(`/admin/blog/${newBlog.id}`);
+      } else {
+        const errorPayload = await res.json().catch(() => ({}));
+        setModal({
+          isOpen: true,
+          type: "danger",
+          title: "Failed to Create Blog",
+          message:
+            errorPayload.error ||
+            "Something went wrong while creating the blog. Please try again.",
+          confirmText: "Close",
+          isLoading: false,
+          onConfirm: () =>
+            setModal((prev) => ({ ...prev, isOpen: false, isLoading: false })),
+        });
       }
     } catch (error) {
       console.error("Failed to create blog", error);
@@ -144,11 +219,62 @@ const BlogManager = ({ user }) => {
                 type="text"
                 value={formData.title}
                 onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
+                  setFormData((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                    uniqueName: useTitleAsUniqueName
+                      ? slugify(e.target.value)
+                      : prev.uniqueName,
+                  }))
                 }
                 className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
                 required
               />
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center justify-between gap-3">
+                <label className="text-sm text-zinc-400">
+                  Unique Name (URL Slug)
+                </label>
+                <label className="inline-flex items-center gap-2 text-xs text-zinc-400 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={useTitleAsUniqueName}
+                    onChange={(e) => {
+                      const checked = e.target.checked;
+                      setUseTitleAsUniqueName(checked);
+                      if (checked) {
+                        setFormData((prev) => ({
+                          ...prev,
+                          uniqueName: slugify(prev.title),
+                        }));
+                      }
+                    }}
+                    className="accent-zinc-600"
+                  />
+                  <span>Same as title</span>
+                </label>
+              </div>
+              <input
+                type="text"
+                value={formData.uniqueName}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    uniqueName: slugify(e.target.value),
+                  })
+                }
+                placeholder="why-your-business-needs-local-seo"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700 disabled:opacity-60"
+                disabled={useTitleAsUniqueName}
+                required
+              />
+              <p className="text-xs text-zinc-500">
+                Final URL: /blog/
+                {slugify(formData.uniqueName || formData.title) ||
+                  "your-blog-name"}
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -183,6 +309,22 @@ const BlogManager = ({ user }) => {
             </div>
 
             <div>
+              <label className="text-sm text-zinc-400 mb-2 block">Tags</label>
+              <input
+                type="text"
+                value={formData.tags}
+                onChange={(e) =>
+                  setFormData({ ...formData, tags: e.target.value })
+                }
+                placeholder="seo, web development, marketing"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zinc-700"
+              />
+              <p className="text-xs text-zinc-500 mt-2">
+                Use comma-separated tags for SEO metadata.
+              </p>
+            </div>
+
+            <div>
               <label className="text-sm text-zinc-400 mb-2 block">
                 Cover Image
               </label>
@@ -190,9 +332,44 @@ const BlogManager = ({ user }) => {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => {
-                    if (e.target.files?.[0]) {
-                      setFormData({ ...formData, image: e.target.files[0] });
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) {
+                      return;
+                    }
+
+                    try {
+                      const { width, height } = await getImageDimensions(file);
+                      if (!isAspectRatio16By9(width, height)) {
+                        setModal({
+                          isOpen: true,
+                          type: "danger",
+                          title: "Invalid Image Ratio",
+                          message:
+                            "Please upload a 16:9 image for blog covers (example: 1600x900 or 1920x1080).",
+                          confirmText: "Close",
+                          isLoading: false,
+                          onConfirm: () =>
+                            setModal((prev) => ({ ...prev, isOpen: false })),
+                        });
+                        e.target.value = "";
+                        return;
+                      }
+
+                      setFormData({ ...formData, image: file });
+                    } catch {
+                      setModal({
+                        isOpen: true,
+                        type: "danger",
+                        title: "Image Error",
+                        message:
+                          "We could not read this image. Please try another file.",
+                        confirmText: "Close",
+                        isLoading: false,
+                        onConfirm: () =>
+                          setModal((prev) => ({ ...prev, isOpen: false })),
+                      });
+                      e.target.value = "";
                     }
                   }}
                   className="hidden"
@@ -209,6 +386,9 @@ const BlogManager = ({ user }) => {
                       : "Upload Cover Image"}
                   </span>
                 </label>
+                <p className="text-xs text-zinc-500 mt-2">
+                  Only 16:9 images are accepted.
+                </p>
               </div>
             </div>
 
@@ -296,7 +476,9 @@ const BlogManager = ({ user }) => {
                     </h3>
                     <p className="text-zinc-400 text-sm mb-2">{blog.excerpt}</p>
                     <div className="flex gap-4 text-sm text-zinc-500">
-                      <span>By {blog.author || blog.authorEmail || "Unknown"}</span>
+                      <span>
+                        By {blog.author || blog.authorEmail || "Unknown"}
+                      </span>
                       <span>•</span>
                       <span>{blog.category || "Uncategorized"}</span>
                       <span>•</span>

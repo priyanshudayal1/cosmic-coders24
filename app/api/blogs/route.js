@@ -2,7 +2,42 @@ import { NextResponse } from "next/server";
 import { adminDb } from "@/config/firebaseAdminConfig";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
-import { uploadImage } from "@/config/cloudinary";
+import { deleteImage, uploadImageDetailed } from "@/config/cloudinary";
+
+const TARGET_BLOG_IMAGE_RATIO = 16 / 9;
+const RATIO_TOLERANCE = 0.02;
+
+const isAspectRatio16By9 = (width, height) => {
+  if (!width || !height) {
+    return false;
+  }
+
+  const ratio = width / height;
+  return Math.abs(ratio - TARGET_BLOG_IMAGE_RATIO) <= RATIO_TOLERANCE;
+};
+
+const parseTags = (tagsValue) => {
+  if (!tagsValue || typeof tagsValue !== "string") {
+    return [];
+  }
+
+  return [
+    ...new Set(
+      tagsValue
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean),
+    ),
+  ];
+};
+
+const slugify = (value = "") =>
+  value
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export const dynamic = "force-dynamic";
 
@@ -50,7 +85,8 @@ export async function GET(req) {
       if (indexError.code === 9) {
         console.warn(
           "Composite index not found, falling back to unordered query. " +
-          "Please create the index: " + (indexError.details || "")
+            "Please create the index: " +
+            (indexError.details || ""),
         );
         let fallbackQuery = blogsRef;
         if (my === "true" && user) {
@@ -100,16 +136,44 @@ export async function POST(req) {
 
     const formData = await req.formData();
     const title = formData.get("title");
+    const uniqueName = formData.get("uniqueName");
     const content = formData.get("content");
     const excerpt = formData.get("excerpt");
     const author = formData.get("author");
     const category = formData.get("category");
+    const tags = parseTags(formData.get("tags"));
     const imageFile = formData.get("image");
 
     if (!title || !content) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },
+      );
+    }
+
+    const normalizedUniqueName = slugify(uniqueName || title);
+
+    if (!normalizedUniqueName) {
+      return NextResponse.json(
+        {
+          error: "Invalid unique name. Use letters, numbers, and hyphens only.",
+        },
+        { status: 400 },
+      );
+    }
+
+    const existingBlog = await adminDb
+      .collection("blogs")
+      .doc(normalizedUniqueName)
+      .get();
+
+    if (existingBlog.exists) {
+      return NextResponse.json(
+        {
+          error:
+            "This unique name is already in use. Please choose a different one.",
+        },
+        { status: 409 },
       );
     }
 
@@ -121,15 +185,33 @@ export async function POST(req) {
       const base64 = buffer.toString("base64");
       const dataURI = `data:${imageFile.type};base64,${base64}`;
 
-      imageUrl = await uploadImage(dataURI, "cosmic-coders/blogs");
+      const uploadResult = await uploadImageDetailed(
+        dataURI,
+        "cosmic-coders/blogs",
+      );
+
+      if (!isAspectRatio16By9(uploadResult.width, uploadResult.height)) {
+        await deleteImage(uploadResult.secure_url);
+        return NextResponse.json(
+          {
+            error:
+              "Invalid image ratio. Please upload a 16:9 image (example: 1600x900 or 1920x1080).",
+          },
+          { status: 400 },
+        );
+      }
+
+      imageUrl = uploadResult.secure_url;
     }
 
     const newBlog = {
       title,
+      slug: normalizedUniqueName,
       content,
       excerpt,
       author: author || user.email || "Admin",
       category: category || "Technology",
+      tags,
       image: imageUrl,
       authorId: user.id || "admin",
       authorEmail: user.email || "admin",
@@ -137,9 +219,12 @@ export async function POST(req) {
       updatedAt: new Date().toISOString(),
     };
 
-    const docRef = await adminDb.collection("blogs").add(newBlog);
+    await adminDb.collection("blogs").doc(normalizedUniqueName).set(newBlog);
 
-    return NextResponse.json({ id: docRef.id, ...newBlog }, { status: 201 });
+    return NextResponse.json(
+      { id: normalizedUniqueName, ...newBlog },
+      { status: 201 },
+    );
   } catch (error) {
     console.error("Error creating blog:", error);
     return NextResponse.json(
