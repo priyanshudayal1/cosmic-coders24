@@ -51,20 +51,20 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="min-w-0 flex-1"
+          className="shrink-0"
         >
           <Image
             src="/assets/main-logo/White-Typo-with-2.png"
             alt="Cosmic Coders"
             width={200}
             height={48}
-            className="h-10 w-auto max-w-[150px] sm:h-12 sm:max-w-[200px]"
+            className="h-10 w-auto max-w-[150px] sm:h-12 sm:max-w-[180px]"
             priority
           />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden min-[1200px]:flex items-center gap-1">
           <NavItem
             title="Services"
             dropdownItems={[
@@ -128,12 +128,12 @@ const Navbar = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="hidden lg:block">
+        <div className="hidden min-[1200px]:block">
           <GlassButton href="/about-contact">Get Started</GlassButton>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="shrink-0 lg:hidden">
+        <div className="shrink-0 min-[1200px]:hidden">
           <button
             onClick={toggleMenu}
             className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 hover:text-gray-300 focus:outline-none"
@@ -146,7 +146,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 flex w-full max-w-full flex-col gap-4 overflow-hidden rounded-2xl border border-white/10 bg-black/80 p-4 backdrop-blur-xl lg:hidden">
+        <div className="absolute top-full left-0 mt-2 flex w-full max-w-full flex-col gap-4 overflow-hidden rounded-2xl border border-white/10 bg-black/80 p-4 backdrop-blur-xl min-[1200px]:hidden">
           <NavItem
             title="Services"
             mobile
