@@ -43,17 +43,6 @@ const Hero = () => {
 
       {/* ── Content ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto space-y-8">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 rounded-full border border-site-border bg-white/5 px-4 py-1.5 text-xs sm:text-sm text-slate-200/90 backdrop-blur-sm tracking-wide"
-        >
-          <span className="text-purple-300">✦</span>
-          Full-Service Digital Agency
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,17 +63,6 @@ const Hero = () => {
             That Drive Visibility &amp; Real Growth
           </span>
         </motion.h1>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-          className="max-w-2xl text-base sm:text-lg text-slate-300/85 leading-relaxed"
-        >
-          Websites, SEO and growth engineering for brands that want to stand
-          out — designed, built and launched by one dedicated crew.
-        </motion.p>
 
         {/* CTAs */}
         <motion.div
@@ -127,21 +105,6 @@ const Hero = () => {
             "radial-gradient(circle at 50% 0%, rgba(var(--site-glow), 0.10), rgba(var(--site-glow), 0.03) 28%, transparent 50%)",
         }}
       />
-
-      {/* ── Scroll hint ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.4 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
-      >
-        <div className="scroll-hint flex flex-col items-center gap-1.5 text-slate-400/70">
-          <span className="text-[10px] uppercase tracking-[0.25em]">Scroll</span>
-          <span className="flex h-8 w-5 items-start justify-center rounded-full border border-slate-400/40 p-1">
-            <span className="h-1.5 w-0.5 rounded-full bg-slate-300/80" />
-          </span>
-        </div>
-      </motion.div>
 
       {/* Bottom fade for seamless transition into next section */}
       <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-site-bg to-transparent pointer-events-none" />

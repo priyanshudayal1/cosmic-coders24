@@ -23,7 +23,6 @@ export default function CityCoverage() {
             </span>
           </>
         }
-        subtitle="We help businesses grow online with professional Website Development, SEO, Google Business Profile (GMB) Optimization, Branding, and Digital Marketing services across India. Select your city to explore our local services, successful projects, and customized growth solutions."
       />
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-wrap justify-center gap-4 px-4 sm:px-6">
