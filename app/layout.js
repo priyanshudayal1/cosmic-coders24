@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://www.cosmiccoder24.com"),
   title: "Cosmic Coder 24",
   description: "Cosmic Coder 24",
   verification: {

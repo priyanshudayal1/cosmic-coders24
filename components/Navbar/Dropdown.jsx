@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import HashLink from "@/components/ui/HashLink";
 
 const Dropdown = ({ isOpen, items }) => {
   return (
@@ -14,13 +14,13 @@ const Dropdown = ({ isOpen, items }) => {
     >
       <div className="py-2 flex flex-col">
         {items.map((item, index) => (
-          <Link
+          <HashLink
             key={index}
             href={item.href}
             className="px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors"
           >
             {item.label}
-          </Link>
+          </HashLink>
         ))}
       </div>
     </div>

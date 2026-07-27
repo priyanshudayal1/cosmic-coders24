@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import HashLink from "@/components/ui/HashLink";
 import { ChevronDown } from "lucide-react";
 import Dropdown from "./Dropdown";
 
@@ -59,14 +60,14 @@ const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
         {isOpen && dropdownItems && (
           <div className="pl-4 flex flex-col gap-2 mt-1 mb-2 border-l border-white/10">
             {dropdownItems.map((item, index) => (
-              <Link
+              <HashLink
                 key={index}
                 href={item.href}
                 className="block break-words py-1 text-sm text-white/60 transition-colors hover:text-white"
                 onClick={handleLinkClick}
               >
                 {item.label}
-              </Link>
+              </HashLink>
             ))}
           </div>
         )}

@@ -8,6 +8,14 @@ import ParticleHeader from "@/components/shared/ParticleHeader";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Digital Marketing, SEO & Website Development Blog",
+  description:
+    "Read expert insights on SEO, digital marketing, website development, branding, AI, and business growth strategies to stay ahead in the digital landscape.",
+  keywords: ["SEO Blog", "Website Development Blog"],
+  alternates: { canonical: "https://www.cosmiccoder24.com/blog" },
+};
+
 export default async function Blog({ searchParams }) {
   const resolvedSearchParams = await searchParams;
   const page = parseInt(resolvedSearchParams?.page) || 1;

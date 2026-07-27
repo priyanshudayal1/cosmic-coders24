@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import HashLink from "@/components/ui/HashLink";
 import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -27,7 +27,7 @@ export default function CityCoverage() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-wrap justify-center gap-4 px-4 sm:px-6">
         {CITIES.map(({ name, href }) => (
-          <Link
+          <HashLink
             key={name}
             href={href}
             className={cn(
@@ -41,7 +41,7 @@ export default function CityCoverage() {
               className="shrink-0 text-purple-400 transition-colors group-hover:text-purple-300"
             />
             <span>{name}</span>
-          </Link>
+          </HashLink>
         ))}
       </div>
     </section>

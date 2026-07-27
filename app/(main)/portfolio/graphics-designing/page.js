@@ -116,7 +116,7 @@ export default function GraphicsDesigningPortfolio() {
       />
 
       <section className="pt-6 pb-12 md:pt-8 md:pb-16">
-        <ImageCarousel images={carouselImages} duration="50s" />
+        <ImageCarousel images={carouselImages} duration="50s" href="#featured-projects" />
 
         <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
           <GlassButton
@@ -155,7 +155,7 @@ export default function GraphicsDesigningPortfolio() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white/5">
+      <section id="featured-projects" className="py-12 md:py-20 px-4 sm:px-6 bg-white/5 scroll-mt-28">
         <div className="max-w-7xl mx-auto">
           <SectionHeading
             eyebrow="Our Work"

@@ -93,7 +93,7 @@ export default function WebsiteDevelopmentPortfolio() {
       />
 
       <section className="pt-6 pb-12 md:pt-8 md:pb-16">
-        <ImageCarousel images={carouselImages} duration="50s" />
+        <ImageCarousel images={carouselImages} duration="50s" href="#featured-projects" />
 
         <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
           <GlassButton
@@ -132,7 +132,7 @@ export default function WebsiteDevelopmentPortfolio() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white/5">
+      <section id="featured-projects" className="py-12 md:py-20 px-4 sm:px-6 bg-white/5 scroll-mt-28">
         <div className="max-w-[96rem] mx-auto">
           <SectionHeading
             eyebrow="Our Work"

@@ -98,10 +98,11 @@ export default function SEOResults() {
             images={dashboardImages}
             duration="55s"
             fadeColor="var(--site-bg)"
+            href="#case-studies"
           />
         </section>
 
-        <section className="py-20 px-4">
+        <section id="case-studies" className="py-20 px-4 scroll-mt-28">
           <div className="max-w-7xl mx-auto">
             <SectionHeading
               eyebrow="Our Work"

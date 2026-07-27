@@ -42,7 +42,7 @@ export default function BrandingLogoDesignPortfolio() {
             titleClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 tracking-tight drop-shadow-lg relative z-10"
           />
         </div>
-        <ImageCarousel images={carouselImages} duration="60s" />
+        <ImageCarousel images={carouselImages} duration="60s" href="/services/branding-logo-design" />
 
         <div className="flex justify-center mt-10 md:mt-12 px-4 sm:px-6">
           <GlassButton

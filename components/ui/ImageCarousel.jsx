@@ -10,6 +10,7 @@ export default function ImageCarousel({
   duration = "45s",
   reverse = false,
   fadeColor = "var(--site-bg)",
+  href,
 }) {
   return (
     <div className={cn("relative w-full overflow-hidden", className)}>
@@ -19,22 +20,31 @@ export default function ImageCarousel({
         repeat={3}
         style={{ "--duration": duration }}
       >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="relative shrink-0 rounded-2xl border border-white/10 bg-white/5 overflow-hidden group/slide"
-          >
-            <img
-              src={image.src}
-              alt={image.alt || "Portfolio work"}
-              loading="lazy"
-              className={cn(
-                "h-52 sm:h-64 md:h-72 w-auto object-cover transition-transform duration-500 group-hover/slide:scale-[1.03]",
-                imageClassName
-              )}
-            />
-          </div>
-        ))}
+        {images.map((image, index) => {
+          const slide = (
+            <div
+              className="relative shrink-0 rounded-2xl border border-white/10 bg-white/5 overflow-hidden group/slide"
+            >
+              <img
+                src={image.src}
+                alt={image.alt || "Portfolio work"}
+                loading="lazy"
+                className={cn(
+                  "h-52 sm:h-64 md:h-72 w-auto object-cover transition-transform duration-500 group-hover/slide:scale-[1.03]",
+                  imageClassName
+                )}
+              />
+            </div>
+          );
+
+          return href ? (
+            <a key={index} href={href} className="shrink-0 cursor-pointer">
+              {slide}
+            </a>
+          ) : (
+            <div key={index}>{slide}</div>
+          );
+        })}
       </Marquee>
       <div
         className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 z-10"
