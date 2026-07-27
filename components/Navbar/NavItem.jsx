@@ -77,7 +77,7 @@ const NavItem = ({ title, href, dropdownItems, mobile, onNavigate }) => {
 
   return (
     <div
-      className="relative group h-full flex items-center px-4 py-2 rounded-xl border border-transparent hover:bg-white/10 hover:border-white/10 transition-all duration-300"
+      className="relative group h-full flex items-center px-2.5 py-2 rounded-xl border border-transparent hover:bg-white/10 hover:border-white/10 transition-all duration-300 whitespace-nowrap text-sm 2xl:text-base"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
