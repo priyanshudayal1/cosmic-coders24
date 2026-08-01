@@ -1,6 +1,7 @@
 import Image from "next/image";
 import JsonLd from "@/components/shared/JsonLd";
 import { organizationSchema } from "@/lib/schemas";
+import HashScrollHandler from "@/components/ui/HashScrollHandler";
 import Hero from "@/components/Hero/Hero";
 import Services from "@/components/Services/Services";
 import Portfolio from "@/components/Portfolio/Portfolio";
@@ -30,6 +31,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen font-(family-name:--font-geist-sans) bg-site-bg text-white">
       <JsonLd data={organizationSchema} />
+      <HashScrollHandler />
       <Hero />
       <Services />
       <Portfolio />
