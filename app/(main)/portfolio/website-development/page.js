@@ -20,11 +20,11 @@ import GlassButton from "@/components/ui/GlassButton";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 
 const carouselImages = [
-  { src: "/assets/portfolio/websites/website-01.png", alt: "Website development project" },
-  { src: "/assets/portfolio/websites/website-02.png", alt: "Website development project" },
-  { src: "/assets/portfolio/websites/website-03.png", alt: "Website development project" },
-  { src: "/assets/portfolio/websites/website-04.png", alt: "Website development project" },
-  { src: "/assets/portfolio/websites/website-05.png", alt: "Website development project" },
+  { src: "/assets/portfolio/websites/website-01.png", alt: "Shree Tattva - Astrology Website", link: "https://www.shreetattva.com" },
+  { src: "/assets/portfolio/websites/website-02.png", alt: "Vaishnav Travels", link: "https://www.vaishnavtravelsco.com" },
+  { src: "/assets/portfolio/websites/website-03.png", alt: "Vaishnav Travels", link: "https://www.vaishnavtravelsco.com" },
+  { src: "/assets/portfolio/websites/website-04.png", alt: "MS Raghav Enterprise", link: "https://www.msraghaventerprises.com" },
+  { src: "/assets/portfolio/websites/website-05.png", alt: "Niematuh Foodstuff Trading", link: "https://www.niematuh.com" },
 ];
 
 export default function WebsiteDevelopmentPortfolio() {

@@ -37,8 +37,16 @@ export default function ImageCarousel({
             </div>
           );
 
-          return href ? (
-            <a key={index} href={href} className="shrink-0 cursor-pointer">
+          const link = image.link || href;
+
+          return link ? (
+            <a
+              key={index}
+              href={link}
+              target={image.link ? "_blank" : undefined}
+              rel={image.link ? "noopener noreferrer" : undefined}
+              className="shrink-0 cursor-pointer"
+            >
               {slide}
             </a>
           ) : (

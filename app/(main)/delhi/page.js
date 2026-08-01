@@ -111,8 +111,8 @@ export default function DelhiPage() {
   return (
     <div className="min-h-screen bg-site-bg text-white selection:bg-purple-500/30">
       <ServiceHero
-        title="Best Software Development"
-        highlightedText="Company In Delhi"
+        title="Best Software, Website Development, Local SEO &"
+        highlightedText="Digital Marketing Company in Delhi"
         subtitle="Cosmic Coder 24 delivers cutting-edge digital solutions for Delhi businesses — custom websites, SEO, branding, and software development that drives real growth."
         ctaText="Get Started Today"
         ctaHref="#contact"

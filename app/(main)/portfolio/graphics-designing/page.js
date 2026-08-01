@@ -22,12 +22,12 @@ import GlassButton from "@/components/ui/GlassButton";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 
 const carouselImages = [
-  { src: "/assets/portfolio/graphics/graphic-01.png", alt: "Graphic design work" },
-  { src: "/assets/portfolio/graphics/graphic-02.png", alt: "Graphic design work" },
-  { src: "/assets/portfolio/graphics/graphic-03.png", alt: "Graphic design work" },
-  { src: "/assets/portfolio/graphics/graphic-04.png", alt: "Graphic design work" },
-  { src: "/assets/portfolio/graphics/graphic-05.png", alt: "Graphic design work" },
-  { src: "/assets/portfolio/graphics/graphic-06.png", alt: "Graphic design work" },
+  { src: "/assets/portfolio/graphics/graphic-01.png", alt: "Marketing Collateral", link: "https://www.behance.net/gallery/244906287/Marketing-Collateral" },
+  { src: "/assets/portfolio/graphics/graphic-02.png", alt: "Event Graphics", link: "https://www.behance.net/gallery/244906495/Event-Graphics" },
+  { src: "/assets/portfolio/graphics/graphic-03.png", alt: "Pitch Decks", link: "https://www.behance.net/gallery/244921521/PITCH-DECK" },
+  { src: "/assets/portfolio/graphics/graphic-04.png", alt: "Social Media Templates", link: "https://www.behance.net/gallery/244431959/Social-Media-Posts" },
+  { src: "/assets/portfolio/graphics/graphic-05.png", alt: "Infographics", link: "https://www.behance.net/gallery/244421427/INFOGRAPHICS" },
+  { src: "/assets/portfolio/graphics/graphic-06.png", alt: "E-Sports Banners", link: "https://www.behance.net/gallery/244438771/E-SPORTS-BANNER" },
 ];
 
 export default function GraphicsDesigningPortfolio() {
